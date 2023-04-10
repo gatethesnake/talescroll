@@ -722,13 +722,14 @@ function animateD20(roll) {
   // Create materials for each face using the numbered textures
   const materials = [];
   for (let i = 1; i <= 20; i++) {
-    const texture = createNumberedTexture(i);
+    const textureNumber = d20Mapping[i - 1];
+    const texture = createNumberedTexture(textureNumber);
     materials.push(new THREE.MeshPhongMaterial({ map: texture, shininess: 100 }));
   }
+  
 
   // Create the d20 geometry and adjust UV mapping
   var d20Geometry = createD20Geometry(10); // Pass the desired size as an argument
-
 
   var d20Material = materials
 
@@ -736,43 +737,42 @@ function animateD20(roll) {
   var d20Mesh = new THREE.Mesh(d20Geometry, d20Material);
   scene.add(d20Mesh);
 
-  // Position the camera and d20 mesh
-  camera.position.z = 20;
-  d20Mesh.position.z = -10;
+ // Position the camera and d20 mesh
+ camera.position.set(0, 25, 25);
+ d20Mesh.position.z = -10;
+ camera.lookAt(d20Mesh.position);
 
-  function toRadians(degrees) {
-    return degrees * (Math.PI / 180);
-  }
-  
-  const d20FaceRotationsRadians = d20FaceRotations.map(rotation => {
-    return { x: toRadians(rotation.x), y: toRadians(rotation.y) };
-  });
-  
-    
-  function showDieFace(roll) {
+ const d20FaceRotationsRadians = faceNormals.map((normal) => {
+   const quaternion = new THREE.Quaternion().setFromUnitVectors(normal, new THREE.Vector3(0, 1, 0));
+   const euler = new THREE.Euler().setFromQuaternion(quaternion);
+   return { x: euler.x, y: euler.y };
+ });
 
-    
-    
-    // trial D from roll in rad
-    const targetRotation = d20FaceRotationsRadians[19];
-  
-    d20Mesh.rotation.x = targetRotation.x;
-    d20Mesh.rotation.y = targetRotation.y;
-  
-    renderer.render(scene, camera);
-  }
+ const mappedD20FaceRotationsRadians = d20Mapping.map((faceNumber) => {
+   return d20FaceRotationsRadians[faceNumber - 1];
+ });
 
-  
-  // Call the animate function to start the animation loop
-  showDieFace(roll);
+ const meshRotationConstant = Math.PI / 4;
+ d20Mesh.rotation.x += meshRotationConstant;
+ d20Mesh.rotation.y += meshRotationConstant;
+ 
 
-
-  // Show the d20Container
-  d20RendererElement = renderer.domElement;
-  showD20Container();
+function showDieFace(roll) {
+  const targetRotation = mappedD20FaceRotationsRadians[roll - 1];
+  d20Mesh.rotation.x = targetRotation.x + meshRotationConstant;
+  d20Mesh.rotation.y = targetRotation.y + meshRotationConstant;
+  renderer.render(scene, camera);
 }
+ 
 
+ // Call the animate function to start the animation loop
+ showDieFace(roll);
 
+ // Show the d20Container
+ d20RendererElement = renderer.domElement;
+ showD20Container();
+}
+   
 function createNumberedTexture(number) {
   const canvas = document.createElement('canvas');
   canvas.width = 1024;
@@ -794,28 +794,58 @@ function createNumberedTexture(number) {
   return texture;
 }
 
-function createD20Geometry(size) {
-  const geometry = new THREE.IcosahedronGeometry(size, 0);
-  geometry.faceVertexUvs[0] = [];
+  function createD20Geometry(size) {
+    const geometry = new THREE.IcosahedronGeometry(size, 0);
+    geometry.faceVertexUvs[0] = [];
 
-  geometry.faces.forEach((face, index) => {
-    const textureIndex = d20Mapping[index] - 1;
-    face.materialIndex = textureIndex;
+    geometry.faces.forEach((face, index) => {
+      const textureIndex = d20Mapping[index] - 1;
+      face.materialIndex = textureIndex;
 
-    const uvA = new THREE.Vector2(0.5, 1);
-    const uvB = new THREE.Vector2(0, 0.25);
-    const uvC = new THREE.Vector2(1, 0.25);
+      const uvA = new THREE.Vector2(0.5, 1);
+      const uvB = new THREE.Vector2(0, 0.25);
+      const uvC = new THREE.Vector2(1, 0.25);
 
-    geometry.faceVertexUvs[0].push([uvA, uvB, uvC]);
+      geometry.faceVertexUvs[0].push([uvA, uvB, uvC]);
+    });
+
+    geometry.uvsNeedUpdate = true;
+
+    return geometry;
+  }
+
+  // ... IcosahedronGeometry code ...
+
+  const d20Geometry = new THREE.IcosahedronGeometry(1, 0);
+  const vertices = d20Geometry.vertices;
+  const icosahedronGeometry = new THREE.IcosahedronGeometry(1, 0);
+  const faceVertices = [];
+
+  for (let i = 0; i < icosahedronGeometry.faces.length; i++) {
+    const face = icosahedronGeometry.faces[i];
+    const a = icosahedronGeometry.vertices[face.a];
+    const b = icosahedronGeometry.vertices[face.b];
+    const c = icosahedronGeometry.vertices[face.c];
+    faceVertices.push([a, b, c]);
+  }
+
+  const faceCenters = faceVertices.map(face => {
+    const center = new THREE.Vector3();
+    center.add(face[0]).add(face[1]).add(face[2]).divideScalar(3);
+    return center;
   });
 
-  geometry.uvsNeedUpdate = true;
+  const faceNormals = faceVertices.map(face => {
+    const ab = new THREE.Vector3().subVectors(face[1], face[0]);
+    const ac = new THREE.Vector3().subVectors(face[2], face[0]);
+    return new THREE.Vector3().crossVectors(ab, ac).normalize();
+  });
 
-  return geometry;
-}
-
-
-
+  const faceRotations = faceNormals.map(normal => {
+    const quaternion = new THREE.Quaternion().setFromUnitVectors(normal, new THREE.Vector3(0, 1, 0));
+    const euler = new THREE.Euler().setFromQuaternion(quaternion);
+    return { x: euler.x, y: euler.y };
+  });
 
 function showD20Container() {
   document.getElementById("d20Container").classList.remove("hidden");
@@ -832,9 +862,26 @@ function hideD20Container() {
   container.classList.add("hidden");
 }
 
+function animateD20TwentyTimes() {
+  let rollCount = 1;
+
+  function rollNext() {
+    if (rollCount > 20) {
+      return;
+    }
+
+    hideD20Container();
+    animateD20(rollCount);
+    console.log(rollCount);
+    rollCount++;
+
+    setTimeout(rollNext, 4000); // Adjust the delay between rolls in milliseconds
+  }
+
+  rollNext();
+}
+
 //--- fin de ANIMATE 3D D20 ----//
-
-
 
 document.addEventListener('DOMContentLoaded', () => {
   // loaded above Gestion fichier
@@ -842,7 +889,6 @@ document.addEventListener('DOMContentLoaded', () => {
   //const failedCheckboxes = document.querySelectorAll('.failed-container .checkbox-death-saving-throws');
   
   const resetButton1 = document.getElementById('resetDeathSavingThrowsButton');
-
 
   // Function to enable/disable the next checkbox in a container
   const updateCheckboxes = (checkboxes) => {
@@ -857,7 +903,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   };
   
-
   window.rollDeathSavingThrowsLocally = () => {
     const roll = Math.floor(Math.random() * 20) + 1; // Roll a d20
     
@@ -911,7 +956,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
   
-
   // Add event listeners to checkboxes
   successCheckboxes.forEach((checkbox) => {
     checkbox.addEventListener('change', () => updateCheckboxes(successCheckboxes));
