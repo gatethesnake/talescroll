@@ -33,7 +33,6 @@
         <h1>
           Val de Fondor
         </h1>
-        <button onclick="loadSTL(scene,filePath)">Perrin</button>
         </div>
       <div id="perso">
         <h2 id="character-title">
@@ -331,11 +330,12 @@
                   <div class="close-btn" onclick="hideD20Container()">
                     &times;
                   </div>
-                  <div id="resultDeathSave" class="result-detah-save">
-                    <h2 id="resultText" class="result-text">Jet de sauvegarde contre la mort</h2>
-                    <button id="buttonDeathSaveRollResult" class="button">roll</button>
+                  <div id="diceWrapper">
                   </div>
-                  
+                  <div id="resultDeathSave" class="result-death-save">
+                    <h2 id="resultText" class="result-text">Jet de sauvegarde contre la mort</h2>
+                    <button id="buttonDeathSaveRollResult" class="button" style="background-color: green;">12</button>
+                  </div>                  
                 </div>
                 <button id="rollDeathSavingThrowsButton" class="button small-button blue-button" onclick="rollDeathSavingThrowsLocally()">
                   <span class="iconify" data-icon="fa-solid:dice-d20"></span>

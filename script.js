@@ -708,7 +708,7 @@ function animateD20(roll) {
   var camera = new THREE.PerspectiveCamera(75, 400 / 400, 0.1, 1000);
   var renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
   renderer.setSize(400, 400);
-  document.getElementById("d20Container").appendChild(renderer.domElement);
+  document.getElementById("diceWrapper").appendChild(renderer.domElement);
 
   // Add ambient light to the scene
   var ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
@@ -852,8 +852,9 @@ let d20RendererElement = null;
 
 function hideD20Container() {
   var container = document.getElementById("d20Container");
+  var diceWrapper = document.getElementById("diceWrapper");
   if (d20RendererElement) {
-    container.removeChild(d20RendererElement);
+    diceWrapper.removeChild(d20RendererElement);
     d20RendererElement = null;
   }
   container.classList.add("hidden");
@@ -1454,17 +1455,3 @@ const selectElements = document.querySelectorAll('select[data-custom-input]');
     });
   });
 
-
-  //////////// show stl /////////////
-
-  var scene = new THREE.Scene();
-  var filePath = 'img/perrin.stl';
-
-function loadSTL(scene, filePath) {
-  alert('allo');
-  var loader = new THREE.STLLoader();
-  loader.load(filePath, function (geometry) {
-    var mesh = new THREE.Mesh(geometry, new THREE.MeshNormalMaterial());
-    scene.add(mesh);
-  });
-}

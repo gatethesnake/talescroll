@@ -930,16 +930,6 @@ p {
 	display: none;
 }
 
-.result-death-save {
-	position: absolute;
-	bottom: 20px;
-	left: 50%;
-	transform: translateX(-50%);
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-}
-
 .result-text {
 	text-align: center;
 	font-size: 24px;
@@ -969,6 +959,14 @@ p {
 	transform: translateX(-50%);
 }
 
+#diceWrapper {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+	height: 100%;
+  }
+  
   
   .rounded-canvas {
 	border-radius: 10px; /* Adjust this value to change the roundness of the corners */
