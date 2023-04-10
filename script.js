@@ -724,7 +724,7 @@ function animateD20(roll) {
   for (let i = 1; i <= 20; i++) {
     const textureNumber = d20Mapping[i - 1];
     const texture = createNumberedTexture(textureNumber);
-    materials.push(new THREE.MeshPhongMaterial({ map: texture, shininess: 100 }));
+    materials.push(new THREE.MeshPhongMaterial({ map: texture, shininess: 1000 }));
   }
 
   // Create the d20 geometry and adjust UV mapping
@@ -772,6 +772,8 @@ function createNumberedTexture(number) {
   const canvas = document.createElement('canvas');
   canvas.width = 1024;
   canvas.height = 1024;
+  canvas.className = 'dice-canvas'; 
+
 
   const ctx = canvas.getContext('2d');
   ctx.fillStyle = '#C0C0C0';
@@ -882,11 +884,10 @@ document.addEventListener('DOMContentLoaded', () => {
   
   window.rollDeathSavingThrowsLocally = () => {
     const roll = Math.floor(Math.random() * 20) + 1; // Roll a d20
-    
+
     hideD20Container();
     animateD20(roll);
-    console.log(roll);
-    //alert('Jet de sauvegarde contre la mort: ' + roll);
+        updateButton(roll);
 
     if (roll === 20) {
       let checkedSuccess = 0;
@@ -956,7 +957,20 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
+function updateButton(roll) {
+  const button = document.getElementById('buttonDeathSaveRollResult');
+  button.textContent = roll;
 
+  if (roll < 10) {
+    button.style.backgroundColor = 'red';
+  } else if (roll === 20) {
+    button.style.backgroundColor = 'limegreen'; // Flashy green
+  } else if (roll === 1) {
+    button.style.backgroundColor = 'orangered'; // Flashy red
+  } else {
+    button.style.backgroundColor = 'green';
+  }
+}
 
 //----------- HABILETÉS -----------//
 
@@ -1440,3 +1454,17 @@ const selectElements = document.querySelectorAll('select[data-custom-input]');
     });
   });
 
+
+  //////////// show stl /////////////
+
+  var scene = new THREE.Scene();
+  var filePath = 'img/perrin.stl';
+
+function loadSTL(scene, filePath) {
+  alert('allo');
+  var loader = new THREE.STLLoader();
+  loader.load(filePath, function (geometry) {
+    var mesh = new THREE.Mesh(geometry, new THREE.MeshNormalMaterial());
+    scene.add(mesh);
+  });
+}
