@@ -1,0 +1,1019 @@
+/* reset default browser styles */
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: 'Roboto', sans-serif;
+}
+
+html, body {
+	height: 100%;
+	margin: 0;
+  }
+
+body {
+	background: url(img/med-bg.jpg);
+	background-size: 100% auto;
+	font-family: Georgia, serif;
+	display: flex;
+  justify-content: flex-end;
+  position: relative;
+}
+
+#site-full {
+	display: flex;
+	flex-direction: column;
+	overflow-y: hidden; /* Hide vertical scrollbar */
+}
+
+#site-top {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	background: white;
+	background: url(img/med-bg.jpg);
+	background-size: 100% auto;
+	z-index: 100;
+}
+
+#site-bottom {
+	flex: 1 1 auto;
+	overflow-y: auto; /* Add scrollbar for content overflow */
+	padding-top: 125px;
+}
+
+
+footer {
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	height: 20px;
+	background-color: #464646;
+	color: #fff;
+  }
+  
+  .footer-content {
+	width: 100%;
+	margin: 0 auto;
+	padding: 2px;
+  }
+
+  .footer-content p {
+	text-align: center;
+  }
+
+
+/* header styles */
+#header {
+	display: flex;
+	margin: 20px;
+	flex-wrap: wrap;
+	flex-direction: row;
+}
+
+.image-container {
+	position: relative;
+	display: inline-block;
+  }
+  
+  #logo {
+	position: fixed;
+	top: 5px;
+	left: 5px;
+	width: 75px;
+	height: 75px;
+	opacity: 0.8;
+  }
+
+#menu {
+	float: left;
+	text-align: left;
+	margin-left: 90px;
+	font-size: 36px;
+	cursor: pointer;
+	flex: 0;
+	width:36px;
+
+ }
+
+ #titre {
+	flex: 1;
+	text-align: center;
+	;
+ }
+
+ #perso {
+	position: fixed;
+	top: 15px;
+	right: 0;
+	width: 300px;
+	/* border: 2px solid red; */
+	max-width: 100%;
+	text-align: right;
+	margin-right: 30px;
+}
+
+/* common styles for h1, h2, h3 */
+h1,
+h2,
+h3,
+h4 {
+	color: #222;
+	margin: 0;
+	font-weight: normal;
+}
+
+/* specific styles for h1 */
+h1 {
+	font-size: 36px;
+	font-family: 'MedievalSharp';
+}
+
+/* specific styles for h2 */
+h2 {
+	font-size: 28px;
+	font-family: 'MedievalSharp';
+}
+
+/* specific styles for h3 */
+h3 {
+	font-size: 22px;
+}
+
+h4 {
+	font-size: 18px;
+}
+
+label {
+	font-size: 14px;
+}
+
+
+p {
+	font-size: 12px;
+	text-align: left;
+}
+
+#buttonContainer {
+	padding-top: 20px;
+	margin: 0 auto;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+	flex-direction: column;
+}
+
+.dice-buttonContainer {
+	flex: 1 0 auto;
+}
+
+.dice-buttons {
+	margin: 0 auto;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+	flex-direction: row;
+}
+
+.button {
+	display: block;
+	margin: 10px 20px;
+	padding: 10px 20px;
+	background-color: #c6995d;
+	border: none;
+	border-radius: 10px;
+	font-size: 24px;
+	color: #fff;
+	cursor: pointer;
+	transition: all 0.3s ease-in-out;
+	text-decoration: none;
+	text-align: center;
+	min-width: 100px; 
+}
+
+.button.button_over:hover {
+	background-color: #686868 !important;
+}
+
+/* specific styles for d4 */
+#d4 {
+	background-color: #ff9933;
+}
+
+/* specific styles for d6 */
+#d6 {
+	background-color: #cc3300;
+}
+
+/* specific styles for d8 */
+#d8 {
+	background-color: #9933cc;
+}
+
+/* specific styles for d10 */
+#d10 {
+	background-color: #669999;
+}
+
+/* specific styles for d12 */
+#d12 {
+	background-color: #666699;
+}
+
+/* specific styles for d20 */
+#d20 {
+	background-color: #0099cc;
+}
+
+#theOptions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+    flex-direction: row;
+}
+
+/* modifier styles */
+#modifier {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-top: 20px;
+	margin-left:20px;
+	flex-wrap: wrap;
+	flex-direction: column;
+}
+
+#numberOfDice {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-top: 20px;
+	margin-right:20px;
+	flex-wrap: wrap;
+	flex-direction: column;
+}
+
+#modifier select {
+	font-size: 24px;
+	padding: 5px;
+	border-radius: 5px;
+}
+
+.dice-select  {
+	font-size: 24px;
+	padding: 5px;
+	border-radius: 5px;
+}
+
+#reset_button {
+	background-color: #c6995d;
+
+}
+
+#labelContainer {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-top: 20px;
+}
+
+#labelContainer h2 {
+	font-size: 24px;
+	margin-bottom: 10px;
+}
+
+#label_textbox {
+	font-size: 18px;
+	padding: 5px;
+	border: none;
+	border-radius: 5px;
+	box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
+	background-color: #fff;
+	width: 200px;
+	text-align: center;
+	appearance: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+}
+
+#label_textbox:focus {
+	outline: none;
+	box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+}
+
+
+/* Style the tab buttons */
+.tab button {
+	background-color: #ddd;
+	color: #222;
+	float: left;
+	border: none;
+	outline: none;
+	cursor: pointer;
+	padding: 10px 20px;
+	transition: 0.3s;
+}
+
+/* Change background color of the active tab button */
+.tab button.active {
+	background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+	display: none;
+	padding-top: 5px;
+	border: none;
+	border-top: none;
+}
+
+/* Show the active tab content */
+.tabcontent.show {
+	display: flex;
+}
+
+/* Style the tab content */
+.tabcontentCS {
+	display: none;
+	padding: 6px 12px;
+	border: none;
+	border-top: none;
+}
+
+/* Show the active tab content GL XXXXXX*/
+.tabcontentCS.show {
+	display: flex;
+}
+
+/* make tab button look like dice button */
+#dice-tab {
+	background-color: #007bff;
+	color: white;
+	font-weight: bold;
+	border: none;
+	border-radius: 50%;
+	width: 50px;
+	height: 50px;
+	line-height: 50px;
+	text-align: center;
+	cursor: pointer;
+}
+
+.tablinks {
+    width: 50%;
+    text-align: center;
+    font-family: 'MedievalSharp';
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.tab button:nth-child(1) {
+	background-color: #2e2e2e;
+}
+
+.tab button:nth-child(2) {
+	background-color: #2e2e2e;
+}
+
+.tab button {
+	font-size: 20px;
+	color: white;
+	width: 50%;
+	border: none;
+	outline: none;
+	padding: 14px 16px;
+	cursor: pointer;
+	transition: background-color 0.3s;
+}
+
+.tab button.active {
+	background-color: #2196F3;
+}
+
+.tab {
+	display: flex;
+	margin: 0 auto;
+	justify-content: space-between;
+	margin-left: 5px;
+	margin-right: 5px;
+}
+
+
+.tablinksCS {
+    width: 25%;
+    text-align: center;
+	margin-top: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.tabCS button {
+	font-size: 20px;
+	color: white;
+	width: 50%;
+	border: none;
+	outline: none;
+	padding: 14px 16px;
+	cursor: pointer;
+	transition: background-color 0.3s;
+	background-color: #2e2e2e;
+}
+
+.tabCS button.active {
+	background-color: #2196F3;
+}
+.tabCS button:not(.active) {
+    background-color: #2e2e2e !important;
+}
+
+.tabCS {
+	display: flex;
+	margin: 0 auto;
+	justify-content: space-between;
+	margin-left: 5px;
+	margin-right: 5px;
+}
+
+#dice-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+
+#main-content {
+  flex: 1;
+}
+#arrows {
+    position: fixed;
+    top: 50%;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 30px;
+    height: 100%;
+    z-index: 1000;
+    transform: translateY(-50%);
+}
+
+#sidebar {
+    position: fixed;
+    top: 50%;
+    right: 0;
+    width: 280px;
+    height: 100%;
+    margin-right: 5px;
+    overflow-y: auto;
+    background-color: #f2f2f2;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+    transition: right .3s ease-in-out;
+    border: 1px solid #ccc;
+    z-index: 999;
+    transform: translateY(-50%);
+}
+
+#sidebar.collapsed {
+    right: -280px;
+}
+
+#arrow {
+	position: fixed;
+	right: 0;
+	top: 50%;
+	transform: translateY(-50%);
+	font-size: 36px;
+	cursor: pointer;
+	transition: right .3s ease-in-out;
+  }
+  
+  
+.sidebar-content {
+	transition: all 0.3s ease;
+	height: 100%;
+}
+
+   .title {
+	font-style: italic;
+	font-size: calc(1em + 1px);
+	color: #222; /* charcoal color */
+	border-top: 1px solid gray;
+	border-bottom: 1px solid lightgray;
+  }
+    .name {
+	cursor: pointer;
+	color: #222;
+	margin-left: 15px;
+	line-height: 1.3;
+  }
+    .name:hover {
+	background-color: darkgray;
+	color: white;
+  }
+  
+  .toast {
+	position: fixed;
+	bottom: 20px;
+	left: 20px;
+	background-color: rgba(0, 0, 0, 0.5);
+	color: rgb(94, 255, 0);
+	padding: 10px;
+	border-radius: 10px;
+	font-family: monospace;
+	min-width: 100px;
+    white-space: nowrap;
+	z-index: 1000;
+	display: none;
+  }
+    .toast button.close-toast {
+	border: none;
+	background: transparent;
+	font-family: monospace;
+	font-size: 16px;
+	padding: 0;
+	margin-left: 10px;
+  }
+ 
+    #character-buttonContainer {
+	padding-top: 5px;
+	margin: 0 auto;
+	margin-bottom: 25px;
+	/* center the div horizontally */
+	display: flex;
+	justify-content: right;
+	align-items:center;
+	flex-wrap: wrap;
+	flex-direction: row;
+}
+
+#reset-popup {
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.5);
+	justify-content: center;
+	align-items: center;
+  }
+  
+  .popup {
+	position: fixed;
+	z-index: 1000;
+	left: 0;
+	top: 0;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.5);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+  }
+  
+  .popup-content {
+	background-color: white;
+	padding: 20px;
+	border-radius: 10px;
+	text-align: center;
+  }
+  
+  .popup-content .button {
+	display: inline-block;
+	margin: 15px;
+  }
+  
+
+  .flexCharacter {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-between;
+  }
+  
+  .meta-section {
+	display: flex ;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	width: 100%;
+
+  }
+  .section {
+	display: flex;
+	flex-direction: column;
+	border: 2px solid white;
+	border-radius: 15px;
+	margin: 5px;
+	padding: 5px;
+	flex: 1;
+
+  }
+  .subsection {
+	border: 1px solid white;
+	border-radius: 5px;
+	margin: 5px;
+	padding: 5px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+  }
+  
+  .input-select,
+  .input-text {
+	font-size: 16px;
+	padding: 8px 12px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	background-color: #f8f8f8;
+	margin-bottom: 10px;
+	margin-top: 4px;
+	width: 100%;
+	box-sizing: border-box;
+	transition: background-color 0.2s;
+}
+
+.input-text:focus {
+	background-color: #fff;
+	outline: none;
+}
+
+
+
+  .roundButton {
+	display: inline-block;
+	border-radius: 50%;
+	background-color: #F44336;
+	color: #FFFFFF;
+	font-size: large;
+	font-weight: bold;
+	text-align: center;
+	line-height: 1.2;
+	padding: 0.5em;
+	margin: 5px;
+	border: 0.2em solid #FFFFFF;
+	user-select: none; /* prevent text selection */
+	cursor: pointer; /* change cursor to pointer */
+	position: relative; /* add position property for pseudo element */
+	overflow: hidden; /* hide overflowing elements */
+	transition: all 0.2s ease-out; /* add transition for smooth hover effect */
+	box-shadow: 0 0 0.5em rgba(0, 0, 0, 0.3); /* add box-shadow  */
+  }
+  
+  .roundButton:hover {
+	background-color: #FF5722; /* change background color on hover */
+	border-color: #424242; /* change border color on hover */
+	color: #424242; /* change text color on hover */
+	transform: scale(1.1); /* add scaling on hover */
+	box-shadow: 0 0 0.5em rgba(0, 0, 0, 0.5); /* add box-shadow on hover */
+  }
+  #strengthSaveValue,
+  #strengthBonusScore {
+	background-color: #FFC107; /* amber */
+  }
+  
+  #dexteritySaveValue,
+  #dexterityBonusScore {
+	background-color: #E91E63; /* pink */
+  }
+  
+  #constitutionSaveValue,
+  #constitutionBonusScore {
+	background-color: #4CAF50; /* green */
+  }
+  
+  #intelligenceSaveValue,
+  #intelligenceBonusScore {
+	background-color: #2196F3; /* blue */
+  }
+  
+  #wisdomSaveValue,
+  #wisdomBonusScore {
+	background-color: #9C27B0; /* purple */
+  }
+  
+  #charismaSaveValue,
+  #charismaBonusScore {
+	background-color: #f436cb; /* red */
+  }
+  
+  .skillCheckBoxes {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+  }
+  
+  .skillCheckBoxes input[type="checkbox"] {
+	display: block;
+  }
+
+  .skillCheckBoxes label {
+	display: inline-block;
+	margin-right: 5px;
+  }
+  
+  #skills {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	grid-gap: 0px;
+  }
+  
+  #skills > h2 {
+	grid-column: 1 / -1;
+  }
+
+  .subsection .skillCheckBoxes {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+  }
+  
+  .subsection .skillCheckBoxes label {
+	margin-left: 5px;
+  }
+
+  #character-zone {
+	float: right;
+  }
+
+  #character-buttonContainer button {
+	display: inline-block;
+  }
+  #character-buttonContainer {
+	display: inline-flex;
+	flex-direction: row;
+	justify-content: space-between;
+  }
+
+
+    /* skill buttons colors */
+ 
+  #acrobaticsBonusValue.roundButton {
+	background-color: #F44336; /* red */
+	color: white;
+  }
+  
+  #animalHandlingBonusValue.roundButton {
+	background-color: #673AB7; /* deep purple */
+	color: white;
+  }
+  
+  #arcanaBonusValue.roundButton {
+	background-color: #3F51B5; /* indigo */
+	color: white;
+  }
+  
+  #athleticsBonusValue.roundButton {
+	background-color: #009688; /* teal */
+	color: white;
+  }
+  
+  #deceptionBonusValue.roundButton {
+	background-color: #FF5722; /* deep orange */
+	color: white;
+  }
+  
+  #historyBonusValue.roundButton {
+	background-color: #4CAF50; /* green */
+	color: white;
+  }
+  
+  #insightBonusValue.roundButton {
+	background-color: #CDDC39; /* lime */
+	color: black;
+  }
+  
+  #intimidationBonusValue.roundButton {
+	background-color: #E91E63; /* pink */
+	color: white;
+  }
+  
+  #investigationBonusValue.roundButton {
+	background-color: #9C27B0; /* purple */
+	color: white;
+  }
+  
+  #medicineBonusValue.roundButton {
+	background-color: #00BCD4; /* cyan */
+	color: white;
+  }
+  
+  #natureBonusValue.roundButton {
+	background-color: #8BC34A; /* light green */
+	color: black;
+  }
+  
+  #perceptionBonusValue.roundButton {
+	background-color: #FFEB3B; /* yellow */
+	color: black;
+  }
+  
+  #performanceBonusValue.roundButton {
+	background-color: #FFC107; /* amber */
+	color: black;
+  }
+  
+  #persuasionBonusValue.roundButton {
+	background-color: #FF9800; /* orange */
+	color: white;
+  }
+  
+  #religionBonusValue.roundButton {
+	background-color: #795548; /* brown */
+	color: white;
+  }
+  
+  #sleightOfHandBonusValue.roundButton {
+	background-color: #607D8B; /* blue grey */
+	color: white;
+  }
+  
+  #stealthBonusValue.roundButton {
+	background-color: #607D8B; /* blue grey */
+	color: white;
+  }
+  
+  #survivalBonusValue.roundButton {
+	background-color: #4CAF50; /* green */
+	color: white;
+  }
+  
+  .hit-points-inputs {
+	display: flex;
+	align-items: center;
+  }
+  
+  /* saving against death */
+
+  .grid-container {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-template-rows: auto auto;
+
+  }
+  
+  .grid-header {
+	grid-column: 1 / span 2;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	justify-items: center;
+	margin-top: 3px;
+  }
+  
+  .grid-content {
+	grid-column: 1 / span 2;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	justify-items: center;
+	grid-gap: 15px; /* Add this line to create space between grid elements */
+
+  }
+  
+  .success-container,
+  .failed-container {
+	display: flex;
+	justify-content: center;
+	border: 1px solid white;
+	border-radius: 5px;
+	width: 100%;
+	margin: 3px;
+	padding: 5px;
+	
+  }
+  
+  .checkbox-death-saving-throws {
+	margin: 0 5px;
+  }
+
+  .blue-button {
+	background-color: blue !important;
+  }
+  
+  .red-button {
+	background-color: red !important;
+  }
+  .small-button {
+	font-size: 20px;
+	padding: 5px 5px;
+	width: 80%;
+  }
+
+  .small-button:hover {
+	background-color: grey !important;
+  }
+
+/* Animate d20 3D */
+
+#d20Container {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	width: 400px;
+	height: 400px;
+	transform: translate(-50%, -50%);
+	overflow: visible;
+	z-index: 1000;
+  }
+  
+  .close-btn {
+	position: absolute;
+	top: 12px;
+	right: 12px;
+	cursor: pointer;
+	font-size: 24px;
+	background-color: white;
+	border-radius: 50%;
+	width: 24px;
+	height: 24px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	z-index: 2000;
+  }
+  
+  .rounded-canvas {
+	border-radius: 10px; /* Adjust this value to change the roundness of the corners */
+  }
+
+  .hidden {
+	display: none;
+  }
+
+  
+  .dark-red-button {
+	background-color: darkred;
+  }
+  
+  .dark-yellow-button {
+	background-color: rgb(172, 171, 168);
+  }
+  
+  .dark-green-button {
+	background-color: darkgreen;
+  }
+
+  .toggle-button {
+	background-color: #00BCD4;
+  }
+
+  .toggle-button-non {
+	background-color: #c64b22;
+  }
+  
+  .toggle-button-oui {
+	background-color: green;
+  }
+  
+
+  .toggle-button:hover {
+	background-color: #555;
+  }
+
+  .avantage-section {
+	display: flex;
+	flex-direction: column;
+  }
+  
+  .buttons-advantage {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	width: 100%;
+  }
+  
+  .advantage-buttons {
+	font-size: 16px;
+	padding: 3px 3px;
+  }
+  
+  .activated-button {
+	background-color: #ffcc00;
+	border-radius: 10px;
+	color: #ffffff;
+	font-weight: bold;
+	text-align: center;
+	box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
+	cursor: pointer;
+	transition: all 0.3s ease-in-out;
+	text-decoration: none;
+	min-width: 100px;
+}
+
+/*
+#information {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	grid-gap: 0px;
+  }
+  
+  #information > h2 {
+	grid-column: 1 / -1;
+  }*/

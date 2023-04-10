@@ -1,0 +1,123 @@
+{
+  "abilities": {
+    "strength": {
+      "Score": "10"
+    },
+    "dexterity": {
+      "Score": "16"
+    },
+    "constitution": {
+      "Score": "14"
+    },
+    "intelligence": {
+      "Score": "10"
+    },
+    "wisdom": {
+      "Score": "15"
+    },
+    "charisma": {
+      "Score": "10"
+    }
+  },
+  "description": {
+    "player": " Gaétan",
+    "characterName": "Perrin",
+    "className": "Moine",
+    "customClass": " ",
+    "levelName": "5",
+    "race": "Sylvestre",
+    "customRace": " ",
+    "religion": "Couatl",
+    "customReligion": " ",
+    "historique": "custom",
+    "customHistorique": " idiot du village"
+  },
+  "apparence": {
+    "age": " 28 (+10 spectre de l'Ancien)",
+    "taille": "1m70",
+    "poids": "75kg",
+    "yeux": "bleu",
+    "peau": "basané, tatouages",
+    "cheveux": "chauve"
+  },
+  "skills": {
+    "acrobatics": {
+      "proficient": true,
+      "expert": false
+    },
+    "animalHandling": {
+      "proficient": false,
+      "expert": false
+    },
+    "arcana": {
+      "proficient": false,
+      "expert": false
+    },
+    "athletics": {
+      "proficient": false,
+      "expert": false
+    },
+    "deception": {
+      "proficient": false,
+      "expert": false
+    },
+    "history": {
+      "proficient": false,
+      "expert": false
+    },
+    "insight": {
+      "proficient": false,
+      "expert": false
+    },
+    "intimidation": {
+      "proficient": false,
+      "expert": false
+    },
+    "investigation": {
+      "proficient": false,
+      "expert": false
+    },
+    "medicine": {
+      "proficient": false,
+      "expert": false
+    },
+    "nature": {
+      "proficient": false,
+      "expert": false
+    },
+    "perception": {
+      "proficient": true,
+      "expert": false
+    },
+    "performance": {
+      "proficient": true,
+      "expert": false
+    },
+    "persuasion": {
+      "proficient": false,
+      "expert": false
+    },
+    "religion": {
+      "proficient": false,
+      "expert": false
+    },
+    "sleightOfHand": {
+      "proficient": false,
+      "expert": false
+    },
+    "stealth": {
+      "proficient": true,
+      "expert": false
+    },
+    "survival": {
+      "proficient": false,
+      "expert": false
+    }
+  },
+  "information": {
+    "otherInitiativeBonus": "0",
+    "actualHitPoints": "0",
+    "maxHitPoints": "0",
+    "tempHitPoints": "0"
+  }
+}
