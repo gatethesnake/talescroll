@@ -726,52 +726,47 @@ function animateD20(roll) {
     const texture = createNumberedTexture(textureNumber);
     materials.push(new THREE.MeshPhongMaterial({ map: texture, shininess: 100 }));
   }
-  
 
   // Create the d20 geometry and adjust UV mapping
   var d20Geometry = createD20Geometry(10); // Pass the desired size as an argument
 
-  var d20Material = materials
+  var d20Material = materials;
 
   // Create the d20 mesh and add it to the scene
   var d20Mesh = new THREE.Mesh(d20Geometry, d20Material);
   scene.add(d20Mesh);
 
- // Position the camera and d20 mesh
- camera.position.set(0, 25, 25);
- d20Mesh.position.z = -10;
- camera.lookAt(d20Mesh.position);
+  // Position the camera and d20 mesh
+  camera.position.z = 20;
+  d20Mesh.position.z = -10;
 
- const d20FaceRotationsRadians = faceNormals.map((normal) => {
-   const quaternion = new THREE.Quaternion().setFromUnitVectors(normal, new THREE.Vector3(0, 1, 0));
-   const euler = new THREE.Euler().setFromQuaternion(quaternion);
-   return { x: euler.x, y: euler.y };
- });
+  const d20FaceRotationsRadians = faceNormals.map((normal) => {
+    const quaternion = new THREE.Quaternion().setFromUnitVectors(normal, new THREE.Vector3(0, 1, 0));
+    const euler = new THREE.Euler().setFromQuaternion(quaternion);
+    return { x: euler.x, y: euler.y };
+  });
 
- const mappedD20FaceRotationsRadians = d20Mapping.map((faceNumber) => {
-   return d20FaceRotationsRadians[faceNumber - 1];
- });
+  const mappedD20FaceRotationsRadians = d20Mapping.map((faceNumber) => {
+    return d20FaceRotationsRadians[faceNumber - 1];
+  });
 
- const meshRotationConstant = Math.PI / 4;
- d20Mesh.rotation.x += meshRotationConstant;
- d20Mesh.rotation.y += meshRotationConstant;
- 
+  // Animate the die by continuously rotating it
+  function animateDie() {
+    d20Mesh.rotation.x += 0.01;
+    d20Mesh.rotation.y += 0.01;
 
-function showDieFace(roll) {
-  const targetRotation = mappedD20FaceRotationsRadians[roll - 1];
-  d20Mesh.rotation.x = targetRotation.x + meshRotationConstant;
-  d20Mesh.rotation.y = targetRotation.y + meshRotationConstant;
-  renderer.render(scene, camera);
+    renderer.render(scene, camera);
+    requestAnimationFrame(animateDie);
+  }
+
+  // Call the animateDie function to start the animation loop
+  animateDie();
+
+  // Show the d20Container
+  d20RendererElement = renderer.domElement;
+  showD20Container();
 }
- 
 
- // Call the animate function to start the animation loop
- showDieFace(roll);
-
- // Show the d20Container
- d20RendererElement = renderer.domElement;
- showD20Container();
-}
    
 function createNumberedTexture(number) {
   const canvas = document.createElement('canvas');
@@ -862,24 +857,6 @@ function hideD20Container() {
   container.classList.add("hidden");
 }
 
-function animateD20TwentyTimes() {
-  let rollCount = 1;
-
-  function rollNext() {
-    if (rollCount > 20) {
-      return;
-    }
-
-    hideD20Container();
-    animateD20(rollCount);
-    console.log(rollCount);
-    rollCount++;
-
-    setTimeout(rollNext, 4000); // Adjust the delay between rolls in milliseconds
-  }
-
-  rollNext();
-}
 
 //--- fin de ANIMATE 3D D20 ----//
 
