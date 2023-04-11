@@ -608,7 +608,6 @@ function setAdvantage(buttonId) {
 
 
 function selectChanged(selectElement,textboxID) {
-  // alert(textboxID);
   const textBoxInput = document.getElementById(textboxID);
   if (selectElement.value === 'custom') {
     textBoxInput.style.display = 'inline-flex';
@@ -888,7 +887,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     hideD20Container();
     animateD20(roll);
-        updateButton(roll);
+    updateButton(roll);
 
     if (roll === 20) {
       let checkedSuccess = 0;
@@ -929,10 +928,18 @@ document.addEventListener('DOMContentLoaded', () => {
     updateCheckboxes(failedCheckboxes);
   
     if (successCheckboxes[2].checked) {
-      alert('Votre état est stabilisé');
+      console.log('alive');
+      //alert('Votre état est stabilisé');
+      document.getElementById("deadOrAlive").textContent = 'Votre état est stabilisé';
     } else if (failedCheckboxes[2].checked) {
-      alert('Vous êtes mort');
+      //alert('Vous êtes mort');
+      console.log('dead');
+      document.getElementById("deadOrAlive").textContent = 'Vous êtes mort';
+    } else {
+      document.getElementById("deadOrAlive").textContent = '';
+      console.log("Shrödinger' cat");
     }
+
   };
   
   // Add event listeners to checkboxes

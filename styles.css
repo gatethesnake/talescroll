@@ -920,7 +920,7 @@ p {
 	transform: translate(-50%, -50%);
 	overflow: visible;
 	z-index: 1000;
-	background-color: rgba(0, 0, 0, 0.5);
+	background-color: rgba(0, 0, 0, 0.8);
 	border-radius: 20px;
 	display: flex;
 	flex-direction: column;
@@ -935,6 +935,26 @@ p {
 	font-size: 24px;
 	color: white;
 }
+
+.result-death-save {
+	position: absolute;
+	bottom: 20px;
+	left: 50%;
+	transform: translateX(-50%);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 100%; /* Add this */
+	justify-content: center; /* Add this */
+  }
+
+  .dead-or-alive {
+	font-size: 24px; /* Adjust the size to your preference */
+	font-weight: bold;
+	color: white;
+  }
+  
+
 
 .close-btn {
 	position: absolute;
