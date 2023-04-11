@@ -21,7 +21,7 @@ window.onload = function() {
 
   // update footer content with current year
   const footerContent = document.getElementById('footerContent');
-  footerContent.innerHTML = `<p>© ${currentYear}, Gaétan Lanthier. Utiliser à vos risques.</p>`;
+  footerContent.innerHTML = `<p>©${currentYear} · Gaétan Lanthier · Conçu avec chat-GPT · Utilisation à vos risques · Vous aimez? 💰 bc1qay734rj64dgf585zanp84tt64akkjz3dwcx73c 🔒</p>`;
 }
 
 //----------- ONGLETS -----------//

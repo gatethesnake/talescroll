@@ -1,4 +1,6 @@
 fondor road map
+corrigé saving-thros to camelBack
+testé habiletés et Saves dans a meme section...
 avantage- désavantage on rollX
 arrange le calisse de dé qui roule
 
