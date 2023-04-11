@@ -481,6 +481,8 @@ for (const inputId of INFORMATION_INPUTS) {
     inputElement.innerText = "Non";
   }
 }
+updateSpeedValues();
+
 
   //reset deathSaves here
   const deathSaveInputIds = [
@@ -581,6 +583,7 @@ function updateDependentElements() {
   adjustInitiative();
   adjustCheckboxes(successCheckboxes);
   adjustCheckboxes(failedCheckboxes);
+  updateSpeedValues();
 
   const characterNameInput = document.getElementById('characterName');
   characterTitle.textContent = characterNameInput.value;
@@ -702,7 +705,7 @@ function rollInitiative(initiativeName, initiativeBonus) {
 
 //--- ANIMATE 3D D20 ----//
 
-function animateD20(roll) {
+function animateD20() {
   var scene = new THREE.Scene();
   var camera = new THREE.PerspectiveCamera(75, 400 / 400, 0.1, 1000);
   var renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
@@ -739,15 +742,6 @@ function animateD20(roll) {
   camera.position.z = 20;
   d20Mesh.position.z = -10;
 
-  const d20FaceRotationsRadians = faceNormals.map((normal) => {
-    const quaternion = new THREE.Quaternion().setFromUnitVectors(normal, new THREE.Vector3(0, 1, 0));
-    const euler = new THREE.Euler().setFromQuaternion(quaternion);
-    return { x: euler.x, y: euler.y };
-  });
-
-  const mappedD20FaceRotationsRadians = d20Mapping.map((faceNumber) => {
-    return d20FaceRotationsRadians[faceNumber - 1];
-  });
 
   // Animate the die by continuously rotating it
   function animateDie() {
@@ -886,7 +880,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const roll = Math.floor(Math.random() * 20) + 1; // Roll a d20
 
     hideD20Container();
-    animateD20(roll);
+    animateD20();
     updateButton(roll);
 
     if (roll === 20) {
@@ -1384,6 +1378,45 @@ function toggleInspiration() {
 }
 
 
+//----------- Déplacement speed vitesse -----------//
+
+document.getElementById("speedValue").addEventListener("input", function() {
+  const speedValue = this.value;
+  const speedValueFeet = document.getElementById("speedValueFeet");
+  const speedValueMeters = document.getElementById("speedValueMeters");
+
+  if (speedValue === "" || isNaN(speedValue)) {
+    speedValueFeet.value = "";
+    speedValueMeters.value = "";
+  } else {
+    speedValueFeet.value = speedValue * 5;
+    speedValueMeters.value = speedValue * 1.5;
+  }
+});
+
+function updateSpeedValues() {
+  const speedValueInput = document.getElementById('speedValue');
+  const speedValueFeet = document.getElementById('speedValueFeet');
+  const speedValueMeters = document.getElementById('speedValueMeters');
+
+  if (speedValueInput.value <= 0) {
+    speedValueInput.value = 0;
+    speedValueFeet.value = '';
+    speedValueMeters.value = '';
+  } else {
+    speedValueFeet.value = speedValueInput.value * 5;
+    speedValueMeters.value = speedValueInput.value * 1.5;
+  }
+}
+
+function adjustSpeed() {
+  const speedValueInput = document.getElementById('speedValue');
+
+  speedValueInput.addEventListener('input', () => {
+    updateSpeedValues();
+  });
+}
+
 
 
 
@@ -1462,3 +1495,73 @@ const selectElements = document.querySelectorAll('select[data-custom-input]');
     });
   });
 
+
+////////// splash /////////
+let animationRunning = true;
+
+
+
+function animateD20Splash() {
+  var scene = new THREE.Scene();
+  var aspectRatio = window.innerWidth / window.innerHeight;
+  var camera = new THREE.PerspectiveCamera(75, aspectRatio, 0.1, 1000);
+  var renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  document.getElementById("diceContainerSplash").appendChild(renderer.domElement);
+
+
+  // Add ambient light to the scene
+  var ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+  scene.add(ambientLight);
+
+  // Add directional light to the scene
+  var directionalLight = new THREE.DirectionalLight(0xffffff, 0.5);
+  directionalLight.position.set(0, 0, 1);
+  scene.add(directionalLight);
+
+  // Create materials for each face using the numbered textures
+  const materials = [];
+  for (let i = 1; i <= 20; i++) {
+    const textureNumber = d20Mapping[i - 1];
+    const texture = createNumberedTexture(textureNumber);
+    materials.push(new THREE.MeshPhongMaterial({ map: texture, shininess: 1000 }));
+  }
+
+  // Create the d20 geometry and adjust UV mapping
+  var d20Geometry = createD20Geometry(10); // Pass the desired size as an argument
+
+  var d20Material = materials;
+
+  // Create the d20 mesh and add it to the scene
+  var d20Mesh = new THREE.Mesh(d20Geometry, d20Material);
+  scene.add(d20Mesh);
+
+  // Position the camera and d20 mesh
+  camera.position.z = 20;
+  d20Mesh.position.z = -10;
+
+   // Animate the die by continuously rotating it
+  function animateDie() {
+    if (!animationRunning) return; // stop the animation loop
+
+    d20Mesh.rotation.x += 0.03;
+    d20Mesh.rotation.y += 0.03;
+
+    renderer.render(scene, camera);
+    requestAnimationFrame(animateDie);
+  }
+
+  // Call the animateDie function to start the animation loop
+  animateDie();
+
+}
+window.addEventListener("DOMContentLoaded", () => {
+  animateD20Splash();
+  setTimeout(() => {
+    const diceContainerSplash = document.getElementById("diceContainerSplash");
+    if (diceContainerSplash) {
+      diceContainerSplash.remove();
+    }
+    animationRunning = false;
+  }, 3000);
+});

@@ -1055,3 +1055,47 @@ p {
 	text-decoration: none;
 	min-width: 100px;
 }
+
+.speed-container {
+	display: flex;
+	align-items: flex-start;
+	gap: 8px;
+  }
+  
+  .speed-input-wrapper {
+	display: flex;
+	flex-direction: column;
+  }
+  
+   .hit-points-container {
+	display: flex;
+	align-items: flex-start;
+	gap: 8px;
+  }
+  
+  .hit-points-input-wrapper {
+	display: flex;
+	flex-direction: column;
+  }
+  
+  .button-container {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+  }
+  #diceContainerSplash {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 1000;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+  }
+  
+  
+  
+  
+  

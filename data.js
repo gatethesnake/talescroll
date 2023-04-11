@@ -60,7 +60,8 @@ const INFORMATION_INPUTS = [
   'actualHitPoints',
   'maxHitPoints',
   'tempHitPoints',
-  'inspirationValue'
+  'inspirationValue',
+  'speedValue'
 ];
 
 const DEATHSAVE_INPUTS = [

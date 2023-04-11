@@ -19,7 +19,10 @@
 
 <body>
   
-  <div id="site-full"></div>
+  <div id="site-full">
+    <div id="diceContainerSplash"></div>
+
+  </div>
   <div id="site-top">
     <div id="header">
       <div class="imageContainer">
@@ -283,12 +286,20 @@
               </div>
               <div id="hit-points" class="subsection">
                 <h4>Points de vie</h4>
-                <label for="actualHitPoints">Actuel:</label>
-                <input type="number" id="actualHitPoints" name="actualHitPoints" value="0" class="input-text input-actualHitPoints">
-                <label for="maxHitPoints">Maximum:</label>
-                <input type="number" id="maxHitPoints" name="maxHitPoints" value="0" class="input-text input-maxHitPoints">
-                <label for="tempHitPoints">Temporaire:</label>
-                <input type="number" id="tempHitPoints" name="tempHitPoints" value="0" class="input-text input-tempHitPoints">
+                <div class="hit-points-container">
+                  <div class="hit-points-input-wrapper">
+                    <label for="actualHitPoints">PV</label>
+                    <input type="number" id="actualHitPoints" name="actualHitPoints" value="0" class="input-text input-actualHitPoints">
+                  </div>
+                  <div class="hit-points-input-wrapper">
+                    <label for="maxHitPoints">Max</label>
+                    <input type="number" id="maxHitPoints" name="maxHitPoints" value="0" class="input-text input-maxHitPoints">
+                  </div>
+                  <div class="hit-points-input-wrapper">
+                    <label for="tempHitPoints">Temp</label>
+                    <input type="number" id="tempHitPoints" name="tempHitPoints" value="0" class="input-text input-tempHitPoints">
+                  </div>
+                </div>
                 <div id="hit-points" class="subsection">
                   <h4>Dés de vie</h4>
                   <div class="hit-points-inputs">
@@ -338,16 +349,31 @@
                     <button id="buttonDeathSaveRollResult" class="button"  onclick="hideD20Container()"></button>
                   </div>                  
                 </div>
-                <button id="rollDeathSavingThrowsButton" class="button small-button blue-button" onclick="rollDeathSavingThrowsLocally()">
-                  <span class="iconify" data-icon="fa-solid:dice-d20"></span>
-                </button>
-                <button id="resetDeathSavingThrowsButton" class="button small-button red-button">&#8634;</button>
-              </div>
-              <div id="armorClass" class="subsection">
-                <h4>Classe d'armure</h4>
+                <div class="button-container">
+                  <button id="rollDeathSavingThrowsButton" class="button small-button blue-button" onclick="rollDeathSavingThrowsLocally()">
+                    <span class="iconify" data-icon="fa-solid:dice-d20"></span>
+                  </button>
+                  <button id="resetDeathSavingThrowsButton" class="button small-button red-button">
+                    &#8634;
+                  </button>
+                </div>
               </div>
               <div id="speed" class="subsection">
-                <h4>Vitesse</h4>
+                <h4>Déplacement</h4>
+                <div class="speed-container">
+                  <div class="speed-input-wrapper">
+                    <label for="speedValue">Cases</label>
+                    <input type="number" id="speedValue" name="speedValue" value="0" min="0" class="input-text input-speedValue">
+                  </div>
+                  <div class="speed-input-wrapper">
+                    <label for="speedValueFeet">Pieds</label>
+                    <input type="text" id="speedValueFeet" name="speedValueFeet" value="" class="input-text input-speedValueFeet" disabled>
+                  </div>
+                  <div class="speed-input-wrapper">
+                    <label for="speedValueMeters">Mètres</label>
+                    <input type="text" id="speedValueMeters" name="speedValueMeters" value="" class="input-text input-speedValueMeters" disabled>
+                  </div>
+                </div>
               </div>
               <div id="inspiration" class="subsection">
                 <h4>Inspiration</h4>
@@ -356,10 +382,11 @@
               </div>
         </div>
         <div id="actionTab" class="meta-section tabcontentCS">
-       
-            
-		      <div id="attacks" class="section">
+          <div id="attacks" class="section">
             <h2>Attaques</h2>
+          </div>
+          <div id="armorClass" class="subsection">
+            <h4>Classe d'armure</h4>
           </div>
           <div id="resources" class="section">
             <h2>Ressources</h2>
