@@ -1563,5 +1563,5 @@ window.addEventListener("DOMContentLoaded", () => {
       diceContainerSplash.remove();
     }
     animationRunning = false;
-  }, 3000);
+  }, 0);
 });
