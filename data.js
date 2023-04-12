@@ -7197,3 +7197,30 @@ const feats = [
       BLOODIED: "mdi:blood-alert"
     };
     
+    const armors = [
+      { id: "lightArmor", name: "Light Armor", nom: "Armure légère", armorClass: 11 },
+      { id: "chainShirt", name: "Chain Shirt", nom: "Chemise de mailles", armorClass: 13 },
+      { id: "studdedLeather", name: "Studded Leather", nom: "Armure de cuir clouté", armorClass: 12 },
+      { id: "leatherArmor", name: "Leather Armor", nom: "Armure de cuir", armorClass: 11 },
+      { id: "hideArmor", name: "Hide Armor", nom: "Armure de peau", armorClass: 12 },
+      { id: "scaleMail", name: "Scale Mail", nom: "Armure d'écailles", armorClass: 14 },
+      { id: "breastplate", name: "Breastplate", nom: "Plastron", armorClass: 14 },
+      { id: "halfPlate", name: "Half Plate", nom: "Demi-plaque", armorClass: 15 },
+      { id: "ringMail", name: "Ring Mail", nom: "Cotte de mailles", armorClass: 14 },
+      { id: "chainMail", name: "Chain Mail", nom: "Armure de mailles", armorClass: 16 },
+      { id: "splintArmor", name: "Splint Armor", nom: "Armure d'écailles cloutées", armorClass: 17 },
+      { id: "plateArmor", name: "Plate Armor", nom: "Armure de plates", armorClass: 18 },
+    ];
+
+    const shieldAndAccessories = [
+      { id: "shield", name: "Shield", nom: "Bouclier", description: "Accorde un bonus de +2 à la CA lorsqu'il est équipé", armorClassAjustment: 2 },
+      { id: "ringOfProtection", name: "Ring of Protection", nom: "Anneau de protection", description: "Accorde un bonus de +1 à la CA lorsqu'il est porté", armorClassAjustment: 1 },
+      { id: "bracersOfDefense", name: "Bracers of Defense", nom: "Brassards de défense", description: "Accorde un bonus de +2 à la CA lorsqu'ils sont portés", armorClassAjustment: 2 },
+      { id: "cloakOfProtection", name: "Cloak of Protection", nom: "Cape de protection", description: "Accorde un bonus de +1 à la CA et aux jets de sauvegarde lorsqu'elle est portée", armorClassAjustment: 1 },
+      { id: "iounStoneProtection", name: "Ioun Stone (Protection)", nom: "Pierre d'Ioun (Protection)", description: "Accorde un bonus de +1 à la CA lorsqu'elle orbite autour de votre tête", armorClassAjustment: 1 },
+      { id: "duelingFightingStyle", name: "Dueling Fighting Style", nom: "Style de combat de duel", description: "Accorde un bonus de +2 à la CA lorsqu'on combat avec une seule arme de mêlée et sans bouclier", armorClassAjustment: 2 },
+      { id: "defenseFightingStyle", name: "Defense Fighting Style", nom: "Style de combat de défense", description: "Accorde un bonus de +1 à la CA lorsqu'on porte une armure", armorClassAjustment: 1 },
+      { id: "shieldOfFaith", name: "Shield of Faith", nom: "Bouclier de foi", description: "Accorde un bonus de +2 à la CA pendant 10 minutes lorsqu'il est lancé sur une créature", armorClassAjustment: 2 },
+      { id: "haste", name: "Haste", nom: "Hâte", description: "Accorde un bonus de +2 à la CA et l'avantage aux jets de sauvegarde de Dextérité pendant 1 minute lorsqu'il est lancé sur une créature", armorClassAjustment: 2 },
+      { id: "mageArmor", name: "Mage Armor", nom: "Armure de mage", description: "Fixe la CA de base à 13 + le modificateur de Dextérité lorsqu'elle est lancée sur une créature sans armure", armorClassAjustment: 0 },
+    ];

@@ -1124,3 +1124,61 @@ p {
 	font-size: 24px; /* Adjust this value to your desired size */
   }
   
+  .ability-adjustments {
+	display: flex;
+	flex-direction: row;
+  }
+  
+  .ability-adjustment {
+	display: flex;
+	flex-direction: column;
+	margin-right: 1rem; /* Add some space between the two columns */
+  }
+  
+  .ability-adjustments {
+	display: flex;
+	flex-direction: row;
+  }
+  
+  .ability-adjustment {
+	display: flex;
+	flex-direction: column;
+	margin-right: 1rem; /* Add some space between the two columns */
+  }
+  
+  .other-adjustments-label {
+	display: block;
+  }
+  
+  .other-adjustments {
+	display: flex;
+	flex-direction: row;
+	gap: 0.5rem;
+	margin-top: 0.5rem;
+  }
+
+  .armor-container {
+	display: none;
+	flex-direction: row;
+  }
+  
+  .armor-wrapper {
+	display: flex;
+	flex-direction: column;
+  }
+  
+  .shield-container {
+	display: none;
+	flex-direction: row;
+  }
+  
+  .shield-wrapper {
+	display: flex;
+	flex-direction: column;
+  }
+  
+  .shield-description {
+	margin-top: 4px;
+	margin-bottom: 8px;
+}
+  

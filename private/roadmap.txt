@@ -1,25 +1,34 @@
-fondor road map
-corrigé saving-thros to camelBack
-testé habiletés et Saves dans a meme section...
-avantage- désavantage on rollX
-arrange le calisse de dé qui roule
+classe d'armure
+	actif en haut à droite du div
+	desciption n'apparait pas
 
+	add to S.O.R. incluant les custom
+	adjust on O.R. incluant les custom
+
+	EvalArmorClass
+		10 +
+		+ abilityBonusScore 1
+		+ abilityBonusScore 2
+		+ OtherArmorClassValue
+		+ armorClass[x].armorClass -10 or if custom
+		+ customArmorClassValue
+		+ shieldAndAccessories1[x].armorClassAjustment or if custom
+			+ customShieldArmorClassAdjustmentValue1
+		+ shieldAndAccessories2[x].armorClassAjustment or if custom
+			+ customShieldArmorClassAdjustmentValue2
+
+fondor road map
+avantage- désavantage on rollX la logique.
+arrange le calisse de dé qui roule
 skills: class bonus : instaure le "maximum parmi 2 of 5"
 local storage + AUTO-SAVE
 serveur save . Mysql?
 dés	- combinateur de dés chkbox, input text généré
 feuille de personage
 	menu: pour les save, ouvrir, etc.
-	bouton dans le tool bar: utiliser des iconify.
 data
 	Fiche
 		information
-			armure
-				validate calul
-				voir tale sheet: comp1,comp2, other, (armure, shield, other): base, magie		
-			vitesse
-				value
-				display case, m, ft
 			perception passive
 				validater rule
 				roller
@@ -43,10 +52,8 @@ data
 				qté nom poid, origine?
 			total poid
 	Sorts
-		niveaux
+		niveaux 1
 			voir r20, talesheet
-	Description
-		description (à rerplacer, elle marche
 		dons
 			on fait quoi avec ca, 
 			max 8 ou 9 (VdF)
@@ -56,6 +63,9 @@ data
 			checked (multiple
 			expande
 			flex 
+	Description
+		description
+		apparence
 		argent
 			list par pc,pa,pe,po, licorne, convertisseur pour total
 			list-custom (ajout, supprime)

@@ -12,7 +12,7 @@
 //document.getElementById("dice-generator-tab").click();
 document.getElementById("character-sheet-tab").click();
 
-document.getElementById("sheetTabName").click();
+document.getElementById("actionTabName").click();
 
 // Affiche l'année courante dans le footer
 window.onload = function() {
@@ -1667,6 +1667,110 @@ document.addEventListener("DOMContentLoaded", () => {
   const targetElement = document.getElementById("status");
   targetElement.parentNode.insertBefore(statusContainer, targetElement.nextSibling);
 });
+
+//----------- CLASSE D'ARMURE  -----------//
+
+function populateArmorOptions() {
+  const armorSelect = document.getElementById("armorSelection");
+
+  // Add the default option
+  const defaultOption = document.createElement("option");
+  defaultOption.value = " ";
+  defaultOption.textContent = "Choisir une armure";
+  armorSelect.appendChild(defaultOption);
+
+  // Add the armor options
+  for (const armor of armors) {
+    const armorOption = document.createElement("option");
+    armorOption.value = armor.id;
+    armorOption.textContent = armor.nom;
+    armorSelect.appendChild(armorOption);
+  }
+
+  // Add the custom armor option
+  const customOption = document.createElement("option");
+  customOption.value = "custom";
+  customOption.textContent = "Armure personnalisée";
+  armorSelect.appendChild(customOption);
+}
+
+
+function selectChanged(selectElement, containerID) {
+  const container = document.getElementById(containerID);
+  if (selectElement.value === 'custom') {
+    container.style.display = 'flex';
+  } else {
+    container.style.display = 'none';
+  }
+}
+
+function populateShieldAndAccessoriesOptions() {
+  const shieldAndAccessoriesSelect = document.getElementById("shieldAndAccessoriesSelection");
+
+  // Add the default option
+  const defaultOption = document.createElement("option");
+  defaultOption.value = " ";
+  defaultOption.textContent = "Choisir un bouclier ou un accessoire";
+  shieldAndAccessoriesSelect.appendChild(defaultOption);
+
+  // Add the shield and accessories options
+  for (const item of shieldAndAccessories) {
+    const itemOption = document.createElement("option");
+    itemOption.value = item.id;
+    itemOption.textContent = item.nom;
+    shieldAndAccessoriesSelect.appendChild(itemOption);
+  }
+
+  // Add the custom shield option
+  const customOption = document.createElement("option");
+  customOption.value = "custom";
+  customOption.textContent = "Bouclier personnalisé";
+  shieldAndAccessoriesSelect.appendChild(customOption);
+}
+
+function populateShieldAndAccessoriesOptions2() {
+  const shieldAndAccessoriesSelect = document.getElementById("shieldAndAccessoriesSelection2");
+
+  // Add the default option
+  const defaultOption = document.createElement("option");
+  defaultOption.value = " ";
+  defaultOption.textContent = "Choisir un bouclier ou un accessoire 2";
+  shieldAndAccessoriesSelect.appendChild(defaultOption);
+
+  // Add the shield and accessories options
+  for (const item of shieldAndAccessories) {
+    const itemOption = document.createElement("option");
+    itemOption.value = item.id;
+    itemOption.textContent = item.nom;
+    shieldAndAccessoriesSelect.appendChild(itemOption);
+  }
+
+  // Add the custom shield option
+  const customOption = document.createElement("option");
+  customOption.value = "custom";
+  customOption.textContent = "Bouclier personnalisé 2";
+  shieldAndAccessoriesSelect.appendChild(customOption);
+}
+
+
+function displayDescription(selectElement, descriptionContainerID) {
+  const descriptionContainer = document.getElementById(descriptionContainerID);
+  if (selectElement.value !== " ") {
+    descriptionContainer.style.display = 'block';
+    descriptionContainer.textContent = selectElement.options[selectElement.selectedIndex].dataset.description;
+  } else {
+    descriptionContainer.style.display = 'none';
+    descriptionContainer.textContent = "";
+  }
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+  populateArmorOptions();
+  populateShieldAndAccessoriesOptions();
+  populateShieldAndAccessoriesOptions2();
+
+});
+
 
 //----------- EVENT LISTENER -----------//
 
