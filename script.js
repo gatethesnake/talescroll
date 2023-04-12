@@ -9,10 +9,10 @@
 
 // Ouvre le premier tab
 
-//document.getElementById("dice-generator-tab").click();
-document.getElementById("character-sheet-tab").click();
+//document.getElementById("diceGeneratorTab").click();
+document.getElementById("characterSheetTab").click();
 
-document.getElementById("actionTabName").click();
+document.getElementById("sheetTabName").click();
 
 // Affiche l'année courante dans le footer
 window.onload = function() {
@@ -207,7 +207,7 @@ window.addEventListener('load', function () {
 
 window.addEventListener('resize', setSidebarHeight);
 
-document.getElementById('dice-generator-tab').addEventListener('click', setSidebarHeight);
+document.getElementById('diceGeneratorTab').addEventListener('click', setSidebarHeight);
 
 function toggleSidebar() {
   const sidebar = document.getElementById('sidebar');
@@ -1063,14 +1063,6 @@ function updateAbilityModifier(ability) {
   modifier_p.textContent = `${modifier >= 0 ? '+' : ''}${modifier}`;
 }
 
-// Update ability modifiers when score dropdowns are changed
-for (let i = 0; i < ABILITY_NAMES.length; i++) {
-  const score_selector = document.getElementById(`${ABILITY_NAMES[i]}Score`);
-  score_selector.addEventListener('change', () => {
-    updateAbilityModifier(ABILITY_NAMES[i]);
-    adjustAllSkillBonuses();
-  });
-}
 
 
 function rollAbility(abilityName, diceType, bonus) {
@@ -1097,7 +1089,7 @@ function adjustSavingThrows() {
   const selectedClass = document.getElementById('className').value;
   const classSavingThrow = classSavingThrows.find((c) => c.className === selectedClass);
   const selectedSaves = classSavingThrow ? classSavingThrow.proficientSaves : [];
-  const savingThrowElems = document.querySelectorAll('#saving-throws .subsection');
+  const savingThrowElems = document.querySelectorAll('#savingThrows .subsection');
 
   savingThrowElems.forEach((el) => {
     const saveName = el.querySelector('h4').textContent;
@@ -1212,14 +1204,16 @@ function rollSave(saveName, saveBonus) {
   //showToast(`talespire://dice/${command}`);
 }
 
-const abilityScoreElements = document.querySelectorAll('.input-text');
-abilityScoreElements.forEach((element) => {
-  element.addEventListener('change', () => {
-    adjustSavingThrows();
-    adjustAllSkillBonuses();
-  });
-});
 
+// Update ability modifiers when score dropdowns are changed
+for (let i = 0; i < ABILITY_NAMES.length; i++) {
+  const score_selector = document.getElementById(`${ABILITY_NAMES[i]}Score`);
+  score_selector.addEventListener('change', () => {
+    updateAbilityModifier(ABILITY_NAMES[i]);
+    adjustAllSkillBonuses();
+    adjustSavingThrows(); // Add the parentheses to call the function
+  });
+}
 
 //----------- SKILLS -----------//
 
