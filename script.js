@@ -250,7 +250,8 @@ function saveCharacter() {
     deathSaves: {
       success: [],
       failed: []
-    }
+    },
+    status: {}
   };
 
   for (const abilityId of ABILITY_NAMES) {
@@ -308,6 +309,13 @@ function saveCharacter() {
     }
   });
   characterData.information["avantage"] = advantageState;
+
+/// Save status checkboxes
+for (const status in statusIcons) {
+  const statusCheckbox = document.getElementById(status);
+  characterData.status[status] = statusCheckbox.checked || false;
+}
+
 
   const jsonCharacterData = JSON.stringify(characterData, null, 2);
 
@@ -429,8 +437,17 @@ function openCharacter() {
           });
         }
 
+        // Load status checkboxes
+        for (const status in statusIcons) {
+          const statusCheckbox = document.getElementById(status);
+          if (characterData.status.hasOwnProperty(status)) {
+            statusCheckbox.checked = characterData.status[status];
+          }
+        }
+
       
         updateDependentElements();
+        
       } catch (error) {
         console.log(error);
         alert("uh-oh, J'ai un mauvais pressentiment");
@@ -505,6 +522,13 @@ updateSpeedValues();
 // Reset advantage state to Normal
 setAdvantage('normal');
 
+
+// Reset status checkboxes
+for (const status in statusIcons) {
+  const statusCheckbox = document.getElementById(status);
+  statusCheckbox.checked = false;
+}
+adjustStatusBar();
   
   //code continue here
   closePopup();
@@ -572,6 +596,27 @@ function adjustCheckboxes(checkboxes) {
   });
 };
 
+function adjustStatusBar() {
+  const statusBar = document.getElementById("statusBar");
+  statusBar.innerHTML = ""; // Clear the current content of the statusBar
+
+  for (const [statusKey, statusValue] of Object.entries(statusIcons)) {
+    const checkbox = document.getElementById(statusKey);
+    if (checkbox && checkbox.checked) {
+      const icon = document.createElement("span");
+      icon.className = `iconify`;
+      icon.setAttribute("data-icon", statusValue);
+      icon.setAttribute("data-inline", "false");
+      icon.style.fontSize = "24px"; // Set a default font size for the icons
+      icon.style.marginRight = "8px"; // Add some space between the icons
+
+      statusBar.appendChild(icon);
+    }
+  }
+}
+
+
+
 
 function updateDependentElements() {
   resetAllCustomList()
@@ -584,6 +629,7 @@ function updateDependentElements() {
   adjustCheckboxes(successCheckboxes);
   adjustCheckboxes(failedCheckboxes);
   updateSpeedValues();
+  adjustStatusBar();
 
   const characterNameInput = document.getElementById('characterName');
   characterTitle.textContent = characterNameInput.value;
@@ -1144,8 +1190,8 @@ function applySaveButtonColors() {
 //----------- SAUVEGARDES -----------//
 
 
-// get all the .roundButton elements within the #saving-throws element
-const saveButtons = document.querySelectorAll('#saving-throws .roundButton');
+// get all the .roundButton elements within the #savingThrows element
+const saveButtons = document.querySelectorAll('#savingThrows .roundButton');
 
 
 function rollSave(saveName, saveBonus) {
@@ -1426,6 +1472,8 @@ function adjustSpeed() {
 
 // Sélectionner l'élément HTML où afficher le menu déroulant
 const select = document.querySelector('#feats-select');
+const featDetails = document.querySelector('#feat-details');
+
 
 // Ajouter chaque don au menu déroulant
 for (let i = 0; i < feats.length; i++) {
@@ -1435,42 +1483,184 @@ for (let i = 0; i < feats.length; i++) {
   select.appendChild(option);
 }
 
+select.addEventListener('change', function() {
+  featDetails.innerHTML = ''; // Clear existing details
+  if (this.value === '') {
+    return; // Do nothing if no feat is selected
+  }
+
+  const selectedFeat = feats.find(feat => feat.nameFeats === this.value);
+
+  const nameElement = document.createElement('h3');
+  nameElement.textContent = selectedFeat.nameFeats;
+  featDetails.appendChild(nameElement);
+
+  const labels = [
+    { key: 'nameVoFeats', label: 'VO' },
+    { key: 'prerequisiteFeats', label: 'Prérequis' },
+    { key: 'descriptionFeats', label: 'Description' },
+    { key: 'sourceFeats', label: 'Source' },
+  ];
+
+  for (const { key, label } of labels) {
+    const labelElement = document.createElement('p');
+    labelElement.innerHTML = `<strong>${label}:</strong> ${selectedFeat[key]}`;
+    featDetails.appendChild(labelElement);
+  }
+});
+
+//----------- SORTS spells -----------//
+
+function generateSelectBoxes() {
+  for (let level = 0; level <= 9; level++) {
+    const selectBox = document.createElement("select");
+    selectBox.setAttribute("class", "input-text");
+    selectBox.setAttribute("name", `spells${level}`);
+
+    const label = document.createElement("label");
+    label.innerHTML = `Choisir un sort niveau ${level}`;
+
+    const defaultOption = document.createElement("option");
+    defaultOption.value = "";
+    defaultOption.textContent = `Choisir un sort niveau ${level}`;
+    selectBox.appendChild(defaultOption);
+
+    const spellsForLevel = spells.filter((spell) => spell.Niv === level);
+
+    for (const spell of spellsForLevel) {
+      const option = document.createElement("option");
+      option.value = spell.id;
+      option.textContent = spell.Sort;
+      selectBox.appendChild(option);
+    }
+
+    const subsection = document.getElementById(`level_${level}`);
+    subsection.appendChild(label);
+    subsection.appendChild(selectBox);
+
+    const spellInfoContainer = document.createElement("div");
+    spellInfoContainer.setAttribute("id", `spellInfo${level}`);
+    subsection.appendChild(spellInfoContainer);
+
+    selectBox.addEventListener("change", function () {
+      const selectedSpell = spells.find((spell) => spell.id === this.value);
+      displaySpellInfo(selectedSpell, `spellInfo${level}`);
+    });
+  }
+}
+
+function displaySpellInfo(spell, containerId) {
+  const container = document.getElementById(containerId);
+  container.innerHTML = "";
+
+  if (!spell) {
+    return;
+  }
+
+  const spellName = document.createElement("h3");
+  spellName.textContent = spell.Sort;
+  container.appendChild(spellName);
+
+  const keysToDisplay = [
+    "VO",
+    "École",
+    "Incantation",
+    "Concentration",
+    "Rituel",
+    "Description",
+    "Source",
+    "URL",
+  ];
+
+  for (const key of keysToDisplay) {
+    if (spell[key]) {
+      const pInfo = document.createElement("p");
+      pInfo.innerHTML = `<strong>${key}:</strong> ${spell[key]}`;
+      container.appendChild(pInfo);
+    }
+  }
+}
+
+window.addEventListener("load", generateSelectBoxes);
+
+function populateSpellCasterSelect() {
+  const spellCasterSelect = document.getElementById('spellCasterSelect');
+  spellCasters.forEach(spellCaster => {
+    const option = document.createElement('option');
+    option.value = spellCaster.name;
+    option.text = spellCaster.name;
+    spellCasterSelect.add(option);
+  });
+}
+
+window.addEventListener("load", populateSpellCasterSelect);
+
 //----------- Status -----------//
 
 function generateStatusCheckboxes() {
-  const statusContainer = document.createElement("div");
-  statusContainer.id = "status";
-  statusContainer.className = "section";
-  
-  const header = document.createElement("h2");
-  header.textContent = "États";
-  statusContainer.appendChild(header);
-  
+
+  const statusContainer = document.getElementById("status");
+
   const statusList = document.createElement("ul");
-  statusList.style.columns = "3";
+  statusList.style.columns = "1";
   statusList.style.listStyleType = "none";
   statusList.style.margin = "0";
   statusList.style.padding = "0";
   
+  const statusBar = document.getElementById("statusBar"); // get status bar element
+  
   for (const [statusKey, statusValue] of Object.entries(characterStatus)) {
     const listItem = document.createElement("li");
+    listItem.style.whiteSpace = "nowrap"; // Prevent text from wrapping to multiple lines
+
     const checkbox = document.createElement("input");
     checkbox.type = "checkbox";
     checkbox.id = statusKey;
     checkbox.name = "status";
+    
     const label = document.createElement("label");
     label.htmlFor = statusKey;
     label.title = statusValue.description_fr;
-    label.textContent = statusValue.name_fr;
+    label.style.display = "inline-flex"; // Use flex to align icon and text
+    label.style.alignItems = "center"; // Align icon and text vertically
+
+    const icon = document.createElement("span");
+    icon.className = `iconify`;
+    icon.setAttribute("data-icon", statusIcons[statusKey]);
+    icon.setAttribute("data-inline", "false");
+    icon.style.marginRight = "4px"; // Add some space between the icon and the text
+
+    label.appendChild(icon);
+    label.appendChild(document.createTextNode(statusValue.name_fr));
     listItem.appendChild(checkbox);
     listItem.appendChild(label);
     statusList.appendChild(listItem);
+    
+    checkbox.addEventListener('change', function() {
+      const isChecked = this.checked;
+      const iconCopy = icon.cloneNode(true);
+      iconCopy.style.fontSize = "24px";
+      if (isChecked) {
+        // add the icon to the status bar
+        statusBar.appendChild(iconCopy);
+      } else {
+        // remove the icon from the status bar
+        const iconsInStatusBar = statusBar.querySelectorAll(`[data-icon='${statusIcons[statusKey]}']`);
+        for (let i = 0; i < iconsInStatusBar.length; i++) {
+          if (iconsInStatusBar[i].parentNode === statusBar) {
+            statusBar.removeChild(iconsInStatusBar[i]);
+            break;
+          }
+        }
+      }
+    });
   }
   
   statusContainer.appendChild(statusList);
   
   return statusContainer;
 }
+
 
 document.addEventListener("DOMContentLoaded", () => {
   const statusContainer = generateStatusCheckboxes();

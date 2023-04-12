@@ -12,10 +12,8 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto&display=swap">
   <script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r124/three.min.js"></script>
-  <script src="data/data.js"></script>
-  <script src="data/dataSpells.json"></script>
+  <script src="data.js"></script>
   <script src="script.js" defer></script>
-
 </head>
 
 <body>
@@ -37,7 +35,9 @@
         <h1>
           Val de Fondor
         </h1>
-        </div>
+        <div id="statusBar">
+        </div>    
+      </div>
       <div id="perso">
         <h2 id="character-title">
 
@@ -234,7 +234,7 @@
                 <p id="charismaBonusScore" class="roundButton ability-modifier ability-bonus" onclick="rollAbility(this.parentNode.querySelector('h4').textContent, 'd20', this.textContent)">+0</p>
               </div>
             </div>
-            <div id="saving-throws" class="section">
+            <div id="savingThrows" class="section">
               <h2>Sauvegardes</h2>
               <div id="strength" class="subsection">
                 <h4>Force</h4>
@@ -268,7 +268,7 @@
               <h2>Information</h2>
               <div id="avantage" class="subsection avantage-section">
                 <h4>Avantage</h4>
-                <div class="buttons-advantage">
+                <div class="buttons-advantage center-buttons">
                   <button id="disadvantage" class="button small-button dark-red-button advantage-buttons" onclick="setAdvantage('disadvantage')">Désavantage</button>
                   <button id="normal" class="button small-button dark-yellow-button advantage-buttons activated-button" onclick="setAdvantage('normal')">Normal</button>
                   <button id="advantage" class="button small-button dark-green-button advantage-buttons" onclick="setAdvantage('advantage')">Avantage</button>
@@ -386,8 +386,8 @@
           <div id="attacks" class="section">
             <h2>Attaques</h2>
           </div>
-          <div id="armorClass" class="subsection">
-            <h4>Classe d'armure</h4>
+          <div id="armorClass" class="section">
+            <h2>Classe d'armure</h4>
           </div>
           <div id="resources" class="section">
             <h2>Ressources</h2>
@@ -398,38 +398,58 @@
         </div>
 
         <div id="spellTab" class="meta-section tabcontentCS">
-			<div id="spells" class="section">
-				<h2>Sorts</h2>
-				<div id="level_1" class="subsection">
-				<h4>Niveau 1</h4>
-				</div>
-				<div id="level_2" class="subsection">
-				<h4>Niveau 2</h4>
-				</div>
-				<div id="level_3" class="subsection">
-				<h4>Niveau 3</h4>
-				</div>
-				<div id="level_4" class="subsection">
-				<h4>Niveau 4</h4>
-				</div>
-				<div id="level_5" class="subsection">
-				<h4>Niveau 5</h4>
-				</div>
-				<div id="level_6" class="subsection">
-				<h4>Niveau 6</h4>
-				</div>
-				<div id="level_7" class="subsection">
-				<h4>Niveau 7</h4>
-				</div>
-				<div id="level_8" class="subsection">
-				<h4>Niveau 8</h4>
-				</div>
-				<div id="level_9" class="subsection">
-				<h4>Niveau 9</h4>
-				</div>
-			</div>
+          <div id="spells" class="section">
+            <h2>Sorts</h2>
+            <label for="spellCasterSelect">Choisir un lanceur de sorts :</label>
+            <select id="spellCasterSelect" class="input-text">
+              <option value=" ">Choisir une un lanceur de sort</option>
+            </select>
+            <div class="subsection-container"> 
+              <div id="level_0" class="subsection">
+                <h4>Niveau 0</h4>
+                </div>
+              <div id="level_1" class="subsection">
+              <h4>Niveau 1</h4>
+              </div>
+              <div id="level_2" class="subsection">
+              <h4>Niveau 2</h4>
+              </div>
+              <div id="level_3" class="subsection">
+              <h4>Niveau 3</h4>
+              </div>
+              <div id="level_4" class="subsection">
+              <h4>Niveau 4</h4>
+              </div>
+              <div id="level_5" class="subsection">
+              <h4>Niveau 5</h4>
+              </div>
+              <div id="level_6" class="subsection">
+              <h4>Niveau 6</h4>
+              </div>
+              <div id="level_7" class="subsection">
+              <h4>Niveau 7</h4>
+              </div>
+              <div id="level_8" class="subsection">
+              <h4>Niveau 8</h4>
+              </div>
+              <div id="level_9" class="subsection">
+              <h4>Niveau 9</h4>
+              </div>
+            </div>
+          </div>
+          <div id="feats" class="section">
+            <h2>Dons</h2>
+            <label for="feats-select">Choisissez un don :</label>
+            <select id="feats-select" class="input-text" name="feats">
+            </select>
+            <div id="feat-details">
+            </div>
+          </div>
+          <div id="status" class="section">
+            <h2>États</h2>
+            </div>	
 		    </div>
-		
+        
         <div id="descriptionTab" class="meta-section tabcontentCS">
           
           <div id="description" class="section">
@@ -572,15 +592,7 @@
               <input type="text" id="cheveux" class="input-text" name="cheveux" value=' '>
             </div>
           </div>
-          <div id="feats" class="section">
-            <h2>Dons</h2>
-            <label for="feats-select">Choisissez un don :</label>
-            <select id="feats-select" class="input-text" name="feats">
-            </select>
-          </div>
-          <div id="status" class="section">
-            <h2>États</h2>
-            </div>
+
           <div id="equipment" class="section">
             <h2>Équipement</h2>
           </div>

@@ -126,7 +126,7 @@ h4 {
 
 /* specific styles for h1 */
 h1 {
-	font-size: 36px;
+	font-size: 30px;
 	font-family: 'MedievalSharp';
 }
 
@@ -1095,7 +1095,32 @@ p {
 	justify-content: center;
   }
   
+  .subsection-container {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1rem; /* Adjust the gap between the sections as needed */
+	justify-content: space-around;
+  }
   
+  .subsection {
+	flex: 1;
+	min-width: 150px; /* Adjust the minimum width of the subsections as needed */
+
+  }
+
+  .center-buttons {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 1rem; /* Adjust this value to change the spacing between the buttons */
+  }
   
-  
+  #statusBar {
+	height: 14px;
+	line-height: 14px;
+  }
+
+  .status-icon {
+	font-size: 24px; /* Adjust this value to your desired size */
+  }
   
