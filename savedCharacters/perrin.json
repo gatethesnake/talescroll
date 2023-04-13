@@ -118,6 +118,69 @@
     "otherInitiativeBonus": "0",
     "actualHitPoints": "0",
     "maxHitPoints": "0",
-    "tempHitPoints": "0"
+    "tempHitPoints": "0",
+    "inspirationValue": "non",
+    "speedValue": "0",
+    "avantage": "normal"
+  },
+  "deathSaves": {
+    "success": [
+      false,
+      false,
+      false
+    ],
+    "failed": [
+      false,
+      false,
+      false
+    ]
+  },
+  "status": {
+    "UNCONSCIOUS": false,
+    "STUNNED": false,
+    "POISONED": false,
+    "CHARMED": false,
+    "FRIGHTENED": false,
+    "PARALYZED": false,
+    "PETRIFIED": false,
+    "EXHAUSTED": false,
+    "BLINDED": false,
+    "INVISIBLE": false,
+    "ENVELOPED_IN_MAGICAL_DARKNESS": false,
+    "DEAFENED": false,
+    "RESTRAINED": false,
+    "ELECTRIFIED": false,
+    "DROWNING": false,
+    "GRAPPLED": false,
+    "INCAPACITATED": false,
+    "PRONE": false,
+    "RESTING": false,
+    "SHOCKED": false,
+    "SILENCED": false,
+    "UNABLE_TO_BREATHE": false,
+    "UNABLE_TO_SEE": false,
+    "UNABLE_TO_HEAR": false,
+    "UNABLE_TO_SMELL": false,
+    "UNABLE_TO_TASTE": false,
+    "UNABLE_TO_TOUCH": false,
+    "BLOODIED": false
+  },
+  "armorClassInfo": {
+    "ability1": "dexterity",
+    "ability2": "wisdom",
+    "otherAdjustmentName": " ",
+    "otherAdjustmentValue": "0",
+    "armorActive": false,
+    "armorSelection": " ",
+    "customArmorName": " ",
+    "customArmorValue": "0",
+    "shieldActive1": true,
+    "shieldSelection1": "bracersOfDefense",
+    "customShieldName1": " ",
+    "customShieldValue1": "0",
+    "shieldActive2": false,
+    "shieldSelection2": " ",
+    "customShieldName2": " ",
+    "customShieldValue2": "0"
   }
 }

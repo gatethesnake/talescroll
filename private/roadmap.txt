@@ -1,21 +1,6 @@
-classe d'armure
-	actif en haut à droite du div
-	desciption n'apparait pas
+localStorge : a tester
+alignement armure classe ar, shield1 et 2
 
-	add to S.O.R. incluant les custom
-	adjust on O.R. incluant les custom
-
-	EvalArmorClass
-		10 +
-		+ abilityBonusScore 1
-		+ abilityBonusScore 2
-		+ OtherArmorClassValue
-		+ armorClass[x].armorClass -10 or if custom
-		+ customArmorClassValue
-		+ shieldAndAccessories1[x].armorClassAjustment or if custom
-			+ customShieldArmorClassAdjustmentValue1
-		+ shieldAndAccessories2[x].armorClassAjustment or if custom
-			+ customShieldArmorClassAdjustmentValue2
 
 fondor road map
 avantage- désavantage on rollX la logique.

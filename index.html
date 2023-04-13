@@ -30,7 +30,28 @@
       </div>
       <div id="menu">
         <span class="iconify" data-icon="game-icons:hamburger-menu"></span>
+        <div id="menu-content" class="menu-content">
+          <div class="menu-item">
+            <span>Ouvrir</span>
+            <div class="submenu">
+              <div onclick="openCharacter('loadFromDisk')">disque dur</div>
+              <div onclick="openCharacter('loadFromLocalStorage')">storage interne</div>
+            </div>
+          </div>
+          <div class="menu-item">
+            <span>Sauvegarder</span>
+            <div class="submenu">
+              <div onclick="saveCharacter('toDisk')">disque dur</div>
+              <div onclick="saveCharacter('toLocalStorage')">storage interne</div>
+            </div>
+          </div>
+          <div class="menu-item" onclick="resetButton()">
+            <span>Réinitialiser</span>
+          </div>
+        </div>
       </div>
+      
+      
       <div id="titre">
         <h1>
           Val de Fondor
@@ -385,9 +406,10 @@
         <div id="actionTab" class="meta-section tabcontentCS">
           <div id="armorClass" class="section">
             <h2>Classe d'armure</h2>
-            <input type="number" id="armorClassValue" class="input-text" value="10" readonly>
-            
-            <div class="ability-adjustments subsection">
+            <div id="armorClassSubsection" class="subsection">
+              <input type="number" id="armorClassValue" class="roundButton" value="10" readonly>
+            </div>
+            <div id="abilityAdjustmentSubsection" class="ability-adjustments subsection">
               <div class="ability-adjustment">
                 <label for="abilityAdjustment1" id="abilityAdjustment1Label">Habileté 1:</label>
                 <select id="abilityAdjustment1" class="input-text">
@@ -413,20 +435,27 @@
                 </select>
               </div>
             </div>
-            <div class="subsection">
+            <div id="otherAdjustmentSubsection"class="subsection">
             <label class="other-adjustments-label ">Autres ajustements:</label>
               <div class="other-adjustments">
                 <input type="text" id="OtherArmorClassAdjustmentName" class="input-text" placeholder="Nom de l'ajustement">
                 <input type="number" id="OtherArmorClassValue" class="input-text" min="-10" max="10" value="0">
               </div>
             </div>
-            <div class="subsection">
-              <label for="armorSelection">Armure:</label>
+
+            <div id="armorSubsection"class="subsection">
+              <div class="controls">
+                <div class="left-controls">
+                  <label for="armorSelection">Armure:</label>
+                </div>
+                <div class="right-controls">
+                  <input type="checkbox" id="armorActiveCheckbox">
+                  <label for="armorActiveCheckbox">Actif:</label>
+                </div>
+              </div>
               <select id="armorSelection" class="input-text" onchange="selectChanged(this, 'customArmorContainer')">
                 <!-- The options will be populated by the populateArmorOptions() function -->
               </select>
-              <label for="armorActiveCheckbox">Actif:</label>
-              <input type="checkbox" id="armorActiveCheckbox">
               <div id="customArmorContainer" class="armor-container">
                 <div class="armor-wrapper">
                   <label for="customArmorName">Armure personnalisée:</label>
@@ -439,54 +468,59 @@
               </div>
             </div>
 
-            <div class="subsection">
-              <label for="shieldAndAccessoriesSelection">Bouclier et accessoires:</label>
-              <select id="shieldAndAccessoriesSelection" class="input-text" onchange="selectChanged(this, 'customShieldContainer')">
+            <div id="shield1Subsection" class="subsection">
+              <div class="controls">
+                <div class="left-controls">
+                  <label for="shieldAndAccessoriesSelection1">Bouclier et accessoires:</label>
+                </div>
+                <div class="right-controls">
+                  <input type="checkbox" id="shieldActiveCheckbox1">
+                  <label for="shieldActiveCheckbox1">Actif:</label>
+                </div>
+              </div>
+                <select id="shieldAndAccessoriesSelection1" class="input-text" onchange="selectChangedArmorClass(this, 'customShieldContainer')">
                 <!-- The options will be populated by the populateShieldAndAccessoriesOptions() function -->
-              </select>
-              <p id="shieldDescription" class="shield-description"></p>
-              <label for="shieldActiveCheckbox">Actif:</label>
-              <input type="checkbox" id="shieldActiveCheckbox">
-
-              <div id="customShieldContainer" class="shield-container">
-                <div class="shield-wrapper">
-                  <label for="customShieldName">Bouclier personnalisé:</label>
-                  <input type="text" id="customShieldName" class="input-text">
-                </div>
-                <div class="shield-wrapper">
-                  <label for="customShieldClassValue">Ajustement:</label>
-                  <input type="number" id="customShieldClassValue" class="input-text" value="0" min="-10" max="10">
-                </div>
+                </select>
+                <div id="customShieldContainer" class="shield-container">
+                  <div class="shield-wrapper">
+                    <label for="customShieldName1">Bouclier personnalisé:</label>
+                    <input type="text" id="customShieldName1" class="input-text">
+                  </div>
+                  <div class="shield-wrapper">
+                    <label for="customShieldClassValue1">Ajustement:</label>
+                    <input type="number" id="customShieldClassValue1" class="input-text" value="0" min="-10" max="10">
+                  </div>
               </div>
             </div>
 
-            <div class="subsection">
-              <label for="shieldAndAccessoriesSelection2">Bouclier et accessoires:</label>
-              <select id="shieldAndAccessoriesSelection2" class="input-text" onchange="selectChanged(this, 'customShieldContainer2')">
-                <!-- The options will be populated by the populateShieldAndAccessoriesOptions() function -->
-              </select>
-              <p id="shieldDescription2" class="shield-description"></p>
-              <label for="shieldActiveCheckbox2">Actif:</label>
-              <input type="checkbox" id="shieldActiveCheckbox2">
-
-              <div id="customShieldContainer2" class="shield-container">
-                <div class="shield-wrapper">
-                  <label for="customShieldName2">Bouclier personnalisé:</label>
-                  <input type="text" id="customShieldName2" class="input-text">
+            <div id="shield2Subsection" class="subsection">
+              <div class="controls">
+                <div class="left-controls">
+                  <label for="shieldAndAccessoriesSelection2">Bouclier et accessoires:</label>
                 </div>
-                <div class="shield-wrapper">
-                  <label for="customShieldClassValue2">Ajustement:</label>
-                  <input type="number" id="customShieldClassValue2" class="input-text" value="0" min="-10" max="10">
+                <div class="right-controls">
+                  <input type="checkbox" id="shieldActiveCheckbox2">
+                  <label for="shieldActiveCheckbox2">Actif:</label>
                 </div>
               </div>
+
+                <select id="shieldAndAccessoriesSelection2" class="input-text" onchange="selectChangedArmorClass(this, 'customShieldContainer2')">
+                  <!-- The options will be populated by the populateShieldAndAccessoriesOptions() function -->
+                </select>
+
+                <div id="customShieldContainer2" class="shield-container">
+                  <div class="shield-wrapper">
+                    <label for="customShieldName2">Bouclier personnalisé:</label>
+                    <input type="text" id="customShieldName2" class="input-text">
+                  </div>
+                  <div class="shield-wrapper">
+                    <label for="customShieldClassValue2">Ajustement:</label>
+                    <input type="number" id="customShieldClassValue2" class="input-text" value="0" min="-10" max="10">
+                  </div>
+                </div>
             </div>
           </div>
-          
-          
-          
-
-
-          
+        
           <div id="attacks" class="section">
             <h2>Attaques</h2>
           </div>
@@ -565,7 +599,7 @@
             </div>
             <div id="classNameContainer" class="subsection">
               <label for="className">Classe:</label>
-              <select id="className" class="input-text" name="className" onchange="selectChanged(this,'customClass')" data-custom-input="customClass">
+              <select id="className" class="input-text" name="className" onchange="selectChangedArmorClass(this,'customClass')" data-custom-input="customClass">
                 <option value=" ">Choisir une classe</option>
                 <option value="Barbare">Barbare</option>
                 <option value="Barde">Barde</option>
@@ -589,7 +623,7 @@
             </div>
             <div id="raceContainer" class="subsection">
               <label for="race">Race:</label>
-              <select id="race" class="input-text" name="race" onchange="selectChanged(this,'customRace')" data-custom-input="customRace">
+              <select id="race" class="input-text" name="race" onchange="selectChangedArmorClass(this,'customRace')" data-custom-input="customRace">
                 <option value=" ">Choisir une race</option>
                 <option value="Sylvestre">Sylvestre</option>
                 <option value="Montagnais des cîmes">Montagnais des cîmes</option>
@@ -607,7 +641,7 @@
             </div>
             <div id="religionContainer" class="subsection">
               <label for="religion">Religion:</label>
-              <select id="religion" class="input-text" name="religion" onchange="selectChanged(this,'customReligion')" data-custom-input="customReligion">
+              <select id="religion" class="input-text" name="religion" onchange="selectChangedArmorClass(this,'customReligion')" data-custom-input="customReligion">
                 <option value=" ">Choisir une religion</option>
                 <option value="Ancien">Ancien</option>
                 <option value="Solis">Solis</option>
@@ -636,7 +670,7 @@
             </div>
             <div id="historiqueContainer" class="subsection">
               <label for="historique">Historique:</label>
-              <select id="historique" class="input-text" name="historique" onchange="selectChanged(this,'customHistorique')" data-custom-input="customHistorique">
+              <select id="historique" class="input-text" name="historique" onchange="selectChangedArmorClass(this,'customHistorique')" data-custom-input="customHistorique">
                 <option value=" ">Choisir une historique</option>
                 <option value="Acolyte">Acolyte</option>
                 <option value="Artisan de guilde">Artisan de guilde</option>
@@ -707,11 +741,11 @@
             <h2>Notes diverses</h2>
           </div>
         </div>
-      </div>
+          </div>
       <div id="character-zone">
         <div id="character-buttonContainer">
-          <button class="button button_over" onclick="openCharacter()">Ouvrir</button>
-          <button class="button button_over" onclick="saveCharacter()">Sauvegarder</button>
+          <button class="button button_over" onclick="openCharacter('loadFromDisk')">Ouvrir</button>
+          <button class="button button_over" onclick="saveCharacter('saveToDisk')">Sauvegarder</button>
           <button id="reset_button" class="button button_over" onclick="resetCharacter()">Réinitialiser</button>
         </div>
       </div>

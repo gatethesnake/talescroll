@@ -12,7 +12,7 @@
 //document.getElementById("diceGeneratorTab").click();
 document.getElementById("characterSheetTab").click();
 
-document.getElementById("sheetTabName").click();
+document.getElementById("actionTabName").click();
 
 // Affiche l'année courante dans le footer
 window.onload = function() {
@@ -240,7 +240,7 @@ document.querySelectorAll('.name').forEach(name => {
 //------------------------- FEUILLE DE PERSONNAGE -------------------------//
 //----------- GESTION DE FICHIERS -----------//
 
-function saveCharacter() {
+function saveCharacter(saveTo) {
   const characterData = {
     abilities: {},
     description: {},
@@ -251,8 +251,9 @@ function saveCharacter() {
       success: [],
       failed: []
     },
-    status: {}
-  };
+    status: {},
+    armorClassInfo:{}
+    };
 
   for (const abilityId of ABILITY_NAMES) {
     const ability = document.getElementById(abilityId);
@@ -316,18 +317,181 @@ for (const status in statusIcons) {
   characterData.status[status] = statusCheckbox.checked || false;
 }
 
+/// Save armorclassinfo
+
+characterData.armorClassInfo = {
+  ability1: document.getElementById("abilityAdjustment1").value || " ",
+  ability2: document.getElementById("abilityAdjustment2").value || " ",
+  otherAdjustmentName: document.getElementById("OtherArmorClassAdjustmentName").value || " ",
+  otherAdjustmentValue: document.getElementById("OtherArmorClassValue").value || "0",
+  armorActive: document.getElementById("armorActiveCheckbox").checked || false,
+  armorSelection: document.getElementById("armorSelection").value || " ",
+  customArmorName: document.getElementById("customArmorName").value || " ",
+  customArmorValue: document.getElementById("customArmorClassValue").value || "0",
+  shieldActive1: document.getElementById("shieldActiveCheckbox1").checked || false,
+  shieldSelection1: document.getElementById("shieldAndAccessoriesSelection1").value || " ",
+  customShieldName1: document.getElementById("customShieldName1").value || " ",
+  customShieldValue1: document.getElementById("customShieldClassValue1").value || "0",
+  shieldActive2: document.getElementById("shieldActiveCheckbox2").checked || false,
+  shieldSelection2: document.getElementById("shieldAndAccessoriesSelection2").value || " ",
+  customShieldName2: document.getElementById("customShieldName2").value || " ",
+  customShieldValue2: document.getElementById("customShieldClassValue2").value || "0"
+};
 
   const jsonCharacterData = JSON.stringify(characterData, null, 2);
 
-  // Save JSON data to a file
-  const file = new Blob([jsonCharacterData], { type: "application/json" });
-  const downloadLink = document.createElement("a");
-  downloadLink.href = URL.createObjectURL(file);
-  downloadLink.download = "character.json";
-  downloadLink.click();
+  // Check saveTo parameter and save data accordingly
+  if (saveTo === 'saveToDisk') {
+    const file = new Blob([jsonCharacterData], { type: "application/json" });
+    const downloadLink = document.createElement("a");
+    downloadLink.href = URL.createObjectURL(file);
+    downloadLink.download = "character.json";
+    downloadLink.click();
+  } else if (saveTo === 'saveToLocalStorage') {
+    localStorage.setItem('characterData', jsonCharacterData);
+  } else {
+    console.error('Invalid saveTo parameter.');
+  }
 }
 
-function openCharacter() {
+function openCharacter(loadFrom) {
+  function loadCharacterData(characterData) {
+
+    const abilities = characterData["abilities"];
+    const description = characterData["description"];
+    const apparence = characterData["apparence"];
+    const armorClassInfo = characterData.armorClassInfo;
+
+    // Load abilities
+    for (const abilityId in abilities) {
+      if (abilities.hasOwnProperty(abilityId)) {
+        const scoreValue = abilities[abilityId].Score;
+        const ability = document.getElementById(abilityId);
+        const scoreSelect = ability.querySelector(`#${abilityId}Score`);
+        scoreSelect.value = scoreValue;
+      }
+    }
+
+    // Load description
+    for (const inputId of DESCRIPTION_INPUTS) {
+      const inputElement = document.getElementById(inputId);
+      const selectElement = inputElement.tagName === 'SELECT' ? inputElement : null;
+      const customInputId = selectElement ? selectElement.dataset.customInput : null;
+
+      if (description.hasOwnProperty(inputId)) {
+        inputElement.value = description[inputId];
+      }
+
+      if (selectElement && customInputId) {
+        selectElement.value = description.hasOwnProperty(inputId) ? description[inputId] : '';
+        if (selectElement.value === 'custom') {
+          document.getElementById(customInputId).value = description.hasOwnProperty(customInputId) ? description[customInputId] : '';
+          document.getElementById(customInputId).style.display = 'block';
+        } else {
+          document.getElementById(customInputId).style.display = 'none';
+        }
+      }
+    }
+
+    // Load apparence
+    for (const inputId in apparence) {
+      if (apparence.hasOwnProperty(inputId)) {
+        const inputElement = document.getElementById(inputId);
+        inputElement.value = apparence[inputId];
+      }
+    }
+
+    // Load skills
+    const skills = characterData["skills"];
+    for (const skill of skillsName) {
+      const skillSection = document.getElementById(`${skill.id}Skill`);
+      const proficientInput = skillSection.querySelector(`#${skill.id}ProficientBonus`);
+      const expertInput = skillSection.querySelector(`#${skill.id}ExpertBonus`);
+
+      if (skills.hasOwnProperty(skill.id)) {
+        proficientInput.checked = skills[skill.id].proficient || false;
+        expertInput.checked = skills[skill.id].expert || false;
+      }
+    }
+
+    // Load information
+    if (characterData.hasOwnProperty('information')) {
+      for (const inputId of INFORMATION_INPUTS) {
+        const inputElement = document.getElementById(inputId);
+        if (characterData.information.hasOwnProperty(inputId)) {
+          inputElement.value = characterData.information[inputId];
+          if (inputId === "inspirationValue") {
+            inputElement.innerText = inputElement.value === "oui" ? "Oui" : "Non";
+          }
+        }
+      }
+    }
+    
+    // Load death saves
+    if (characterData.hasOwnProperty('deathSaves')) {
+      const successCheckboxes = document.querySelectorAll('.checkbox-death-saving-throws[id^="success"]');
+      characterData.deathSaves.success.forEach((value, index) => {
+        if (index < successCheckboxes.length) {
+          successCheckboxes[index].checked = value;
+        }
+      });
+
+      const failedCheckboxes = document.querySelectorAll('.checkbox-death-saving-throws[id^="failed"]');
+    characterData.deathSaves.failed.forEach((value, index) => {
+    if (index < failedCheckboxes.length) {
+    failedCheckboxes[index].checked = value;
+    }
+    });
+    }
+    
+    // Load advantage state
+    if (characterData.hasOwnProperty("information") && characterData.information.hasOwnProperty("avantage")) {
+      const advantageButtons = document.querySelectorAll(".advantage-buttons");
+      advantageButtons.forEach((button) => {
+        if (button.id === characterData.information.avantage) {
+          button.classList.add("activated-button");
+        } else {
+          button.classList.remove("activated-button");
+        }
+      });
+    }
+
+    // Load status checkboxes
+    for (const status in statusIcons) {
+      const statusCheckbox = document.getElementById(status);
+      if (characterData.status.hasOwnProperty(status)) {
+        statusCheckbox.checked = characterData.status[status];
+      }
+    }
+
+    // armorclassinfo
+
+    document.getElementById("abilityAdjustment1").value = armorClassInfo.ability1;
+    document.getElementById("abilityAdjustment2").value = armorClassInfo.ability2;
+    document.getElementById("OtherArmorClassAdjustmentName").value = armorClassInfo.otherAdjustmentName;
+    document.getElementById("OtherArmorClassValue").value = armorClassInfo.otherAdjustmentValue;
+    document.getElementById("armorActiveCheckbox").checked = armorClassInfo.armorActive;
+    document.getElementById("armorSelection").value = armorClassInfo.armorSelection;
+    document.getElementById("customArmorName").value = armorClassInfo.customArmorName;
+    document.getElementById("customArmorClassValue").value = armorClassInfo.customArmorValue;
+    document.getElementById("shieldActiveCheckbox1").checked = armorClassInfo.shieldActive1;
+    document.getElementById("shieldAndAccessoriesSelection1").value = armorClassInfo.shieldSelection1;
+    document.getElementById("customShieldName1").value = armorClassInfo.customShieldName1;
+    document.getElementById("customShieldClassValue1").value = armorClassInfo.customShieldValue1;
+    document.getElementById("shieldActiveCheckbox2").checked = armorClassInfo.shieldActive2;
+    document.getElementById("shieldAndAccessoriesSelection2").value = armorClassInfo.shieldSelection2;
+    document.getElementById("customShieldName2").value = armorClassInfo.customShieldName2;
+    document.getElementById("customShieldClassValue2").value = armorClassInfo.customShieldValue2;
+
+    selectChangedArmorClass(document.getElementById("armorSelection"), "customArmorContainer");
+    selectChangedArmorClass(document.getElementById("shieldAndAccessoriesSelection1"), "customShieldContainer");
+    selectChangedArmorClass(document.getElementById("shieldAndAccessoriesSelection2"), "customShieldContainer2");
+    
+    
+    updateDependentElements();
+} 
+
+if (loadFrom === "loadFromDisk") {
   const input = document.createElement("input");
   input.type = "file";
   input.accept = "application/json";
@@ -339,115 +503,7 @@ function openCharacter() {
     reader.onload = (e) => {
       try {
         const characterData = JSON.parse(e.target.result);
-        const abilities = characterData["abilities"];
-        const description = characterData["description"];
-        const apparence = characterData["apparence"];
-
-        // Load abilities
-        for (const abilityId in abilities) {
-          if (abilities.hasOwnProperty(abilityId)) {
-            const scoreValue = abilities[abilityId].Score;
-            const ability = document.getElementById(abilityId);
-            const scoreSelect = ability.querySelector(`#${abilityId}Score`);
-            scoreSelect.value = scoreValue;
-          }
-        }
-
-        // Load description
-        for (const inputId of DESCRIPTION_INPUTS) {
-          const inputElement = document.getElementById(inputId);
-          const selectElement = inputElement.tagName === 'SELECT' ? inputElement : null;
-          const customInputId = selectElement ? selectElement.dataset.customInput : null;
-
-          if (description.hasOwnProperty(inputId)) {
-            inputElement.value = description[inputId];
-          }
-
-          if (selectElement && customInputId) {
-            selectElement.value = description.hasOwnProperty(inputId) ? description[inputId] : '';
-            if (selectElement.value === 'custom') {
-              document.getElementById(customInputId).value = description.hasOwnProperty(customInputId) ? description[customInputId] : '';
-              document.getElementById(customInputId).style.display = 'block';
-            } else {
-              document.getElementById(customInputId).style.display = 'none';
-            }
-          }
-        }
-
-        // Load apparence
-        for (const inputId in apparence) {
-          if (apparence.hasOwnProperty(inputId)) {
-            const inputElement = document.getElementById(inputId);
-            inputElement.value = apparence[inputId];
-          }
-        }
-
-        // Load skills
-        const skills = characterData["skills"];
-        for (const skill of skillsName) {
-          const skillSection = document.getElementById(`${skill.id}Skill`);
-          const proficientInput = skillSection.querySelector(`#${skill.id}ProficientBonus`);
-          const expertInput = skillSection.querySelector(`#${skill.id}ExpertBonus`);
-
-          if (skills.hasOwnProperty(skill.id)) {
-            proficientInput.checked = skills[skill.id].proficient || false;
-            expertInput.checked = skills[skill.id].expert || false;
-          }
-        }
-
-        // Load information
-        if (characterData.hasOwnProperty('information')) {
-          for (const inputId of INFORMATION_INPUTS) {
-            const inputElement = document.getElementById(inputId);
-            if (characterData.information.hasOwnProperty(inputId)) {
-              inputElement.value = characterData.information[inputId];
-              if (inputId === "inspirationValue") {
-                inputElement.innerText = inputElement.value === "oui" ? "Oui" : "Non";
-              }
-            }
-          }
-        }
-        
-        // Load death saves
-        if (characterData.hasOwnProperty('deathSaves')) {
-          const successCheckboxes = document.querySelectorAll('.checkbox-death-saving-throws[id^="success"]');
-          characterData.deathSaves.success.forEach((value, index) => {
-            if (index < successCheckboxes.length) {
-              successCheckboxes[index].checked = value;
-            }
-          });
-
-          const failedCheckboxes = document.querySelectorAll('.checkbox-death-saving-throws[id^="failed"]');
-        characterData.deathSaves.failed.forEach((value, index) => {
-        if (index < failedCheckboxes.length) {
-        failedCheckboxes[index].checked = value;
-        }
-        });
-        }
-        
-        // Load advantage state
-        if (characterData.hasOwnProperty("information") && characterData.information.hasOwnProperty("avantage")) {
-          const advantageButtons = document.querySelectorAll(".advantage-buttons");
-          advantageButtons.forEach((button) => {
-            if (button.id === characterData.information.avantage) {
-              button.classList.add("activated-button");
-            } else {
-              button.classList.remove("activated-button");
-            }
-          });
-        }
-
-        // Load status checkboxes
-        for (const status in statusIcons) {
-          const statusCheckbox = document.getElementById(status);
-          if (characterData.status.hasOwnProperty(status)) {
-            statusCheckbox.checked = characterData.status[status];
-          }
-        }
-
-      
-        updateDependentElements();
-        
+        loadCharacterData(characterData);
       } catch (error) {
         console.log(error);
         alert("uh-oh, J'ai un mauvais pressentiment");
@@ -458,6 +514,21 @@ function openCharacter() {
   });
 
   input.click();
+} else if (loadFrom === "loadFromLocalStorage") {
+  try {
+    const characterData = JSON.parse(localStorage.getItem("characterData"));
+    if (!characterData) {
+      throw new Error("No character data found in local storage");
+    }
+    loadCharacterData(characterData);
+  } catch (error) {
+    console.log(error);
+    alert("uh-oh, J'ai un mauvais pressentiment");
+  }
+} else {
+  console.error("Invalid loadFrom value provided");
+}
+
 }
 
 function confirmReset() {
@@ -630,6 +701,7 @@ function updateDependentElements() {
   adjustCheckboxes(failedCheckboxes);
   updateSpeedValues();
   adjustStatusBar();
+  adjustArmorClassValue();
 
   const characterNameInput = document.getElementById('characterName');
   characterTitle.textContent = characterNameInput.value;
@@ -1689,7 +1761,7 @@ function populateArmorOptions() {
 }
 
 
-function selectChanged(selectElement, containerID) {
+function selectChangedArmorClass(selectElement, containerID) {
   const container = document.getElementById(containerID);
   if (selectElement.value === 'custom') {
     container.style.display = 'flex';
@@ -1699,7 +1771,7 @@ function selectChanged(selectElement, containerID) {
 }
 
 function populateShieldAndAccessoriesOptions() {
-  const shieldAndAccessoriesSelect = document.getElementById("shieldAndAccessoriesSelection");
+  const shieldAndAccessoriesSelect = document.getElementById("shieldAndAccessoriesSelection1");
 
   // Add the default option
   const defaultOption = document.createElement("option");
@@ -1765,6 +1837,131 @@ document.addEventListener("DOMContentLoaded", function() {
 
 });
 
+function adjustArmorClassValue() {
+  const abilityBonusScoreMapping = {
+    'strength': parseInt(strengthBonusScore.textContent),
+    'dexterity': parseInt(dexterityBonusScore.textContent),
+    'constitution': parseInt(constitutionBonusScore.textContent),
+    'intelligence': parseInt(intelligenceBonusScore.textContent),
+    'wisdom': parseInt(wisdomBonusScore.textContent),
+    'charisma': parseInt(charismaBonusScore.textContent),
+  };
+
+  const base = 10;
+  let totalArmorClass = base;
+
+  totalArmorClass += abilityBonusScoreMapping[abilityAdjustment1.value] || 0;
+  totalArmorClass += abilityBonusScoreMapping[abilityAdjustment2.value] || 0;
+  totalArmorClass += validateBonusValue(OtherArmorClassValue.value);
+
+  if (armorActiveCheckbox.checked) {
+    if (armorSelection.value === "custom") {
+      totalArmorClass += validateBonusValue(customArmorClassValue.value);
+    } else {
+      const selectedArmor = armors.find(armor => armor.id === armorSelection.value);
+      totalArmorClass += selectedArmor ? selectedArmor.armorClass - 10 : 0;
+    }
+  }
+
+  if (shieldActiveCheckbox1.checked) {
+    if (shieldAndAccessoriesSelection1.value === "custom") {
+      totalArmorClass += validateBonusValue(customShieldClassValue1.value);
+    } else {
+      const selectedShield1 = shieldAndAccessories.find(shield => shield.id === shieldAndAccessoriesSelection1.value);
+      totalArmorClass += selectedShield1 ? selectedShield1.armorClassAjustment : 0;
+    }
+  }
+
+  if (shieldActiveCheckbox2.checked) {
+    if (shieldAndAccessoriesSelection2.value === "custom") {
+      totalArmorClass += validateBonusValue(customShieldClassValue2.value);
+    } else {
+      const selectedShield2 = shieldAndAccessories.find(shield => shield.id === shieldAndAccessoriesSelection2.value);
+      totalArmorClass += selectedShield2 ? selectedShield2.armorClassAjustment : 0;
+    }
+  }
+
+  armorClassValue.textContent = totalArmorClass;
+}
+function adjustArmorClassValue() {
+  const abilityBonusScoreMapping = {
+    'strength': parseInt(strengthBonusScore.textContent),
+    'dexterity': parseInt(dexterityBonusScore.textContent),
+    'constitution': parseInt(constitutionBonusScore.textContent),
+    'intelligence': parseInt(intelligenceBonusScore.textContent),
+    'wisdom': parseInt(wisdomBonusScore.textContent),
+    'charisma': parseInt(charismaBonusScore.textContent),
+  };
+
+  const base = 10;
+  let totalArmorClass = base;
+
+  totalArmorClass += abilityBonusScoreMapping[abilityAdjustment1.value] || 0;
+  totalArmorClass += abilityBonusScoreMapping[abilityAdjustment2.value] || 0;
+  totalArmorClass += validateBonusValue(OtherArmorClassValue.value);
+
+  if (armorActiveCheckbox.checked) {
+    if (armorSelection.value === "custom") {
+      totalArmorClass += validateBonusValue(customArmorClassValue.value);
+    } else {
+      const selectedArmor = armors.find(armor => armor.id === armorSelection.value);
+      totalArmorClass += selectedArmor ? selectedArmor.armorClass - 10 : 0;
+    }
+  }
+
+  if (shieldActiveCheckbox1.checked) {
+    if (shieldAndAccessoriesSelection1.value === "custom") {
+      totalArmorClass += validateBonusValue(customShieldClassValue1.value);
+    } else {
+      const selectedShield1 = shieldAndAccessories.find(shield => shield.id === shieldAndAccessoriesSelection1.value);
+      totalArmorClass += selectedShield1 ? selectedShield1.armorClassAjustment : 0;
+    }
+  }
+
+  if (shieldActiveCheckbox2.checked) {
+    if (shieldAndAccessoriesSelection2.value === "custom") {
+      totalArmorClass += validateBonusValue(customShieldClassValue2.value);
+    } else {
+      const selectedShield2 = shieldAndAccessories.find(shield => shield.id === shieldAndAccessoriesSelection2.value);
+      totalArmorClass += selectedShield2 ? selectedShield2.armorClassAjustment : 0;
+    }
+  }
+  armorClassValue.value = totalArmorClass;
+}
+
+
+function validateBonusValue(value) {
+  value = parseInt(value);
+  return value >= -10 && value <= 10 ? value : 0;
+}
+
+const strengthScore = document.getElementById('strengthScore');
+const dexterityScore = document.getElementById('dexterityScore');
+const constitutionScore = document.getElementById('constitutionScore');
+const intelligenceScore = document.getElementById('intelligenceScore');
+const wisdomScore = document.getElementById('wisdomScore');
+const charismaScore = document.getElementById('charismaScore');
+
+const abilityScores = [strengthScore, dexterityScore, constitutionScore, intelligenceScore, wisdomScore, charismaScore];
+
+abilityScores.forEach((score) => {
+  score.addEventListener('change', adjustArmorClassValue);
+});
+
+abilityAdjustment1.addEventListener('change', adjustArmorClassValue);
+abilityAdjustment2.addEventListener('change', adjustArmorClassValue);
+OtherArmorClassValue.addEventListener('change', adjustArmorClassValue);
+armorActiveCheckbox.addEventListener('change', adjustArmorClassValue);
+armorSelection.addEventListener('change', adjustArmorClassValue);
+customArmorClassValue.addEventListener('change', adjustArmorClassValue);
+shieldActiveCheckbox1.addEventListener('change', adjustArmorClassValue);
+shieldAndAccessoriesSelection1.addEventListener('change', adjustArmorClassValue);
+customShieldClassValue1.addEventListener('change', adjustArmorClassValue);
+shieldActiveCheckbox2.addEventListener('change', adjustArmorClassValue);
+shieldAndAccessoriesSelection2.addEventListener('change', adjustArmorClassValue);
+customShieldClassValue2.addEventListener('change', adjustArmorClassValue);
+
+
 
 //----------- EVENT LISTENER -----------//
 
@@ -1782,6 +1979,13 @@ const selectElements = document.querySelectorAll('select[data-custom-input]');
       }
     });
   });
+
+  document.getElementById("menu").addEventListener("click", function () {
+    const menuContent = document.getElementById("menu-content");
+    menuContent.style.display = menuContent.style.display === "block" ? "none" : "block";
+  });
+  
+  
 
 
 ////////// splash /////////

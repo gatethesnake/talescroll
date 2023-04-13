@@ -86,16 +86,6 @@ footer {
 	opacity: 0.8;
   }
 
-#menu {
-	float: left;
-	text-align: left;
-	margin-left: 90px;
-	font-size: 36px;
-	cursor: pointer;
-	flex: 0;
-	width:36px;
-
- }
 
  #titre {
 	flex: 1;
@@ -1129,16 +1119,6 @@ p {
 	flex-direction: row;
   }
   
-  .ability-adjustment {
-	display: flex;
-	flex-direction: column;
-	margin-right: 1rem; /* Add some space between the two columns */
-  }
-  
-  .ability-adjustments {
-	display: flex;
-	flex-direction: row;
-  }
   
   .ability-adjustment {
 	display: flex;
@@ -1181,4 +1161,83 @@ p {
 	margin-top: 4px;
 	margin-bottom: 8px;
 }
+
+.subsection .controls {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+  }
+  
+  .left-controls, .right-controls {
+	display: flex;
+	align-items: center;
+  }
+  
+  .left-controls {
+	text-align: left;
+  }
+  
+  .right-controls {
+	text-align: right;
+  }
+
+
+  #menu {
+	position: relative;
+	cursor: pointer;
+	margin-left: 90px;
+  }
+  
+  .iconify {
+	font-size: 24px;
+  }
+  
+  .menu-content {
+	display: none;
+	position: absolute;
+	left: 0;
+	background-color: rgba(249, 249, 249, 0.95);
+	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+	padding: 8px;
+	z-index: 1;
+	border-radius: 4px;
+	width: 180px;
+  }
+  
+  .menu-content .menu-item {
+	margin-bottom: 5px;
+	padding: 5px 0;
+	cursor: pointer;
+	position: relative;
+	line-height: 1.5;
+  }
+  
+  .menu-content .menu-item:hover {
+	background-color: #ddd;
+  }
+  
+  .menu-content .submenu {
+	display: none;
+	position: absolute;
+	left: 100%;
+	top: 0;
+	background-color: rgba(249, 249, 249, 0.95);
+	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+	padding: 8px;
+	z-index: 1;
+	border-radius: 4px;
+	width: 180px;
+  }
+  
+  .menu-content .submenu div {
+	padding: 5px 0;
+  }
+  
+  .menu-content .submenu div:hover {
+	background-color: #ccc;
+  }
+  
+  .menu-item:hover .submenu {
+	display: block;
+  }
   
