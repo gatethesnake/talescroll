@@ -139,7 +139,6 @@ label {
 	font-size: 14px;
 }
 
-
 p {
 	font-size: 12px;
 	text-align: left;
@@ -619,13 +618,13 @@ p {
   
   .input-select,
   .input-text {
-	font-size: 16px;
-	padding: 8px 12px;
+	font-size: 14px;
+	padding: 4px 8px;
 	border: 1px solid #ccc;
 	border-radius: 4px;
 	background-color: #f8f8f8;
-	margin-bottom: 10px;
-	margin-top: 4px;
+	margin-bottom: 2px;
+	margin-top: 2px;
 	width: 100%;
 	box-sizing: border-box;
 	transition: background-color 0.2s;
@@ -637,17 +636,17 @@ p {
 }
 
 
-
-  .roundButton {
-	display: inline-block;
+.roundButton {
+	display: inline-grid;
+	place-items: center;
 	border-radius: 50%;
 	background-color: #F44336;
 	color: #FFFFFF;
 	font-size: large;
 	font-weight: bold;
-	text-align: center;
+	text-align: center !important;
 	line-height: 1.2;
-	padding: 0.5em;
+	padding: 0;
 	margin: 5px;
 	border: 0.2em solid #FFFFFF;
 	user-select: none; /* prevent text selection */
@@ -655,8 +654,13 @@ p {
 	position: relative; /* add position property for pseudo element */
 	overflow: hidden; /* hide overflowing elements */
 	transition: all 0.2s ease-out; /* add transition for smooth hover effect */
-	box-shadow: 0 0 0.5em rgba(0, 0, 0, 0.3); /* add box-shadow  */
+	box-shadow: 0 0 0.5em rgba(0, 0, 0, 0.3); /* add box-shadow */
+	width: 2.5em;
+	height: 2.5em;
   }
+  
+  
+  
   
   .roundButton:hover {
 	background-color: #FF5722; /* change background color on hover */
@@ -1240,4 +1244,65 @@ p {
   .menu-item:hover .submenu {
 	display: block;
   }
+
+  .container {
+	display: flex;
+	align-items:baseline !important;
+	gap: 8px;
+  }
+	
+  .wrapper {
+	display: flex;
+	flex-direction: column;
+	align-items:baseline !important;
+
+  }
   
+  .attack-name-wrapper {
+	flex: 1;
+  }
+  
+  .attack-name-input {
+	width: 100%;
+  }
+  
+  .fixed-size-wrapper {
+	flex: 0 0 auto;
+  }
+  
+  .rectangleButton {
+	display: inline-grid;
+	place-items: center;
+	background-color: #F44336;
+	color: #FFFFFF;
+	font-size: large;
+	font-weight: bold;
+	text-align: center;
+	line-height: 1.2;
+	padding: 5px;
+	margin: 8px;
+	border: 0.2em solid #FFFFFF;
+	user-select: none; /* prevent text selection */
+	cursor: pointer; /* change cursor to pointer */
+	position: relative; /* add position property for pseudo element */
+	overflow: hidden; /* hide overflowing elements */
+	transition: all 0.2s ease-out; /* add transition for smooth hover effect */
+	box-shadow: 0 0 0.5em rgba(0, 0, 0, 0.3); /* add box-shadow */
+	border-radius: 0.3em; /* add rounded corners */
+	max-width: 100px;
+  }
+  
+  .rectangleButton:hover {
+	background-color: #FF5722; /* change background color on hover */
+	border-color: #424242; /* change border color on hover */
+	color: #424242; /* change text color on hover */
+	transform: scale(1.1); /* add scaling on hover */
+	box-shadow: 0 0 0.5em rgba(0, 0, 0, 0.5); /* add box-shadow on hover */
+  }
+
+  .arrow-icon {
+	display: inline-block;
+	font-size: 1.2em;
+	margin-left: 0.5em;
+	cursor: pointer;
+  }

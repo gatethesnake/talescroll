@@ -12,7 +12,7 @@
 //document.getElementById("diceGeneratorTab").click();
 document.getElementById("characterSheetTab").click();
 
-document.getElementById("actionTabName").click();
+document.getElementById("sheetTabName").click();
 
 // Affiche l'année courante dans le footer
 window.onload = function() {
@@ -113,7 +113,6 @@ function generateSelectedDiceNumbers() {
     selectElement.add(option);
   }
 }
-
 
 //----------- TOAST -----------//
 
@@ -1837,6 +1836,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 });
 
+
 function adjustArmorClassValue() {
   const abilityBonusScoreMapping = {
     'strength': parseInt(strengthBonusScore.textContent),
@@ -1879,54 +1879,9 @@ function adjustArmorClassValue() {
       const selectedShield2 = shieldAndAccessories.find(shield => shield.id === shieldAndAccessoriesSelection2.value);
       totalArmorClass += selectedShield2 ? selectedShield2.armorClassAjustment : 0;
     }
-  }
-
-  armorClassValue.textContent = totalArmorClass;
-}
-function adjustArmorClassValue() {
-  const abilityBonusScoreMapping = {
-    'strength': parseInt(strengthBonusScore.textContent),
-    'dexterity': parseInt(dexterityBonusScore.textContent),
-    'constitution': parseInt(constitutionBonusScore.textContent),
-    'intelligence': parseInt(intelligenceBonusScore.textContent),
-    'wisdom': parseInt(wisdomBonusScore.textContent),
-    'charisma': parseInt(charismaBonusScore.textContent),
-  };
-
-  const base = 10;
-  let totalArmorClass = base;
-
-  totalArmorClass += abilityBonusScoreMapping[abilityAdjustment1.value] || 0;
-  totalArmorClass += abilityBonusScoreMapping[abilityAdjustment2.value] || 0;
-  totalArmorClass += validateBonusValue(otherArmorClassValue.value);
-
-  if (armorActiveCheckbox.checked) {
-    if (armorSelection.value === "custom") {
-      totalArmorClass += validateBonusValue(customArmorClassValue.value);
-    } else {
-      const selectedArmor = armors.find(armor => armor.id === armorSelection.value);
-      totalArmorClass += selectedArmor ? selectedArmor.armorClass - 10 : 0;
-    }
-  }
-
-  if (shieldActiveCheckbox1.checked) {
-    if (shieldAndAccessoriesSelection1.value === "custom") {
-      totalArmorClass += validateBonusValue(customShieldClassValue1.value);
-    } else {
-      const selectedShield1 = shieldAndAccessories.find(shield => shield.id === shieldAndAccessoriesSelection1.value);
-      totalArmorClass += selectedShield1 ? selectedShield1.armorClassAjustment : 0;
-    }
-  }
-
-  if (shieldActiveCheckbox2.checked) {
-    if (shieldAndAccessoriesSelection2.value === "custom") {
-      totalArmorClass += validateBonusValue(customShieldClassValue2.value);
-    } else {
-      const selectedShield2 = shieldAndAccessories.find(shield => shield.id === shieldAndAccessoriesSelection2.value);
-      totalArmorClass += selectedShield2 ? selectedShield2.armorClassAjustment : 0;
-    }
-  }
-  armorClassValue.value = totalArmorClass;
+  } 
+  
+  armorClassValue.value =  (totalArmorClass >= 0 ? '+' : '') + totalArmorClass;
 }
 
 
@@ -1963,82 +1918,6 @@ customShieldClassValue2.addEventListener('change', adjustArmorClassValue);
 
 
 //----------- ATTAQUES-----------//
-function generateAttackSection() {
-  const uuid = generateUUID();
-
-  const attackSection = document.createElement('div');
-  attackSection.classList.add('section', 'attacks');
-  attackSection.id = `attacks-${uuid}`;
-
-  const h2 = document.createElement('h2');
-  h2.textContent = 'Attaques';
-  attackSection.appendChild(h2);
-
-  const attackSubsection = document.createElement('div');
-  attackSubsection.classList.add('subsection', 'attack-subsection');
-  attackSubsection.id = `attack-subsection-${uuid}`;
-  attackSection.appendChild(attackSubsection);
-
-  const inputFields = [
-    { type: 'text', id: `attack-name-${uuid}`, name: 'attackName', value: '', className: 'input-text attack-name' },
-    { type: 'number', id: `attack-value-${uuid}`, value: '0', className: 'round-button attack-value', readonly: true },
-    { type: 'input-text', id: `damage-${uuid}`, value: '', className: 'round-button damage', readonly: true },
-    { type: 'number', id: `other-attack-adjustment-value-${uuid}`, className: 'input-text other-attack-adjustment-value', min: '-10', max: '10', value: '0' },
-    { type: 'checkbox', id: `attack-proficient-check-box-${uuid}`, className: 'attack-proficient-check-box' },
-    { type: 'number', id: `other-damage-adjustment-value-${uuid}`, className: 'input-text other-damage-adjustment-value', min: '-10', max: '10', value: '0' },
-    { type: 'number', id: `damage-dice-quantity-${uuid}`, className: 'input-text damage-dice-quantity', min: '1', max: '10', value: '1' },
-    { type: 'text', id: `attack-note-${uuid}`, name: 'attackNote', value: '', className: 'input-text attack-note' }
-  ];
-
-  inputFields.forEach(input => {
-    const inputElement = document.createElement('input');
-    for (const key in input) {
-      inputElement[key] = input[key];
-    }
-    attackSubsection.appendChild(inputElement);
-  });
-
-  const labels = [
-    { for: `attack-ability-adjustment-${uuid}`, text: 'Habileté', id: `attack-ability-adjustment-label-${uuid}`, className: 'attack-ability-adjustment-label' },
-    { for: `attack-proficient-check-box-${uuid}`, text: 'Actif:', className: 'attack-proficient-check-box-label' },
-    { for: `damage-ability-adjustment-${uuid}`, text: 'Habileté', id: `damage-ability-adjustment-label-${uuid}`, className: 'damage-ability-adjustment-label' },
-    { for: `hit-dice-type-${uuid}`, text: 'Type', className: 'hit-dice-type-label' }
-  ];
-
-  labels.forEach(label => {
-    const labelElement = document.createElement('label');
-    labelElement.htmlFor = label.for;
-    labelElement.textContent = label.text;
-    labelElement.id = label.id;
-    labelElement.className = label.className;
-    attackSubsection.appendChild(labelElement);
-  });
-
-  const selectFields = [
-    { id: `attack-ability-adjustment-${uuid}`, className: 'input-text attack-ability-adjustment', options: ABILITY_NAMES },
-    { id: `damage-ability-adjustment-${uuid}`, className: 'input-text damage-ability-adjustment', options: ABILITY_NAMES },
-    { id: `hit-dice-type-${uuid}`, name: 'hitDiceType', className: 'input-text input-hit-dice-type', options: ['d4', 'd6', 'd8', 'd10', 'd12', 'd20'] },
-    { id: `damage-type-${uuid}`, className: 'damage-type', options: damageTypes.map(type => type.name) }
-  ];
-
-  selectFields.forEach(select => {
-    const selectElement = document.createElement('select');
-    selectElement.id = select.id;
-    selectElement.name = select.name;
-    selectElement.className = select.className;
-
-    select.options.forEach(option => {
-      const optionElement = document.createElement('option');
-      optionElement.value = option;
-      optionElement.textContent = option;
-      selectElement.appendChild(optionElement);
-    });
-
-    attackSubsection.appendChild(selectElement);
-  });
-
-  return attackSection;
-}
 
 
 function capitalizeFirstLetter(string) {
@@ -2052,6 +1931,117 @@ function generateUUID() {
     return v.toString(16);
   });
 }
+
+const arrowIcon = document.querySelector('.arrow-icon');
+const arrowIconify = arrowIcon.querySelector('.iconify');
+const attackAndDamageBonusSubsection = document.querySelector('#attackAndDamageBonusSubsection');
+
+// Set the initial state
+let arrowState = 'down';
+
+// Update the arrow icon based on the initial state
+updateArrowIcon();
+
+// Add a click event listener to change the state and update the arrow icon
+arrowIcon.addEventListener('click', () => {
+  arrowState = arrowState === 'down' ? 'up' : 'down';
+  updateArrowIcon();
+  toggleSubsectionVisibility();
+});
+
+function updateArrowIcon() {
+  if (arrowState === 'down') {
+    arrowIconify.setAttribute('data-inline', 'false');
+    arrowIconify.setAttribute('data-icon', 'mdi:chevron-down'); // Down arrow icon
+  } else {
+    arrowIconify.setAttribute('data-inline', 'false');
+    arrowIconify.setAttribute('data-icon', 'mdi:chevron-up'); // Up arrow icon
+  }
+}
+
+function toggleSubsectionVisibility() {
+  attackAndDamageBonusSubsection.classList.toggle('hidden');
+}
+
+function adjustAttack() {
+  const attackValue = document.getElementById('attackValue');
+  const attackAbilityAdjustment = document.getElementById('attackAbilityAdjustment');
+  const otherAttackAdjustmentValue = document.getElementById('otherAttackAdjustmentValue');
+  const attackProficientCheckBox = document.getElementById('attackProficientCheckBox');
+  const damage = document.getElementById('damage');
+  const damageDiceQuantity = document.getElementById('damageDiceQuantity');
+  const damageHitDiceType = document.getElementById('damageHitDiceType');
+  const damageAbilityAdjustment = document.getElementById('damageAbilityAdjustment');
+  const otherDamageAdjustmentValue = document.getElementById('otherDamageAdjustmentValue');
+
+  const abilityBonusScoreMapping = {
+    'strength': parseInt(document.getElementById('strengthBonusScore').textContent),
+    'dexterity': parseInt(document.getElementById('dexterityBonusScore').textContent),
+    'constitution': parseInt(document.getElementById('constitutionBonusScore').textContent),
+    'intelligence': parseInt(document.getElementById('intelligenceBonusScore').textContent),
+    'wisdom': parseInt(document.getElementById('wisdomBonusScore').textContent),
+    'charisma': parseInt(document.getElementById('charismaBonusScore').textContent),
+  };
+
+  const proficiencyBonusValue = parseInt(document.getElementById('proficiencyBonusValue').textContent);
+
+  // Calculate the attack value
+  let attackAdjustment = 0;
+
+  if (attackAbilityAdjustment.value !== ' ') {
+    attackAdjustment += abilityBonusScoreMapping[attackAbilityAdjustment.value];
+  }
+
+  const otherAttackValue = parseInt(otherAttackAdjustmentValue.value, 10);
+  if (!isNaN(otherAttackValue) && otherAttackValue >= -10 && otherAttackValue <= 10) {
+    attackAdjustment += otherAttackValue;
+  }
+
+  if (attackProficientCheckBox.checked) {
+    attackAdjustment += proficiencyBonusValue;
+  }
+
+  attackValue.value = (attackAdjustment >= 0 ? '+' : '') + attackAdjustment;
+
+  // Calculate the damage value
+const damageDice = damageDiceQuantity.value + damageHitDiceType.value;
+let damageAdjustment = 0;
+
+if (damageAbilityAdjustment.value !== ' ') {
+  damageAdjustment += abilityBonusScoreMapping[damageAbilityAdjustment.value];
+}
+
+const otherDamageValue = parseInt(otherDamageAdjustmentValue.value, 10);
+if (!isNaN(otherDamageValue) && otherDamageValue >= -10 && otherDamageValue <= 10) {
+  damageAdjustment += otherDamageValue;
+}
+
+damage.value = damageDice + (damageAdjustment > 0 ? ' + ' + damageAdjustment : (damageAdjustment < 0 ? ' ' + damageAdjustment : ''));
+
+  attackAdjustment
+}
+
+// Call the adjustAttack function to update attackValue and damage
+adjustAttack();
+
+// Elements that should trigger adjustAttack when changed
+const elementsToWatch = [
+  'levelName',
+  ...ABILITY_NAMES.map((ability) => `${ability}Score`),
+  'attackAbilityAdjustment',
+  'otherAttackAdjustmentValue',
+  'attackProficientCheckBox',
+  'damageDiceQuantity',
+  'damageHitDiceType',
+  'damageAbilityAdjustment',
+  'otherDamageAdjustmentValue'
+];
+
+// Attach change event listeners to the elements
+elementsToWatch.forEach((elementId) => {
+  const element = document.getElementById(elementId);
+  element.addEventListener('change', adjustAttack);
+});
 
 
 
@@ -2148,5 +2138,5 @@ window.addEventListener("DOMContentLoaded", () => {
       diceContainerSplash.remove();
     }
     animationRunning = false;
-  }, 0);
+  }, 3000);
 });
