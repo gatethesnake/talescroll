@@ -74,7 +74,7 @@
     </div>
   </div>
   <div id="site-bottom">
-    <div id="dice-generator" class="tabcontent">
+    <div id="dice-generator" class="tabContent">
       <div id="diceContainer">
         <div id="main-content">
           <div id="labelContainer">
@@ -213,7 +213,7 @@
       </div>
 
     </div>
-    <div id="character-sheet" class="tabcontent">
+    <div id="character-sheet" class="tabContent">
       <div id="groupTabChacracter" class="tabCS">
         <button class="tablinksCS" onclick="openTabCS(event, 'sheetTab')" id="sheetTabName">Fiche</button>
         <button class="tablinksCS" onclick="openTabCS(event, 'actionTab')" id="actionTabName">Attaques</button>
@@ -221,7 +221,7 @@
         <button class="tablinksCS" onclick="openTabCS(event, 'descriptionTab')" id="descriptionTabName">Description et autres</button>
       </div>
       <div id="character" class="flexCharacter">
-          <div id="sheetTab" class="meta-section tabcontentCS">
+          <div id="sheetTab" class="meta-section tabContentCS">
             <div id="abilities" class="section">
               <h2 >Habiletés</h2>
               <div id="strength" class="subsection">
@@ -403,7 +403,7 @@
               </div>
               </div>
         </div>
-        <div id="actionTab" class="meta-section tabcontentCS">
+        <div id="actionTab" class="meta-section tabContentCS">
           <div id="armorClass" class="section">
             <h2>Classe d'armure</h2>
             <div id="armorClassSubsection" class="subsection">
@@ -438,8 +438,8 @@
             <div id="otherAdjustmentSubsection"class="subsection">
             <label class="other-adjustments-label ">Autres ajustements:</label>
               <div class="other-adjustments">
-                <input type="text" id="OtherArmorClassAdjustmentName" class="input-text" placeholder="Nom de l'ajustement">
-                <input type="number" id="OtherArmorClassValue" class="input-text" min="-10" max="10" value="0">
+                <input type="text" id="otherArmorClassAdjustmentName" class="input-text" placeholder="Nom de l'ajustement">
+                <input type="number" id="otherArmorClassValue" class="input-text" min="-10" max="10" value="0">
               </div>
             </div>
 
@@ -523,7 +523,62 @@
         
           <div id="attacks" class="section">
             <h2>Attaques</h2>
-          </div>
+            <div id="attackSubsection" class="subsection">
+                <input type="text" id="attackName" name="attackName" value="" class="input-text">
+                <input type="number" id="attackValue" class="roundButton" value="0" readonly>
+                <input type="input-text" id="Damage" class="roundButton" value="" readonly>
+                <label for="attackAbilityAdjustment" id="attackAbilityAdjustmentLabel">Habileté</label>
+                <select id="attackAbilityAdjustment" class="input-text">
+                    <option value=" ">Choisir</option>
+                    <option value="strength">Force</option>
+                    <option value="dexterity">Dextérité</option>
+                    <option value="constitution">Constitution</option>
+                    <option value="intelligence">Intelligence</option>
+                    <option value="wisdom">Sagesse</option>
+                    <option value="charisma">Charisme</option>
+                </select>
+                <input type="number" id="otherAttackAdjustmentValue" class="input-text" min="-10" max="10" value="0">
+                <label for="attackProficientCheckBox">Actif:</label>
+                <input type="checkbox" id="attackProficientCheckBox">
+                <label for="damageAbilityAdjustment" id="damageAbilityAdjustmentLabel">Habileté</label>
+                <select id="damageAbilityAdjustment" class="input-text">
+                    <option value=" ">Choisir</option>
+                    <option value="strength">Force</option>
+                    <option value="dexterity">Dextérité</option>
+                    <option value="constitution">Constitution</option>
+                    <option value="intelligence">Intelligence</option>
+                    <option value="wisdom">Sagesse</option>
+                    <option value="charisma">Charisme</option>
+                </select>
+                <input type="number" id="otherDamageAdjustmentValue" class="input-text" min="-10" max="10" value="0">
+                <input type="number" id="damageDiceQuantity" class="input-text" min="1" max="10" value="1">
+                <label for="hitDiceType">Type</label>
+                <select id="hitDiceType" name="hitDiceType" class="input-text input-hitDiceType">
+                    <option value="d4">d4</option>
+                    <option value="d6">d6</option>
+                    <option value="d8" selected class="input-hitDiceType">d8</option>
+                    <option value="d10">d10</option>
+                    <option value="d12">d12</option>
+                    <option value="d20">d20</option>
+                </select>
+                <select>
+                    <option value="">Choisir</option>
+                    <option value="acid">Acide</option>
+                    <option value="bludgeoning">Contondant</option>
+                    <option value="cold">Froid</option>
+                    <option value="fire">Feu</option>
+                    <option value="force">Force</option>
+                    <option value="lightning">Foudre</option>
+                    <option value="necrotic">Nécrotique</option>
+                <option value="piercing">Perforant</option>
+                <option value="poison">Poison</option>
+                <option value="psychic">Psychique</option>
+                <option value="radiant">Radieux</option>
+                <option value="slashing">Tranchant</option>
+                <option value="thunder">Tonnerre</option>
+            </select>
+            <input type="text" id="attackNote" name="attackNote" value="" class="input-text">
+        </div>
           <div id="resources" class="section">
             <h2>Ressources</h2>
           </div>
@@ -532,7 +587,7 @@
           </div>
         </div>
 
-        <div id="spellTab" class="meta-section tabcontentCS">
+        <div id="spellTab" class="meta-section tabContentCS">
           <div id="spells" class="section">
             <h2>Sorts</h2>
             <label for="spellCasterSelect">Choisir un lanceur de sorts :</label>
@@ -585,7 +640,7 @@
             </div>	
 		    </div>
         
-        <div id="descriptionTab" class="meta-section tabcontentCS">
+        <div id="descriptionTab" class="meta-section tabContentCS">
           
           <div id="description" class="section">
             <h2>Description</h2>

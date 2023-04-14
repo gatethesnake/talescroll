@@ -314,7 +314,7 @@ p {
 }
 
 /* Style the tab content */
-.tabcontent {
+.tabContent {
 	display: none;
 	padding-top: 5px;
 	border: none;
@@ -322,12 +322,12 @@ p {
 }
 
 /* Show the active tab content */
-.tabcontent.show {
+.tabContent.show {
 	display: flex;
 }
 
 /* Style the tab content */
-.tabcontentCS {
+.tabContentCS {
 	display: none;
 	padding: 6px 12px;
 	border: none;
@@ -335,7 +335,7 @@ p {
 }
 
 /* Show the active tab content GL XXXXXX*/
-.tabcontentCS.show {
+.tabContentCS.show {
 	display: flex;
 }
 

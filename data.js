@@ -7224,3 +7224,20 @@ const feats = [
       { id: "haste", name: "Haste", nom: "Hâte", description: "Accorde un bonus de +2 à la CA et l'avantage aux jets de sauvegarde de Dextérité pendant 1 minute lorsqu'il est lancé sur une créature", armorClassAjustment: 2 },
       { id: "mageArmor", name: "Mage Armor", nom: "Armure de mage", description: "Fixe la CA de base à 13 + le modificateur de Dextérité lorsqu'elle est lancée sur une créature sans armure", armorClassAjustment: 0 },
     ];
+
+    const damageTypes = [
+      { name: 'acid', nom: 'Acide' },
+      { name: 'bludgeoning', nom: 'Contondant' },
+      { name: 'cold', nom: 'Froid' },
+      { name: 'fire', nom: 'Feu' },
+      { name: 'force', nom: 'Force' },
+      { name: 'lightning', nom: 'Foudre' },
+      { name: 'necrotic', nom: 'Nécrotique' },
+      { name: 'piercing', nom: 'Perforant' },
+      { name: 'poison', nom: 'Poison' },
+      { name: 'psychic', nom: 'Psychique' },
+      { name: 'radiant', nom: 'Radiant' },
+      { name: 'slashing', nom: 'Tranchant' },
+      { name: 'thunder', nom: 'Tonnerre' }
+    ];
+    

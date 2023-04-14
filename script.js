@@ -27,10 +27,10 @@ window.onload = function() {
 //----------- ONGLETS -----------//
                      
 function openTab(evt, tabName) {
-  var i, tabcontent, tablinks;
-  tabcontent = document.getElementsByClassName("tabcontent");
-  for (i = 0; i < tabcontent.length; i++) {
-    tabcontent[i].style.display = "none";
+  var i, tabContent, tablinks;
+  tabContent = document.getElementsByClassName("tabContent");
+  for (i = 0; i < tabContent.length; i++) {
+    tabContent[i].style.display = "none";
   }
   tablinks = document.getElementsByClassName("tablinks");
   for (i = 0; i < tablinks.length; i++) {
@@ -41,10 +41,10 @@ function openTab(evt, tabName) {
 }
 
 function openTabCS(evt, tabName) {
-  var i, tabcontentCS, tablinksCS;
-  tabcontentCS = document.getElementsByClassName("tabcontentCS");
-  for (i = 0; i < tabcontentCS.length; i++) {
-    tabcontentCS[i].style.display = "none";
+  var i, tabContentCS, tablinksCS;
+  tabContentCS = document.getElementsByClassName("tabContentCS");
+  for (i = 0; i < tabContentCS.length; i++) {
+    tabContentCS[i].style.display = "none";
   }
   tablinksCS = document.getElementsByClassName("tablinksCS");
   for (i = 0; i < tablinksCS.length; i++) {
@@ -322,8 +322,8 @@ for (const status in statusIcons) {
 characterData.armorClassInfo = {
   ability1: document.getElementById("abilityAdjustment1").value || " ",
   ability2: document.getElementById("abilityAdjustment2").value || " ",
-  otherAdjustmentName: document.getElementById("OtherArmorClassAdjustmentName").value || " ",
-  otherAdjustmentValue: document.getElementById("OtherArmorClassValue").value || "0",
+  otherAdjustmentName: document.getElementById("otherArmorClassAdjustmentName").value || " ",
+  otherAdjustmentValue: document.getElementById("otherArmorClassValue").value || "0",
   armorActive: document.getElementById("armorActiveCheckbox").checked || false,
   armorSelection: document.getElementById("armorSelection").value || " ",
   customArmorName: document.getElementById("customArmorName").value || " ",
@@ -468,8 +468,8 @@ function openCharacter(loadFrom) {
 
     document.getElementById("abilityAdjustment1").value = armorClassInfo.ability1;
     document.getElementById("abilityAdjustment2").value = armorClassInfo.ability2;
-    document.getElementById("OtherArmorClassAdjustmentName").value = armorClassInfo.otherAdjustmentName;
-    document.getElementById("OtherArmorClassValue").value = armorClassInfo.otherAdjustmentValue;
+    document.getElementById("otherArmorClassAdjustmentName").value = armorClassInfo.otherAdjustmentName;
+    document.getElementById("otherArmorClassValue").value = armorClassInfo.otherAdjustmentValue;
     document.getElementById("armorActiveCheckbox").checked = armorClassInfo.armorActive;
     document.getElementById("armorSelection").value = armorClassInfo.armorSelection;
     document.getElementById("customArmorName").value = armorClassInfo.customArmorName;
@@ -1852,7 +1852,7 @@ function adjustArmorClassValue() {
 
   totalArmorClass += abilityBonusScoreMapping[abilityAdjustment1.value] || 0;
   totalArmorClass += abilityBonusScoreMapping[abilityAdjustment2.value] || 0;
-  totalArmorClass += validateBonusValue(OtherArmorClassValue.value);
+  totalArmorClass += validateBonusValue(otherArmorClassValue.value);
 
   if (armorActiveCheckbox.checked) {
     if (armorSelection.value === "custom") {
@@ -1898,7 +1898,7 @@ function adjustArmorClassValue() {
 
   totalArmorClass += abilityBonusScoreMapping[abilityAdjustment1.value] || 0;
   totalArmorClass += abilityBonusScoreMapping[abilityAdjustment2.value] || 0;
-  totalArmorClass += validateBonusValue(OtherArmorClassValue.value);
+  totalArmorClass += validateBonusValue(otherArmorClassValue.value);
 
   if (armorActiveCheckbox.checked) {
     if (armorSelection.value === "custom") {
@@ -1950,7 +1950,7 @@ abilityScores.forEach((score) => {
 
 abilityAdjustment1.addEventListener('change', adjustArmorClassValue);
 abilityAdjustment2.addEventListener('change', adjustArmorClassValue);
-OtherArmorClassValue.addEventListener('change', adjustArmorClassValue);
+otherArmorClassValue.addEventListener('change', adjustArmorClassValue);
 armorActiveCheckbox.addEventListener('change', adjustArmorClassValue);
 armorSelection.addEventListener('change', adjustArmorClassValue);
 customArmorClassValue.addEventListener('change', adjustArmorClassValue);
@@ -1960,6 +1960,98 @@ customShieldClassValue1.addEventListener('change', adjustArmorClassValue);
 shieldActiveCheckbox2.addEventListener('change', adjustArmorClassValue);
 shieldAndAccessoriesSelection2.addEventListener('change', adjustArmorClassValue);
 customShieldClassValue2.addEventListener('change', adjustArmorClassValue);
+
+
+//----------- ATTAQUES-----------//
+function generateAttackSection() {
+  const uuid = generateUUID();
+
+  const attackSection = document.createElement('div');
+  attackSection.classList.add('section', 'attacks');
+  attackSection.id = `attacks-${uuid}`;
+
+  const h2 = document.createElement('h2');
+  h2.textContent = 'Attaques';
+  attackSection.appendChild(h2);
+
+  const attackSubsection = document.createElement('div');
+  attackSubsection.classList.add('subsection', 'attack-subsection');
+  attackSubsection.id = `attack-subsection-${uuid}`;
+  attackSection.appendChild(attackSubsection);
+
+  const inputFields = [
+    { type: 'text', id: `attack-name-${uuid}`, name: 'attackName', value: '', className: 'input-text attack-name' },
+    { type: 'number', id: `attack-value-${uuid}`, value: '0', className: 'round-button attack-value', readonly: true },
+    { type: 'input-text', id: `damage-${uuid}`, value: '', className: 'round-button damage', readonly: true },
+    { type: 'number', id: `other-attack-adjustment-value-${uuid}`, className: 'input-text other-attack-adjustment-value', min: '-10', max: '10', value: '0' },
+    { type: 'checkbox', id: `attack-proficient-check-box-${uuid}`, className: 'attack-proficient-check-box' },
+    { type: 'number', id: `other-damage-adjustment-value-${uuid}`, className: 'input-text other-damage-adjustment-value', min: '-10', max: '10', value: '0' },
+    { type: 'number', id: `damage-dice-quantity-${uuid}`, className: 'input-text damage-dice-quantity', min: '1', max: '10', value: '1' },
+    { type: 'text', id: `attack-note-${uuid}`, name: 'attackNote', value: '', className: 'input-text attack-note' }
+  ];
+
+  inputFields.forEach(input => {
+    const inputElement = document.createElement('input');
+    for (const key in input) {
+      inputElement[key] = input[key];
+    }
+    attackSubsection.appendChild(inputElement);
+  });
+
+  const labels = [
+    { for: `attack-ability-adjustment-${uuid}`, text: 'Habileté', id: `attack-ability-adjustment-label-${uuid}`, className: 'attack-ability-adjustment-label' },
+    { for: `attack-proficient-check-box-${uuid}`, text: 'Actif:', className: 'attack-proficient-check-box-label' },
+    { for: `damage-ability-adjustment-${uuid}`, text: 'Habileté', id: `damage-ability-adjustment-label-${uuid}`, className: 'damage-ability-adjustment-label' },
+    { for: `hit-dice-type-${uuid}`, text: 'Type', className: 'hit-dice-type-label' }
+  ];
+
+  labels.forEach(label => {
+    const labelElement = document.createElement('label');
+    labelElement.htmlFor = label.for;
+    labelElement.textContent = label.text;
+    labelElement.id = label.id;
+    labelElement.className = label.className;
+    attackSubsection.appendChild(labelElement);
+  });
+
+  const selectFields = [
+    { id: `attack-ability-adjustment-${uuid}`, className: 'input-text attack-ability-adjustment', options: ABILITY_NAMES },
+    { id: `damage-ability-adjustment-${uuid}`, className: 'input-text damage-ability-adjustment', options: ABILITY_NAMES },
+    { id: `hit-dice-type-${uuid}`, name: 'hitDiceType', className: 'input-text input-hit-dice-type', options: ['d4', 'd6', 'd8', 'd10', 'd12', 'd20'] },
+    { id: `damage-type-${uuid}`, className: 'damage-type', options: damageTypes.map(type => type.name) }
+  ];
+
+  selectFields.forEach(select => {
+    const selectElement = document.createElement('select');
+    selectElement.id = select.id;
+    selectElement.name = select.name;
+    selectElement.className = select.className;
+
+    select.options.forEach(option => {
+      const optionElement = document.createElement('option');
+      optionElement.value = option;
+      optionElement.textContent = option;
+      selectElement.appendChild(optionElement);
+    });
+
+    attackSubsection.appendChild(selectElement);
+  });
+
+  return attackSection;
+}
+
+
+function capitalizeFirstLetter(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+function generateUUID() {
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+    const r = Math.random() * 16 | 0;
+    const v = c === 'x' ? r : (r & 0x3 | 0x8);
+    return v.toString(16);
+  });
+}
 
 
 
@@ -1986,6 +2078,7 @@ const selectElements = document.querySelectorAll('select[data-custom-input]');
   });
   
   
+
 
 
 ////////// splash /////////
