@@ -12,7 +12,8 @@
 //document.getElementById("diceGeneratorTab").click();
 document.getElementById("characterSheetTab").click();
 
-document.getElementById("sheetTabName").click();
+//document.getElementById("sheetTabName").click();
+document.getElementById("actionTabName").click();
 
 // Affiche l'année courante dans le footer
 window.onload = function() {
@@ -251,7 +252,8 @@ function saveCharacter(saveTo) {
       failed: []
     },
     status: {},
-    armorClassInfo:{}
+    armorClassInfo:{},
+    attackInfo:{}
     };
 
   for (const abilityId of ABILITY_NAMES) {
@@ -337,6 +339,22 @@ characterData.armorClassInfo = {
   customShieldValue2: document.getElementById("customShieldClassValue2").value || "0"
 };
 
+
+        // AttackInfo
+characterData.attackInfo = {
+  attackName: document.getElementById("attackName").value || " ",
+  damageType: document.getElementById("damageType").value || " ",
+  attackNote: document.getElementById("attackNote").value || " ",
+  attackAbilityAdjustment: document.getElementById("attackAbilityAdjustment").value || " ",
+  otherAttackAdjustmentValue: document.getElementById("otherAttackAdjustmentValue").value || "0",
+  attackProficientCheckBox: document.getElementById("attackProficientCheckBox").value || false,
+  damageDiceQuantity: document.getElementById("damageDiceQuantity").value || "0",
+  damageHitDiceType: document.getElementById("damageHitDiceType").value || " ",
+  damageAbilityAdjustment: document.getElementById("damageAbilityAdjustment").value || " ",
+  otherDamageAdjustmentValue: document.getElementById("otherDamageAdjustmentValue").value || "0"
+}
+
+
   const jsonCharacterData = JSON.stringify(characterData, null, 2);
 
   // Check saveTo parameter and save data accordingly
@@ -360,6 +378,7 @@ function openCharacter(loadFrom) {
     const description = characterData["description"];
     const apparence = characterData["apparence"];
     const armorClassInfo = characterData.armorClassInfo;
+    const attackInfo = characterData.attackInfo;
 
     // Load abilities
     for (const abilityId in abilities) {
@@ -462,8 +481,9 @@ function openCharacter(loadFrom) {
         statusCheckbox.checked = characterData.status[status];
       }
     }
+    adjustStatusBar();
 
-    // armorclassinfo
+    // load armorclassinfo
 
     document.getElementById("abilityAdjustment1").value = armorClassInfo.ability1;
     document.getElementById("abilityAdjustment2").value = armorClassInfo.ability2;
@@ -486,7 +506,19 @@ function openCharacter(loadFrom) {
     selectChangedArmorClass(document.getElementById("shieldAndAccessoriesSelection1"), "customShieldContainer");
     selectChangedArmorClass(document.getElementById("shieldAndAccessoriesSelection2"), "customShieldContainer2");
     
-    
+        // load AttackInfo
+               // 
+   document.getElementById("attackName").value = attackInfo.attackName,
+   document.getElementById("damageType").value = attackInfo.damageType,
+   document.getElementById("attackNote").value = attackInfo.attackNote,
+   document.getElementById("attackAbilityAdjustment").value = attackInfo.attackAbilityAdjustment,
+   document.getElementById("otherAttackAdjustmentValue").value = attackInfo.otherAttackAdjustmentValue,
+   document.getElementById("attackProficientCheckBox").value = attackInfo.attackProficientCheckBox ,
+   document.getElementById("damageDiceQuantity").value = attackInfo.damageDiceQuantity,
+   document.getElementById("damageHitDiceType").value = attackInfo.damageHitDiceType,
+   document.getElementById("damageAbilityAdjustment").value = attackInfo.damageAbilityAdjustment,
+   document.getElementById("otherDamageAdjustmentValue").value = attackInfo.otherDamageAdjustmentValue
+
     updateDependentElements();
 } 
 
@@ -572,12 +604,9 @@ updateSpeedValues();
 
 
   //reset deathSaves here
-  const deathSaveInputIds = [
-    "success1", "success2", "success3",
-    "failed1", "failed2", "failed3"
-  ];
+ 
 
-  deathSaveInputIds.forEach(inputId => {
+  DEATHSAVE_INPUTS.forEach(inputId => {
     const inputElement = document.getElementById(inputId);
     inputElement.checked = false;
     inputElement.disabled = false;
@@ -598,8 +627,40 @@ for (const status in statusIcons) {
   const statusCheckbox = document.getElementById(status);
   statusCheckbox.checked = false;
 }
-adjustStatusBar();
+
+///reset  armorclassinfo
+
+  document.getElementById("abilityAdjustment1").value =  " ",
+  document.getElementById("abilityAdjustment2").value = " ",
+  document.getElementById("otherArmorClassAdjustmentName").value = " ",
+  document.getElementById("otherArmorClassValue").value = "0",
+  document.getElementById("armorActiveCheckbox").checked = false,
+  document.getElementById("armorSelection").value = " ",
+  document.getElementById("customArmorName").value = " ",
+  document.getElementById("customArmorClassValue").value = "0",
+  document.getElementById("shieldActiveCheckbox1").checked = false,
+  document.getElementById("shieldAndAccessoriesSelection1").value = " ",
+  document.getElementById("customShieldName1").value = " ",
+  document.getElementById("customShieldClassValue1").value = "0",
+  document.getElementById("shieldActiveCheckbox2").checked = false,
+  document.getElementById("shieldAndAccessoriesSelection2").value = " ",
+  document.getElementById("customShieldName2").value = " ",
+  document.getElementById("customShieldClassValue2").value = "0"
+
+///reset  attackinfo
+  document.getElementById("attackName").value = " ",
+  document.getElementById("damageType").value = " ",
+  document.getElementById("attackNote").value = " ",
+  document.getElementById("attackAbilityAdjustment").value = " ",
+  document.getElementById("otherAttackAdjustmentValue").value = "0",
+  document.getElementById("attackProficientCheckBox").value = false,
+  document.getElementById("damageDiceQuantity").value = "0",
+  document.getElementById("damageHitDiceType").value = " ",
+  document.getElementById("damageAbilityAdjustment").value = " ",
+  document.getElementById("otherDamageAdjustmentValue").value = "0"
+
   
+updateDependentElements();
   //code continue here
   closePopup();
 }
@@ -648,7 +709,53 @@ function resetAllCustomList() {
       customInputElement.style.display = "none";
     }
   });  
+  
+  const ARMOR_SHIELD_INPUTS = [
+    {
+      inputId: 'armorSelection',
+      customInputId: 'customArmorName',
+      customClassValueId: 'customArmorClassValue',
+    },
+    {
+      inputId: 'shieldAndAccessoriesSelection1',
+      customInputId: 'customShieldName1',
+      customClassValueId: 'customShieldClassValue1',
+    },
+    {
+      inputId: 'shieldAndAccessoriesSelection2',
+      customInputId: 'customShieldName2',
+      customClassValueId: 'customShieldClassValue2',
+    },
+  ];
+
+  ARMOR_SHIELD_INPUTS.forEach(({ inputId, customInputId, customClassValueId }) => {
+    const selectElement = document.getElementById(inputId);
+  
+    if (selectElement.querySelector("option[value=custom]") || customInputId) {
+      const customInputElement = document.getElementById(customInputId);
+      customInputElement.style.display = "none";
+    }
+    if (selectElement.value === 'custom' && customInputId) {
+      const customInputElement = document.getElementById(customInputId);
+      customInputElement.style.display = "inline-flex";
+    } else {
+      if (customInputId) {
+        const customInputElement = document.getElementById(customInputId);
+        customInputElement.style.display = "none";
+      }
+  
+      // Reset and hide customClassValue elements
+      if (customClassValueId) {
+        const customClassValueElement = document.getElementById(customClassValueId);
+        customClassValueElement.value = 0;
+        customClassValueElement.style.display = "none";
+      }
+    }
+  });
 }
+ 
+
+
 
 const successCheckboxes = document.querySelectorAll('.success-container .checkbox-death-saving-throws');
 const failedCheckboxes = document.querySelectorAll('.failed-container .checkbox-death-saving-throws');
@@ -679,8 +786,12 @@ function adjustStatusBar() {
       icon.setAttribute("data-inline", "false");
       icon.style.fontSize = "24px"; // Set a default font size for the icons
       icon.style.marginRight = "8px"; // Add some space between the icons
+      icon.title = statusValue.name_fr; // Set the French name as a tooltip on hover
+
 
       statusBar.appendChild(icon);
+      icon.appendChild(document.createTextNode(statusValue.name_fr));
+
     }
   }
 }
@@ -701,6 +812,7 @@ function updateDependentElements() {
   updateSpeedValues();
   adjustStatusBar();
   adjustArmorClassValue();
+  adjustAttack();
 
   const characterNameInput = document.getElementById('characterName');
   characterTitle.textContent = characterNameInput.value;
@@ -744,6 +856,7 @@ const characterClassInput = document.getElementById('className');
 const characterLevelInput = document.getElementById('levelName');
 const numberHitDiceInput = document.getElementById('numberHitDice');
 const hitDiceTypeInput = document.getElementById('hitDiceType');
+
 function updateCharacterClassAndLevel() {
   const className = characterClassInput.value;
   const level = characterLevelInput.value;
@@ -1705,9 +1818,11 @@ function generateStatusCheckboxes() {
       const isChecked = this.checked;
       const iconCopy = icon.cloneNode(true);
       iconCopy.style.fontSize = "24px";
+      iconCopy.title = characterStatus[statusKey].name_fr; // Set the French name as a tooltip on hover
       if (isChecked) {
         // add the icon to the status bar
         statusBar.appendChild(iconCopy);
+
       } else {
         // remove the icon from the status bar
         const iconsInStatusBar = statusBar.querySelectorAll(`[data-icon='${statusIcons[statusKey]}']`);
@@ -2024,6 +2139,52 @@ damage.value = damageDice + (damageAdjustment > 0 ? ' + ' + damageAdjustment : (
 // Call the adjustAttack function to update attackValue and damage
 adjustAttack();
 
+function rollAttack(attackName, attackValue) {
+  let commandBonus = '';
+  let toastBonus = '';
+  if (attackValue !== '+0') {
+    commandBonus = attackValue;
+    toastBonus = ` et un bonus de ${attackValue}`;
+  }
+  const command = `${encodeURI('Attaque ' + attackName)}:d20${commandBonus}`;
+  const toastMessage = `Ça roule Attaque ${attackName} avec d20${toastBonus}`;
+
+  // Send command to Talespire
+  window.location.href = `talespire://dice/${attackName}${command}`;
+
+  // Show the toast
+  showToast(toastMessage);
+  //showToast(`talespire://dice/${command}`);
+}
+
+
+function rollDamage(attackName, damageType, damage) {
+  let commandBonus = '';
+  let toastBonus = '';
+  if (damage !== 'Choisir') {
+    commandBonus = damage;
+    toastBonus = `${damage}`;
+  }
+
+  let command, toastMessage;
+  if (damageType === "Choisir" || damageType === '') {
+    command = `${encodeURI('Dégâts pour ' + attackName)}:d20${commandBonus}`;
+    toastMessage = `Ça roule dégâts pour ${attackName} de ${toastBonus}`;
+  } else {
+    command = `${encodeURI('Dégâts de type ${damageType} pour ' + attackName)}:d20${commandBonus}`;
+    toastMessage = `Ça roule dégâts de type ${damageType} pour ${attackName} de ${toastBonus}`;
+  }
+
+  // Send command to Talespire
+  window.location.href = `talespire://dice/${attackName}${command}`;
+
+  // Show the toast
+  showToast(toastMessage);
+  //showToast(`talespire://dice/${command}`);
+}
+
+
+
 // Elements that should trigger adjustAttack when changed
 const elementsToWatch = [
   'levelName',
@@ -2042,6 +2203,9 @@ elementsToWatch.forEach((elementId) => {
   const element = document.getElementById(elementId);
   element.addEventListener('change', adjustAttack);
 });
+
+
+
 
 
 
@@ -2138,5 +2302,48 @@ window.addEventListener("DOMContentLoaded", () => {
       diceContainerSplash.remove();
     }
     animationRunning = false;
-  }, 3000);
+  }, 0);
 });
+
+
+
+////////// countdown to local storage save /////////
+/*
+// Define the function that will be called every 10 seconds
+function saveToLocalStorage() {
+  saveCharacter('saveToLocalStorage'); // call your saveCharacter function
+}
+
+// Define the countdown timer function
+function countdownTimer() {
+  let seconds = 9;
+  let timer = setInterval(() => {
+    // Get the countdown div element
+    const countdownDiv = document.getElementById("compteARebourd");
+
+    // Update the text in the countdown div
+    if (seconds > 1) {
+      countdownDiv.innerText = `${seconds} s avant sauvegarde automatique`;
+    } else {
+      countdownDiv.innerText = `${seconds} s avant sauvegarde automatique`;
+    }
+
+    // Decrement the seconds counter
+    seconds--;
+
+    // If the timer reaches 0, reset seconds to 10 and restart the countdown
+    if (seconds < 0) {
+      clearInterval(timer);
+      countdownDiv.innerText = "Sauvegarde réussie";
+      seconds = 9;
+      countdownTimer();
+    }
+  }, 1000);
+}
+
+// Call the countdownTimer function
+countdownTimer();
+
+// Call the saveToLocalStorage function every 10 seconds
+setInterval(saveToLocalStorage, 10000);
+*/

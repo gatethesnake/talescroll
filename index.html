@@ -42,19 +42,20 @@
 						<div class="menu-item">
 							<span>Sauvegarder</span>
 							<div class="submenu">
-								<div onclick="saveCharacter('toDisk')">
+								<div onclick="saveCharacter('saveToDisk')">
 									disque dur
 								</div>
-								<div onclick="saveCharacter('toLocalStorage')">
+								<div onclick="saveCharacter('saveToLocalStorage')">
 									storage interne
 								</div>
 							</div>
 						</div>
-						<div class="menu-item" onclick="resetButton()">
+						<div class="menu-item" onclick="resetCharacter()">
 							<span>Réinitialiser</span>
 						</div>
 					</div>
 				</div>
+				
 				<div id="titre">
 					<h1>
 						Val de Fondor
@@ -296,24 +297,26 @@
 						</div>
 						<div id="information" class="section">
 							<h2>Information</h2>
-							<div id="avantage" class="subsection avantage-section">
+							<div id="avantage" class="subsection">
 								<h4>Avantage</h4>
-								<div class="buttons-advantage center-buttons">
+								<div class="buttons-advantage center-buttons container">
 									<button id="disadvantage" class="button small-button dark-red-button advantage-buttons" onclick="setAdvantage('disadvantage')">Désavantage</button>
 									<button id="normal" class="button small-button dark-yellow-button advantage-buttons activated-button" onclick="setAdvantage('normal')">Normal</button>
 									<button id="advantage" class="button small-button dark-green-button advantage-buttons" onclick="setAdvantage('advantage')">Avantage</button>
 								</div>
 							</div>
-							<div id="proficiency-bonus" class="subsection">
-								<h4>Bonus de maîtrise</h4>
-								<p id="proficiencyBonusValue" class="roundButton">+2
-								<p>
-							</div>
-							<div id="initiative" class="subsection">
-								<h4>Initiative</h4>
-								<p id="initiativeBonusValue" class="roundButton" onclick="rollInitiative(this.previousElementSibling.innerHTML, this.innerHTML);">+0</p>
-								<label for="otherInitiativeBonus">Autre bonus:</label>
-								<input type="number" id="otherInitiativeBonus" class="input-text input-initiativeBonus" name="otherInitiativeBonus">
+							<div class="container2">
+								<div id="proficiency-bonus" class="subsection subsection2">
+									<h4>Bonus de maîtrise</h4>
+									<p id="proficiencyBonusValue" class="roundButton">+2
+									<p>
+								</div>
+								<div id="initiative" class="subsection subsection2">
+									<h4>Initiative</h4> 
+									<p id="initiativeBonusValue" class="roundButton" onclick="rollInitiative(this.previousElementSibling.innerHTML, this.innerHTML);">+0</p>
+									<label for="otherInitiativeBonus">Autre bonus:</label>
+									<input type="number" id="otherInitiativeBonus" value="0" min="-10" max="10" class="input-text input-initiativeBonus" name="otherInitiativeBonus">
+								</div>
 							</div>
 							<div id="hit-points" class="subsection">
 								<h4>Points de vie</h4>
@@ -324,27 +327,31 @@
 									</div>
 									<div class="hit-points-input-wrapper">
 										<label for="maxHitPoints">Max</label>
-										<input type="number" id="maxHitPoints" name="maxHitPoints" value="0" class="input-text input-maxHitPoints">
+										<input type="number" id="maxHitPoints" name="maxHitPoints" value="0" min="0" class="input-text input-maxHitPoints">
 									</div>
 									<div class="hit-points-input-wrapper">
 										<label for="tempHitPoints">Temp</label>
-										<input type="number" id="tempHitPoints" name="tempHitPoints" value="0" class="input-text input-tempHitPoints">
+										<input type="number" id="tempHitPoints" name="tempHitPoints" value="0" min="0" class="input-text input-tempHitPoints">
 									</div>
 								</div>
 								<div id="hit-points" class="subsection">
 									<h4>Dés de vie</h4>
 									<div class="hit-points-inputs">
-										<label for="numberHitDice">#</label>
-										<input type="number" id="numberHitDice" name="numberHitDice" value="0" class="input-text input-numberHitDice">
-										<label for="hitDiceType">Type</label>
-										<select id="hitDiceType"  name="hitDiceType" class="input-text input-hitDiceType">
-											<option value="d4">d4</option>
-											<option value="d6">d6</option>
-											<option value="d8" selected class="input-hitDiceType">d8</option>
-											<option value="d10">d10</option>
-											<option value="d12">d12</option>
-											<option value="d20">d20</option>
-										</select>
+										<div class="container">
+											<label for="numberHitDice">Quantité</label>
+											<input type="number" id="numberHitDice" name="numberHitDice" value="0" class="input-text input-numberHitDice">
+										</div>
+										<div class="container">
+											<label for="hitDiceType">Type</label>
+											<select id="hitDiceType"  name="hitDiceType" class="input-text input-hitDiceType">
+												<option value="d4">d4</option>
+												<option value="d6">d6</option>
+												<option value="d8" selected class="input-hitDiceType">d8</option>
+												<option value="d10">d10</option>
+												<option value="d12">d12</option>
+												<option value="d20">d20</option>
+											</select>
+										</div>
 									</div>
 								</div>
 							</div>
@@ -527,114 +534,112 @@
 
 						<div id="attacks" class="section">
 							<h2>Attaques</h2>
-              <div id="attackAndDamageValuesSubsection" class="subsection">
+							<div id="attackAndDamageValuesSubsection" class="subsection">
 								<div id="attackAndDamage"class="container">
-                  <div class="wrapper attack-name-wrapper">
-										<input type="text" id="attackName" name="attackName" value="" class="input-text attack-name-input">
-                    <label for="attackName" id="attackNameLabel">Nom</label>
+									<div class="wrapper attack-name-wrapper">
+										<input type="text" id="attackName" name="attackName" value=" " class="input-text attack-name-input">
+										<label for="attackName" id="attackNameLabel">Nom</label>
 									</div>
 									<div class="wrapper fixed-size-wrapper">
-										<input type="text" id="attackValue" class="roundButton" value="0" readonly>
-                    <label for="attackValue" id="attackValueLabel">Attaque</label>
+										<input type="text" id="attackValue" class="roundButton" value="0" readonly onclick="rollAttack(document.getElementById('attackName').value, this.value)"> 
+										<label for="attackValue" id="attackValueLabel">Attaque</label>
 									</div>
 									<div class="wrapper fixed-size-wrapper">
-										<input type="text" id="damage" class="rectangleButton" value="" readonly>
-                    <label for="damage" id="damageLabel">Dégâts</label>
+										<input type="text" id="damage" class="rectangleButton" value=" " readonly onclick="rollDamage(document.getElementById('attackName').value, document.getElementById('damageType').options[document.getElementById('damageType').selectedIndex].textContent, this.value)">
+										<label for="damage" id="damageLabel">Dégâts</label>
 									</div>
 								</div>
-                <div id="damageSupplementContainer"class="container">
-                  <div class="wrapper">
-                    <select id="damageType" name="damageType" class="input-text input-damage-type">
-                      <option value="">Choisir</option>
-                      <option value="acid">Acide</option>
-                      <option value="bludgeoning">Contondant</option>
-                      <option value="cold">Froid</option>
-                      <option value="fire">Feu</option>
-                      <option value="force">Force</option>
-                      <option value="lightning">Foudre</option>
-                      <option value="necrotic">Nécrotique</option>
-                      <option value="piercing">Perforant</option>
-                      <option value="poison">Poison</option>
-                      <option value="psychic">Psychique</option>
-                      <option value="radiant">Radieux</option>
-                      <option value="slashing">Tranchant</option>
-                      <option value="thunder">Tonnerre</option>
-                    </select>
-                    <label for="damageType" id="damageTypeLabel">Type de dégât</label>
-                  </div>
-                  <div class="wrapper">
-                    <input type="text" id="attackNote" name="attackNote" value="" class="input-text">
-                    <label for="attackNote" id="attackNoteLabel">Note</label>
-                  </div>
-                </div>
-                <span class="arrow-icon">
-                  <span class="iconify" data-icon="mdi:chevron-down" data-inline="false"></span>
-                </span>
-                <div id="attackAndDamageBonusSubsection" class="subsection hidden">
-                  <h4>Bonus d'attaques</h4>
-                  <div id="attackContainer"class="container">
-                    <div class="wrapper">
-                      <select id="attackAbilityAdjustment" class="input-text">
-                        <option value=" ">Choisir</option>
-                        <option value="strength">Force</option>
-                        <option value="dexterity">Dextérité</option>
-                        <option value="constitution">Constitution</option>
-                        <option value="intelligence">Intelligence</option>
-                        <option value="wisdom">Sagesse</option>
-                        <option value="charisma">Charisme</option>
-                      </select>
-                      <label for="attackAbilityAdjustment" id="attackAbilityAdjustmentLabel">Habileté</label>
-                    </div>
-                    <div class="wrapper">
-                      <input type="number" id="otherAttackAdjustmentValue" class="input-text" min="-10" max="10" value="0">
-                      <label for="otherAttackAdjustmentValue" id="otherAttackAdjustmentValueLabel">Autres bonus</label>
-                    </div>
-                    <div class="wrapper">
-                      <input type="checkbox" id="attackProficientCheckBox">
-                      <label for="attackProficientCheckBox">Bonus de maîtrise</label>
-                    </div>
-                  </div>
-                  <h4>Dégâts</h4>
-                  <div id="damageContainer" class="container">
-                    <div class="wrapper">
-                      <input type="number" id="damageDiceQuantity" class="input-text" min="1" max="10" value="1">
-                      <label for="damageDiceQuantity" id="damageDiceQuantityLabel">Quantité</label>
-                    </div>
-                    <div class="wrapper">
-                      <select id="damageHitDiceType" name="damageHitDiceType" class="input-text input-damageHitDiceType">
-                        <option value="d4" selected class="input-damageHitDiceType">d4</option>
-                        <option value="d6">d6</option>
-                        <option value="d8">d8</option>
-                        <option value="d10">d10</option>
-                        <option value="d12">d12</option>
-                        <option value="d20">d20</option>
-                      </select>
-                      <label for="damageHitDiceType" id="damageHitDiceTypeLabel">Type</label>
-                    </div>
-                  </div>
-                  <div id="damageAdjustmentContainer"class="container">
-                    <div class="wrapper">
-                      <select id="damageAbilityAdjustment" class="input-text">
-                        <option value=" ">Choisir</option>
-                        <option value="strength">Force</option>
-                        <option value="dexterity">Dextérité</option>
-                        <option value="constitution">Constitution</option>
-                        <option value="intelligence">Intelligence</option>
-                        <option value="wisdom">Sagesse</option>
-                        <option value="charisma">Charisme</option>
-                      </select>
-                      <label for="damageAbilityAdjustment" id="damageAbilityAdjustmentLabel">Habileté</label>
-                    </div>
-
-                    <div class="wrapper">
-                      <input type="number" id="otherDamageAdjustmentValue" class="input-text" min="-10" max="10" value="0">
-                      <label for="otherDamageAdjustmentValue" id="otherDamageAdjustmentValueLabel">Autre bonus</label>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-          </div> 
+								<div id="damageSupplementContainer"class="container">
+									<div class="wrapper">
+										<select id="damageType" name="damageType" class="input-text input-damage-type">
+											<option value=" ">Choisir</option>
+											<option value="acid">Acide</option>
+											<option value="bludgeoning">Contondant</option>
+											<option value="cold">Froid</option>
+											<option value="fire">Feu</option>
+											<option value="force">Force</option>
+											<option value="lightning">Foudre</option>
+											<option value="necrotic">Nécrotique</option>
+											<option value="piercing">Perforant</option>
+											<option value="poison">Poison</option>
+											<option value="psychic">Psychique</option>
+											<option value="radiant">Radieux</option>
+											<option value="slashing">Tranchant</option>
+											<option value="thunder">Tonnerre</option>
+										</select>
+										<label for="damageType" id="damageTypeLabel">Type de dégât</label>
+									</div>
+									<div class="wrapper">
+										<input type="text" id="attackNote" name="attackNote" value="" class="input-text">
+										<label for="attackNote" id="attackNoteLabel">Note</label>
+									</div>
+								</div>
+								<span class="arrow-icon">
+								<span class="iconify" data-icon="mdi:chevron-down" data-inline="false"></span>
+								</span>
+								<div id="attackAndDamageBonusSubsection" class="subsection hidden">
+									<h4>Bonus d'attaques</h4>
+									<div id="attackContainer"class="container">
+										<div class="wrapper">
+											<select id="attackAbilityAdjustment" class="input-text">
+												<option value=" ">Choisir</option>
+												<option value="strength">Force</option>
+												<option value="dexterity">Dextérité</option>
+												<option value="constitution">Constitution</option>
+												<option value="intelligence">Intelligence</option>
+												<option value="wisdom">Sagesse</option>
+												<option value="charisma">Charisme</option>
+											</select>
+											<label for="attackAbilityAdjustment" id="attackAbilityAdjustmentLabel">Habileté</label>
+										</div>
+										<div class="wrapper">
+											<input type="number" id="otherAttackAdjustmentValue" class="input-text" min="-10" max="10" value="0">
+											<label for="otherAttackAdjustmentValue" id="otherAttackAdjustmentValueLabel">Autres bonus</label>
+										</div>
+										<div class="wrapper">
+											<input type="checkbox" id="attackProficientCheckBox">
+											<label for="attackProficientCheckBox">Bonus de maîtrise</label>
+										</div>
+									</div>
+									<h4>Dégâts</h4>
+									<div id="damageContainer" class="container">
+										<div class="wrapper">
+											<input type="number" id="damageDiceQuantity" class="input-text" min="1" max="10" value="1">
+											<label for="damageDiceQuantity" id="damageDiceQuantityLabel">Quantité</label>
+										</div>
+										<div class="wrapper">
+											<select id="damageHitDiceType" name="damageHitDiceType" class="input-text input-damageHitDiceType">
+												<option value="d4" selected class="input-damageHitDiceType">d4</option>
+												<option value="d6">d6</option>
+												<option value="d8">d8</option>
+												<option value="d10">d10</option>
+												<option value="d12">d12</option>
+												<option value="d20">d20</option>
+											</select>
+											<label for="damageHitDiceType" id="damageHitDiceTypeLabel">Type</label>
+										</div>
+									</div>
+									<div id="damageAdjustmentContainer"class="container">
+										<div class="wrapper">
+											<select id="damageAbilityAdjustment" class="input-text">
+												<option value=" ">Choisir</option>
+												<option value="strength">Force</option>
+												<option value="dexterity">Dextérité</option>
+												<option value="constitution">Constitution</option>
+												<option value="intelligence">Intelligence</option>
+												<option value="wisdom">Sagesse</option>
+												<option value="charisma">Charisme</option>
+											</select>
+											<label for="damageAbilityAdjustment" id="damageAbilityAdjustmentLabel">Habileté</label>
+										</div>
+										<div class="wrapper">
+											<input type="number" id="otherDamageAdjustmentValue" class="input-text" min="-10" max="10" value="0">
+											<label for="otherDamageAdjustmentValue" id="otherDamageAdjustmentValueLabel">Autre bonus</label>
+										</div>
+									</div>
+								</div>
+							</div>
+          				</div> 
 
 						<div id="resources" class="section">
 							<h2>Ressources</h2>
@@ -780,7 +785,7 @@
 							<div id="historiqueContainer" class="subsection">
 								<label for="historique">Historique:</label>
 								<select id="historique" class="input-text" name="historique" onchange="selectChangedArmorClass(this,'customHistorique')" data-custom-input="customHistorique">
-									<option value=" ">Choisir une historique</option>
+									<option value=" ">Choisir un historique</option>
 									<option value="Acolyte">Acolyte</option>
 									<option value="Artisan de guilde">Artisan de guilde</option>
 									<option value="Artiste">Artiste</option>
@@ -849,6 +854,7 @@
 							<button class="button button_over" onclick="openCharacter('loadFromDisk')">Ouvrir</button>
 							<button class="button button_over" onclick="saveCharacter('saveToDisk')">Sauvegarder</button>
 							<button id="reset_button" class="button button_over" onclick="resetCharacter()">Réinitialiser</button>
+							<div id="compteARebourd" read-only></div>
 						</div>
 					</div>
 					<div id="reset-popup" class="popup" style="display:none;">

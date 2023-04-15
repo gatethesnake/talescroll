@@ -32,6 +32,8 @@
     'peau',
     'cheveux'
   ];
+
+
   
   const abilitiesSkills = [
     { nom: "Acrobatie", caracteristique: "Dextérité" },

@@ -1,35 +1,18 @@
-menu bogue rien marche
-fiche: Habilité et sauvgardes côt à combinateur
-information avantage : 3 buttons sidexside
-bonus maitrise + initiative sidexside
-saveDeat + inspration sidexside
-status: tool tips en haut
-un historique
-Apparance: /3 sections sidexside 
-attack collapsable : plus compact
-armor class : habilité justify?
-attaque: S.O.R. + adjustAttack 
+openChar.. statusBar icon title... undefined
 attaque: rollDice
 
 write in js all that and add + and - icons + uuid
 
 
-localStorge : a tester
-css
-alignement armure classe ar, shield1 et 2
-aligment bonus attaques et dégâts 
+localStorge : save on a timer? on every change? open on page load?
+
+
 multi-class
 
 fondor road map
 avantage- désavantage on rollX la logique.
 arrange le calisse de dé qui roule
-skills: class bonus : instaure le "maximum parmi 2 of 5"
-local storage + AUTO-SAVE
-serveur save . Mysql?
-dés	- combinateur de dés chkbox, input text généré
 feuille de personage
-	menu: pour les save, ouvrir, etc.
-data
 	Fiche
 		information
 			perception passive
