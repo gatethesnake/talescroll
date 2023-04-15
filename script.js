@@ -12,8 +12,8 @@
 //document.getElementById("diceGeneratorTab").click();
 document.getElementById("characterSheetTab").click();
 
-//document.getElementById("sheetTabName").click();
-document.getElementById("actionTabName").click();
+document.getElementById("sheetTabName").click();
+//document.getElementById("actionTabName").click();
 
 // Affiche l'année courante dans le footer
 window.onload = function() {
@@ -2302,7 +2302,7 @@ window.addEventListener("DOMContentLoaded", () => {
       diceContainerSplash.remove();
     }
     animationRunning = false;
-  }, 0);
+  }, 3000);
 });
 
 
