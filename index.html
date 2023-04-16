@@ -534,120 +534,19 @@
 
 						<div id="attacks" class="section">
 							<h2>Attaques</h2>
-							<button id="addAttack" class="add-attack-button">+</button>
-  							<div id="attacksContainer" class="attacks-container"></div>
-							<div id="attackAndDamageValuesSubsection" class="subsection">
-								<div id="attackAndDamage"class="container">
-									<div class="wrapper attack-name-wrapper">
-										<input type="text" id="attackName" name="attackName" value=" " class="input-text attack-name-input">
-										<label for="attackName" id="attackNameLabel">Nom</label>
-									</div>
-									<div class="wrapper fixed-size-wrapper">
-										<input type="text" id="attackValue" class="roundButton" value="0" readonly onclick="rollAttack(document.getElementById('attackName').value, this.value)"> 
-										<label for="attackValue" id="attackValueLabel">Attaque</label>
-									</div>
-									<div class="wrapper fixed-size-wrapper">
-										<input type="text" id="damage" class="rectangleButton" value=" " readonly onclick="rollDamage(document.getElementById('attackName').value, document.getElementById('damageType').options[document.getElementById('damageType').selectedIndex].textContent, this.value)">
-										<label for="damage" id="damageLabel">Dégâts</label>
-									</div>
-								</div>
-								<div id="damageSupplementContainer"class="container">
-									<div class="wrapper">
-										<select id="damageType" name="damageType" class="input-text input-damage-type">
-											<option value=" ">Choisir</option>
-											<option value="acid">Acide</option>
-											<option value="bludgeoning">Contondant</option>
-											<option value="cold">Froid</option>
-											<option value="fire">Feu</option>
-											<option value="force">Force</option>
-											<option value="lightning">Foudre</option>
-											<option value="necrotic">Nécrotique</option>
-											<option value="piercing">Perforant</option>
-											<option value="poison">Poison</option>
-											<option value="psychic">Psychique</option>
-											<option value="radiant">Radieux</option>
-											<option value="slashing">Tranchant</option>
-											<option value="thunder">Tonnerre</option>
-										</select>
-										<label for="damageType" id="damageTypeLabel">Type de dégât</label>
-									</div>
-									<div class="wrapper">
-										<input type="text" id="attackNote" name="attackNote" value="" class="input-text">
-										<label for="attackNote" id="attackNoteLabel">Note</label>
-									</div>
-								</div>
-								<span class="arrow-icon">
-								<span class="iconify" data-icon="mdi:chevron-down" data-inline="false"></span>
-								</span>
-								<div id="attackAndDamageBonusSubsection" class="subsection hidden">
-									<h4>Bonus d'attaques</h4>
-									<div id="attackContainer"class="container">
-										<div class="wrapper">
-											<select id="attackAbilityAdjustment" class="input-text">
-												<option value=" ">Choisir</option>
-												<option value="strength">Force</option>
-												<option value="dexterity">Dextérité</option>
-												<option value="constitution">Constitution</option>
-												<option value="intelligence">Intelligence</option>
-												<option value="wisdom">Sagesse</option>
-												<option value="charisma">Charisme</option>
-											</select>
-											<label for="attackAbilityAdjustment" id="attackAbilityAdjustmentLabel">Habileté</label>
-										</div>
-										<div class="wrapper">
-											<input type="number" id="otherAttackAdjustmentValue" class="input-text" min="-10" max="10" value="0">
-											<label for="otherAttackAdjustmentValue" id="otherAttackAdjustmentValueLabel">Autres bonus</label>
-										</div>
-										<div class="wrapper">
-											<input type="checkbox" id="attackProficientCheckBox">
-											<label for="attackProficientCheckBox">Bonus de maîtrise</label>
-										</div>
-									</div>
-									<h4>Dégâts</h4>
-									<div id="damageContainer" class="container">
-										<div class="wrapper">
-											<input type="number" id="damageDiceQuantity" class="input-text" min="1" max="10" value="1">
-											<label for="damageDiceQuantity" id="damageDiceQuantityLabel">Quantité</label>
-										</div>
-										<div class="wrapper">
-											<select id="damageHitDiceType" name="damageHitDiceType" class="input-text input-damageHitDiceType">
-												<option value="d4" selected class="input-damageHitDiceType">d4</option>
-												<option value="d6">d6</option>
-												<option value="d8">d8</option>
-												<option value="d10">d10</option>
-												<option value="d12">d12</option>
-												<option value="d20">d20</option>
-											</select>
-											<label for="damageHitDiceType" id="damageHitDiceTypeLabel">Type</label>
-										</div>
-									</div>
-									<div id="damageAdjustmentContainer"class="container">
-										<div class="wrapper">
-											<select id="damageAbilityAdjustment" class="input-text">
-												<option value=" ">Choisir</option>
-												<option value="strength">Force</option>
-												<option value="dexterity">Dextérité</option>
-												<option value="constitution">Constitution</option>
-												<option value="intelligence">Intelligence</option>
-												<option value="wisdom">Sagesse</option>
-												<option value="charisma">Charisme</option>
-											</select>
-											<label for="damageAbilityAdjustment" id="damageAbilityAdjustmentLabel">Habileté</label>
-										</div>
-										<div class="wrapper">
-											<input type="number" id="otherDamageAdjustmentValue" class="input-text" min="-10" max="10" value="0">
-											<label for="otherDamageAdjustmentValue" id="otherDamageAdjustmentValueLabel">Autre bonus</label>
-										</div>
-									</div>
-								</div>
-							</div>
+							<button id="addAttack" class="add-button" onclick="generateAttackSection()"><span class="iconify" data-icon="material-symbols:add"></span></button>
+							<div id="attacksContainer" class="attacks-container"></div>
           				</div> 
 
 						<div id="resources" class="section">
 							<h2>Ressources</h2>
+							<button id="addResource" class="add-button" onclick="generateResourceSection()"><span class="iconify" data-icon="material-symbols:add"></span></button>
+							<div id="resourceContainer" class="resource-container"></div>
 						</div>
-						<div id="capacity" class="section">
-							<h2>Capacités</h2>
+						<div id="features" class="section">
+							<h2>Attributs</h2>
+							<button id="addFeature" class="add-button" onclick="generateFeatureSection()"><span class="iconify" data-icon="material-symbols:add"></span></button>
+							<div id="featureContainer" class="feature-container"></div>
 						</div>
 					</div>
 					<div id="spellTab" class="meta-section tabContentCS">
@@ -840,15 +739,23 @@
 						</div>
 						<div id="equipment" class="section">
 							<h2>Équipement</h2>
+							<button id="addFeature" class="add-button" onclick="generateEquipmentSection()"><span class="iconify" data-icon="material-symbols:add"></span></button>
+							<div id="equipmentContainer" class="equipment-container"></div>
 						</div>
 						<div id="money" class="section">
 							<h2>Argent</h2>
+							<button id="addFeature" class="add-button" onclick="generateTreasureSection()"><span class="iconify" data-icon="material-symbols:add"></span></button>
+							<div id="treasureContainer" class="treasure-container"></div>
 						</div>
 						<div id="language" class="section">
 							<h2>Langue</h2>
+							<button id="addFeature" class="add-button" onclick="generateLanguageSection()"><span class="iconify" data-icon="material-symbols:add"></span></button>
+							<div id="languageContainer" class="language-container"></div>
 						</div>
 						<div id="miscellaneous" class="section">
 							<h2>Notes diverses</h2>
+							<button id="addFeature" class="add-button" onclick="generateMiscellaneousSection()"><span class="iconify" data-icon="material-symbols:add"></span></button>
+							<div id="miscellaneousContainer" class="miscellaneous-container"></div>
 						</div>
 					</div>
 					<div id="character-zone">

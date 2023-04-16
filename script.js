@@ -1,3 +1,13 @@
+// fast dev settings
+
+//document.getElementById("diceGeneratorTab").click();
+document.getElementById("characterSheetTab").click();
+
+//document.getElementById("sheetTabName").click();
+document.getElementById("actionTabName").click();
+
+const splashLength = 0;
+
 //------------------------- OUVERTURE -------------------------//
 // Prévenir la cache du css
     document.addEventListener("DOMContentLoaded", function() {
@@ -7,13 +17,116 @@
       });
   });
 
-// Ouvre le premier tab
+  
 
-//document.getElementById("diceGeneratorTab").click();
-document.getElementById("characterSheetTab").click();
+////////// splash /////////
+let animationRunning = true;
 
-document.getElementById("sheetTabName").click();
-//document.getElementById("actionTabName").click();
+function animateD20Splash() {
+  var scene = new THREE.Scene();
+  var aspectRatio = window.innerWidth / window.innerHeight;
+  var camera = new THREE.PerspectiveCamera(75, aspectRatio, 0.1, 1000);
+  var renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  document.getElementById("diceContainerSplash").appendChild(renderer.domElement);
+
+  // Add ambient light to the scene
+  var ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+  scene.add(ambientLight);
+
+  // Add directional light to the scene
+  var directionalLight = new THREE.DirectionalLight(0xffffff, 0.5);
+  directionalLight.position.set(0, 0, 1);
+  scene.add(directionalLight);
+
+  // Create materials for each face using the numbered textures
+  const materials = [];
+  for (let i = 1; i <= 20; i++) {
+    const textureNumber = d20Mapping[i - 1];
+    const texture = createNumberedTexture(textureNumber);
+    materials.push(new THREE.MeshPhongMaterial({ map: texture, shininess: 1000 }));
+  }
+
+  // Create the d20 geometry and adjust UV mapping
+  var d20Geometry = createD20Geometry(10); // Pass the desired size as an argument
+
+  var d20Material = materials;
+
+  // Create the d20 mesh and add it to the scene
+  var d20Mesh = new THREE.Mesh(d20Geometry, d20Material);
+  scene.add(d20Mesh);
+
+  // Position the camera and d20 mesh
+  camera.position.z = 20;
+  d20Mesh.position.z = -10;
+
+   // Animate the die by continuously rotating it
+  function animateDie() {
+    if (!animationRunning) return; // stop the animation loop
+
+    d20Mesh.rotation.x += 0.03;
+    d20Mesh.rotation.y += 0.03;
+
+    renderer.render(scene, camera);
+    requestAnimationFrame(animateDie);
+  }
+
+  // Call the animateDie function to start the animation loop
+  animateDie();
+
+}
+window.addEventListener("DOMContentLoaded", () => {
+  animateD20Splash();
+  setTimeout(() => {
+    const diceContainerSplash = document.getElementById("diceContainerSplash");
+    if (diceContainerSplash) {
+      diceContainerSplash.remove();
+    }
+    animationRunning = false;
+  }, splashLength);
+});
+
+////////// countdown to local storage save /////////
+/*
+// Define the function that will be called every 10 seconds
+function saveToLocalStorage() {
+  saveCharacter('saveToLocalStorage'); // call your saveCharacter function
+}
+
+// Define the countdown timer function
+function countdownTimer() {
+  let seconds = 9;
+  let timer = setInterval(() => {
+    // Get the countdown div element
+    const countdownDiv = document.getElementById("compteARebourd");
+
+    // Update the text in the countdown div
+    if (seconds > 1) {
+      countdownDiv.innerText = `${seconds} s avant sauvegarde automatique`;
+    } else {
+      countdownDiv.innerText = `${seconds} s avant sauvegarde automatique`;
+    }
+
+    // Decrement the seconds counter
+    seconds--;
+
+    // If the timer reaches 0, reset seconds to 10 and restart the countdown
+    if (seconds < 0) {
+      clearInterval(timer);
+      countdownDiv.innerText = "Sauvegarde réussie";
+      seconds = 9;
+      countdownTimer();
+    }
+  }, 1000);
+}
+
+// Call the countdownTimer function
+countdownTimer();
+
+// Call the saveToLocalStorage function every 10 seconds
+setInterval(saveToLocalStorage, 10000);
+*/
+
 
 // Affiche l'année courante dans le footer
 window.onload = function() {
@@ -252,8 +365,7 @@ function saveCharacter(saveTo) {
       failed: []
     },
     status: {},
-    armorClassInfo:{},
-    attackInfo:{}
+    armorClassInfo:{}
     };
 
   for (const abilityId of ABILITY_NAMES) {
@@ -340,19 +452,7 @@ characterData.armorClassInfo = {
 };
 
 
-        // AttackInfo
-characterData.attackInfo = {
-  attackName: document.getElementById("attackName").value || " ",
-  damageType: document.getElementById("damageType").value || " ",
-  attackNote: document.getElementById("attackNote").value || " ",
-  attackAbilityAdjustment: document.getElementById("attackAbilityAdjustment").value || " ",
-  otherAttackAdjustmentValue: document.getElementById("otherAttackAdjustmentValue").value || "0",
-  attackProficientCheckBox: document.getElementById("attackProficientCheckBox").value || false,
-  damageDiceQuantity: document.getElementById("damageDiceQuantity").value || "0",
-  damageHitDiceType: document.getElementById("damageHitDiceType").value || " ",
-  damageAbilityAdjustment: document.getElementById("damageAbilityAdjustment").value || " ",
-  otherDamageAdjustmentValue: document.getElementById("otherDamageAdjustmentValue").value || "0"
-}
+
 
 
   const jsonCharacterData = JSON.stringify(characterData, null, 2);
@@ -378,7 +478,6 @@ function openCharacter(loadFrom) {
     const description = characterData["description"];
     const apparence = characterData["apparence"];
     const armorClassInfo = characterData.armorClassInfo;
-    const attackInfo = characterData.attackInfo;
 
     // Load abilities
     for (const abilityId in abilities) {
@@ -506,19 +605,6 @@ function openCharacter(loadFrom) {
     selectChangedArmorClass(document.getElementById("shieldAndAccessoriesSelection1"), "customShieldContainer");
     selectChangedArmorClass(document.getElementById("shieldAndAccessoriesSelection2"), "customShieldContainer2");
     
-        // load AttackInfo
-               // 
-   document.getElementById("attackName").value = attackInfo.attackName,
-   document.getElementById("damageType").value = attackInfo.damageType,
-   document.getElementById("attackNote").value = attackInfo.attackNote,
-   document.getElementById("attackAbilityAdjustment").value = attackInfo.attackAbilityAdjustment,
-   document.getElementById("otherAttackAdjustmentValue").value = attackInfo.otherAttackAdjustmentValue,
-   document.getElementById("attackProficientCheckBox").value = attackInfo.attackProficientCheckBox ,
-   document.getElementById("damageDiceQuantity").value = attackInfo.damageDiceQuantity,
-   document.getElementById("damageHitDiceType").value = attackInfo.damageHitDiceType,
-   document.getElementById("damageAbilityAdjustment").value = attackInfo.damageAbilityAdjustment,
-   document.getElementById("otherDamageAdjustmentValue").value = attackInfo.otherDamageAdjustmentValue
-
     updateDependentElements();
 } 
 
@@ -646,18 +732,6 @@ for (const status in statusIcons) {
   document.getElementById("shieldAndAccessoriesSelection2").value = " ",
   document.getElementById("customShieldName2").value = " ",
   document.getElementById("customShieldClassValue2").value = "0"
-
-///reset  attackinfo
-  document.getElementById("attackName").value = " ",
-  document.getElementById("damageType").value = " ",
-  document.getElementById("attackNote").value = " ",
-  document.getElementById("attackAbilityAdjustment").value = " ",
-  document.getElementById("otherAttackAdjustmentValue").value = "0",
-  document.getElementById("attackProficientCheckBox").value = false,
-  document.getElementById("damageDiceQuantity").value = "0",
-  document.getElementById("damageHitDiceType").value = " ",
-  document.getElementById("damageAbilityAdjustment").value = " ",
-  document.getElementById("otherDamageAdjustmentValue").value = "0"
 
   
 updateDependentElements();
@@ -812,7 +886,7 @@ function updateDependentElements() {
   updateSpeedValues();
   adjustStatusBar();
   adjustArmorClassValue();
-  adjustAttack();
+  adjustAllAttacks();
 
   const characterNameInput = document.getElementById('characterName');
   characterTitle.textContent = characterNameInput.value;
@@ -1874,7 +1948,6 @@ function populateArmorOptions() {
   armorSelect.appendChild(customOption);
 }
 
-
 function selectChangedArmorClass(selectElement, containerID) {
   const container = document.getElementById(containerID);
   if (selectElement.value === 'custom') {
@@ -1932,7 +2005,6 @@ function populateShieldAndAccessoriesOptions2() {
   shieldAndAccessoriesSelect.appendChild(customOption);
 }
 
-
 function displayDescription(selectElement, descriptionContainerID) {
   const descriptionContainer = document.getElementById(descriptionContainerID);
   if (selectElement.value !== " ") {
@@ -1950,7 +2022,6 @@ document.addEventListener("DOMContentLoaded", function() {
   populateShieldAndAccessoriesOptions2();
 
 });
-
 
 function adjustArmorClassValue() {
   const abilityBonusScoreMapping = {
@@ -1999,7 +2070,6 @@ function adjustArmorClassValue() {
   armorClassValue.value =  (totalArmorClass >= 0 ? '+' : '') + totalArmorClass;
 }
 
-
 function validateBonusValue(value) {
   value = parseInt(value);
   return value >= -10 && value <= 10 ? value : 0;
@@ -2034,68 +2104,204 @@ customShieldClassValue2.addEventListener('change', adjustArmorClassValue);
 
 //----------- ATTAQUES-----------//
 
-
-function capitalizeFirstLetter(string) {
-  return string.charAt(0).toUpperCase() + string.slice(1);
-}
-
 function generateUUID() {
+  const cryptoAvailable = typeof crypto !== 'undefined' && typeof crypto.getRandomValues === 'function';
   return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-    const r = Math.random() * 16 | 0;
+    const r = (cryptoAvailable ? crypto.getRandomValues(new Uint8Array(1))[0] : Math.random() * 16) | 0;
     const v = c === 'x' ? r : (r & 0x3 | 0x8);
     return v.toString(16);
   });
 }
 
-const arrowIcon = document.querySelector('.arrow-icon');
-const arrowIconify = arrowIcon.querySelector('.iconify');
-const attackAndDamageBonusSubsection = document.querySelector('#attackAndDamageBonusSubsection');
+let attackUUIDs = [];
 
-// Set the initial state
-let arrowState = 'down';
+function generateAttackSection() {
+  const attackUUID = generateUUID(); // Generate a new UUID
+  attackUUIDs.push(attackUUID); // Add the new UUID to the attackUUIDs array
 
-// Update the arrow icon based on the initial state
-updateArrowIcon();
+  const attackSection = document.createElement('div');
+  attackSection.innerHTML = getAttackSectionHTML(attackUUID);
+  const attackContainer = document.getElementById('attacksContainer'); // Replace 'attacksContainer' with the ID of your container
+  attackContainer.appendChild(attackSection);
+  
+  createAttackSubsection(attackUUID);
+}
 
-// Add a click event listener to change the state and update the arrow icon
-arrowIcon.addEventListener('click', () => {
-  arrowState = arrowState === 'down' ? 'up' : 'down';
-  updateArrowIcon();
-  toggleSubsectionVisibility();
-});
+function getAttackSectionHTML(attackUUID) {
+  const attackAndDamageSection = `
+  <div id="attackAndDamageValuesSubsection-${attackUUID}" class="subsection">
+  <div id="attackAndDamage"class="container">
+      <div class="wrapper attack-name-wrapper">
+          <label for="attackName-${attackUUID}" id="attackNameLabel">Nom</label>
+            <input type="text" id="attackName-${attackUUID}" name="attackName-${attackUUID}" value=" " class="input-text attack-name-input">
+        </div>
+        <div class="wrapper fixed-size-wrapper">
+          <label for="attackValue-${attackUUID}" id="attackValueLabel">Attaque</label>
+          <input type="text" id="attackValue-${attackUUID}" name="attackValue-${attackUUID}" class="roundButton" value="+0" readonly onclick="callRollAttack('${attackUUID}')"> 
+        </div>
+        <div class="wrapper fixed-size-wrapper">
+          <label for="damage-${attackUUID}" id="damageLabel">Dégâts</label>
+          <input type="text" id="damage-${attackUUID}" name="damage-${attackUUID}" class="rectangleButton" value=" " readonly onclick="callRollDamage('${attackUUID}')">
+        </div>
+    </div>
+    <span class="arrow-icon arrow-icon-${attackUUID}">
+      <span id="arrowIconify-${attackUUID}" class="iconify arrow-icon-${attackUUID}" data-icon="mdi:chevron-down" data-inline="false"></span>
+    </span>
+    <button id="removeAttack" class="remove-button" onclick="removeAttack('${attackUUID}')"><span class="iconify" data-icon="mdi:trash-can-outline"></span></button>
+    <div id="attackAndDamageBonusSubsection-${attackUUID}" class="attack-subsection subsection hidden">
+    <h4>Information supplémentaire</h4>
+    <div id="damageSupplementContainer"class="container">
+        <div class="wrapper">
+          <label for="damageType-${attackUUID}" id="damageTypeLabel">Type de dégât</label>
+          <select id="damageType-${attackUUID}" name="damageType-${attackUUID}" class="input-text input-damage-type">
+                <option value=" ">Choisir</option>
+                <option value="acid">Acide</option>
+                <option value="bludgeoning">Contondant</option>
+                <option value="cold">Froid</option>
+                <option value="fire">Feu</option>
+                <option value="force">Force</option>
+                <option value="lightning">Foudre</option>
+                <option value="necrotic">Nécrotique</option>
+                <option value="piercing">Perforant</option>
+                <option value="poison">Poison</option>
+                <option value="psychic">Psychique</option>
+                <option value="radiant">Radiant</option>
+                <option value="slashing">Tranchant</option>
+                <option value="thunder">Tonnerre</option>
+            </select>
+        </div>
+        <div class="wrapper">
+          <label for="attackNote-${attackUUID}" id="attackNoteLabel">Note</label>
+          <input type="text" id="attackNote-${attackUUID}" name="attackNote-${attackUUID}" value="" class="input-text">
+        </div>
+    </div>
+        <h4>Bonus d'attaques</h4>
+        <div id="attackContainer"class="container">
+            <div class="wrapper">
+              <label for="attackAbilityAdjustment-${attackUUID}" id="attackAbilityAdjustmentLabel">Habileté</label>
+              <select id="attackAbilityAdjustment-${attackUUID}" name="attackAbilityAdjustment-${attackUUID}" class="input-text">
+                    <option value=" ">Choisir</option>
+                    <option value="strength">Force</option>
+                    <option value="dexterity">Dextérité</option>
+                    <option value="constitution">Constitution</option>
+                    <option value="intelligence">Intelligence</option>
+                    <option value="wisdom">Sagesse</option>
+                    <option value="charisma">Charisme</option>
+                </select>
+            </div>
+            <div class="wrapper">
+              <label for="otherAttackAdjustmentValue-${attackUUID}" id="otherAttackAdjustmentValueLabel">Bonus</label>
+              <input type="number" id="otherAttackAdjustmentValue-${attackUUID}" name="otherAttackAdjustmentValue-${attackUUID}" class="input-text" min="-10" max="10" value="0">
+            </div>
+            <div class="wrapper">
+              <label for="attackProficientCheckBox-${attackUUID}">Maîtrise</label>
+              <input type="checkbox" id="attackProficientCheckBox-${attackUUID}" name="attackProficientCheckBox-${attackUUID}">
+            </div>
+        </div>
+        <h4>Dégâts</h4>
+        <div id="damageContainer" class="container">
+            <div class="wrapper">
+              <label for="damageDiceQuantity-${attackUUID}" id="damageDiceQuantityLabel">Quantité</label>
+              <input type="number" id="damageDiceQuantity-${attackUUID}" name="damageDiceQuantity-${attackUUID}" class="input-text" min="1" max="10" value="1">
+            </div>
+            <div class="wrapper">
+              <label for="damageHitDiceType-${attackUUID}" id="damageHitDiceTypeLabel">Type</label>
+              <select id="damageHitDiceType-${attackUUID}" name="damageHitDiceType-${attackUUID}" class="input-text input-damageHitDiceType">
+                    <option value="d4" selected class="input-damageHitDiceType">d4</option>
+                    <option value="d6">d6</option>
+                    <option value="d8">d8</option>
+                    <option value="d10">d10</option>
+                    <option value="d12">d12</option>
+                    <option value="d20">d20</option>
+                </select>
+            </div>
+        </div>
+        <div id="damageAdjustmentContainer"class="container">
+            <div class="wrapper">
+              <label for="damageAbilityAdjustment-${attackUUID}" id="damageAbilityAdjustmentLabel">Habileté</label>
+              <select id="damageAbilityAdjustment-${attackUUID}" name="damageAbilityAdjustment-${attackUUID}" class="input-text">
+                    <option value=" ">Choisir</option>
+                    <option value="strength">Force</option>
+                    <option value="dexterity">Dextérité</option>
+                    <option value="constitution">Constitution</option>
+                    <option value="intelligence">Intelligence</option>
+                    <option value="wisdom">Sagesse</option>
+                    <option value="charisma">Charisme</option>
+                </select>
+            </div>
+            <div class="wrapper">
+              <label for="otherDamageAdjustmentValue-${attackUUID}" id="otherDamageAdjustmentValueLabel">Autre bonus</label>
+              <input type="number" id="otherDamageAdjustmentValue-${attackUUID}" name="otherDamageAdjustmentValue-${attackUUID}" class="input-text" min="-10" max="10" value="0">
+            </div>
+        </div>
+    </div>
+</div>
+ `;
+ return attackAndDamageSection;
 
-function updateArrowIcon() {
-  if (arrowState === 'down') {
-    arrowIconify.setAttribute('data-inline', 'false');
-    arrowIconify.setAttribute('data-icon', 'mdi:chevron-down'); // Down arrow icon
-  } else {
-    arrowIconify.setAttribute('data-inline', 'false');
-    arrowIconify.setAttribute('data-icon', 'mdi:chevron-up'); // Up arrow icon
+};
+
+function createAttackSubsection(uuid) {
+  const arrowIcon = document.querySelector(`.arrow-icon-${uuid}`);
+
+  // Set the initial state and update the arrow icon
+  updateArrowIcon(uuid);
+
+  // Add a click event listener to change the state and update the arrow icon
+  arrowIcon.addEventListener('click', () => {
+    arrowIcon.classList.toggle('arrow-up');
+    updateArrowIcon(uuid);
+    toggleSubsectionVisibility(uuid);
+  });
+
+  function updateArrowIcon(uuid) {
+    const arrowIconify = document.getElementById(`arrowIconify-${uuid}`);
+
+    if (arrowIcon.classList.contains('arrow-up')) {
+      arrowIconify.setAttribute('data-inline', 'false');
+      arrowIconify.setAttribute('data-icon', 'mdi:chevron-up'); // Up arrow icon
+    } else {
+      arrowIconify.setAttribute('data-inline', 'false');
+      arrowIconify.setAttribute('data-icon', 'mdi:chevron-down'); // Down arrow icon
+    }
   }
-}
 
-function toggleSubsectionVisibility() {
-  attackAndDamageBonusSubsection.classList.toggle('hidden');
-}
+  function toggleSubsectionVisibility(uuid) {
+    const attackAndDamageBonusSubsection = document.getElementById(`attackAndDamageBonusSubsection-${uuid}`);
 
-function adjustAttack() {
-  const attackValue = document.getElementById('attackValue');
-  const attackAbilityAdjustment = document.getElementById('attackAbilityAdjustment');
-  const otherAttackAdjustmentValue = document.getElementById('otherAttackAdjustmentValue');
-  const attackProficientCheckBox = document.getElementById('attackProficientCheckBox');
-  const damage = document.getElementById('damage');
-  const damageDiceQuantity = document.getElementById('damageDiceQuantity');
-  const damageHitDiceType = document.getElementById('damageHitDiceType');
-  const damageAbilityAdjustment = document.getElementById('damageAbilityAdjustment');
-  const otherDamageAdjustmentValue = document.getElementById('otherDamageAdjustmentValue');
+    attackAndDamageBonusSubsection.classList.toggle('hidden');
+    updateArrowIcon(uuid);
+  }
+  setupUUIDListeners(uuid);
+  adjustAllAttacks(); //because this is when the DOM is fully loaded.
+};
+
+function adjustAttack(uuid) {
+  const attackValueElement = document.getElementById(`attackValue-${uuid}`);
+  const damageElement = document.getElementById(`damage-${uuid}`);
+
+  const attackAbilityAdjustmentElement = document.getElementById(`attackAbilityAdjustment-${uuid}`);
+  const attackAbilityAdjustment = attackAbilityAdjustmentElement.value;
+  const otherAttackAdjustmentValueElement = document.getElementById(`otherAttackAdjustmentValue-${uuid}`);
+  const otherAttackAdjustmentValue =  parseInt(otherAttackAdjustmentValueElement.value, 10) || 0;
+  const attackProficientCheckBoxElement = document.getElementById(`attackProficientCheckBox-${uuid}`);
+  const attackProficientCheckBox = attackProficientCheckBoxElement ? attackProficientCheckBoxElement.checked : false;
+  const damageDiceQuantityElement = document.getElementById(`damageDiceQuantity-${uuid}`);
+  const damageDiceQuantity =  parseInt(damageDiceQuantityElement.value, 10) || 1;
+  const damageHitDiceTypeElement = document.getElementById(`damageHitDiceType-${uuid}`);
+  const damageHitDiceType = damageHitDiceTypeElement.value;
+  const damageAbilityAdjustmentElement = document.getElementById(`damageAbilityAdjustment-${uuid}`);
+  const damageAbilityAdjustment = damageAbilityAdjustmentElement.value;
+  const otherDamageAdjustmentValueElement = document.getElementById(`otherDamageAdjustmentValue-${uuid}`);
+  const otherDamageAdjustmentValue = parseInt(otherDamageAdjustmentValueElement.value, 10) || 0;
 
   const abilityBonusScoreMapping = {
-    'strength': parseInt(document.getElementById('strengthBonusScore').textContent),
-    'dexterity': parseInt(document.getElementById('dexterityBonusScore').textContent),
-    'constitution': parseInt(document.getElementById('constitutionBonusScore').textContent),
-    'intelligence': parseInt(document.getElementById('intelligenceBonusScore').textContent),
-    'wisdom': parseInt(document.getElementById('wisdomBonusScore').textContent),
-    'charisma': parseInt(document.getElementById('charismaBonusScore').textContent),
+    'strength': parseInt(document.getElementById('strengthBonusScore').textContent, 10),
+    'dexterity': parseInt(document.getElementById('dexterityBonusScore').textContent, 10),
+    'constitution': parseInt(document.getElementById('constitutionBonusScore').textContent, 10),
+    'intelligence': parseInt(document.getElementById('intelligenceBonusScore').textContent, 10),
+    'wisdom': parseInt(document.getElementById('wisdomBonusScore').textContent, 10),
+    'charisma': parseInt(document.getElementById('charismaBonusScore').textContent, 10)
   };
 
   const proficiencyBonusValue = parseInt(document.getElementById('proficiencyBonusValue').textContent);
@@ -2103,41 +2309,77 @@ function adjustAttack() {
   // Calculate the attack value
   let attackAdjustment = 0;
 
-  if (attackAbilityAdjustment.value !== ' ') {
-    attackAdjustment += abilityBonusScoreMapping[attackAbilityAdjustment.value];
+  if (attackAbilityAdjustment !== ' ') {
+    attackAdjustment += abilityBonusScoreMapping[attackAbilityAdjustment];
   }
 
-  const otherAttackValue = parseInt(otherAttackAdjustmentValue.value, 10);
-  if (!isNaN(otherAttackValue) && otherAttackValue >= -10 && otherAttackValue <= 10) {
-    attackAdjustment += otherAttackValue;
+  if (!isNaN(otherAttackAdjustmentValue) && otherAttackAdjustmentValue >= -10 && otherAttackAdjustmentValue <= 10) {
+    attackAdjustment += otherAttackAdjustmentValue;
   }
 
-  if (attackProficientCheckBox.checked) {
+  if (attackProficientCheckBox) {
     attackAdjustment += proficiencyBonusValue;
   }
 
-  attackValue.value = (attackAdjustment >= 0 ? '+' : '') + attackAdjustment;
+  const damageDice = damageDiceQuantity.toString() + damageHitDiceType;
+  
+  let damageAdjustment = 0;
 
-  // Calculate the damage value
-const damageDice = damageDiceQuantity.value + damageHitDiceType.value;
-let damageAdjustment = 0;
+  if (damageAbilityAdjustment !== ' ') {
+    damageAdjustment += abilityBonusScoreMapping[damageAbilityAdjustment];
+  }
 
-if (damageAbilityAdjustment.value !== ' ') {
-  damageAdjustment += abilityBonusScoreMapping[damageAbilityAdjustment.value];
+  if (!isNaN(otherDamageAdjustmentValue) && otherDamageAdjustmentValue >= -10 && otherDamageAdjustmentValue <= 10) {
+    damageAdjustment += otherDamageAdjustmentValue;
+  }
+
+  attackValueElement.value = attackAdjustment >= 0 ? '+' + attackAdjustment : attackAdjustment;
+  damageElement.value = damageDice + (damageAdjustment > 0 ? ' + ' + damageAdjustment : (damageAdjustment < 0 ? ' ' + damageAdjustment : ''));
 }
 
-const otherDamageValue = parseInt(otherDamageAdjustmentValue.value, 10);
-if (!isNaN(otherDamageValue) && otherDamageValue >= -10 && otherDamageValue <= 10) {
-  damageAdjustment += otherDamageValue;
-}
 
-damage.value = damageDice + (damageAdjustment > 0 ? ' + ' + damageAdjustment : (damageAdjustment < 0 ? ' ' + damageAdjustment : ''));
+function setupUUIDListeners(uuid) {
+  const elementsToWatchWithUUID = [
+    `attackAbilityAdjustment-${uuid}`,
+    `otherAttackAdjustmentValue-${uuid}`,
+    `attackProficientCheckBox-${uuid}`,
+    `damageDiceQuantity-${uuid}`,
+    `damageHitDiceType-${uuid}`,
+    `damageAbilityAdjustment-${uuid}`,
+    `otherDamageAdjustmentValue-${uuid}`
+  ];
 
-  attackAdjustment
-}
+  const onElementChange = () => {
+    adjustAttack([uuid]);
+  };
 
-// Call the adjustAttack function to update attackValue and damage
-adjustAttack();
+  elementsToWatchWithUUID.forEach((elementId) => {
+    const element = document.getElementById(elementId);
+      element.removeEventListener('change', onElementChange);
+      element.addEventListener('change', onElementChange);
+  });
+};
+
+  function adjustAllAttacks() {
+    if (attackUUIDs && attackUUIDs.length > 0) {
+      attackUUIDs.forEach((uuid) => {
+        adjustAttack(uuid);
+      });
+    }
+  };
+
+function callRollAttack(uuid) {
+  const attackName = document.getElementById(`attackName-${uuid}`).value;
+  const attackValue = document.getElementById(`attackValue-${uuid}`).value;
+  rollAttack(attackName, attackValue);
+};
+
+function callRollDamage(uuid) {
+  const attackName = document.getElementById(`attackName-${uuid}`).value;
+  const damageType = document.getElementById(`damageType-${uuid}`).options[document.getElementById(`damageType-${uuid}`).selectedIndex].textContent;
+  const damage = document.getElementById(`damage-${uuid}`).value;
+  rollDamage(attackName, damageType, damage);
+};
 
 function rollAttack(attackName, attackValue) {
   let commandBonus = '';
@@ -2155,8 +2397,7 @@ function rollAttack(attackName, attackValue) {
   // Show the toast
   showToast(toastMessage);
   //showToast(`talespire://dice/${command}`);
-}
-
+};
 
 function rollDamage(attackName, damageType, damage) {
   let commandBonus = '';
@@ -2181,33 +2422,275 @@ function rollDamage(attackName, damageType, damage) {
   // Show the toast
   showToast(toastMessage);
   //showToast(`talespire://dice/${command}`);
-}
+};
 
+function removeAttack(attackUUID) {
+  const attackSection = document.getElementById(`attackAndDamageValuesSubsection-${attackUUID}`);
+  attackSection.remove();
 
+  // Remove the attackUUID from the attackUUIDs array
+  attackUUIDs = attackUUIDs.filter(uuid => uuid !== attackUUID);
+};
 
-// Elements that should trigger adjustAttack when changed
-const elementsToWatch = [
-  'levelName',
-  ...ABILITY_NAMES.map((ability) => `${ability}Score`),
-  'attackAbilityAdjustment',
-  'otherAttackAdjustmentValue',
-  'attackProficientCheckBox',
-  'damageDiceQuantity',
-  'damageHitDiceType',
-  'damageAbilityAdjustment',
-  'otherDamageAdjustmentValue'
-];
+  
+  const elementsToWatch = [
+    ...ABILITY_NAMES.map((ability) => `${ability}Score`),
+    'levelName',
+  ];
 
-// Attach change event listeners to the elements
+// Add event listeners for each element in elementsToWatch
 elementsToWatch.forEach((elementId) => {
   const element = document.getElementById(elementId);
-  element.addEventListener('change', adjustAttack);
+  if (element) {
+    element.addEventListener('change', () => {
+      adjustAllAttacks();
+    });
+  } else {
+    console.warn(`Element with ID '${elementId}' not found.`);
+  }
 });
 
+//----------- RESSOURCES -----------//
+
+let resourceUUIDs = [];
+
+function generateResourceSection() {
+  const resourceUUID  = generateUUID(); 
+  resourceUUIDs.push(resourceUUID); 
+
+  const resourceSection = document.createElement('div');
+  resourceSection.innerHTML = getResourceSectionHTML(resourceUUID);
+  const resourceContainer = document.getElementById('resourceContainer'); 
+  resourceContainer.appendChild(resourceSection);
+
+};
+
+function getResourceSectionHTML(resourceUUID) {
+//  nom, source, type source, descr
+const resourceSection = `
+<div id="resourceSubsection-${resourceUUID}" class="subsection">
+  ${resourceUUID}
+  <button id="removeResource" class="remove-button" onclick="removeResource('${resourceUUID}')"><span class="iconify" data-icon="mdi:trash-can-outline"></span></button>
+</div>
+`;
+return resourceSection;
+
+//rule checks
+
+};
+
+function adjustResource(resourceUUIDs) {
+//court ou long repos
+};
+
+function removeResource(resourceUUID) {
+  const resourceSection = document.getElementById(`resourceSubsection-${resourceUUID}`);
+  resourceSection.remove();
+
+  resourceUUIDs = resourceUUIDs.filter(uuid => uuid !== resourceUUID);
+};
 
 
 
+//----------- ATTRIBUTS (CAPACITÉs, features) -----------//
 
+let featureUUIDs = [];
+
+function generateFeatureSection() {
+  const featureUUID  = generateUUID(); 
+  featureUUIDs.push(featureUUID); 
+
+  const featureSection = document.createElement('div');
+  featureSection.innerHTML = getFeatureSectionHTML(featureUUID);
+  const featureContainer = document.getElementById('featureContainer'); 
+  featureContainer.appendChild(featureSection);
+
+};
+
+function getFeatureSectionHTML(featureUUID) {
+//nom, total num , actuel num , sr check ou lr check
+const featureSection = `
+<div id="featureSubsection-${featureUUID}" class="subsection">
+  ${featureUUID}
+  <button id="removeFeature" class="remove-button" onclick="removeFeature('${featureUUID}')"><span class="iconify" data-icon="mdi:trash-can-outline"></span></button>
+</div>
+`;
+return featureSection;
+
+//rule checks
+
+};
+
+function adjustFeature(featureUUIDs) {
+//court ou long repos
+};
+
+function removeFeature(featureUUID) {
+  const featureSection = document.getElementById(`featureSubsection-${featureUUID}`);
+  featureSection.remove();
+
+  featureUUIDs = featureUUIDs.filter(uuid => uuid !== featureUUID);
+};
+
+//-----------EQUIPEMENT -----------//
+
+let equipmentUUIDs = [];
+
+function generateEquipmentSection() {
+  const equipmentUUID  = generateUUID(); 
+  equipmentUUIDs.push(equipmentUUID); 
+  console.log(equipmentUUID);
+  const equipmentSection = document.createElement('div');
+  equipmentSection.innerHTML = getEquipmentSectionHTML(equipmentUUID);
+  const equipmentContainer = document.getElementById('equipmentContainer'); 
+  equipmentContainer.appendChild(equipmentSection);
+
+};
+
+function getEquipmentSectionHTML(equipmentUUID) {
+//nom, total num , actuel num , sr check ou lr check
+const equipmentSection = `
+<div id="equipmentSubsection-${equipmentUUID}" class="subsection">
+  ${equipmentUUID}
+  <button id="removeEquipment" class="remove-button" onclick="removeEquipment('${equipmentUUID}')"><span class="iconify" data-icon="mdi:trash-can-outline"></span></button>
+</div>
+`;
+return equipmentSection;
+
+//rule checks
+
+};
+
+function adjustEquipment(equipmentUUIDs) {
+//court ou long repos
+};
+
+function removeEquipment(equipmentUUID) {
+  const equipmentSection = document.getElementById(`equipmentSubsection-${equipmentUUID}`);
+  equipmentSection.remove();
+
+  equipmentUUIDs = equipmentUUIDs.filter(uuid => uuid !== equipmentUUID);
+};
+
+//----------- TRESORS -----------//
+
+let treasureUUIDs = [];
+
+function generateTreasureSection() {
+  const treasureUUID  = generateUUID(); 
+  treasureUUIDs.push(treasureUUID); 
+
+  const treasureSection = document.createElement('div');
+  treasureSection.innerHTML = getTreasureSectionHTML(treasureUUID);
+  const treasureContainer = document.getElementById('treasureContainer'); 
+  treasureContainer.appendChild(treasureSection);
+
+};
+
+function getTreasureSectionHTML(treasureUUID) {
+//nom, total num , actuel num , sr check ou lr check
+const treasureSection = `
+<div id="treasureSubsection-${treasureUUID}" class="subsection">
+  ${treasureUUID}
+  <button id="removeTreasure" class="remove-button" onclick="removeTreasure('${treasureUUID}')"><span class="iconify" data-icon="mdi:trash-can-outline"></span></button>
+</div>
+`;
+return treasureSection;
+
+//rule checks
+
+};
+
+function adjustTreasure(treasureUUIDs) {
+//court ou long repos
+};
+
+function removeTreasure(treasureUUID) {
+  const treasureSection = document.getElementById(`treasureSubsection-${treasureUUID}`);
+  treasureSection.remove();
+
+  treasureUUIDs = treasureUUIDs.filter(uuid => uuid !== treasureUUID);
+};
+
+//----------- LANGUE -----------//
+
+let languageUUIDs = [];
+
+function generateLanguageSection() {
+  const languageUUID  = generateUUID(); 
+  languageUUIDs.push(languageUUID); 
+
+  const languageSection = document.createElement('div');
+  languageSection.innerHTML = getLanguageSectionHTML(languageUUID);
+  const languageContainer = document.getElementById('languageContainer'); 
+  languageContainer.appendChild(languageSection);
+
+};
+
+function getLanguageSectionHTML(languageUUID) {
+//nom, total num , actuel num , sr check ou lr check
+const languageSection = `
+<div id="languageSubsection-${languageUUID}" class="subsection">
+  ${languageUUID}
+  <button id="removeLanguage" class="remove-button" onclick="removeLanguage('${languageUUID}')"><span class="iconify" data-icon="mdi:trash-can-outline"></span></button>
+</div>
+`;
+return languageSection;
+
+//rule checks
+
+};
+
+function adjustLanguage(languageUUIDs) {
+//court ou long repos
+};
+
+function removeLanguage(languageUUID) {
+  const languageSection = document.getElementById(`languageSubsection-${languageUUID}`);
+  languageSection.remove();
+
+  languageUUIDs = languageUUIDs.filter(uuid => uuid !== languageUUID);
+};
+
+//----------- NOTES DIVERSES -----------//
+
+let miscellaneousUUIDs = [];
+
+function generateMiscellaneousSection() {
+  const miscellaneousUUID  = generateUUID(); 
+  miscellaneousUUIDs.push(miscellaneousUUID); 
+
+  const miscellaneousSection = document.createElement('div');
+  miscellaneousSection.innerHTML = getMiscellaneousSectionHTML(miscellaneousUUID);
+  const miscellaneousContainer = document.getElementById('miscellaneousContainer'); 
+  miscellaneousContainer.appendChild(miscellaneousSection);
+
+};
+
+function getMiscellaneousSectionHTML(miscellaneousUUID) {
+//nom, total num , actuel num , sr check ou lr check
+const miscellaneousSection = `
+<div id="miscellaneousSubsection-${miscellaneousUUID}" class="subsection">
+  ${miscellaneousUUID}
+  <button id="removeMiscellaneous" class="remove-button" onclick="removeMiscellaneous('${miscellaneousUUID}')"><span class="iconify" data-icon="mdi:trash-can-outline"></span></button>
+</div>
+`;
+return miscellaneousSection;
+
+//rule checks
+
+};
+
+function adjustMiscellaneous(miscellaneousUUIDs) {
+//court ou long repos
+};
+
+function removeMiscellaneous(miscellaneousUUID) {
+  const miscellaneousSection = document.getElementById(`miscellaneousSubsection-${miscellaneousUUID}`);
+  miscellaneousSection.remove();
+
+  miscellaneousUUIDs = miscellaneousUUIDs.filter(uuid => uuid !== miscellaneousUUID);
+};
 
 //----------- EVENT LISTENER -----------//
 
@@ -2230,120 +2713,3 @@ const selectElements = document.querySelectorAll('select[data-custom-input]');
     const menuContent = document.getElementById("menu-content");
     menuContent.style.display = menuContent.style.display === "block" ? "none" : "block";
   });
-  
-  
-
-
-
-////////// splash /////////
-let animationRunning = true;
-
-
-
-function animateD20Splash() {
-  var scene = new THREE.Scene();
-  var aspectRatio = window.innerWidth / window.innerHeight;
-  var camera = new THREE.PerspectiveCamera(75, aspectRatio, 0.1, 1000);
-  var renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-  renderer.setSize(window.innerWidth, window.innerHeight);
-  document.getElementById("diceContainerSplash").appendChild(renderer.domElement);
-
-
-  // Add ambient light to the scene
-  var ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
-  scene.add(ambientLight);
-
-  // Add directional light to the scene
-  var directionalLight = new THREE.DirectionalLight(0xffffff, 0.5);
-  directionalLight.position.set(0, 0, 1);
-  scene.add(directionalLight);
-
-  // Create materials for each face using the numbered textures
-  const materials = [];
-  for (let i = 1; i <= 20; i++) {
-    const textureNumber = d20Mapping[i - 1];
-    const texture = createNumberedTexture(textureNumber);
-    materials.push(new THREE.MeshPhongMaterial({ map: texture, shininess: 1000 }));
-  }
-
-  // Create the d20 geometry and adjust UV mapping
-  var d20Geometry = createD20Geometry(10); // Pass the desired size as an argument
-
-  var d20Material = materials;
-
-  // Create the d20 mesh and add it to the scene
-  var d20Mesh = new THREE.Mesh(d20Geometry, d20Material);
-  scene.add(d20Mesh);
-
-  // Position the camera and d20 mesh
-  camera.position.z = 20;
-  d20Mesh.position.z = -10;
-
-   // Animate the die by continuously rotating it
-  function animateDie() {
-    if (!animationRunning) return; // stop the animation loop
-
-    d20Mesh.rotation.x += 0.03;
-    d20Mesh.rotation.y += 0.03;
-
-    renderer.render(scene, camera);
-    requestAnimationFrame(animateDie);
-  }
-
-  // Call the animateDie function to start the animation loop
-  animateDie();
-
-}
-window.addEventListener("DOMContentLoaded", () => {
-  animateD20Splash();
-  setTimeout(() => {
-    const diceContainerSplash = document.getElementById("diceContainerSplash");
-    if (diceContainerSplash) {
-      diceContainerSplash.remove();
-    }
-    animationRunning = false;
-  }, 3000);
-});
-
-
-
-////////// countdown to local storage save /////////
-/*
-// Define the function that will be called every 10 seconds
-function saveToLocalStorage() {
-  saveCharacter('saveToLocalStorage'); // call your saveCharacter function
-}
-
-// Define the countdown timer function
-function countdownTimer() {
-  let seconds = 9;
-  let timer = setInterval(() => {
-    // Get the countdown div element
-    const countdownDiv = document.getElementById("compteARebourd");
-
-    // Update the text in the countdown div
-    if (seconds > 1) {
-      countdownDiv.innerText = `${seconds} s avant sauvegarde automatique`;
-    } else {
-      countdownDiv.innerText = `${seconds} s avant sauvegarde automatique`;
-    }
-
-    // Decrement the seconds counter
-    seconds--;
-
-    // If the timer reaches 0, reset seconds to 10 and restart the countdown
-    if (seconds < 0) {
-      clearInterval(timer);
-      countdownDiv.innerText = "Sauvegarde réussie";
-      seconds = 9;
-      countdownTimer();
-    }
-  }, 1000);
-}
-
-// Call the countdownTimer function
-countdownTimer();
-
-// Call the saveToLocalStorage function every 10 seconds
-setInterval(saveToLocalStorage, 10000);
-*/

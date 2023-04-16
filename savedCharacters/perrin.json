@@ -182,5 +182,17 @@
     "shieldSelection2": " ",
     "customShieldName2": " ",
     "customShieldValue2": "0"
+  },
+  "attackInfo": {
+    "attackName": " Arts martiaux",
+    "damageType": "radiant",
+    "attackNote": " ",
+    "attackAbilityAdjustment": "dexterity",
+    "otherAttackAdjustmentValue": "0",
+    "attackProficientCheckBox": "on",
+    "damageDiceQuantity": "1",
+    "damageHitDiceType": "d6",
+    "damageAbilityAdjustment": "dexterity",
+    "otherDamageAdjustmentValue": "0"
   }
 }

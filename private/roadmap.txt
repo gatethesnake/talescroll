@@ -1,17 +1,19 @@
+with const attackUUIDs = [];
+	call adjustAttack for all uuid
+	S
+	O
+	R
+check rollAttack
+
 openChar.. statusBar icon title... undefined
-attaque: rollDice
-
-write in js all that and add + and - icons + uuid
-
-
-localStorge : save on a timer? on every change? open on page load?
-
+localStorge : on every change? open on page load?
 
 multi-class
 
 fondor road map
+database des weapons?
 avantage- désavantage on rollX la logique.
-arrange le calisse de dé qui roule
+arrange le calisse de dé qui roule qui s'arrete pas a la bonne place
 feuille de personage
 	Fiche
 		information
@@ -19,12 +21,6 @@ feuille de personage
 				validater rule
 				roller
 	Attaques
-		attaques
-			list custom(ajout, supprime)
-			av/norm/dav, magie, portée, 
-
-			plage crit def 20
-			type deg, dice type, comp, other, dé si critique
 		ressources
 			list custom (ajout, supprime)
 			nom, total, actuel, sr ou lr
@@ -34,31 +30,22 @@ feuille de personage
 		equipement
 			list custom(ajout, supprime)
 			qté nom , origine? poids container?
-			sub list-custom  (ajout, supprime)
-				qté nom poid, origine?
-			total poid
+			total poid 
 	Sorts
-		niveaux 1
+		niveaux 1 a 9
 			voir r20, talesheet
 		dons
 			on fait quoi avec ca, 
 			max 8 ou 9 (VdF)
 			data base ! 
-		états
-			database
-			checked (multiple
-			expande
-			flex 
 	Description
-		description
-		apparence
 		argent
-			list par pc,pa,pe,po, licorne, convertisseur pour total
-			list-custom (ajout, supprime)
-				trésor
+			list qty / pc,pa,pe,po, licorne, convertisseur pour total
+			list-custom  (ajout, supprime)trésor
 				nom, quantity, valeur en po
+			total
 		langue:
 			list custom (ajout, supprime)
-			nom (combo),  P , E, L
+			nom (select const data ),  P , E, L
 		notes 
 			list custom (ajout, supprime)

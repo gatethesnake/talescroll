@@ -607,6 +607,7 @@ p {
 	flex: 1;
 
   }
+
   .subsection {
 	border: 1px solid white;
 	border-radius: 5px;
@@ -615,6 +616,9 @@ p {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	flex: 1;
+	min-width: 150px; /* Adjust the minimum width of the subsections as needed */
+	position: relative;
   }
 
   .subsection2 {
@@ -1101,12 +1105,6 @@ p {
 	justify-content: space-around;
   }
   
-  .subsection {
-	flex: 1;
-	min-width: 150px; /* Adjust the minimum width of the subsections as needed */
-
-  }
-
   .center-buttons {
 	display: flex;
 	justify-content: center;
@@ -1315,4 +1313,55 @@ p {
 	font-size: 1.2em;
 	margin-left: 0.5em;
 	cursor: pointer;
+  }
+
+
+  .arrow-icon.arrow-up .iconify {
+	transform: rotate(180deg);
+  }
+  
+
+  .add-button {
+	background-color: #4CAF50; /* Green background */
+	border: none; /* Remove border */
+	color: white; /* White text */
+	padding: 8px 16px; /* Padding around text */
+	text-align: center; /* Centered text */
+	text-decoration: none; /* Remove underline */
+	display: inline-block; /* Display as inline-block */
+	font-size: 16px; /* Set font size */
+	margin: 4px 2px; /* Add some margin */
+	cursor: pointer; /* Cursor changes to a hand when hovering */
+	border-radius: 4px; /* Rounded corners */
+	height: 40px; /* Set explicit height */
+
+  }
+  
+  .add-button:hover {
+	background-color: #45a049; /* Change background color on hover */
+  }
+  
+  .remove-button {
+	background-color: #ff0000; /* Red background */
+	border: none; /* Remove border */
+	color: white; /* White text */
+	padding: 2px; /* Padding around icon */
+	text-align: center; /* Centered text */
+	text-decoration: none; /* Remove underline */
+	display: inline-block; /* Display as inline-block */
+	font-size: 8px; /* Set font size */
+	margin: 2px; /* Add some margin */
+	cursor: pointer; /* Cursor changes to a hand when hovering */
+	border-radius: 5px; /* Rounded corners */
+	height: 28px; /* Set explicit height */
+	width: 28px; /* Set explicit width */
+	position: absolute; /* Position the button */
+	right: 5px; /* Align to top */
+	bottom: 5px; /* Align to right */
+	z-index: 9999; /* Make sure it is on top of other elements */
+}
+
+
+.remove-button:hover {
+	background-color: #7e0101; /* Change background color on hover */
   }
