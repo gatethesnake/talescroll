@@ -547,11 +547,13 @@
 							<h2>Ressources</h2>
 							<button id="addResource" class="add-button" onclick="generateResourceSection()"><span class="iconify" data-icon="material-symbols:add"></span></button>
 							<div id="resourceContainer" class="resource-container"></div>
+
 						</div>
 						<div id="features" class="section">
 							<h2>Attributs</h2>
 							<button id="addFeature" class="add-button" onclick="generateFeatureSection()"><span class="iconify" data-icon="material-symbols:add"></span></button>
 							<div id="featureContainer" class="feature-container"></div>
+
 						</div>
 					</div>
 					<div id="spellTab" class="meta-section tabContentCS">
@@ -644,21 +646,9 @@
 							<div id="raceContainer" class="subsection">
 								<label for="race">Race</label>
 								<select id="race" class="input-text" name="race" onchange="selectChangedArmorClass(this,'customRace')" data-custom-input="customRace">
-									<option value=" ">Choisir une race</option>
-									<option value="Sylvestre">Sylvestre</option>
-									<option value="Montagnais des cîmes">Montagnais des cîmes</option>
-									<option value="Montagnais des profondeurs">Montagnais des profondeurs</option>
-									<option value="Élanais">Élanais</option>
-									<option value="Érudits">Érudits</option>
-									<option value="Affranchis">Affranchis</option>
-									<option value="Thorviks">Thorviks</option>
-									<option value="Héritage démoniaque">Héritage démoniaque</option>
-									<option value="Gitans">Gitans</option>
-									<option value="Impurs">Impurs</option>
-									<option value="custom">Autre race</option>
 								</select>
 								<input type="text" id="customRace" class="input-text" name="customRace" style="display:none;" value=" ">
-							</div>
+							  </div>							  
 							<div id="religionContainer" class="subsection">
 								<label for="religion">Religion</label>
 								<select id="religion" class="input-text" name="religion" onchange="selectChangedArmorClass(this,'customReligion')" data-custom-input="customReligion">

@@ -1,14 +1,13 @@
 fondor road map
 - v1
     - custom-lists
-        - ressources DOM SOR nom, total, actuel, sr ou lr
-        - Attributes DOM SOR nom, source, type source, descr
-        - Equipement DOM SOR qté nom , origine? poids container?	total poid DOM SOR 
-        - argent list fixe qty / pc,pa,pe,po, licorne, convertisseur pour total, trésor DOM SOR nom, quantity, valeur en po total
-        - langue: DOM SOR	nom (select const data ),  P , E, L
-        - notes  DOM SOR nom
-        - Sorts niveaux 1 a 9 sélection par character class, jet de base, custom-list, mini-fiche DOM SOR, option : apply class restriction or not (to load list)
-        - dons custom-list mini-fiche DOM SOR
+        - features DOM SOR nom, source, type source, descr
+        - equipement DOM SOR qté nom , origine? poids container?	total poid DOM SOR 
+        - money list fixe qty / pc,pa,pe,po, licorne, convertisseur pour total, trésor DOM SOR nom, quantity, valeur en po total
+        - language: DOM SOR	nom (select const data ),  P , E, L
+        - OM SOR nom
+        - spells niveaux 1 a 9 sélection par character class, jet de base, custom-list, mini-fiche DOM SOR, option : apply class restriction or not (to load list)
+        - feats custom-list mini-fiche DOM SOR
 - v2
     - ui-ux 
         - localStorge : on every change? open on page load? multiple name?
@@ -17,8 +16,9 @@ fondor road map
         - 3d d4 à d20, d2,d3, d100 !?
         - arrête un dé sur la bonne face
         - Option Roll  >talespire >on screen
-        - dnd5e
+    - dnd5e
+        - short or long rest reset.
         - multi-class
-        - états de fatique 
-        - états : adapté chaque règles
-        - database des weapons? attaques
+        - états de fatique (règles VdF)
+        - états : adapté chaque règles 
+        - database des weapons? ajustement des attaques

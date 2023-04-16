@@ -244,5 +244,75 @@
       "damageAbilityAdjustment": "dexterity",
       "otherDamageAdjustmentValue": "0"
     }
-  }
+  },
+  "resourceInfo": {
+    "a9ddcac22d82b182-e2dfcfcf-434915a-81aa87a-169e2a32543c1abea15b23ad": {
+      "resourceName": "Ki",
+      "resourceMax": "5",
+      "resourceActual": "5",
+      "longRestSwitch": false,
+      "shortRestSwitch": true
+    },
+    "24283c8ed5b2a5e-6d4ec4bc-4437c6-85ccb31-e9da342af21cdae61c225cba": {
+      "resourceName": "Foulée brumeuse",
+      "resourceMax": "1",
+      "resourceActual": "1",
+      "longRestSwitch": true,
+      "shortRestSwitch": false
+    },
+    "7fffe276715868-407b3711-49e1fc-bc35c78-b7164d5963d95f53849095f5": {
+      "resourceName": "Rayon céleste",
+      "resourceMax": "3",
+      "resourceActual": "3",
+      "longRestSwitch": true,
+      "shortRestSwitch": false
+    },
+    "bf7d8283bf92d48d-6ba89d61-444dbc0-b38158-ecff67ee92ac474da4187b5b": {
+      "resourceName": "Présence céleste",
+      "resourceMax": "1",
+      "resourceActual": "1",
+      "longRestSwitch": true,
+      "shortRestSwitch": false
+    },
+    "8a472eaf2a9fb920-a77cf14-43fdb16-9fda644-da7528172afcfb9f53c65f7": {
+      "resourceName": "Récupération (d8+2) ",
+      "resourceMax": "2",
+      "resourceActual": "2",
+      "longRestSwitch": true,
+      "shortRestSwitch": false
+    },
+    "a71e35ccf24f2686-246f7344-49297c2-a3b4e75-d99d952928374e937ad1f21": {
+      "resourceName": "Gieztlë",
+      "resourceMax": "1",
+      "resourceActual": "1",
+      "longRestSwitch": true,
+      "shortRestSwitch": false
+    },
+    "9dedc21120a2db52-c7c448a-425e663-adb9c27-b88a66dbe41cd46d320fe9": {
+      "resourceName": "Marque du chasseur",
+      "resourceMax": "1",
+      "resourceActual": "1",
+      "longRestSwitch": true,
+      "shortRestSwitch": false
+    },
+    "fddb358aa3451c-6cf27ca-4d1c5ae-bcc5fc9-905084ea6b34abb0bae8c887": {
+      "resourceName": "Arme dédiée",
+      "resourceMax": "1",
+      "resourceActual": "1",
+      "longRestSwitch": true,
+      "shortRestSwitch": false
+    },
+    "ef53927a96329159-8b48bb38-45ad7f0-af8d354-608a4324c24b5df52431409": {
+      "resourceName": "Insp. bardique (ocarina)",
+      "resourceMax": "1",
+      "resourceActual": "1",
+      "longRestSwitch": false,
+      "shortRestSwitch": true
+    }
+  },
+  "featureInfo": {},
+  "equipmentInfo": {},
+  "treasureInfo": {},
+  "languageInfo": {},
+  "miscellaneousInfo": {}
 }

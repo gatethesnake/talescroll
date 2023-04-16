@@ -83,6 +83,20 @@
     { className: 'Roublard', proficientSaves: ['Dextérité', 'Intelligence'] },
   ];
   
+  const raceOptions = [
+    "Sylvestre",
+    "Montagnais des cîmes",
+    "Montagnais des profondeurs",
+    "Élanais",
+    "Érudits",
+    "Affranchis",
+    "Thorviks",
+    "Héritage démoniaque",
+    "Gitans",
+    "Impurs"
+  ];
+  
+
   const classesHitDice = [
     { name: 'Barbare', hitDice: 'd12' },
     { name: 'Barde', hitDice: 'd8' },

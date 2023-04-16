@@ -3,8 +3,8 @@
 //document.getElementById("diceGeneratorTab").click();
 document.getElementById("characterSheetTab").click();
 
-document.getElementById("sheetTabName").click();
-//document.getElementById("actionTabName").click();
+//document.getElementById("sheetTabName").click();
+document.getElementById("actionTabName").click();
 
 const splashLength = 0;
 
@@ -365,7 +365,13 @@ function saveCharacter(saveTo) {
     },
     status: {},
     armorClassInfo:{},
-    attackInfo: {}
+    attackInfo: {},
+    resourceInfo: {},
+    featureInfo: {},
+    equipmentInfo: {},
+    treasureInfo: {},
+    languageInfo: {},
+    miscellaneousInfo: {}
     };
 
   for (const abilityId of ABILITY_NAMES) {
@@ -472,6 +478,24 @@ attackUUIDs.forEach((uuid) => {
   characterData.attackInfo[uuid] = getAttackInfoByUUID(uuid);
 });
 
+/// Save resourceInfo 
+function getResourceInfoByUUID(uuid) {
+  
+  return {
+    resourceName: document.getElementById(`resourceName-${uuid}`).value || " ",
+    resourceMax: document.getElementById(`resourceMax-${uuid}`).value || "0",
+    resourceActual: document.getElementById(`resourceActual-${uuid}`).value || "0",
+    longRestSwitch: document.getElementById(`longRestSwitch-${uuid}`)?.checked || false,
+    shortRestSwitch: document.getElementById(`shortRestSwitch-${uuid}`)?.checked || false,
+  };
+}
+
+resourceUUIDs.forEach((uuid) => {
+  characterData.resourceInfo[uuid] = getResourceInfoByUUID(uuid);
+});
+
+
+// Saving to file or to localstorage
 
   const jsonCharacterData = JSON.stringify(characterData, null, 2);
 
@@ -497,6 +521,12 @@ function openCharacter(loadFrom) {
     const apparence = characterData["apparence"];
     const armorClassInfo = characterData.armorClassInfo;
     const attackInfo = characterData.attackInfo;
+    const resourceInfo = characterData.resourceInfo;
+    const equipmentInfo = characterData.equipmentInfo;
+    const treasureInfo = characterData.treasureInfo;
+    const featureInfo = characterData.featureInfo;
+    const languageInfo = characterData.languageInfo;
+    const miscellaneousInfo = characterData.miscellaneousInfo;
 
     // Load abilities
     for (const abilityId in abilities) {
@@ -653,16 +683,42 @@ function openCharacter(loadFrom) {
       });
     }
     
-    
     generateAllAttackSections(attackInfo);
     loadAllAttackInfo(attackInfo);
 
+    // load resources info
 
+    function loadResourceInfo(resource, uuid) {
+     
+      document.getElementById(`resourceName-${uuid}`).value = resource.resourceName;
+      document.getElementById(`resourceMax-${uuid}`).value = resource.resourceMax;
+      document.getElementById(`resourceActual-${uuid}`).value = resource.resourceActual;
+      document.getElementById(`longRestSwitch-${uuid}`).checked = resource.longRestSwitch;
+      document.getElementById(`shortRestSwitch-${uuid}`).checked = resource.shortRestSwitch;
+    }
 
+    function generateAllResourceSections(resourceInfo) {
+      Object.keys(resourceInfo).forEach((uuid) => {
+        generateResourceSection(uuid)
+      });
+    }
 
+    function loadAllResourceInfo(resourceInfo) {
+      Object.keys(resourceInfo).forEach((uuid) => {
+        const resource = resourceInfo[uuid];
+        loadResourceInfo(resource, uuid);
+      });
+    }
+    
+    removeAllResources();
+    generateAllResourceSections(resourceInfo);
+    loadAllResourceInfo(resourceInfo);
+
+// update and ajust all dependent fields
     updateDependentElements();
 } 
 
+// load data from disk or localstorage 
 if (loadFrom === "loadFromDisk") {
   const input = document.createElement("input");
   input.type = "file";
@@ -792,6 +848,11 @@ for (const status in statusIcons) {
 
  removeAllAttacks();
   
+ ///reset  resourceInfo
+
+ removeAllResources();
+
+
 
 updateDependentElements();
   //code continue here
@@ -924,6 +985,10 @@ function updateDependentElements() {
 
 }
 
+
+///////// 
+
+
 //----------- AVANTAGES -----------//
 
 function setAdvantage(buttonId) {
@@ -996,6 +1061,37 @@ function updateCharacterClassAndLevel() {
 characterClassInput.addEventListener('change', updateCharacterClassAndLevel);
 characterLevelInput.addEventListener('change', updateCharacterClassAndLevel);
 characterLevelInput.addEventListener('change', adjustAllSkillBonuses);
+
+//------------  DESCRIPTIONS --------------//
+function populateRaceDropdown() {
+  const raceSelect = document.getElementById("race");
+
+  // Add "Choisir une race" at the beginning
+  const firstOption = document.createElement("option");
+  firstOption.value = " ";
+  firstOption.text = "Choisir une race";
+  raceSelect.add(firstOption);
+
+  // Add other race options from the constant array
+  raceOptions.forEach((optionValue) => {
+    const option = document.createElement("option");
+    option.value = optionValue;
+    option.text = optionValue;
+    raceSelect.add(option);
+  });
+
+  // Add "Autre race" at the end
+  const lastOption = document.createElement("option");
+  lastOption.value = "custom";
+  lastOption.text = "Autre race";
+  raceSelect.add(lastOption);
+}
+
+
+window.onload = function() {
+  populateRaceDropdown();
+};
+
 
 //----------- BONUS DE MAITRISE -----------//
 
@@ -2450,7 +2546,6 @@ function adjustAttack(uuid) {
   damageElement.value = damageDice + (damageAdjustment > 0 ? ' + ' + damageAdjustment : (damageAdjustment < 0 ? ' ' + damageAdjustment : ''));
 }
 
-
 function setupUUIDListeners(uuid) {
   const elementsToWatchWithUUID = [
     `attackAbilityAdjustment-${uuid}`,
@@ -2473,13 +2568,13 @@ function setupUUIDListeners(uuid) {
   });
 };
 
-  function adjustAllAttacks() {
-    if (attackUUIDs && attackUUIDs.length > 0) {
-      attackUUIDs.forEach((uuid) => {
-        adjustAttack(uuid);
-      });
-    }
-  };
+function adjustAllAttacks() {
+  if (attackUUIDs && attackUUIDs.length > 0) {
+    attackUUIDs.forEach((uuid) => {
+      adjustAttack(uuid);
+    });
+  }
+};
 
 function callRollAttack(uuid) {
   const attackName = document.getElementById(`attackName-${uuid}`).value;
@@ -2560,8 +2655,6 @@ function removeAllAttacks() {
     removeAttack(uuid);
   });
 }
-
-
   
   const elementsToWatch = [
     ...ABILITY_NAMES.map((ability) => `${ability}Score`),
@@ -2584,10 +2677,9 @@ elementsToWatch.forEach((elementId) => {
 
 let resourceUUIDs = [];
 
-function generateResourceSection() {
-  const resourceUUID  = generateUUID(); 
+function generateResourceSection(optionalUUID) {
+  const resourceUUID = optionalUUID || generateUUID(); // Use the optionalUUID if provided, otherwise generate a new UUID
   resourceUUIDs.push(resourceUUID); 
-
   const resourceSection = document.createElement('div');
   resourceSection.innerHTML = getResourceSectionHTML(resourceUUID);
   const resourceContainer = document.getElementById('resourceContainer'); 
@@ -2596,31 +2688,77 @@ function generateResourceSection() {
 };
 
 function getResourceSectionHTML(resourceUUID) {
-//  nom, source, type source, descr
-const resourceSection = `
+  const resourceSection = `
 <div id="resourceSubsection-${resourceUUID}" class="subsection">
-  ${resourceUUID}
   <button id="removeResource" class="remove-button" onclick="removeResource('${resourceUUID}')"><span class="iconify" data-icon="mdi:trash-can-outline"></span></button>
+  
+  <div class="container">
+    <div class="input-group">
+      <label for="resourceName-${resourceUUID}">Nom</label>
+      <input type="text" id="resourceName-${resourceUUID}" class="input-text" value="">
+    </div>
+    <div class="input-group">
+      <label for="resourceMax-${resourceUUID}">Maximum</label>
+      <input type="number" id="resourceMax-${resourceUUID}" class="input-text" value="0" min="0">
+    </div>
+    <div class="input-group">
+      <label for="resourceActual-${resourceUUID}">Actuel</label>
+      <input type="number" id="resourceActual-${resourceUUID}" class="input-text" value="0" min="0">
+    </div>
+  </div>
+  
+  <div class="wrapper">
+    <div class="toggle-group">
+      <div class="toggle">
+        <input type="checkbox" id="longRestSwitch-${resourceUUID}" class="toggle-checkbox">
+        <label class="toggle-switch" for="longRestSwitch-${resourceUUID}"></label>
+        <label class="toggle-label" for="longRestSwitch-${resourceUUID}">Long repos</label>
+      </div>
+      <div class="toggle">
+        <input type="checkbox" id="shortRestSwitch-${resourceUUID}" class="toggle-checkbox">
+        <label class="toggle-switch" for="shortRestSwitch-${resourceUUID}"></label>
+        <label class="toggle-label" for="shortRestSwitch-${resourceUUID}">Court repos</label>
+      </div>
+    </div>
+  </div>
 </div>
 `;
-return resourceSection;
 
-//rule checks
+  return resourceSection;
+}
 
-};
-
-function adjustResource(resourceUUIDs) {
-//court ou long repos
-};
 
 function removeResource(resourceUUID) {
   const resourceSection = document.getElementById(`resourceSubsection-${resourceUUID}`);
   resourceSection.remove();
 
   resourceUUIDs = resourceUUIDs.filter(uuid => uuid !== resourceUUID);
+
 };
 
+function removeAllResources() {
+  // Make a copy of the resourceUUIDs array to avoid modifying it while looping
+  const resourceUUIDsCopy = [...resourceUUIDs];
 
+  // Call removeresource for each UUID in the copied array
+  resourceUUIDsCopy.forEach(uuid => {
+    removeResource(uuid);
+  });
+}
+
+
+function adjustResource(resourceUUID) {
+  //court ou long repos plus tard
+  };
+  
+  function adjustAllResources() {
+    if (resourceUUIDs && resourceUUIDs.length > 0) {
+      resourceUUIDs.forEach((uuid) => {
+        adjustResource(uuid);
+      });
+    }
+  };
+  
 
 //----------- ATTRIBUTS (CAPACITÉs, features) -----------//
 
@@ -2651,7 +2789,7 @@ return featureSection;
 
 };
 
-function adjustFeature(featureUUIDs) {
+function adjustFeature(featureUUID) {
 //court ou long repos
 };
 
@@ -2669,7 +2807,6 @@ let equipmentUUIDs = [];
 function generateEquipmentSection() {
   const equipmentUUID  = generateUUID(); 
   equipmentUUIDs.push(equipmentUUID); 
-  console.log(equipmentUUID);
   const equipmentSection = document.createElement('div');
   equipmentSection.innerHTML = getEquipmentSectionHTML(equipmentUUID);
   const equipmentContainer = document.getElementById('equipmentContainer'); 
@@ -2691,7 +2828,7 @@ return equipmentSection;
 
 };
 
-function adjustEquipment(equipmentUUIDs) {
+function adjustEquipment(equipmentUUID) {
 //court ou long repos
 };
 
@@ -2731,7 +2868,7 @@ return treasureSection;
 
 };
 
-function adjustTreasure(treasureUUIDs) {
+function adjustTreasure(treasureUUID) {
 //court ou long repos
 };
 
@@ -2771,7 +2908,7 @@ return languageSection;
 
 };
 
-function adjustLanguage(languageUUIDs) {
+function adjustLanguage(languageUUID) {
 //court ou long repos
 };
 
@@ -2811,7 +2948,7 @@ return miscellaneousSection;
 
 };
 
-function adjustMiscellaneous(miscellaneousUUIDs) {
+function adjustMiscellaneous(miscellaneousUUID) {
 //court ou long repos
 };
 
@@ -2821,6 +2958,11 @@ function removeMiscellaneous(miscellaneousUUID) {
 
   miscellaneousUUIDs = miscellaneousUUIDs.filter(uuid => uuid !== miscellaneousUUID);
 };
+
+
+
+
+
 
 //----------- EVENT LISTENER -----------//
 
