@@ -237,32 +237,32 @@
 							<div id="strength" class="subsection">
 								<h4>Force</h4>
 								<select id="strengthScore" class="input-text input-strengthScore"></select>
-								<p id="strengthBonusScore" class="roundButton ability-modifier ability-bonus" onclick="rollAbility(this.parentNode.querySelector('h4').textContent, 'd20', this.textContent)">+0</p>
+								<p id="strengthBonusScore" class="roundButton ability-modifier ability-bonus" onclick="rollAbility(this.parentNode.querySelector('h4').textContent, this.textContent)">+0</p>
 							</div>
 							<div id="dexterity" class="subsection">
 								<h4>Dextérité</h4>
 								<select id="dexterityScore" class="input-text input-dexterityScore"></select>
-								<p id="dexterityBonusScore" class="roundButton ability-modifier ability-bonus" onclick="rollAbility(this.parentNode.querySelector('h4').textContent, 'd20', this.textContent)">+0</p>
+								<p id="dexterityBonusScore" class="roundButton ability-modifier ability-bonus" onclick="rollAbility(this.parentNode.querySelector('h4').textContent, this.textContent)">+0</p>
 							</div>
 							<div id="constitution" class="subsection">
 								<h4>Constitution</h4>
 								<select id="constitutionScore" class="input-text input-constitutionScore"></select>
-								<p id="constitutionBonusScore" class="roundButton ability-modifier ability-bonus" onclick="rollAbility(this.parentNode.querySelector('h4').textContent, 'd20', this.textContent)">+0</p>
+								<p id="constitutionBonusScore" class="roundButton ability-modifier ability-bonus" onclick="rollAbility(this.parentNode.querySelector('h4').textContent, this.textContent)">+0</p>
 							</div>
 							<div id="intelligence" class="subsection">
 								<h4>Intelligence</h4>
 								<select id="intelligenceScore" class="input-text input-intelligenceScore"></select>
-								<p id="intelligenceBonusScore" class="roundButton ability-modifier ability-bonus" onclick="rollAbility(this.parentNode.querySelector('h4').textContent, 'd20', this.textContent)">+0</p>
+								<p id="intelligenceBonusScore" class="roundButton ability-modifier ability-bonus" onclick="rollAbility(this.parentNode.querySelector('h4').textContent, this.textContent)">+0</p>
 							</div>
 							<div id="wisdom" class="subsection">
 								<h4>Sagesse</h4>
 								<select id="wisdomScore" class="input-text input-wisdomScore"></select>
-								<p id="wisdomBonusScore" class="roundButton ability-modifier ability-bonus" onclick="rollAbility(this.parentNode.querySelector('h4').textContent, 'd20', this.textContent)">+0</p>
+								<p id="wisdomBonusScore" class="roundButton ability-modifier ability-bonus" onclick="rollAbility(this.parentNode.querySelector('h4').textContent, this.textContent)">+0</p>
 							</div>
 							<div id="charisma" class="subsection">
 								<h4>Charisme</h4>
 								<select id="charismaScore" class="input-text input-charismaScore"></select>
-								<p id="charismaBonusScore" class="roundButton ability-modifier ability-bonus" onclick="rollAbility(this.parentNode.querySelector('h4').textContent, 'd20', this.textContent)">+0</p>
+								<p id="charismaBonusScore" class="roundButton ability-modifier ability-bonus" onclick="rollAbility(this.parentNode.querySelector('h4').textContent, this.textContent)">+0</p>
 							</div>
 						</div>
 						<div id="savingThrows" class="section">
@@ -316,6 +316,11 @@
 									<p id="initiativeBonusValue" class="roundButton" onclick="rollInitiative(this.previousElementSibling.innerHTML, this.innerHTML);">+0</p>
 									<label for="otherInitiativeBonus">Bonus</label>
 									<input type="number" id="otherInitiativeBonus" value="0" min="-10" max="10" class="input-text input-initiativeBonus" name="otherInitiativeBonus">
+								</div>
+								<div id="passive-perception" class="subsection subsection2">
+									<h4>Perception passive</h4>
+									<p id="passivePerceptionValue" class="roundButton">10
+									<p>
 								</div>
 							</div>
 							<div id="hit-points" class="subsection">

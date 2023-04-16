@@ -3,8 +3,8 @@
 //document.getElementById("diceGeneratorTab").click();
 document.getElementById("characterSheetTab").click();
 
-//document.getElementById("sheetTabName").click();
-document.getElementById("actionTabName").click();
+document.getElementById("sheetTabName").click();
+//document.getElementById("actionTabName").click();
 
 const splashLength = 0;
 
@@ -172,11 +172,10 @@ function openTabCS(evt, tabName) {
 
 //----------- RESET -----------//
 // Define click handler for reset button
-  function handleReset(event) {
+  function handleReset() {
         // Reset modifier dropdown to default value
       modifier.value = 0;
       diceNumber.value = 1;
-
 
       // Reset le label_textbox
       document.getElementById("label_textbox").value = "";
@@ -904,28 +903,6 @@ function adjustCheckboxes(checkboxes) {
   });
 };
 
-function adjustStatusBar() {
-  const statusBar = document.getElementById("statusBar");
-  statusBar.innerHTML = ""; // Clear the current content of the statusBar
-
-  for (const [statusKey, statusValue] of Object.entries(statusIcons)) {
-    const checkbox = document.getElementById(statusKey);
-    if (checkbox && checkbox.checked) {
-      const icon = document.createElement("span");
-      icon.className = `iconify`;
-      icon.setAttribute("data-icon", statusValue);
-      icon.setAttribute("data-inline", "false");
-      icon.style.fontSize = "24px"; // Set a default font size for the icons
-      icon.style.marginRight = "8px"; // Add some space between the icons
-      icon.title = statusValue.name_fr; // Set the French name as a tooltip on hover
-
-
-      statusBar.appendChild(icon);
-      icon.appendChild(document.createTextNode(statusValue.name_fr));
-
-    }
-  }
-}
 
 function updateDependentElements() {
   resetAllCustomList()
@@ -961,6 +938,22 @@ function setAdvantage(buttonId) {
     }
   }
 }
+
+function getAdvantage() {
+  const advantageButtons = ['disadvantage', 'normal', 'advantage'];
+  let activeButtonId = 'normal';
+
+  for (const btnId of advantageButtons) {
+    const button = document.getElementById(btnId);
+    if (button.classList.contains('activated-button')) {
+      activeButtonId = btnId;
+      break;
+    }
+  }
+
+  return activeButtonId;
+}
+
 
 
 //----------- FONCTIONS COMMUNES AUX SELECT -----------//
@@ -1040,14 +1033,24 @@ document.getElementById("dexterityScore").addEventListener("input", adjustInitia
 document.getElementById("otherInitiativeBonus").addEventListener("input", adjustInitiative);
 
 function rollInitiative(initiativeName, initiativeBonus) {
+  const advantageState = getAdvantage();
   let commandBonus = '';
   let toastBonus = '';
   if (initiativeBonus !== '+0') {
     commandBonus = initiativeBonus;
     toastBonus = ` et un bonus de ${initiativeBonus}`;
   }
-  const command = `${encodeURI(initiativeName)}:d20${commandBonus}`;
-  const toastMessage = `Ça roule ${initiativeName} avec d20${toastBonus}`;
+
+  let diceCount = 'd20';
+  if (advantageState !== 'normal') {
+    initiativeName = initiativeName + " " + (advantageState === 'advantage' ? 'avantage' : 'désavantage');
+    diceCount = `d20${commandBonus}/d20${commandBonus}`;
+  } else {
+    diceCount = `d20${commandBonus}`;
+  }
+
+  const command = `${encodeURI(initiativeName)}:${diceCount}`;
+  const toastMessage = `Ça roule ${initiativeName} avec ${diceCount}${toastBonus}`;
 
   // Send command to Talespire
   window.location.href = `talespire://dice/${command}`;
@@ -1056,6 +1059,17 @@ function rollInitiative(initiativeName, initiativeBonus) {
   showToast(toastMessage);
   //showToast(`talespire://dice/${command}`);
 }
+
+
+//----------- PERCEPTION PASSIVE -----------//
+
+function updatePassivePerception() {
+  const baseValue = 10;
+  const perceptionBonusValue = parseInt(document.getElementById("perceptionBonusValue").textContent, 10);
+  const passivePerceptionValue = baseValue + perceptionBonusValue;
+  document.getElementById("passivePerceptionValue").textContent = passivePerceptionValue;
+}
+
 
 
 //----------- SAUVEGARDE CONTRE LA MORT -----------//
@@ -1375,10 +1389,21 @@ function updateAbilityModifier(ability) {
 }
 
 
+function rollAbility(abilityName, abilityBonus) {
+  const advantageState = getAdvantage();
+  let command = '';
+  let advantageText = '';
 
-function rollAbility(abilityName, diceType, bonus) {
-  const command = `${encodeURI(abilityName)}:${diceType}${bonus}`;
-  const toastMessage = `Ça roule ${abilityName} avec ${diceType} et un bonus ${bonus}`;
+  if (advantageState === 'normal') {
+    command = `${encodeURI(abilityName)}:d20${abilityBonus}`;
+  } else {
+    advantageText = advantageState === 'advantage' ? 'avantage' : 'désavantage';
+    command = `${encodeURI(abilityName + " " + advantageText)}:d20${abilityBonus}/d20${abilityBonus}`;
+  }
+
+  const toastMessage = advantageState === 'normal'
+    ? `Ça roule ${abilityName} avec d20 et un bonus ${abilityBonus}`
+    : `Ça roule ${abilityName} (${advantageText}) avec d20 et un bonus ${abilityBonus}`;
 
   // Send command to Talespire
   window.location.href = `talespire://dice/${command}`;
@@ -1387,6 +1412,8 @@ function rollAbility(abilityName, diceType, bonus) {
   showToast(toastMessage);
   //showToast(`talespire://dice/${command}`);
 }
+
+
 
 
 
@@ -1496,16 +1523,21 @@ function applySaveButtonColors() {
 // get all the .roundButton elements within the #savingThrows element
 const saveButtons = document.querySelectorAll('#savingThrows .roundButton');
 
-
 function rollSave(saveName, saveBonus) {
-  let commandBonus = '';
-  let toastBonus = '';
-  if (saveBonus !== '+0') {
-    commandBonus = saveBonus;
-    toastBonus = ` et un bonus de ${saveBonus}`;
+  const advantageState = getAdvantage();
+  let command = '';
+  let advantageText = '';
+
+  if (advantageState === 'normal') {
+    command = `${encodeURI("Sauvgarde " + saveName)}:d20${saveBonus}`;
+  } else {
+    advantageText = advantageState === 'advantage' ? 'avantage' : 'désavantage';
+    command = `${encodeURI("Sauvgarde " + saveName + " " + advantageText)}:d20${saveBonus}/d20${saveBonus}`;
   }
-  const command = `${encodeURI("Sauvgarde " + saveName)}:d20${commandBonus}`;
-  const toastMessage = `Ça roule Sauvegarde ${saveName} avec d20${toastBonus}`;
+
+  const toastMessage = advantageState === 'normal'
+    ? `Ça roule Sauvegarde ${saveName} avec d20 et un bonus de ${saveBonus}`
+    : `Ça roule Sauvegarde ${saveName} (${advantageText}) avec d20 et un bonus de ${saveBonus}`;
 
   // Send command to Talespire
   window.location.href = `talespire://dice/${command}`;
@@ -1603,6 +1635,13 @@ function addCharacteristicsToSkills() {
       skillSections[i].insertAdjacentElement('afterbegin', characteristicElement);
     }
   }
+    // Add event listeners for Perception checkboxes
+
+  document.getElementById("perceptionProficientBonus").addEventListener("change", updatePassivePerception);
+  document.getElementById("perceptionExpertBonus").addEventListener("change", updatePassivePerception);
+  document.getElementById("wisdomScore").addEventListener("change", updatePassivePerception);
+  document.getElementById("levelName").addEventListener("change", updatePassivePerception);
+
 }
 
 window.addEventListener('load', addCharacteristicsToSkills);
@@ -1690,21 +1729,27 @@ window.addEventListener('DOMContentLoaded', generateSkills);
 
 
 function rollSkill(skillName, skillBonus) {
-  let commandBonus = '';
-  let toastBonus = '';
-  if (skillBonus !== '+0') {
-    commandBonus = skillBonus;
-    toastBonus = ` et un bonus de ${skillBonus}`;
+  const advantageState = getAdvantage();
+  let command = '';
+  let advantageText = '';
+
+  if (advantageState === 'normal') {
+    command = `${encodeURI("Compétence " + skillName)}:d20${skillBonus}`;
+  } else {
+    advantageText = advantageState === 'advantage' ? 'avantage' : 'désavantage';
+    command = `${encodeURI("Compétence " + skillName + " " + advantageText)}:d20${skillBonus}/d20${skillBonus}`;
   }
-  const command = `${encodeURI("Compétence " + skillName)}:d20${commandBonus}`;
-  const toastMessage = `Ça roule Compétence ${skillName} avec d20${toastBonus}`;
+
+  const toastMessage = advantageState === 'normal'
+    ? `Ça roule Compétence ${skillName} avec d20 et un bonus de ${skillBonus}`
+    : `Ça roule Compétence ${skillName} (${advantageText}) avec d20 et un bonus de ${skillBonus}`;
 
   // Send command to Talespire
-  window.location.href = `talespire://dice/${skillName}${command}`;
+  window.location.href = `talespire://dice/${command}`;
 
   // Show the toast
-  //showToast(toastMessage);
-  showToast(`talespire://dice/${command}`);
+  showToast(toastMessage);
+  //showToast(`talespire://dice/${command}`);
 }
 
 
@@ -1900,7 +1945,7 @@ function populateSpellCasterSelect() {
 
 window.addEventListener("load", populateSpellCasterSelect);
 
-//----------- Status -----------//
+//----------- STATUS ÉTATS -----------//
 
 function generateStatusCheckboxes() {
 
@@ -1967,6 +2012,30 @@ function generateStatusCheckboxes() {
   
   return statusContainer;
 }
+
+function adjustStatusBar() {
+  const statusBar = document.getElementById("statusBar");
+  statusBar.innerHTML = ""; // Clear the current content of the statusBar
+
+  for (const [statusKey, statusValue] of Object.entries(statusIcons)) {
+    const checkbox = document.getElementById(statusKey);
+    if (checkbox && checkbox.checked) {
+      const icon = document.createElement("span");
+      icon.className = `iconify`;
+      icon.setAttribute("data-icon", statusValue);
+      icon.setAttribute("data-inline", "false");
+      icon.style.fontSize = "24px"; // Set a default font size for the icons
+      icon.style.marginRight = "8px"; // Add some space between the icons
+      icon.title = characterStatus[statusKey].name_fr; // Set the French name as a tooltip on hover
+
+
+      statusBar.appendChild(icon);
+      icon.appendChild(document.createTextNode(statusValue.name_fr));
+
+    }
+  }
+}
+
 
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -2425,23 +2494,29 @@ function callRollDamage(uuid) {
   rollDamage(attackName, damageType, damage);
 };
 
-function rollAttack(attackName, attackValue) {
-  let commandBonus = '';
-  let toastBonus = '';
-  if (attackValue !== '+0') {
-    commandBonus = attackValue;
-    toastBonus = ` et un bonus de ${attackValue}`;
+function rollAttack(attackName, attackBonus) {
+  const advantageState = getAdvantage();
+  let command = '';
+  let advantageText = '';
+
+  if (advantageState === 'normal') {
+    command = `${encodeURI('Attaque ' + attackName)}:d20${attackBonus}`;
+  } else {
+    advantageText = advantageState === 'advantage' ? 'avantage' : 'désavantage';
+    command = `${encodeURI('Attaque ' + attackName + " " + advantageText)}:d20${attackBonus}/d20${attackBonus}`;
   }
-  const command = `${encodeURI('Attaque ' + attackName)}:d20${commandBonus}`;
-  const toastMessage = `Ça roule Attaque ${attackName} avec d20${toastBonus}`;
+
+  const toastMessage = advantageState === 'normal'
+    ? `Ça roule Attaque ${attackName} avec d20 et un bonus de ${attackBonus}`
+    : `Ça roule Attaque ${attackName} (${advantageText}) avec d20 et un bonus de ${attackBonus}`;
 
   // Send command to Talespire
-  window.location.href = `talespire://dice/${attackName}${command}`;
+  window.location.href = `talespire://dice/${command}`;
 
   // Show the toast
   showToast(toastMessage);
   //showToast(`talespire://dice/${command}`);
-};
+}
 
 function rollDamage(attackName, damageType, damage) {
   let commandBonus = '';

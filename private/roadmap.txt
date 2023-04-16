@@ -1,19 +1,24 @@
 fondor road map
-- with const attackUUIDs = []; 	O + 	R
-- openChar.. statusBar icon title... undefined
-- localStorge : on every change? open on page load? multiple name?
-- multi-class
-- avantage- désavantage on rollX la logique.
-- arrange le calisse de dé qui roule qui s'arrete pas a la bonne place
-- information perception passive 	validater rule	roller
-- ressources DOM	SOR nom, total, actuel, sr ou lr
-- Attributes DOM SOR nom, source, type source, descr
-- Equipement DOM SOR qté nom , origine? poids container?	total poid DOM SOR 
-- Sorts niveaux 1 a 9 sélection par character class, custom-list, mini-fiche DOM SOR
-- dons custom-list mini-fiche DOM SOR
-- argent list fixe qty / pc,pa,pe,po, licorne, convertisseur pour total, trésor DOM SOR nom, quantity, valeur en po total
-- langue: DOM SOR	nom (select const data ),  P , E, L
-- notes  DOM SOR
-- database des weapons? attaques
-- stl 
-- image S O R, resize 128X128 png ou jpg base64
+- v1
+    - custom-lists
+        - ressources DOM SOR nom, total, actuel, sr ou lr
+        - Attributes DOM SOR nom, source, type source, descr
+        - Equipement DOM SOR qté nom , origine? poids container?	total poid DOM SOR 
+        - argent list fixe qty / pc,pa,pe,po, licorne, convertisseur pour total, trésor DOM SOR nom, quantity, valeur en po total
+        - langue: DOM SOR	nom (select const data ),  P , E, L
+        - notes  DOM SOR nom
+        - Sorts niveaux 1 a 9 sélection par character class, jet de base, custom-list, mini-fiche DOM SOR, option : apply class restriction or not (to load list)
+        - dons custom-list mini-fiche DOM SOR
+- v2
+    - ui-ux 
+        - localStorge : on every change? open on page load? multiple name?
+        - stl 
+        - image S O R, resize 128X128 png ou jpg base64
+        - 3d d4 à d20, d2,d3, d100 !?
+        - arrête un dé sur la bonne face
+        - Option Roll  >talespire >on screen
+        - dnd5e
+        - multi-class
+        - états de fatique 
+        - états : adapté chaque règles
+        - database des weapons? attaques
