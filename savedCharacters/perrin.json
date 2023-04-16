@@ -116,11 +116,11 @@
   },
   "information": {
     "otherInitiativeBonus": "0",
-    "actualHitPoints": "0",
-    "maxHitPoints": "0",
+    "actualHitPoints": "40",
+    "maxHitPoints": "40",
     "tempHitPoints": "0",
     "inspirationValue": "non",
-    "speedValue": "0",
+    "speedValue": "11",
     "avantage": "normal"
   },
   "deathSaves": {
@@ -170,8 +170,8 @@
     "ability2": "wisdom",
     "otherAdjustmentName": " ",
     "otherAdjustmentValue": "0",
-    "armorActive": false,
-    "armorSelection": " ",
+    "armorActive": true,
+    "armorSelection": "custom",
     "customArmorName": " ",
     "customArmorValue": "0",
     "shieldActive1": true,
@@ -184,15 +184,65 @@
     "customShieldValue2": "0"
   },
   "attackInfo": {
-    "attackName": " Arts martiaux",
-    "damageType": "radiant",
-    "attackNote": " ",
-    "attackAbilityAdjustment": "dexterity",
-    "otherAttackAdjustmentValue": "0",
-    "attackProficientCheckBox": "on",
-    "damageDiceQuantity": "1",
-    "damageHitDiceType": "d6",
-    "damageAbilityAdjustment": "dexterity",
-    "otherDamageAdjustmentValue": "0"
+    "647a1a7d8a433c7f-9268c7d-4fc74-b5b91e4-75516a90cb92a6aa7525b37d": {
+      "attackName": "Gietzlë javelin de foudre ",
+      "damageType": "piercing",
+      "attackNote": "magique",
+      "attackAbilityAdjustment": "dexterity",
+      "otherAttackAdjustmentValue": "1",
+      "attackProficientCheckBox": true,
+      "damageDiceQuantity": "1",
+      "damageHitDiceType": "d6",
+      "damageAbilityAdjustment": "dexterity",
+      "otherDamageAdjustmentValue": "1"
+    },
+    "263e24502e19a9c1-25418678-4f75bf5-861bee5-eeca42b8a2f62421c4627f48": {
+      "attackName": " Arts martiaux",
+      "damageType": "radiant",
+      "attackNote": " ",
+      "attackAbilityAdjustment": "dexterity",
+      "otherAttackAdjustmentValue": "0",
+      "attackProficientCheckBox": true,
+      "damageDiceQuantity": "1",
+      "damageHitDiceType": "d6",
+      "damageAbilityAdjustment": "dexterity",
+      "otherDamageAdjustmentValue": "0"
+    },
+    "df786af4d7dc50da-7fce1adc-48888f-9b0179a-7cc5babb802fbcbad061de20": {
+      "attackName": " Hankyu",
+      "damageType": "piercing",
+      "attackNote": "arc court asymétrique",
+      "attackAbilityAdjustment": "dexterity",
+      "otherAttackAdjustmentValue": "0",
+      "attackProficientCheckBox": true,
+      "damageDiceQuantity": "1",
+      "damageHitDiceType": "d6",
+      "damageAbilityAdjustment": "dexterity",
+      "otherDamageAdjustmentValue": "0"
+    },
+    "493bc5d6f6555c77-aee9dd5-4f56bf-b1cb3de-59b527c95ebf0f478ce447f": {
+      "attackName": " Nunchaku",
+      "damageType": "bludgeoning",
+      "attackNote": "club",
+      "attackAbilityAdjustment": "dexterity",
+      "otherAttackAdjustmentValue": "0",
+      "attackProficientCheckBox": true,
+      "damageDiceQuantity": "1",
+      "damageHitDiceType": "d4",
+      "damageAbilityAdjustment": "dexterity",
+      "otherDamageAdjustmentValue": "0"
+    },
+    "2bfa272230c268b3-8b6624d6-467fb44-a6b54d6-ab988522e634e67eccaa0": {
+      "attackName": " Shuriken",
+      "damageType": "piercing",
+      "attackNote": "dart",
+      "attackAbilityAdjustment": "dexterity",
+      "otherAttackAdjustmentValue": "0",
+      "attackProficientCheckBox": true,
+      "damageDiceQuantity": "1",
+      "damageHitDiceType": "d4",
+      "damageAbilityAdjustment": "dexterity",
+      "otherDamageAdjustmentValue": "0"
+    }
   }
 }

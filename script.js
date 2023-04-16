@@ -497,6 +497,7 @@ function openCharacter(loadFrom) {
     const description = characterData["description"];
     const apparence = characterData["apparence"];
     const armorClassInfo = characterData.armorClassInfo;
+    const attackInfo = characterData.attackInfo;
 
     // Load abilities
     for (const abilityId in abilities) {
@@ -625,6 +626,7 @@ function openCharacter(loadFrom) {
     selectChangedArmorClass(document.getElementById("shieldAndAccessoriesSelection2"), "customShieldContainer2");
     
     // load attacks info
+    removeAllAttacks();
 
     function loadAttackInfo(attack, uuid) {
       document.getElementById(`attackName-${uuid}`).value = attack.attackName;
@@ -639,15 +641,22 @@ function openCharacter(loadFrom) {
       document.getElementById(`otherDamageAdjustmentValue-${uuid}`).value = attack.otherDamageAdjustmentValue;
     }
     
-    function loadAllAttacks(attackInfo) {
+    function generateAllAttackSections(attackInfo) {
+      Object.keys(attackInfo).forEach((uuid) => {
+        generateAttackSection(uuid);
+      });
+    }
+    
+    function loadAllAttackInfo(attackInfo) {
       Object.keys(attackInfo).forEach((uuid) => {
         const attack = attackInfo[uuid];
-        generateAttackSection(uuid);
         loadAttackInfo(attack, uuid);
       });
     }
     
-    loadAllAttacks(characterData.attackInfo);
+    
+    generateAllAttackSections(attackInfo);
+    loadAllAttackInfo(attackInfo);
 
 
 
@@ -780,7 +789,11 @@ for (const status in statusIcons) {
   document.getElementById("customShieldName2").value = " ",
   document.getElementById("customShieldClassValue2").value = "0"
 
+ ///reset  attackInfo
+
+ removeAllAttacks();
   
+
 updateDependentElements();
   //code continue here
   closePopup();
@@ -874,9 +887,6 @@ function resetAllCustomList() {
     }
   });
 }
- 
-
-
 
 const successCheckboxes = document.querySelectorAll('.success-container .checkbox-death-saving-throws');
 const failedCheckboxes = document.querySelectorAll('.failed-container .checkbox-death-saving-throws');
@@ -917,9 +927,6 @@ function adjustStatusBar() {
   }
 }
 
-
-
-
 function updateDependentElements() {
   resetAllCustomList()
   updateCharacterClassAndLevel();
@@ -939,7 +946,6 @@ function updateDependentElements() {
   characterTitle.textContent = characterNameInput.value;
 
 }
-
 
 //----------- AVANTAGES -----------//
 
@@ -2052,16 +2058,6 @@ function populateShieldAndAccessoriesOptions2() {
   shieldAndAccessoriesSelect.appendChild(customOption);
 }
 
-function displayDescription(selectElement, descriptionContainerID) {
-  const descriptionContainer = document.getElementById(descriptionContainerID);
-  if (selectElement.value !== " ") {
-    descriptionContainer.style.display = 'block';
-    descriptionContainer.textContent = selectElement.options[selectElement.selectedIndex].dataset.description;
-  } else {
-    descriptionContainer.style.display = 'none';
-    descriptionContainer.textContent = "";
-  }
-}
 
 document.addEventListener("DOMContentLoaded", function() {
   populateArmorOptions();
@@ -2072,12 +2068,12 @@ document.addEventListener("DOMContentLoaded", function() {
 
 function adjustArmorClassValue() {
   const abilityBonusScoreMapping = {
-    'strength': parseInt(strengthBonusScore.textContent),
-    'dexterity': parseInt(dexterityBonusScore.textContent),
-    'constitution': parseInt(constitutionBonusScore.textContent),
-    'intelligence': parseInt(intelligenceBonusScore.textContent),
-    'wisdom': parseInt(wisdomBonusScore.textContent),
-    'charisma': parseInt(charismaBonusScore.textContent),
+    'strength': parseInt(document.getElementById('strengthBonusScore').textContent, 10),
+    'dexterity': parseInt(document.getElementById('dexterityBonusScore').textContent, 10),
+    'constitution': parseInt(document.getElementById('constitutionBonusScore').textContent, 10),
+    'intelligence': parseInt(document.getElementById('intelligenceBonusScore').textContent, 10),
+    'wisdom': parseInt(document.getElementById('wisdomBonusScore').textContent, 10),
+    'charisma': parseInt(document.getElementById('charismaBonusScore').textContent, 10)
   };
 
   const base = 10;
@@ -2162,9 +2158,10 @@ function generateUUID() {
 
 let attackUUIDs = [];
 
-function generateAttackSection() {
-  const attackUUID = generateUUID(); // Generate a new UUID
+function generateAttackSection(optionalUUID) {
+  const attackUUID = optionalUUID || generateUUID(); // Use the optionalUUID if provided, otherwise generate a new UUID
   attackUUIDs.push(attackUUID); // Add the new UUID to the attackUUIDs array
+
 
   const attackSection = document.createElement('div');
   attackSection.innerHTML = getAttackSectionHTML(attackUUID);
@@ -2478,6 +2475,17 @@ function removeAttack(attackUUID) {
   // Remove the attackUUID from the attackUUIDs array
   attackUUIDs = attackUUIDs.filter(uuid => uuid !== attackUUID);
 };
+
+function removeAllAttacks() {
+  // Make a copy of the attackUUIDs array to avoid modifying it while looping
+  const attackUUIDsCopy = [...attackUUIDs];
+
+  // Call removeAttack for each UUID in the copied array
+  attackUUIDsCopy.forEach(uuid => {
+    removeAttack(uuid);
+  });
+}
+
 
   
   const elementsToWatch = [
