@@ -1,51 +1,19 @@
-with const attackUUIDs = [];
-	call adjustAttack for all uuid
-	S
-	O
-	R
-check rollAttack
-
-openChar.. statusBar icon title... undefined
-localStorge : on every change? open on page load?
-
-multi-class
-
 fondor road map
-database des weapons?
-avantage- désavantage on rollX la logique.
-arrange le calisse de dé qui roule qui s'arrete pas a la bonne place
-feuille de personage
-	Fiche
-		information
-			perception passive
-				validater rule
-				roller
-	Attaques
-		ressources
-			list custom (ajout, supprime)
-			nom, total, actuel, sr ou lr
-		capacités
-			list custom (ajout, supprime)
-			nom, source, type source, descr
-		equipement
-			list custom(ajout, supprime)
-			qté nom , origine? poids container?
-			total poid 
-	Sorts
-		niveaux 1 a 9
-			voir r20, talesheet
-		dons
-			on fait quoi avec ca, 
-			max 8 ou 9 (VdF)
-			data base ! 
-	Description
-		argent
-			list qty / pc,pa,pe,po, licorne, convertisseur pour total
-			list-custom  (ajout, supprime)trésor
-				nom, quantity, valeur en po
-			total
-		langue:
-			list custom (ajout, supprime)
-			nom (select const data ),  P , E, L
-		notes 
-			list custom (ajout, supprime)
+- with const attackUUIDs = []; 	O + 	R
+- openChar.. statusBar icon title... undefined
+- localStorge : on every change? open on page load? multiple name?
+- multi-class
+- avantage- désavantage on rollX la logique.
+- arrange le calisse de dé qui roule qui s'arrete pas a la bonne place
+- information perception passive 	validater rule	roller
+- ressources DOM	SOR nom, total, actuel, sr ou lr
+- Attributes DOM SOR nom, source, type source, descr
+- Equipement DOM SOR qté nom , origine? poids container?	total poid DOM SOR 
+- Sorts niveaux 1 a 9 sélection par character class, custom-list, mini-fiche DOM SOR
+- dons custom-list mini-fiche DOM SOR
+- argent list fixe qty / pc,pa,pe,po, licorne, convertisseur pour total, trésor DOM SOR nom, quantity, valeur en po total
+- langue: DOM SOR	nom (select const data ),  P , E, L
+- notes  DOM SOR
+- database des weapons? attaques
+- stl 
+- image S O R, resize 128X128 png ou jpg base64

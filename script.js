@@ -365,7 +365,8 @@ function saveCharacter(saveTo) {
       failed: []
     },
     status: {},
-    armorClassInfo:{}
+    armorClassInfo:{},
+    attackInfo: {}
     };
 
   for (const abilityId of ABILITY_NAMES) {
@@ -451,8 +452,26 @@ characterData.armorClassInfo = {
   customShieldValue2: document.getElementById("customShieldClassValue2").value || "0"
 };
 
+// Save Attacks info 
 
+function getAttackInfoByUUID(uuid) {
+  return {
+    attackName: document.getElementById(`attackName-${uuid}`).value || " ",
+    damageType: document.getElementById(`damageType-${uuid}`).value || " ",
+    attackNote: document.getElementById(`attackNote-${uuid}`).value || " ",
+    attackAbilityAdjustment: document.getElementById(`attackAbilityAdjustment-${uuid}`).value || " ",
+    otherAttackAdjustmentValue: document.getElementById(`otherAttackAdjustmentValue-${uuid}`).value || "0",
+    attackProficientCheckBox: document.getElementById(`attackProficientCheckBox-${uuid}`)?.checked || false,
+    damageDiceQuantity: document.getElementById(`damageDiceQuantity-${uuid}`).value || "0",
+    damageHitDiceType: document.getElementById(`damageHitDiceType-${uuid}`).value || " ",
+    damageAbilityAdjustment: document.getElementById(`damageAbilityAdjustment-${uuid}`).value || " ",
+    otherDamageAdjustmentValue: document.getElementById(`otherDamageAdjustmentValue-${uuid}`).value || "0"
+  };
+}
 
+attackUUIDs.forEach((uuid) => {
+  characterData.attackInfo[uuid] = getAttackInfoByUUID(uuid);
+});
 
 
   const jsonCharacterData = JSON.stringify(characterData, null, 2);
@@ -605,6 +624,34 @@ function openCharacter(loadFrom) {
     selectChangedArmorClass(document.getElementById("shieldAndAccessoriesSelection1"), "customShieldContainer");
     selectChangedArmorClass(document.getElementById("shieldAndAccessoriesSelection2"), "customShieldContainer2");
     
+    // load attacks info
+
+    function loadAttackInfo(attack, uuid) {
+      document.getElementById(`attackName-${uuid}`).value = attack.attackName;
+      document.getElementById(`damageType-${uuid}`).value = attack.damageType;
+      document.getElementById(`attackNote-${uuid}`).value = attack.attackNote;
+      document.getElementById(`attackAbilityAdjustment-${uuid}`).value = attack.attackAbilityAdjustment;
+      document.getElementById(`otherAttackAdjustmentValue-${uuid}`).value = attack.otherAttackAdjustmentValue;
+      document.getElementById(`attackProficientCheckBox-${uuid}`).checked = attack.attackProficientCheckBox;
+      document.getElementById(`damageDiceQuantity-${uuid}`).value = attack.damageDiceQuantity;
+      document.getElementById(`damageHitDiceType-${uuid}`).value = attack.damageHitDiceType;
+      document.getElementById(`damageAbilityAdjustment-${uuid}`).value = attack.damageAbilityAdjustment;
+      document.getElementById(`otherDamageAdjustmentValue-${uuid}`).value = attack.otherDamageAdjustmentValue;
+    }
+    
+    function loadAllAttacks(attackInfo) {
+      Object.keys(attackInfo).forEach((uuid) => {
+        const attack = attackInfo[uuid];
+        generateAttackSection(uuid);
+        loadAttackInfo(attack, uuid);
+      });
+    }
+    
+    loadAllAttacks(characterData.attackInfo);
+
+
+
+
     updateDependentElements();
 } 
 
@@ -1756,7 +1803,7 @@ select.addEventListener('change', function() {
 
   for (const { key, label } of labels) {
     const labelElement = document.createElement('p');
-    labelElement.innerHTML = `<strong>${label}:</strong> ${selectedFeat[key]}`;
+    labelElement.innerHTML = `<strong>${label}</strong> ${selectedFeat[key]}`;
     featDetails.appendChild(labelElement);
   }
 });
@@ -1827,7 +1874,7 @@ function displaySpellInfo(spell, containerId) {
   for (const key of keysToDisplay) {
     if (spell[key]) {
       const pInfo = document.createElement("p");
-      pInfo.innerHTML = `<strong>${key}:</strong> ${spell[key]}`;
+      pInfo.innerHTML = `<strong>${key}</strong> ${spell[key]}`;
       container.appendChild(pInfo);
     }
   }
@@ -2230,7 +2277,7 @@ function getAttackSectionHTML(attackUUID) {
                 </select>
             </div>
             <div class="wrapper">
-              <label for="otherDamageAdjustmentValue-${attackUUID}" id="otherDamageAdjustmentValueLabel">Autre bonus</label>
+              <label for="otherDamageAdjustmentValue-${attackUUID}" id="otherDamageAdjustmentValueLabel">Bonus</label>
               <input type="number" id="otherDamageAdjustmentValue-${attackUUID}" name="otherDamageAdjustmentValue-${attackUUID}" class="input-text" min="-10" max="10" value="0">
             </div>
         </div>

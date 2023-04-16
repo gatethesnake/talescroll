@@ -314,7 +314,7 @@
 								<div id="initiative" class="subsection subsection2">
 									<h4>Initiative</h4> 
 									<p id="initiativeBonusValue" class="roundButton" onclick="rollInitiative(this.previousElementSibling.innerHTML, this.innerHTML);">+0</p>
-									<label for="otherInitiativeBonus">Autre bonus:</label>
+									<label for="otherInitiativeBonus">Bonus</label>
 									<input type="number" id="otherInitiativeBonus" value="0" min="-10" max="10" class="input-text input-initiativeBonus" name="otherInitiativeBonus">
 								</div>
 							</div>
@@ -427,7 +427,7 @@
 							</div>
 							<div id="abilityAdjustmentSubsection" class="ability-adjustments subsection">
 								<div class="ability-adjustment">
-									<label for="abilityAdjustment1" id="abilityAdjustment1Label">Habileté 1:</label>
+									<label for="abilityAdjustment1" id="abilityAdjustment1Label">Habileté 1</label>
 									<select id="abilityAdjustment1" class="input-text">
 										<option value=" ">Choisir</option>
 										<option value="strength">Force</option>
@@ -439,7 +439,7 @@
 									</select>
 								</div>
 								<div class="ability-adjustment">
-									<label for="abilityAdjustment2" id="abilityAdjustment2Label">Habileté 2:</label>
+									<label for="abilityAdjustment2" id="abilityAdjustment2Label">Habileté 2</label>
 									<select id="abilityAdjustment2" class="input-text">
 										<option value=" ">Choisir</option>
 										<option value="strength">Force</option>
@@ -452,7 +452,7 @@
 								</div>
 							</div>
 							<div id="otherAdjustmentSubsection"class="subsection">
-								<label class="other-adjustments-label ">Autres ajustements:</label>
+								<label class="other-adjustments-label ">Autres ajustements</label>
 								<div class="other-adjustments">
 									<input type="text" id="otherArmorClassAdjustmentName" class="input-text" placeholder="Nom de l'ajustement">
 									<input type="number" id="otherArmorClassValue" class="input-text" min="-10" max="10" value="0">
@@ -461,11 +461,11 @@
 							<div id="armorSubsection"class="subsection">
 								<div class="controls">
 									<div class="left-controls">
-										<label for="armorSelection">Armure:</label>
+										<label for="armorSelection">Armure</label>
 									</div>
 									<div class="right-controls">
 										<input type="checkbox" id="armorActiveCheckbox">
-										<label for="armorActiveCheckbox">Actif:</label>
+										<label for="armorActiveCheckbox">Actif</label>
 									</div>
 								</div>
 								<select id="armorSelection" class="input-text" onchange="selectChanged(this, 'customArmorContainer')">
@@ -473,11 +473,11 @@
 								</select>
 								<div id="customArmorContainer" class="armor-container">
 									<div class="armor-wrapper">
-										<label for="customArmorName">Armure personnalisée:</label>
+										<label for="customArmorName">Armure personnalisée</label>
 										<input type="text" id="customArmorName" class="input-text">
 									</div>
 									<div class="armor-wrapper">
-										<label for="customArmorClassValue">Ajustement:</label>
+										<label for="customArmorClassValue">Ajustement</label>
 										<input type="number" id="customArmorClassValue" class="input-text" value="0" min="-10" max="10">
 									</div>
 								</div>
@@ -485,11 +485,11 @@
 							<div id="shield1Subsection" class="subsection">
 								<div class="controls">
 									<div class="left-controls">
-										<label for="shieldAndAccessoriesSelection1">Bouclier et accessoires:</label>
+										<label for="shieldAndAccessoriesSelection1">Bouclier et accessoires</label>
 									</div>
 									<div class="right-controls">
 										<input type="checkbox" id="shieldActiveCheckbox1">
-										<label for="shieldActiveCheckbox1">Actif:</label>
+										<label for="shieldActiveCheckbox1">Actif</label>
 									</div>
 								</div>
 								<select id="shieldAndAccessoriesSelection1" class="input-text" onchange="selectChangedArmorClass(this, 'customShieldContainer')">
@@ -497,11 +497,11 @@
 								</select>
 								<div id="customShieldContainer" class="shield-container">
 									<div class="shield-wrapper">
-										<label for="customShieldName1">Bouclier personnalisé:</label>
+										<label for="customShieldName1">Bouclier personnalisé</label>
 										<input type="text" id="customShieldName1" class="input-text">
 									</div>
 									<div class="shield-wrapper">
-										<label for="customShieldClassValue1">Ajustement:</label>
+										<label for="customShieldClassValue1">Ajustement</label>
 										<input type="number" id="customShieldClassValue1" class="input-text" value="0" min="-10" max="10">
 									</div>
 								</div>
@@ -509,11 +509,11 @@
 							<div id="shield2Subsection" class="subsection">
 								<div class="controls">
 									<div class="left-controls">
-										<label for="shieldAndAccessoriesSelection2">Bouclier et accessoires:</label>
+										<label for="shieldAndAccessoriesSelection2">Bouclier et accessoires</label>
 									</div>
 									<div class="right-controls">
 										<input type="checkbox" id="shieldActiveCheckbox2">
-										<label for="shieldActiveCheckbox2">Actif:</label>
+										<label for="shieldActiveCheckbox2">Actif</label>
 									</div>
 								</div>
 								<select id="shieldAndAccessoriesSelection2" class="input-text" onchange="selectChangedArmorClass(this, 'customShieldContainer2')">
@@ -521,11 +521,11 @@
 								</select>
 								<div id="customShieldContainer2" class="shield-container">
 									<div class="shield-wrapper">
-										<label for="customShieldName2">Bouclier personnalisé:</label>
+										<label for="customShieldName2">Bouclier personnalisé</label>
 										<input type="text" id="customShieldName2" class="input-text">
 									</div>
 									<div class="shield-wrapper">
-										<label for="customShieldClassValue2">Ajustement:</label>
+										<label for="customShieldClassValue2">Ajustement</label>
 										<input type="number" id="customShieldClassValue2" class="input-text" value="0" min="-10" max="10">
 									</div>
 								</div>
@@ -552,7 +552,7 @@
 					<div id="spellTab" class="meta-section tabContentCS">
 						<div id="spells" class="section">
 							<h2>Sorts</h2>
-							<label for="spellCasterSelect">Choisir un lanceur de sorts :</label>
+							<label for="spellCasterSelect">Choisir un lanceur de sorts </label>
 							<select id="spellCasterSelect" class="input-text">
 								<option value=" ">Choisir une un lanceur de sort</option>
 							</select>
@@ -591,7 +591,7 @@
 						</div>
 						<div id="feats" class="section">
 							<h2>Dons</h2>
-							<label for="feats-select">Choisissez un don :</label>
+							<label for="feats-select">Choisissez un don </label>
 							<select id="feats-select" class="input-text" name="feats">
 							</select>
 							<div id="feat-details">
@@ -605,15 +605,15 @@
 						<div id="description" class="section">
 							<h2>Description</h2>
 							<div id="playerContainer" class="subsection">
-								<label for="player">Nom du joueur:</label>
+								<label for="player">Nom du joueur</label>
 								<input type="text" id="player" class="input-text" name="player" value=' '>
 							</div>
 							<div id="characterNameContainer" class="subsection">
-								<label for="characterName">Nom du personnage:</label>
+								<label for="characterName">Nom du personnage</label>
 								<input type="text" id="characterName" class="input-text" name="characterName" value=' '>
 							</div>
 							<div id="classNameContainer" class="subsection">
-								<label for="className">Classe:</label>
+								<label for="className">Classe</label>
 								<select id="className" class="input-text" name="className" onchange="selectChangedArmorClass(this,'customClass')" data-custom-input="customClass">
 									<option value=" ">Choisir une classe</option>
 									<option value="Barbare">Barbare</option>
@@ -633,11 +633,11 @@
 								<input type="text" id="customClass" class="input-text" name="customClass" style="display:none;" value=" ">
 							</div>
 							<div id="levelContainer" class="subsection">
-								<label for="levelName">Niveau :</label>
+								<label for="levelName">Niveau </label>
 								<select id="levelName" class="input-text" name="levelName"></select>
 							</div>
 							<div id="raceContainer" class="subsection">
-								<label for="race">Race:</label>
+								<label for="race">Race</label>
 								<select id="race" class="input-text" name="race" onchange="selectChangedArmorClass(this,'customRace')" data-custom-input="customRace">
 									<option value=" ">Choisir une race</option>
 									<option value="Sylvestre">Sylvestre</option>
@@ -655,7 +655,7 @@
 								<input type="text" id="customRace" class="input-text" name="customRace" style="display:none;" value=" ">
 							</div>
 							<div id="religionContainer" class="subsection">
-								<label for="religion">Religion:</label>
+								<label for="religion">Religion</label>
 								<select id="religion" class="input-text" name="religion" onchange="selectChangedArmorClass(this,'customReligion')" data-custom-input="customReligion">
 									<option value=" ">Choisir une religion</option>
 									<option value="Ancien">Ancien</option>
@@ -684,7 +684,7 @@
 								<input type="text" id="customReligion" class="input-text" name="customReligion" style="display:none;" value=" ">
 							</div>
 							<div id="historiqueContainer" class="subsection">
-								<label for="historique">Historique:</label>
+								<label for="historique">Historique</label>
 								<select id="historique" class="input-text" name="historique" onchange="selectChangedArmorClass(this,'customHistorique')" data-custom-input="customHistorique">
 									<option value=" ">Choisir un historique</option>
 									<option value="Acolyte">Acolyte</option>
@@ -713,27 +713,27 @@
 						<div id="apparence" class="section">
 							<h2>Apparence</h2>
 							<div id="ageContainer" class="subsection">
-								<label for="age">Âge:</label>
+								<label for="age">Âge</label>
 								<input type="text" id="age" class="input-text" name="age" value=' '>
 							</div>
 							<div id="tailleContainer" class="subsection">
-								<label for="taille">Taille:</label>
+								<label for="taille">Taille</label>
 								<input type="text" id="taille" class="input-text" name="taille" value=' '>
 							</div>
 							<div id="poidsContainer" class="subsection">
-								<label for="poids">Poids:</label>
+								<label for="poids">Poids</label>
 								<input type="text" id="poids" class="input-text" name="poids" value=' '>
 							</div>
 							<div id="yeuxContainer" class="subsection">
-								<label for="yeux">Yeux:</label>
+								<label for="yeux">Yeux</label>
 								<input type="text" id="yeux" class="input-text" name="yeux" value=' '>
 							</div>
 							<div id="peauContainer" class="subsection">
-								<label for="peau">Peau:</label>
+								<label for="peau">Peau</label>
 								<input type="text" id="peau" class="input-text" name="peau" value=' '>
 							</div>
 							<div id="cheveuxContainer" class="subsection">
-								<label for="cheveux">Cheveux:</label>
+								<label for="cheveux">Cheveux</label>
 								<input type="text" id="cheveux" class="input-text" name="cheveux" value=' '>
 							</div>
 						</div>
