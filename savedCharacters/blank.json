@@ -1,0 +1,193 @@
+{
+  "abilities": {
+    "strength": {
+      "Score": "10"
+    },
+    "dexterity": {
+      "Score": "10"
+    },
+    "constitution": {
+      "Score": "10"
+    },
+    "intelligence": {
+      "Score": "10"
+    },
+    "wisdom": {
+      "Score": "10"
+    },
+    "charisma": {
+      "Score": "10"
+    }
+  },
+  "description": {
+    "player": " ",
+    "characterName": " ",
+    "className": " ",
+    "customClass": " ",
+    "levelName": "1",
+    "race": " ",
+    "customRace": " ",
+    "religion": " ",
+    "customReligion": " ",
+    "historique": " ",
+    "customHistorique": " "
+  },
+  "apparence": {
+    "age": " ",
+    "taille": " ",
+    "poids": " ",
+    "yeux": " ",
+    "peau": " ",
+    "cheveux": " "
+  },
+  "skills": {
+    "acrobatics": {
+      "proficient": false,
+      "expert": false
+    },
+    "animalHandling": {
+      "proficient": false,
+      "expert": false
+    },
+    "arcana": {
+      "proficient": false,
+      "expert": false
+    },
+    "athletics": {
+      "proficient": false,
+      "expert": false
+    },
+    "deception": {
+      "proficient": false,
+      "expert": false
+    },
+    "history": {
+      "proficient": false,
+      "expert": false
+    },
+    "insight": {
+      "proficient": false,
+      "expert": false
+    },
+    "intimidation": {
+      "proficient": false,
+      "expert": false
+    },
+    "investigation": {
+      "proficient": false,
+      "expert": false
+    },
+    "medicine": {
+      "proficient": false,
+      "expert": false
+    },
+    "nature": {
+      "proficient": false,
+      "expert": false
+    },
+    "perception": {
+      "proficient": false,
+      "expert": false
+    },
+    "performance": {
+      "proficient": false,
+      "expert": false
+    },
+    "persuasion": {
+      "proficient": false,
+      "expert": false
+    },
+    "religion": {
+      "proficient": false,
+      "expert": false
+    },
+    "sleightOfHand": {
+      "proficient": false,
+      "expert": false
+    },
+    "stealth": {
+      "proficient": false,
+      "expert": false
+    },
+    "survival": {
+      "proficient": false,
+      "expert": false
+    }
+  },
+  "information": {
+    "otherInitiativeBonus": "0",
+    "actualHitPoints": "0",
+    "maxHitPoints": "0",
+    "tempHitPoints": "0",
+    "inspirationValue": "non",
+    "speedValue": "0",
+    "avantage": "normal"
+  },
+  "deathSaves": {
+    "success": [
+      false,
+      false,
+      false
+    ],
+    "failed": [
+      false,
+      false,
+      false
+    ]
+  },
+  "status": {
+    "UNCONSCIOUS": false,
+    "STUNNED": false,
+    "POISONED": false,
+    "CHARMED": false,
+    "FRIGHTENED": false,
+    "PARALYZED": false,
+    "PETRIFIED": false,
+    "EXHAUSTED": false,
+    "BLINDED": false,
+    "INVISIBLE": false,
+    "ENVELOPED_IN_MAGICAL_DARKNESS": false,
+    "DEAFENED": false,
+    "RESTRAINED": false,
+    "ELECTRIFIED": false,
+    "DROWNING": false,
+    "GRAPPLED": false,
+    "INCAPACITATED": false,
+    "PRONE": false,
+    "RESTING": false,
+    "SHOCKED": false,
+    "SILENCED": false,
+    "UNABLE_TO_BREATHE": false,
+    "UNABLE_TO_SEE": false,
+    "UNABLE_TO_HEAR": false,
+    "UNABLE_TO_SMELL": false,
+    "UNABLE_TO_TASTE": false,
+    "UNABLE_TO_TOUCH": false,
+    "BLOODIED": false
+  },
+  "armorClassInfo": {
+    "ability1": " ",
+    "ability2": " ",
+    "otherAdjustmentName": " ",
+    "otherAdjustmentValue": "0",
+    "armorActive": false,
+    "armorSelection": " ",
+    "customArmorName": " ",
+    "customArmorValue": "0",
+    "shieldActive1": false,
+    "shieldSelection1": " ",
+    "customShieldName1": " ",
+    "customShieldValue1": "0",
+    "shieldActive2": false,
+    "shieldSelection2": " ",
+    "customShieldName2": " ",
+    "customShieldValue2": "0"
+  },
+  "attackInfo": {},
+  "resourceInfo": {},
+  "featureInfo": {},
+  "equipmentInfo": {},
+  "treasureInfo": {},
+  "languageInfo": {},
+  "miscellaneousInfo": {}
+}

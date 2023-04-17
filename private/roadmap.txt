@@ -1,26 +1,28 @@
-fondor road map
-
+Fondor road map
 - v1
-    - Saisir Perrin : Attributs (25), équipements (17), argent (2)
+    - Perrin : +Attributs (25), +équipements (17), +argent (2)+trésors
     - ajouts
-        - text area : toggle popup full-screen
-        - money qty / pc,pa,pe,po, licorne, const GoldPieceConverter  totalMoneyValue = sum(qty*GPC) (en po),
-        - trésor  totalTreasureValue = sum(qty*value) (en po)
-        - equipment  totalWeight= sum(qty*weight) + money (?)
+        2 - text area : popup full-screen
+        1 - money qty / pc,pa,pe,po, licorne, const GoldPieceConverter  totalMoneyValue = sum(qty*GPC) (en po),
+        1 - trésor  totalTreasureValue = sum(qty*value) (en po)
+        1 - equipment  totalWeight= sum(qty*weight) + money (?)
+        1 - check to toggle : armures, états, inspiration,  skills(déplacé à droite)
+        2 - short or long rest Reset.
+        1 - états : multicolonne ?, +concentré, icone inconscient = se reposer.
     - custom-lists
-        - spells niveaux 1 a 9 sélection par character class, jet de base, custom-list, mini-fiche DOM SOR, option : apply class restriction or not (to load list)
-        - feats custom-list mini-fiche DOM SOR
+        4 - feats custom-list mini-fiche DOM SOR
+        6 - spells niveaux 1 a 9 sélection par character class, jet de base, custom-list, mini-fiche DOM SOR, option : apply class restriction or not (to load list)
 - v2
     - ui-ux 
-        - localStorge : on every change? open on page load? multiple name?
-        - stl 
-        - image S O R, resize 128X128 png ou jpg base64
-        - 3d d4 à d20, d2,d3, d100 !?
-        - arrête un dé sur la bonne face
-        - Option Roll  >talespire >on screen
+        4 - localStorge : on every change + multiple name
+        2 - image S O R, resize 128X128 png ou jpg base64
+        9 - 3D : d4 à d20, d2,d3, d100 !?
+        9 - arrête un dé sur la bonne face
+        4 - Option Roll  >talespire >on screen
+        9 - stl 
     - dnd5e
-        - short or long rest reset.
-        - multi-class
-        - états de fatique (règles VdF)
-        - états : adapté chaque règles 
-        - database des weapons? ajustement des attaques
+        4 - multi-class
+        4 - états de fatique (règles VdF)
+        9 - états : adapté chaque règles 
+        9 - database des weapons? ajustement des attaques
+        9 - database des équipement?

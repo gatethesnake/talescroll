@@ -4,45 +4,45 @@
       "Score": "10"
     },
     "dexterity": {
-      "Score": "10"
+      "Score": "16"
     },
     "constitution": {
-      "Score": "10"
+      "Score": "14"
     },
     "intelligence": {
       "Score": "10"
     },
     "wisdom": {
-      "Score": "10"
+      "Score": "15"
     },
     "charisma": {
       "Score": "10"
     }
   },
   "description": {
-    "player": " ",
-    "characterName": " ",
-    "className": " ",
+    "player": " Gaétan",
+    "characterName": "Perrin",
+    "className": "Moine",
     "customClass": " ",
-    "levelName": "1",
-    "race": " ",
+    "levelName": "5",
+    "race": "Sylvestre",
     "customRace": " ",
-    "religion": " ",
+    "religion": "Couatl",
     "customReligion": " ",
-    "historique": " ",
-    "customHistorique": " "
+    "historique": "custom",
+    "customHistorique": " idiot du village"
   },
   "apparence": {
-    "age": " ",
-    "taille": " ",
-    "poids": " ",
-    "yeux": " ",
-    "peau": " ",
-    "cheveux": " "
+    "age": " 28 (+10 spectre de l'Ancien)",
+    "taille": "1m70",
+    "poids": "75kg",
+    "yeux": "bleu",
+    "peau": "basané, tatouages",
+    "cheveux": "chauve"
   },
   "skills": {
     "acrobatics": {
-      "proficient": false,
+      "proficient": true,
       "expert": false
     },
     "animalHandling": {
@@ -86,11 +86,11 @@
       "expert": false
     },
     "perception": {
-      "proficient": false,
+      "proficient": true,
       "expert": false
     },
     "performance": {
-      "proficient": false,
+      "proficient": true,
       "expert": false
     },
     "persuasion": {
@@ -106,7 +106,7 @@
       "expert": false
     },
     "stealth": {
-      "proficient": false,
+      "proficient": true,
       "expert": false
     },
     "survival": {
@@ -116,11 +116,11 @@
   },
   "information": {
     "otherInitiativeBonus": "0",
-    "actualHitPoints": "0",
-    "maxHitPoints": "0",
+    "actualHitPoints": "40",
+    "maxHitPoints": "40",
     "tempHitPoints": "0",
     "inspirationValue": "non",
-    "speedValue": "0",
+    "speedValue": "11",
     "avantage": "normal"
   },
   "deathSaves": {
@@ -145,7 +145,7 @@
     "PETRIFIED": false,
     "EXHAUSTED": false,
     "BLINDED": false,
-    "INVISIBLE": false,
+    "INVISIBLE": true,
     "ENVELOPED_IN_MAGICAL_DARKNESS": false,
     "DEAFENED": false,
     "RESTRAINED": false,
@@ -154,7 +154,7 @@
     "GRAPPLED": false,
     "INCAPACITATED": false,
     "PRONE": false,
-    "RESTING": false,
+    "RESTING": true,
     "SHOCKED": false,
     "SILENCED": false,
     "UNABLE_TO_BREATHE": false,
@@ -166,16 +166,16 @@
     "BLOODIED": false
   },
   "armorClassInfo": {
-    "ability1": " ",
-    "ability2": " ",
+    "ability1": "dexterity",
+    "ability2": "wisdom",
     "otherAdjustmentName": " ",
     "otherAdjustmentValue": "0",
-    "armorActive": false,
-    "armorSelection": " ",
+    "armorActive": true,
+    "armorSelection": "custom",
     "customArmorName": " ",
     "customArmorValue": "0",
-    "shieldActive1": false,
-    "shieldSelection1": " ",
+    "shieldActive1": true,
+    "shieldSelection1": "bracersOfDefense",
     "customShieldName1": " ",
     "customShieldValue1": "0",
     "shieldActive2": false,
@@ -183,15 +183,177 @@
     "customShieldName2": " ",
     "customShieldValue2": "0"
   },
-  "attackInfo": {},
-  "resourceInfo": {},
-  "featureInfo": {},
-  "equipmentInfo": {},
-  "treasureInfo": {},
+  "attackInfo": {
+    "647a1a7d8a433c7f-9268c7d-4fc74-b5b91e4-75516a90cb92a6aa7525b37d": {
+      "attackName": "Gietzlë javelin de foudre ",
+      "damageType": "piercing",
+      "attackNote": "magique",
+      "attackAbilityAdjustment": "dexterity",
+      "otherAttackAdjustmentValue": "1",
+      "attackProficientCheckBox": true,
+      "damageDiceQuantity": "1",
+      "damageHitDiceType": "d6",
+      "damageAbilityAdjustment": "dexterity",
+      "otherDamageAdjustmentValue": "1"
+    },
+    "263e24502e19a9c1-25418678-4f75bf5-861bee5-eeca42b8a2f62421c4627f48": {
+      "attackName": " Arts martiaux",
+      "damageType": "radiant",
+      "attackNote": " ",
+      "attackAbilityAdjustment": "dexterity",
+      "otherAttackAdjustmentValue": "0",
+      "attackProficientCheckBox": true,
+      "damageDiceQuantity": "1",
+      "damageHitDiceType": "d6",
+      "damageAbilityAdjustment": "dexterity",
+      "otherDamageAdjustmentValue": "0"
+    },
+    "df786af4d7dc50da-7fce1adc-48888f-9b0179a-7cc5babb802fbcbad061de20": {
+      "attackName": " Hankyu",
+      "damageType": "piercing",
+      "attackNote": "arc court asymétrique",
+      "attackAbilityAdjustment": "dexterity",
+      "otherAttackAdjustmentValue": "0",
+      "attackProficientCheckBox": true,
+      "damageDiceQuantity": "1",
+      "damageHitDiceType": "d6",
+      "damageAbilityAdjustment": "dexterity",
+      "otherDamageAdjustmentValue": "0"
+    },
+    "493bc5d6f6555c77-aee9dd5-4f56bf-b1cb3de-59b527c95ebf0f478ce447f": {
+      "attackName": " Nunchaku",
+      "damageType": "bludgeoning",
+      "attackNote": "club",
+      "attackAbilityAdjustment": "dexterity",
+      "otherAttackAdjustmentValue": "0",
+      "attackProficientCheckBox": true,
+      "damageDiceQuantity": "1",
+      "damageHitDiceType": "d4",
+      "damageAbilityAdjustment": "dexterity",
+      "otherDamageAdjustmentValue": "0"
+    },
+    "2bfa272230c268b3-8b6624d6-467fb44-a6b54d6-ab988522e634e67eccaa0": {
+      "attackName": " Shuriken",
+      "damageType": "piercing",
+      "attackNote": "dart",
+      "attackAbilityAdjustment": "dexterity",
+      "otherAttackAdjustmentValue": "0",
+      "attackProficientCheckBox": true,
+      "damageDiceQuantity": "1",
+      "damageHitDiceType": "d4",
+      "damageAbilityAdjustment": "dexterity",
+      "otherDamageAdjustmentValue": "0"
+    }
+  },
+  "resourceInfo": {
+    "a9ddcac22d82b182-e2dfcfcf-434915a-81aa87a-169e2a32543c1abea15b23ad": {
+      "resourceName": "Ki",
+      "resourceMax": "5",
+      "resourceActual": "5",
+      "longRestSwitch": false,
+      "shortRestSwitch": true
+    },
+    "24283c8ed5b2a5e-6d4ec4bc-4437c6-85ccb31-e9da342af21cdae61c225cba": {
+      "resourceName": "Foulée brumeuse",
+      "resourceMax": "1",
+      "resourceActual": "1",
+      "longRestSwitch": true,
+      "shortRestSwitch": false
+    },
+    "7fffe276715868-407b3711-49e1fc-bc35c78-b7164d5963d95f53849095f5": {
+      "resourceName": "Rayon céleste",
+      "resourceMax": "3",
+      "resourceActual": "3",
+      "longRestSwitch": true,
+      "shortRestSwitch": false
+    },
+    "bf7d8283bf92d48d-6ba89d61-444dbc0-b38158-ecff67ee92ac474da4187b5b": {
+      "resourceName": "Présence céleste",
+      "resourceMax": "1",
+      "resourceActual": "1",
+      "longRestSwitch": true,
+      "shortRestSwitch": false
+    },
+    "8a472eaf2a9fb920-a77cf14-43fdb16-9fda644-da7528172afcfb9f53c65f7": {
+      "resourceName": "Récupération (d8+2) ",
+      "resourceMax": "2",
+      "resourceActual": "2",
+      "longRestSwitch": true,
+      "shortRestSwitch": false
+    },
+    "a71e35ccf24f2686-246f7344-49297c2-a3b4e75-d99d952928374e937ad1f21": {
+      "resourceName": "Gieztlë",
+      "resourceMax": "1",
+      "resourceActual": "1",
+      "longRestSwitch": true,
+      "shortRestSwitch": false
+    },
+    "9dedc21120a2db52-c7c448a-425e663-adb9c27-b88a66dbe41cd46d320fe9": {
+      "resourceName": "Marque du chasseur",
+      "resourceMax": "1",
+      "resourceActual": "1",
+      "longRestSwitch": true,
+      "shortRestSwitch": false
+    },
+    "fddb358aa3451c-6cf27ca-4d1c5ae-bcc5fc9-905084ea6b34abb0bae8c887": {
+      "resourceName": "Arme dédiée",
+      "resourceMax": "1",
+      "resourceActual": "1",
+      "longRestSwitch": true,
+      "shortRestSwitch": false
+    },
+    "ef53927a96329159-8b48bb38-45ad7f0-af8d354-608a4324c24b5df52431409": {
+      "resourceName": "Insp. bardique (ocarina)",
+      "resourceMax": "1",
+      "resourceActual": "1",
+      "longRestSwitch": false,
+      "shortRestSwitch": true
+    }
+  },
+  "featureInfo": {
+    "19687ee0f642c1b0-9874661b-495f555-b67763c-12c3d2b73e5b72845e4e9a65": {
+      "featureName": " ",
+      "featureSource": " ",
+      "featureType": " ",
+      "featureDescription": " "
+    }
+  },
+  "equipmentInfo": {
+    "fb96781b6baed044-9bf052a9-4aca23-acc5df8-71e6b624d87e2beaa83528db": {
+      "equipmentName": " ",
+      "equipmentQuantity": "0",
+      "equipmentWeight": "0",
+      "equipmentActive": false,
+      "equipmentOrigin": " "
+    }
+  },
+  "treasureInfo": {
+    "5ecc35b2e12e66e1-d930bea6-417fae-ad3abf1-8e21a446d2a6c3da7b47454": {
+      "treasureName": " ",
+      "treasureQuantity": "0",
+      "treasureValue": "0",
+      "treasureOrigin": " "
+    }
+  },
   "languageInfo": {
-    "9ab23a99bb4d314-f91a92f3-43484fd-b9260b3-646dcc95913fa4edca8a4550": {
-      "languageName": " ",
-      "languageSpoken": false,
+    "4a34914b775b486-71308627-4ee59b-9ee7ede-f95a282d887fde2569f1ed3c": {
+      "languageName": "sylvestre",
+      "languageSpoken": true,
+      "languageWritten": true
+    },
+    "46f5a6a484ed5b8b-f19d88dd-4cbb63-bc91f5d-a542aeeb235eb161dceeed3": {
+      "languageName": "elanais",
+      "languageSpoken": true,
+      "languageWritten": true
+    },
+    "b6b09573646794d1-cd4cd8e2-4b4b70-b5eca7-dc8d46add9bfc7c4f6888": {
+      "languageName": "languemere",
+      "languageSpoken": true,
+      "languageWritten": true
+    },
+    "8c673a4428e3a37-f7a8d548-4f2fe88-83bee7f-66f1b3b57bf8e43ee2af37": {
+      "languageName": "faune",
+      "languageSpoken": true,
       "languageWritten": false
     }
   },
