@@ -3,10 +3,10 @@
 //document.getElementById("diceGeneratorTab").click();
 document.getElementById("characterSheetTab").click();
 
-//document.getElementById("sheetTabName").click();
-document.getElementById("actionTabName").click();
+document.getElementById("sheetTabName").click();
+//document.getElementById("actionTabName").click();
 
-const splashLength = 0;
+const splashLength = 3000;
 
 //------------------------- OUVERTURE -------------------------//
 // Prévenir la cache du css
@@ -3290,3 +3290,6 @@ const selectElements = document.querySelectorAll('select[data-custom-input]');
     const menuContent = document.getElementById("menu-content");
     menuContent.style.display = menuContent.style.display === "block" ? "none" : "block";
   });
+
+
+  

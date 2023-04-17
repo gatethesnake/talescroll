@@ -4,45 +4,45 @@
       "Score": "10"
     },
     "dexterity": {
-      "Score": "16"
+      "Score": "10"
     },
     "constitution": {
-      "Score": "14"
+      "Score": "10"
     },
     "intelligence": {
       "Score": "10"
     },
     "wisdom": {
-      "Score": "15"
+      "Score": "10"
     },
     "charisma": {
       "Score": "10"
     }
   },
   "description": {
-    "player": " Gaétan",
-    "characterName": "Perrin",
-    "className": "Moine",
+    "player": " ",
+    "characterName": " ",
+    "className": " ",
     "customClass": " ",
-    "levelName": "5",
-    "race": "Sylvestre",
+    "levelName": "1",
+    "race": " ",
     "customRace": " ",
-    "religion": "Couatl",
+    "religion": " ",
     "customReligion": " ",
-    "historique": "custom",
-    "customHistorique": " idiot du village"
+    "historique": " ",
+    "customHistorique": " "
   },
   "apparence": {
-    "age": " 28 (+10 spectre de l'Ancien)",
-    "taille": "1m70",
-    "poids": "75kg",
-    "yeux": "bleu",
-    "peau": "basané, tatouages",
-    "cheveux": "chauve"
+    "age": " ",
+    "taille": " ",
+    "poids": " ",
+    "yeux": " ",
+    "peau": " ",
+    "cheveux": " "
   },
   "skills": {
     "acrobatics": {
-      "proficient": true,
+      "proficient": false,
       "expert": false
     },
     "animalHandling": {
@@ -86,11 +86,11 @@
       "expert": false
     },
     "perception": {
-      "proficient": true,
+      "proficient": false,
       "expert": false
     },
     "performance": {
-      "proficient": true,
+      "proficient": false,
       "expert": false
     },
     "persuasion": {
@@ -106,7 +106,7 @@
       "expert": false
     },
     "stealth": {
-      "proficient": true,
+      "proficient": false,
       "expert": false
     },
     "survival": {
@@ -116,11 +116,11 @@
   },
   "information": {
     "otherInitiativeBonus": "0",
-    "actualHitPoints": "40",
-    "maxHitPoints": "40",
+    "actualHitPoints": "0",
+    "maxHitPoints": "0",
     "tempHitPoints": "0",
     "inspirationValue": "non",
-    "speedValue": "11",
+    "speedValue": "0",
     "avantage": "normal"
   },
   "deathSaves": {
@@ -166,16 +166,16 @@
     "BLOODIED": false
   },
   "armorClassInfo": {
-    "ability1": "dexterity",
-    "ability2": "wisdom",
+    "ability1": " ",
+    "ability2": " ",
     "otherAdjustmentName": " ",
     "otherAdjustmentValue": "0",
-    "armorActive": true,
-    "armorSelection": "custom",
+    "armorActive": false,
+    "armorSelection": " ",
     "customArmorName": " ",
     "customArmorValue": "0",
-    "shieldActive1": true,
-    "shieldSelection1": "bracersOfDefense",
+    "shieldActive1": false,
+    "shieldSelection1": " ",
     "customShieldName1": " ",
     "customShieldValue1": "0",
     "shieldActive2": false,
@@ -183,136 +183,33 @@
     "customShieldName2": " ",
     "customShieldValue2": "0"
   },
-  "attackInfo": {
-    "647a1a7d8a433c7f-9268c7d-4fc74-b5b91e4-75516a90cb92a6aa7525b37d": {
-      "attackName": "Gietzlë javelin de foudre ",
-      "damageType": "piercing",
-      "attackNote": "magique",
-      "attackAbilityAdjustment": "dexterity",
-      "otherAttackAdjustmentValue": "1",
-      "attackProficientCheckBox": true,
-      "damageDiceQuantity": "1",
-      "damageHitDiceType": "d6",
-      "damageAbilityAdjustment": "dexterity",
-      "otherDamageAdjustmentValue": "1"
-    },
-    "263e24502e19a9c1-25418678-4f75bf5-861bee5-eeca42b8a2f62421c4627f48": {
-      "attackName": " Arts martiaux",
-      "damageType": "radiant",
-      "attackNote": " ",
-      "attackAbilityAdjustment": "dexterity",
-      "otherAttackAdjustmentValue": "0",
-      "attackProficientCheckBox": true,
-      "damageDiceQuantity": "1",
-      "damageHitDiceType": "d6",
-      "damageAbilityAdjustment": "dexterity",
-      "otherDamageAdjustmentValue": "0"
-    },
-    "df786af4d7dc50da-7fce1adc-48888f-9b0179a-7cc5babb802fbcbad061de20": {
-      "attackName": " Hankyu",
-      "damageType": "piercing",
-      "attackNote": "arc court asymétrique",
-      "attackAbilityAdjustment": "dexterity",
-      "otherAttackAdjustmentValue": "0",
-      "attackProficientCheckBox": true,
-      "damageDiceQuantity": "1",
-      "damageHitDiceType": "d6",
-      "damageAbilityAdjustment": "dexterity",
-      "otherDamageAdjustmentValue": "0"
-    },
-    "493bc5d6f6555c77-aee9dd5-4f56bf-b1cb3de-59b527c95ebf0f478ce447f": {
-      "attackName": " Nunchaku",
-      "damageType": "bludgeoning",
-      "attackNote": "club",
-      "attackAbilityAdjustment": "dexterity",
-      "otherAttackAdjustmentValue": "0",
-      "attackProficientCheckBox": true,
-      "damageDiceQuantity": "1",
-      "damageHitDiceType": "d4",
-      "damageAbilityAdjustment": "dexterity",
-      "otherDamageAdjustmentValue": "0"
-    },
-    "2bfa272230c268b3-8b6624d6-467fb44-a6b54d6-ab988522e634e67eccaa0": {
-      "attackName": " Shuriken",
-      "damageType": "piercing",
-      "attackNote": "dart",
-      "attackAbilityAdjustment": "dexterity",
-      "otherAttackAdjustmentValue": "0",
-      "attackProficientCheckBox": true,
-      "damageDiceQuantity": "1",
-      "damageHitDiceType": "d4",
-      "damageAbilityAdjustment": "dexterity",
-      "otherDamageAdjustmentValue": "0"
-    }
-  },
-  "resourceInfo": {
-    "a9ddcac22d82b182-e2dfcfcf-434915a-81aa87a-169e2a32543c1abea15b23ad": {
-      "resourceName": "Ki",
-      "resourceMax": "5",
-      "resourceActual": "5",
-      "longRestSwitch": false,
-      "shortRestSwitch": true
-    },
-    "24283c8ed5b2a5e-6d4ec4bc-4437c6-85ccb31-e9da342af21cdae61c225cba": {
-      "resourceName": "Foulée brumeuse",
-      "resourceMax": "1",
-      "resourceActual": "1",
-      "longRestSwitch": true,
-      "shortRestSwitch": false
-    },
-    "7fffe276715868-407b3711-49e1fc-bc35c78-b7164d5963d95f53849095f5": {
-      "resourceName": "Rayon céleste",
-      "resourceMax": "3",
-      "resourceActual": "3",
-      "longRestSwitch": true,
-      "shortRestSwitch": false
-    },
-    "bf7d8283bf92d48d-6ba89d61-444dbc0-b38158-ecff67ee92ac474da4187b5b": {
-      "resourceName": "Présence céleste",
-      "resourceMax": "1",
-      "resourceActual": "1",
-      "longRestSwitch": true,
-      "shortRestSwitch": false
-    },
-    "8a472eaf2a9fb920-a77cf14-43fdb16-9fda644-da7528172afcfb9f53c65f7": {
-      "resourceName": "Récupération (d8+2) ",
-      "resourceMax": "2",
-      "resourceActual": "2",
-      "longRestSwitch": true,
-      "shortRestSwitch": false
-    },
-    "a71e35ccf24f2686-246f7344-49297c2-a3b4e75-d99d952928374e937ad1f21": {
-      "resourceName": "Gieztlë",
-      "resourceMax": "1",
-      "resourceActual": "1",
-      "longRestSwitch": true,
-      "shortRestSwitch": false
-    },
-    "9dedc21120a2db52-c7c448a-425e663-adb9c27-b88a66dbe41cd46d320fe9": {
-      "resourceName": "Marque du chasseur",
-      "resourceMax": "1",
-      "resourceActual": "1",
-      "longRestSwitch": true,
-      "shortRestSwitch": false
-    },
-    "fddb358aa3451c-6cf27ca-4d1c5ae-bcc5fc9-905084ea6b34abb0bae8c887": {
-      "resourceName": "Arme dédiée",
-      "resourceMax": "1",
-      "resourceActual": "1",
-      "longRestSwitch": true,
-      "shortRestSwitch": false
-    },
-    "ef53927a96329159-8b48bb38-45ad7f0-af8d354-608a4324c24b5df52431409": {
-      "resourceName": "Insp. bardique (ocarina)",
-      "resourceMax": "1",
-      "resourceActual": "1",
-      "longRestSwitch": false,
-      "shortRestSwitch": true
-    }
-  },
+  "attackInfo": {},
+  "resourceInfo": {},
   "featureInfo": {},
   "equipmentInfo": {},
   "treasureInfo": {},
-  "languageInfo": {},
-  "miscellaneousInfo": {}
+  "languageInfo": {
+    "9ab23a99bb4d314-f91a92f3-43484fd-b9260b3-646dcc95913fa4edca8a4550": {
+      "languageName": " ",
+      "languageSpoken": false,
+      "languageWritten": false
+    }
+  },
+  "miscellaneousInfo": {
+    "acdd511caaefe72-80fe638a-49eff23-a414b29-b270dfbe89a7a93de8dc867": {
+      "miscellaneousDescription": "Amnésique (idiot du village)\nDéclenchée par voyage dans le temps .\n\n28 ans (+10 ans magique)"
+    },
+    "99c22ab3ccbb4e3a-f681e1a-462b6e9-a887eca-acc1ea4d431eeb1e14968c14": {
+      "miscellaneousDescription": "La légende de LellahLestras Morani\n\nAu moment où Perrin touche le disque, il est frappé par une lumière radiante éclatante qui enveloppe tout son corps et il se met à tourner sur lui-même. La pression est tellement forte qu’il en perd conscience.\n\nÀ son réveil, il se trouve allongé sur une petite berge près de laquelle s’écoule un ruisseau peu profond et large de quelques enjambées. Il se relève doucement et s’appuie sur un rocher qui s'élève de quelques mètres au plus haut. Droit devant et de chaque côté, partout où son regard peut porter, une dense forêt de feuillus composée d’arbres centenaires et de bosquets de toutes sortes au sol se comptent par dizaines voir par centaines. Un douce brise s’entend provenant des cimes inatteignables. Quelques gazouillis se font entendre.\n\nPerrin se sent bien. Son esprit est encore embrumé mais il ne ressent aucune douleur. Il examine ses possessions qui semblent toutes là. C’est déjà ça.\n\nSoudain, au travers d’un buisson à sa droite, il croit entendre un léger craquement de branche. On l’épie.\n\nIl se lève nonchalamment et se dirige vers le ruisseau droit devant en prenant soin de ne pas dévoiler qu’il sait maintenant qu’on l’observe.Il s’agenouille pour s’abreuver. Il remplit également sa gourde. Il utilise alors un petit miroir pour regarder vers le buisson sans se faire remarquer.\n\nIl voit alors une petite créature humanoïde au cheveux roux coupés en brosse et aux oreilles avec des pointes saillantes. Une couronne de fleur lui fait office de camouflage. En guise de pied, 2 petits sabots bien campés dans le sol. Elle est habillée de haillons autour de la taille et du torse.\n\nPerrin se relève alors subitement et d’un mouvement rapide comme on le connaît, fonce vers le buisson et agrippe la petite créature. A sa grand surprise, il comprend très vite qu’il n’aura pas une grande résistance puisque la créature est tout bonnement une enfant.\n\nElle a beau se débattre comme une petite démone, elle couine et prononce des mots que Perrin reconnaît comme étant la langue des faunes. Il la maîtrise donc et s’adresse à elle en faune. La petite faune reste bouche bée car c’est bien la dernière chose à laquelle elle s’attendait.\n\nElle se calme peu à peu et Perrin la ramène au rocher et l’assoie devant. Il s’assoit à genoux devant elle lui offrant peu de chance de s’évader.\n\n- ‘Quel est ton nom?’ Lui dit-il en faune\n\n- ‘LellahLestras Morani’ lui répond-elle\n\n- Et quelle âge as-tu?\n\n- 12 ans et 33%.\n\nSachant que les faunes vivent beaucoup plus longtemps que les Élanais ou les Sylvestres, Perrin est encore plus surpris.\n\n- Pourquoi es-tu seule dans la forêt et où sont tes parents?\n\nLellah se met alors à sangloter.\n\n- J’ai faim et j’ai froid. Ca fait maintenant 1 semaine que mes parents ont été capturés alors qu’on allait rendre visite à mes grands-parents pour nos vacances d’automne.\n\nPerrin sort alors 2 rations de son sac et en offre une à Lellah.\n\nPerrin apprendra pendant la conversation avec Lellah qui suivra qu’un groupe étrange de créature en forme de sphère, de cube et de triangles avait fait irruption comme par magie au campement non loin de l’endroit où ils se trouvent. Lellah s’était caché dans les couvertures de fourrures et avait entrevu les monstres assommé ses 2 parents avec qui elle voyageait puis, les monstres avaient traîné ses parents pour passer dans un cercle lumineux. Une fois tout le groupe passé, le cercle s’est refermé puis pouf, plus rien.\n\nNe sachant pas où elle était, Lellah avait décidé de rester là. Le campement lui avait fourni de la nourriture et elle savait comment maintenir un feu allumé, ce n’était plus une bébé. Mais il y a 4 nuits, un violent orage avait éteint le feu et depuis, les nuits étaient devenues de plus en plus froides et la nourriture apportée par ses parents avait fini par se tarir depuis hier.\n\nLellah raccompagne Perrin au campement et lui montre l’emplacement du cercle. Perrin retrouve aisément les traces de corps traînés et compte un total de 3 créatures. Aucun autre indice ne permet à Perrin de savoir comment retrouver ou rouvrir le portail.\n\nPerrin allume un feu auprès duquel Lellah s’approche, bien heureuse de se réchauffer. Les journées passent et malgré les explorations quotidiennes, aucune route, village ou présence autour du campement. Même en grimpant au sommet des arbres, la forêt semble s’étendre à l'infini autour du campement des Morani.\n\nPerrin demeurera pendant 8 ans dans ce lieu, une forêt infinie. Il entraînera Lellah comme une moine du Couatl . Elle atteindra le niveau 2. Ensemble, il prieront Le serpent de leur ouvrir leur portail.\n\nUn jour, durant leur exploration, Perrin et Lellah retrouvent les trois modrons et veulent les attaquer, mais réalisent que ces créatures sont la seule façon de sortir de ce lieu. Ils les épient, les modrons restent longtemps (2 ans) sans bouger, jusqu’au jour où ils utilisent le sceptre qu’ils ont volé aux parents de Lellah, pour ouvrir un portail dans la réalité.\n\nLes modrons y passent pour aller accomplir une tâche, et pendant ce temps, Perrin et Lellah libèrent les parents qui étaient encore en captivité car dans cette bulle, le temps ne s’écoulait pas à la même vitesse.\n\nIl se trouve que les parents avaient été kidnappé parce qu’ils transportait un artifact appartenant au modron, un sceptre étrange qu’ils utilisent comme une manivelle pour ouvrir un portail.\n\nPerrin comprend que le portail va rester ouvert seulement encore quelques instants. Il décide de dire adieu à Lellah et à ses parents.\n\nPour remercier Perrin, la père de Lellah lui donna une bénédiction du Satyre, et Perrin reçut le don d’avoir été touché par les faunes.\n\nÀ ce moment le portail commence à se refermer, la famille sourit à Perrin: il comprend alors qu’ils ne viendront pas, Ils se disent adieu. Lorsque Perrin passe, il ne revient pas dans la forêt mais revient dans Jzadurine. Il n’a pas vieilli d’une seconde."
+    },
+    "a89b1e266f3d56-c1fdfd83-4893226-b95e414-c1f2186b0a960bf1030f1ec": {
+      "miscellaneousDescription": "pour plus tard:\nau niveau 8\nprochain feat: Telekinetic\nSource: Tasha's Cauldron of Everything\n\nYou learn to move things with your mind, granting you the following benefits:\n\nIncrease your Intelligence, Wisdom, or Charisma score by 1, to a maximum of 20.\nYou learn the Mage Hand cantrip. You can cast it without verbal or somatic components, and you can make the spectral hand invisible. If you already know this spell, its range increases by 30 feet when you cast it. Its spellcasting ability is the ability increased by this feat.\nAs a bonus action, you can try to telekinetically shove one creature you can see within 30 feet of you. When you do so, the target must succeed on a Strength saving throw (DC 8 + your proficiency bonus + the ability modifier of the score increased by this feat) or be moved 5 feet toward or away from you. A creature can willingly fail this save."
+    },
+    "0c75d28a4845a56-1fe551ca-4eee73-b26e39-1babbd5429d9d949b62a2327": {
+      "miscellaneousDescription": "Ki: Ki\nÀ partir du niveau 2, votre entrainement vous permet d'exploiter cette mystérieuse énergie qu'est le ki. Votre accès à cette énergie est représenté par un nombre de points ki. Votre niveau de moine détermine le nombre de points ki que vous possédez, comme indiqué dans la colonne Ki de la table ci-dessus. Vous pouvez dépenser ces points pour déclencher diverses capacités ki. Vous débutez en connaissant trois de ces capacités ki : Déluge de coups, Défense patiente et Déplacement aérien. Vous apprendrez de nouvelles capacités ki en gagnant des niveaux de moine.\n\nLorsque vous dépensez un point ki, il n'est plus disponible jusqu'à ce que vous finissiez un repos court ou long, à la fin desquels vous récupérez tous les points ki utilisés. Vous devez passer au moins 30 minutes de votre repos à méditer pour pouvoir regagner vos points ki. Plusieurs de vos capacités ki nécessitent que votre cible effectue un jet de sauvegarde pour résister à leurs effets. Le DD du jet de sauvegarde est calculé ainsi :\n\nDD du jet de sauvegarde du ki = 8 + votre bonus de maîtrise + votre modificateur de Sagesse"
+    },
+    "f5457dd8dfd112b1-88bc9cef-49716e4-916d3e8-051b537b7c68e551fc82d2e": {
+      "miscellaneousDescription": "Tradition monastique de la Voie céleste\nInspiré de la voie du dragon ascendant des Trésors des dragons de Fizban\nL'enseignement fondamental de cette tradition soutient qu’un moine devient un canal entre le monde et les cieux. En modifiant leur esprit pour résonner avec la puissance céleste, les moines qui suivent cette tradition augmentent leurs prouesses au combat, renforcent leurs alliés et peuvent même voler dans les airs sur des ailes spirituelles. Mais tout ce pouvoir est au service d'un objectif plus grand : réaliser une unité spirituelle avec l'essence du plan matériel.\nEn tant que partisan de cette tradition monastique, vous décidez comment vous avez débloqué le pouvoir céleste grâce à votre ki. La table ci-dessous offre certaines possibilités. \nOrigine \nD6 Origine\n1\tXuriel a personnellement joué un rôle actif dans la formation de votre énergie intérieure.\n2\tVous avez étudié dans un monastère les enseignements et l’histoire de Xuriel.\n3\tVous avez passé de longues périodes à méditer sur Xuriel, absorbant sa magie ambiante.\n4\tVous avez trouvé un parchemin écrit en céleste qui contenait de nouvelles techniques inspirantes.\n5\tAprès un rêve prémonitoire avec Xuriel, vous vous êtes réveillé avec un ki modifié.\n6\tRejoué\nDisciple céleste\nAu niveau 3, vous pouvez canaliser le pouvoir céleste pour amplifier votre présence et imprégner vos frappes à mains nues de l'essence céleste. Vous bénéficiez des avantages suivants :\nPrésence céleste. Si vous échouez à un test de Charisme (Intimidation) ou de Charisme (Persuasion), vous pouvez utiliser votre réaction pour relancer le test, tout en puisant dans la puissance céleste. Une fois que cette fonctionnalité transforme un échec en succès, vous ne pouvez plus l'utiliser avant d'avoir terminé un repos long.\nFrappe céleste. Lorsque vous infligez des dégâts à une cible avec un coup à mains nues, vous pouvez changer le type de dégâts en radiant.\nLanguemère. Vous apprenez à parler, lire et écrire la Languemère (la langue des anges, des diables et des démons) ou une autre langue de votre choix.\nRayon céleste\nAu niveau 3, vous pouvez canaliser des vagues d'énergie destructrices, comme celles créées par les créatures célestes. Lorsque vous effectuez l'action Attaquer à votre tour, vous pouvez remplacer l'une des attaques par un rayon d’énergie radiante dans un cône de 20’ ou une ligne de 30’ et 5’ de large (au choix). Chaque créature dans cette zone doit effectuer un jet de sauvegarde de Dextérité contre votre DD de sauvegarde de ki, subissant des dégâts radiants équivalent à deux jets de votre dé d'arts martiaux en cas d'échec, ou la moitié de ces dégâts en cas de réussite.\nAu niveau 11, les dégâts de cette capacité passent à trois jets de votre dé d'arts martiaux.\nVous pouvez utiliser cette capacité un nombre de fois égal à votre bonus de compétence, et vous récupérez toutes les utilisations dépensées lorsque vous terminez un repos long. Tant que vous n'avez aucune utilisation disponible, vous pouvez dépenser 2 points ki pour utiliser à nouveau cette fonctionnalité.\nAiles spirituelles\nAu niveau 6, lorsque vous utilisez votre Déplacement aérien, vous pouvez déployer des ailes spectrales depuis votre dos qui disparaissent à la fin de votre tour. Tant que les ailes existent, vous avez une vitesse de vol égale à votre vitesse de marche.\nVous pouvez utiliser cette capacité un nombre de fois égal à votre bonus de compétence, et vous récupérez toutes les utilisations dépensées lorsque vous terminez un repos long.\nAspect céleste\nAu niveau 11, la puissance céleste rayonne désormais de vous, protégeant vos alliés ou inspirant la peur à vos ennemis. Par une action bonus, vous pouvez créer une aura de puissance céleste qui irradie à 10’ de vous pendant 1 minute. Pendant la durée, vous gagnez l'un des effets suivants de votre choix :\nPrésence divine rédemptrice. Lorsque vous créez cette aura, et en tant qu'action bonus lors des tours suivants, vous pouvez choisir une créature dans l'aura. La cible doit réussir un jet de sauvegarde de Sagesse contre votre DD de sauvegarde de ki ou avoir peur de vous pendant 1 minute. La cible peut répéter le jet de sauvegarde à la fin de chacun de ses tours, mettant fin à l'effet sur elle-même en cas de sauvegarde réussie.\nRésistance. Vous et vos alliés dans l'aura avez une résistance aux dégâts nécrotiques.\nUne fois que vous avez créé cette aura, vous ne pouvez pas la recréer tant que vous n'avez pas terminé un repos long, à moins que vous ne dépensiez 3 points de ki pour la recréer.\nAspect divin\nAu niveau 17, votre esprit céleste atteint son apogée. Vous bénéficiez des avantages suivants :\nAugmenter le rayon. Lorsque vous utilisez votre rayon céleste, vous pouvez dépenser 1 point de ki pour augmenter sa forme et sa puissance. La création d'énergie céleste devient soit un cône de 60’, soit une ligne de 90’ et de 5’ de large (au choix), et chaque créature dans cette zone subit des dégâts égaux à quatre lancers de votre dé d'arts martiaux en cas d'échec de sauvegarde, ou moitié moins de dégâts en cas de réussite.\nVision de l’aveugle (blindsight). Vous gagnez la vision de l’aveugle jusqu'à 10 pieds. Dans cette plage, vous pouvez voir efficacement tout ce qui n'est pas à couvert, même si vous êtes aveuglé ou dans l'obscurité. De plus, vous pouvez voir une créature invisible dans cette plage, à moins que la créature ne réussisse à se cacher de vous.\nFurie explosive. Lorsque vous activez votre aspect céleste, une fureur céleste explose de vous. Choisissez n'importe quel nombre de créatures que vous pouvez voir dans votre aura. Chacune de ces créatures doit réussir un jet de sauvegarde de Dextérité contre votre DD de sauvegarde de ki ou subir 3d10 dégâts radiants.\n\nSource et traduction libre de http://dnd5e.wikidot.com/monk:ascendant-dragon \n"
+    }
+  }
 }
