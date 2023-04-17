@@ -125,18 +125,21 @@ countdownTimer();
 
 // Call the saveToLocalStorage function every 10 seconds
 setInterval(saveToLocalStorage, 10000);
+
 */
 
 
-// Affiche l'année courante dans le footer
-window.onload = function() {
+window.addEventListener('load', function() {
+  populateRaceDropdown();
+
   // get current year
   const currentYear = new Date().getFullYear();
 
   // update footer content with current year
   const footerContent = document.getElementById('footerContent');
   footerContent.innerHTML = `<p>©${currentYear} · Gaétan Lanthier · Conçu avec chat-GPT · Utilisation à vos risques · Vous aimez? 💰 bc1qay734rj64dgf585zanp84tt64akkjz3dwcx73c 🔒</p>`;
-}
+});
+
 
 //----------- ONGLETS -----------//
                      
@@ -1294,9 +1297,6 @@ function populateRaceDropdown() {
 }
 
 
-window.onload = function() {
-  populateRaceDropdown();
-};
 
 
 //----------- BONUS DE MAITRISE -----------//
