@@ -1,11 +1,13 @@
 fondor road map
+
 - v1
+    - Saisir Perrin : Attributs (25), équipements (17), argent (2)
+    - ajouts
+        - text area : toggle popup full-screen
+        - money qty / pc,pa,pe,po, licorne, const GoldPieceConverter  totalMoneyValue = sum(qty*GPC) (en po),
+        - trésor  totalTreasureValue = sum(qty*value) (en po)
+        - equipment  totalWeight= sum(qty*weight) + money (?)
     - custom-lists
-        - features DOM SOR nom, source, type source, descr
-        - equipement DOM SOR qté nom , origine? poids container?	total poid DOM SOR 
-        - money list fixe qty / pc,pa,pe,po, licorne, convertisseur pour total, trésor DOM SOR nom, quantity, valeur en po total
-        - language: DOM SOR	nom (select const data ),  P , E, L
-        - OM SOR nom
         - spells niveaux 1 a 9 sélection par character class, jet de base, custom-list, mini-fiche DOM SOR, option : apply class restriction or not (to load list)
         - feats custom-list mini-fiche DOM SOR
 - v2

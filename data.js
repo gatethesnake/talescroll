@@ -96,6 +96,20 @@
     "Impurs"
   ];
   
+  const worldLanguage = [
+    {id: "elanais", nom: "Élanais"},
+    {id: "arcane", nom: "Arcane"},
+    {id: "sylvestre", nom: "Sylvestre"},
+    {id: "montagnais", nom: "Montagnais"},
+    {id: "thorois", nom: "Thorois"},
+    {id: "anaureen", nom: "Anauréen"},
+    {id: "orque", nom: "Orque"},
+    {id: "geant", nom: "Géant"},
+    {id: "faune", nom: "Faune"},
+    {id: "languemere", nom: "Languemère"},
+    {id: "element", nom: "Élément"}
+  ];
+  
 
   const classesHitDice = [
     { name: 'Barbare', hitDice: 'd12' },

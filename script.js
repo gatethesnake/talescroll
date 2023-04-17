@@ -495,6 +495,77 @@ resourceUUIDs.forEach((uuid) => {
 });
 
 
+/// Save featureInfo 
+function getFeatureInfoByUUID(uuid) {
+  return {
+    featureName: document.getElementById(`featureName-${uuid}`).value || " ",
+	featureSource: document.getElementById(`featureSource-${uuid}`).value || " ",
+	featureType: document.getElementById(`featureType-${uuid}`).value || " ",
+	featureDescription: document.getElementById(`featureDescription-${uuid}`).value || " "
+    
+  };
+}
+featureUUIDs.forEach((uuid) => {
+  characterData.featureInfo[uuid] = getFeatureInfoByUUID(uuid);
+});
+
+
+/// Save equipmentInfo 
+function getEquipmentInfoByUUID(uuid) {
+  return {
+    equipmentName: document.getElementById(`equipmentName-${uuid}`).value || " ",
+    equipmentQuantity: document.getElementById(`equipmentQuantity-${uuid}`).value || "0",
+    equipmentWeight: document.getElementById(`equipmentWeight-${uuid}`).value || "0",
+    equipmentActive: document.getElementById(`equipmentActive-${uuid}`)?.checked || false,
+	equipmentOrigin: document.getElementById(`equipmentOrigin-${uuid}`).value || " ",
+
+  };
+}
+equipmentUUIDs.forEach((uuid) => {
+  characterData.equipmentInfo[uuid] = getEquipmentInfoByUUID(uuid);
+});
+
+
+/// Save treasureInfo 
+function getTreasureInfoByUUID(uuid) {
+  return {
+    treasureName: document.getElementById(`treasureName-${uuid}`).value || " ",
+    treasureQuantity: document.getElementById(`treasureQuantity-${uuid}`).value || "0",
+    treasureValue: document.getElementById(`treasureValue-${uuid}`).value || "0",
+	treasureOrigin: document.getElementById(`treasureOrigin-${uuid}`).value || " "
+  };
+}
+treasureUUIDs.forEach((uuid) => {
+  characterData.treasureInfo[uuid] = getTreasureInfoByUUID(uuid);
+});
+
+/// Save languageInfo 
+function getLanguageInfoByUUID(uuid) {
+  
+  return {
+    languageName: document.getElementById(`languageName-${uuid}`).value || " ",
+    languageSpoken: document.getElementById(`languageSpoken-${uuid}`)?.checked || false,
+	  languageWritten: document.getElementById(`languageWritten-${uuid}`)?.checked || false
+  };
+}
+
+languageUUIDs.forEach((uuid) => {
+  characterData.languageInfo[uuid] = getLanguageInfoByUUID(uuid);
+});
+
+
+
+/// Save miscellaneousInfo 
+function getMiscellaneousInfoByUUID(uuid) {
+  return {
+    miscellaneousDescription: document.getElementById(`miscellaneousDescription-${uuid}`).value || " "    
+  };
+}
+miscellaneousUUIDs.forEach((uuid) => {
+  characterData.miscellaneousInfo[uuid] = getMiscellaneousInfoByUUID(uuid);
+});
+
+
 // Saving to file or to localstorage
 
   const jsonCharacterData = JSON.stringify(characterData, null, 2);
@@ -714,6 +785,140 @@ function openCharacter(loadFrom) {
     generateAllResourceSections(resourceInfo);
     loadAllResourceInfo(resourceInfo);
 
+   
+    // Load feature info
+    function loadFeatureInfo(feature, uuid) {
+      document.getElementById(`featureName-${uuid}`).value = feature.featureName;
+      document.getElementById(`featureSource-${uuid}`).value = feature.featureSource;
+      document.getElementById(`featureType-${uuid}`).value = feature.featureType;
+      document.getElementById(`featureDescription-${uuid}`).value = feature.featureDescription;
+    }
+
+    function generateAllFeatureSections(featureInfo) {
+      Object.keys(featureInfo).forEach((uuid) => {
+        generateFeatureSection(uuid);
+      });
+    }
+
+    function loadAllFeatureInfo(featureInfo) {
+      Object.keys(featureInfo).forEach((uuid) => {
+        const feature = featureInfo[uuid];
+        loadFeatureInfo(feature, uuid);
+      });
+    }
+
+
+        removeAllFeatures();
+        generateAllFeatureSections(featureInfo);
+        loadAllFeatureInfo(featureInfo);
+
+
+  // load equipment info
+
+
+    function loadEquipmentInfo(equipment, uuid) {
+      document.getElementById(`equipmentName-${uuid}`).value = equipment.equipmentName;
+      document.getElementById(`equipmentQuantity-${uuid}`).value = equipment.equipmentQuantity;
+      document.getElementById(`equipmentWeight-${uuid}`).value = equipment.equipmentWeight;
+      document.getElementById(`equipmentActive-${uuid}`).checked = equipment.equipmentActive;
+      document.getElementById(`equipmentOrigin-${uuid}`).value = equipment.equipmentOrigin;
+    }
+
+    function generateAllEquipmentSections(equipmentInfo) {
+      Object.keys(equipmentInfo).forEach((uuid) => {
+        generateEquipmentSection(uuid);
+      });
+    }
+
+    function loadAllEquipmentInfo(equipmentInfo) {
+      Object.keys(equipmentInfo).forEach((uuid) => {
+        const equipment = equipmentInfo[uuid];
+        loadEquipmentInfo(equipment, uuid);
+      });
+    }
+
+
+        removeAllEquipments();
+        generateAllEquipmentSections(equipmentInfo);
+        loadAllEquipmentInfo(equipmentInfo);
+
+
+    // Load treasure info
+    function loadTreasureInfo(treasure, uuid) {
+      document.getElementById(`treasureName-${uuid}`).value = treasure.treasureName;
+      document.getElementById(`treasureQuantity-${uuid}`).value = treasure.treasureQuantity;
+      document.getElementById(`treasureValue-${uuid}`).value = treasure.treasureValue;
+      document.getElementById(`treasureOrigin-${uuid}`).value = treasure.treasureOrigin;
+    }
+
+    function generateAllTreasureSections(treasureInfo) {
+      Object.keys(treasureInfo).forEach((uuid) => {
+        generateTreasureSection(uuid);
+      });
+    }
+
+    function loadAllTreasureInfo(treasureInfo) {
+      Object.keys(treasureInfo).forEach((uuid) => {
+        const treasure = treasureInfo[uuid];
+        loadTreasureInfo(treasure, uuid);
+      });
+    }
+
+        removeAllTreasures();
+        generateAllTreasureSections(treasureInfo);
+        loadAllTreasureInfo(treasureInfo);
+
+
+    // Load language info
+    function loadLanguageInfo(language, uuid) {
+      document.getElementById(`languageName-${uuid}`).value = language.languageName;
+      document.getElementById(`languageSpoken-${uuid}`).checked = language.languageSpoken;
+      document.getElementById(`languageWritten-${uuid}`).checked = language.languageWritten;
+    }
+
+    function generateAllLanguageSections(languageInfo) {
+      Object.keys(languageInfo).forEach((uuid) => {
+        generateLanguageSection(uuid);
+      });
+    }
+
+    function loadAllLanguageInfo(languageInfo) {
+      Object.keys(languageInfo).forEach((uuid) => {
+        const language = languageInfo[uuid];
+        loadLanguageInfo(language, uuid);
+      });
+    }
+
+    
+        removeAllLanguages();
+        generateAllLanguageSections(languageInfo);
+        loadAllLanguageInfo(languageInfo);
+    
+
+    // Load miscellaneous info
+    function loadMiscellaneousInfo(miscellaneous, uuid) {
+      document.getElementById(`miscellaneousDescription-${uuid}`).value = miscellaneous.miscellaneousDescription;
+    }
+
+    function generateAllMiscellaneousSections(miscellaneousInfo) {
+      Object.keys(miscellaneousInfo).forEach((uuid) => {
+        generateMiscellaneousSection(uuid);
+      });
+    }
+
+    function loadAllMiscellaneousInfo(miscellaneousInfo) {
+      Object.keys(miscellaneousInfo).forEach((uuid) => {
+        const miscellaneous = miscellaneousInfo[uuid];
+        loadMiscellaneousInfo(miscellaneous, uuid);
+      });
+    }
+
+    
+        removeAllMiscellaneous();
+        generateAllMiscellaneousSections(miscellaneousInfo);
+        loadAllMiscellaneousInfo(miscellaneousInfo);
+    
+
 // update and ajust all dependent fields
     updateDependentElements();
 } 
@@ -844,14 +1049,15 @@ for (const status in statusIcons) {
   document.getElementById("customShieldName2").value = " ",
   document.getElementById("customShieldClassValue2").value = "0"
 
- ///reset  attackInfo
+ ///reset  all Info
 
  removeAllAttacks();
-  
- ///reset  resourceInfo
-
  removeAllResources();
-
+ removeAllFeatures();
+ removeAllEquipments();
+ removeAllTreasures();
+ removeAllLanguages();
+ removeAllMiscellaneous();
 
 
 updateDependentElements();
@@ -2319,7 +2525,7 @@ function generateUUID() {
     const v = c === 'x' ? r : (r & 0x3 | 0x8);
     return v.toString(16);
   });
-}
+};
 
 let attackUUIDs = [];
 
@@ -2334,7 +2540,7 @@ function generateAttackSection(optionalUUID) {
   attackContainer.appendChild(attackSection);
   
   createAttackSubsection(attackUUID);
-}
+};
 
 function getAttackSectionHTML(attackUUID) {
   const attackAndDamageSection = `
@@ -2544,7 +2750,7 @@ function adjustAttack(uuid) {
 
   attackValueElement.value = attackAdjustment >= 0 ? '+' + attackAdjustment : attackAdjustment;
   damageElement.value = damageDice + (damageAdjustment > 0 ? ' + ' + damageAdjustment : (damageAdjustment < 0 ? ' ' + damageAdjustment : ''));
-}
+};
 
 function setupUUIDListeners(uuid) {
   const elementsToWatchWithUUID = [
@@ -2611,7 +2817,7 @@ function rollAttack(attackName, attackBonus) {
   // Show the toast
   showToast(toastMessage);
   //showToast(`talespire://dice/${command}`);
-}
+};
 
 function rollDamage(attackName, damageType, damage) {
   let commandBonus = '';
@@ -2725,8 +2931,7 @@ function getResourceSectionHTML(resourceUUID) {
 `;
 
   return resourceSection;
-}
-
+};
 
 function removeResource(resourceUUID) {
   const resourceSection = document.getElementById(`resourceSubsection-${resourceUUID}`);
@@ -2744,28 +2949,14 @@ function removeAllResources() {
   resourceUUIDsCopy.forEach(uuid => {
     removeResource(uuid);
   });
-}
-
-
-function adjustResource(resourceUUID) {
-  //court ou long repos plus tard
-  };
-  
-  function adjustAllResources() {
-    if (resourceUUIDs && resourceUUIDs.length > 0) {
-      resourceUUIDs.forEach((uuid) => {
-        adjustResource(uuid);
-      });
-    }
-  };
-  
+};
 
 //----------- ATTRIBUTS (CAPACITÉs, features) -----------//
 
 let featureUUIDs = [];
 
-function generateFeatureSection() {
-  const featureUUID  = generateUUID(); 
+function generateFeatureSection(optionalUUID) {
+  const featureUUID = optionalUUID || generateUUID(); // Use the optionalUUID if provided, otherwise generate a new UUID
   featureUUIDs.push(featureUUID); 
 
   const featureSection = document.createElement('div');
@@ -2776,22 +2967,39 @@ function generateFeatureSection() {
 };
 
 function getFeatureSectionHTML(featureUUID) {
-//nom, total num , actuel num , sr check ou lr check
-const featureSection = `
+  const featureSection = `
 <div id="featureSubsection-${featureUUID}" class="subsection">
-  ${featureUUID}
   <button id="removeFeature" class="remove-button" onclick="removeFeature('${featureUUID}')"><span class="iconify" data-icon="mdi:trash-can-outline"></span></button>
+  
+  <div class="container">
+    <div class="input-group">
+      <label for="featureName-${featureUUID}">Nom</label>
+      <input type="text" id="featureName-${featureUUID}" class="input-text" value="">
+    </div>
+    <div class="input-group">
+      <label for="featureSource-${featureUUID}">Source</label>
+      <input type="text" id="featureSource-${featureUUID}" class="input-text" value="">
+    </div>
+    <div class="input-group">
+      <label for="featureType-${featureUUID}">Type</label>
+      <input type="text" id="featureType-${featureUUID}" class="input-text" value="">
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="input-group">
+      <div class="textarea-container">
+        <label for="featureDescription-${featureUUID}">Description</label>
+        <textarea id="featureDescription-${featureUUID}" class="input-textarea" rows="4"></textarea>
+      </div>
+    </div>
+  </div>
 </div>
 `;
-return featureSection;
 
-//rule checks
-
+  return featureSection;
 };
 
-function adjustFeature(featureUUID) {
-//court ou long repos
-};
 
 function removeFeature(featureUUID) {
   const featureSection = document.getElementById(`featureSubsection-${featureUUID}`);
@@ -2800,12 +3008,19 @@ function removeFeature(featureUUID) {
   featureUUIDs = featureUUIDs.filter(uuid => uuid !== featureUUID);
 };
 
+function removeAllFeatures() {
+  const featureUUIDsCopy = [...featureUUIDs];
+  featureUUIDsCopy.forEach(uuid => {
+    removeFeature(uuid);
+  });
+};
+
 //-----------EQUIPEMENT -----------//
 
 let equipmentUUIDs = [];
 
-function generateEquipmentSection() {
-  const equipmentUUID  = generateUUID(); 
+function generateEquipmentSection(optionalUUID) {
+  const equipmentUUID = optionalUUID || generateUUID(); // Use the optionalUUID if provided, otherwise generate a new UUID
   equipmentUUIDs.push(equipmentUUID); 
   const equipmentSection = document.createElement('div');
   equipmentSection.innerHTML = getEquipmentSectionHTML(equipmentUUID);
@@ -2815,21 +3030,40 @@ function generateEquipmentSection() {
 };
 
 function getEquipmentSectionHTML(equipmentUUID) {
-//nom, total num , actuel num , sr check ou lr check
-const equipmentSection = `
+  const equipmentSection = `
 <div id="equipmentSubsection-${equipmentUUID}" class="subsection">
-  ${equipmentUUID}
   <button id="removeEquipment" class="remove-button" onclick="removeEquipment('${equipmentUUID}')"><span class="iconify" data-icon="mdi:trash-can-outline"></span></button>
+  
+  <div class="container">
+    <div class="input-group">
+      <label for="equipmentName-${equipmentUUID}">Nom</label>
+      <input type="text" id="equipmentName-${equipmentUUID}" class="input-text" value="">
+    </div>
+    <div class="input-group">
+      <label for="equipmentQuantity-${equipmentUUID}">Quantité</label>
+      <input type="number" id="equipmentQuantity-${equipmentUUID}" class="input-text" value="0" min="0">
+    </div>
+    <div class="input-group">
+      <label for="equipmentWeight-${equipmentUUID}">Poids</label>
+      <input type="number" id="equipmentWeight-${equipmentUUID}" class="input-text" value="0" min="0">
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="input-group">
+      <label for="equipmentOrigin-${equipmentUUID}">Origine</label>
+      <input type="text" id="equipmentOrigin-${equipmentUUID}" class="input-text" value="">
+    </div>
+    <div class="toggle">
+      <input type="checkbox" id="equipmentActive-${equipmentUUID}" class="toggle-checkbox">
+      <label class="toggle-switch" for="equipmentActive-${equipmentUUID}"></label>
+      <label class="toggle-label" for="equipmentActive-${equipmentUUID}">Actif</label>
+    </div>
+  </div>
 </div>
 `;
-return equipmentSection;
 
-//rule checks
-
-};
-
-function adjustEquipment(equipmentUUID) {
-//court ou long repos
+  return equipmentSection;
 };
 
 function removeEquipment(equipmentUUID) {
@@ -2839,12 +3073,19 @@ function removeEquipment(equipmentUUID) {
   equipmentUUIDs = equipmentUUIDs.filter(uuid => uuid !== equipmentUUID);
 };
 
+function removeAllEquipments() {
+  const equipmentUUIDsCopy = [...equipmentUUIDs];
+  equipmentUUIDsCopy.forEach(uuid => {
+    removeEquipment(uuid);
+  });
+};
+
 //----------- TRESORS -----------//
 
 let treasureUUIDs = [];
 
-function generateTreasureSection() {
-  const treasureUUID  = generateUUID(); 
+function generateTreasureSection(optionalUUID) {
+  const treasureUUID = optionalUUID || generateUUID(); // Use the optionalUUID if provided, otherwise generate a new UUID
   treasureUUIDs.push(treasureUUID); 
 
   const treasureSection = document.createElement('div');
@@ -2855,21 +3096,35 @@ function generateTreasureSection() {
 };
 
 function getTreasureSectionHTML(treasureUUID) {
-//nom, total num , actuel num , sr check ou lr check
-const treasureSection = `
+  const treasureSection = `
 <div id="treasureSubsection-${treasureUUID}" class="subsection">
-  ${treasureUUID}
   <button id="removeTreasure" class="remove-button" onclick="removeTreasure('${treasureUUID}')"><span class="iconify" data-icon="mdi:trash-can-outline"></span></button>
+  
+  <div class="container">
+    <div class="input-group">
+      <label for="treasureName-${treasureUUID}">Nom</label>
+      <input type="text" id="treasureName-${treasureUUID}" class="input-text" value="">
+    </div>
+    <div class="input-group">
+      <label for="treasureQuantity-${treasureUUID}">Quantité</label>
+      <input type="number" id="treasureQuantity-${treasureUUID}" class="input-text" value="0" min="0">
+    </div>
+    <div class="input-group">
+      <label for="treasureValue-${treasureUUID}">Valeur</label>
+      <input type="number" id="treasureValue-${treasureUUID}" class="input-text" value="0" min="0">
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="input-group">
+      <label for="treasureOrigin-${treasureUUID}">Origine</label>
+      <input type="text" id="treasureOrigin-${treasureUUID}" class="input-text" value="">
+    </div>
+  </div>
 </div>
 `;
-return treasureSection;
 
-//rule checks
-
-};
-
-function adjustTreasure(treasureUUID) {
-//court ou long repos
+  return treasureSection;
 };
 
 function removeTreasure(treasureUUID) {
@@ -2879,12 +3134,19 @@ function removeTreasure(treasureUUID) {
   treasureUUIDs = treasureUUIDs.filter(uuid => uuid !== treasureUUID);
 };
 
+function removeAllTreasures() {
+  const treasureUUIDsCopy = [...treasureUUIDs];
+  treasureUUIDsCopy.forEach(uuid => {
+    removeTreasure(uuid);
+  });
+};
+
 //----------- LANGUE -----------//
 
 let languageUUIDs = [];
 
-function generateLanguageSection() {
-  const languageUUID  = generateUUID(); 
+function generateLanguageSection(optionalUUID) {
+  const languageUUID = optionalUUID || generateUUID(); // Use the optionalUUID if provided, otherwise generate a new UUID
   languageUUIDs.push(languageUUID); 
 
   const languageSection = document.createElement('div');
@@ -2895,22 +3157,53 @@ function generateLanguageSection() {
 };
 
 function getLanguageSectionHTML(languageUUID) {
-//nom, total num , actuel num , sr check ou lr check
-const languageSection = `
+  const languageSection = `
 <div id="languageSubsection-${languageUUID}" class="subsection">
-  ${languageUUID}
   <button id="removeLanguage" class="remove-button" onclick="removeLanguage('${languageUUID}')"><span class="iconify" data-icon="mdi:trash-can-outline"></span></button>
+  
+  <div class="container">
+    <div class="input-group">
+      <label for="languageName-${languageUUID}">Nom</label>
+      <select id="languageName-${languageUUID}" class="input-text">
+        <option value="">Choisir</option>
+        <option value="elanais">Élanais</option>
+        <option value="arcane">Arcane</option>
+        <option value="sylvestre">Sylvestre</option>
+        <option value="montagnais">Montagnais</option>
+        <option value="thorois">Thorois</option>
+        <option value="anaureen">Anauréen</option>
+        <option value="orque">Orque</option>
+        <option value="geant">Géant</option>
+        <option value="faune">Faune</option>
+        <option value="languemere">Languemère</option>
+        <option value="element">Élément</option>
+      </select>
+    </div>
+  </div>
+  
+  <div class="wrapper">
+    <div class="toggle-group">
+      <div class="toggle">
+        <div class="wrapper">
+          <input type="checkbox" id="languageSpoken-${languageUUID}" class="toggle-checkbox">
+          <label class="toggle-switch" for="languageSpoken-${languageUUID}"></label>
+          <label class="toggle-label" for="languageSpoken-${languageUUID}">Parlé</label>
+        </div>
+      </div>
+      <div class="toggle">
+        <div class="wrapper">
+          <input type="checkbox" id="languageWritten-${languageUUID}" class="toggle-checkbox">
+          <label class="toggle-switch" for="languageWritten-${languageUUID}"></label>
+          <label class="toggle-label" for="languageWritten-${languageUUID}">Écrit</label>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 `;
-return languageSection;
 
-//rule checks
-
-};
-
-function adjustLanguage(languageUUID) {
-//court ou long repos
-};
+  return languageSection;
+}
 
 function removeLanguage(languageUUID) {
   const languageSection = document.getElementById(`languageSubsection-${languageUUID}`);
@@ -2919,12 +3212,19 @@ function removeLanguage(languageUUID) {
   languageUUIDs = languageUUIDs.filter(uuid => uuid !== languageUUID);
 };
 
+function removeAllLanguages() {
+  const languageUUIDsCopy = [...languageUUIDs];
+  languageUUIDsCopy.forEach(uuid => {
+    removeLanguage(uuid);
+  });
+};
+
 //----------- NOTES DIVERSES -----------//
 
 let miscellaneousUUIDs = [];
 
-function generateMiscellaneousSection() {
-  const miscellaneousUUID  = generateUUID(); 
+function generateMiscellaneousSection(optionalUUID) {
+  const miscellaneousUUID = optionalUUID || generateUUID(); // Use the optionalUUID if provided, otherwise generate a new UUID
   miscellaneousUUIDs.push(miscellaneousUUID); 
 
   const miscellaneousSection = document.createElement('div');
@@ -2935,22 +3235,22 @@ function generateMiscellaneousSection() {
 };
 
 function getMiscellaneousSectionHTML(miscellaneousUUID) {
-//nom, total num , actuel num , sr check ou lr check
-const miscellaneousSection = `
+  const miscellaneousSection = `
 <div id="miscellaneousSubsection-${miscellaneousUUID}" class="subsection">
-  ${miscellaneousUUID}
   <button id="removeMiscellaneous" class="remove-button" onclick="removeMiscellaneous('${miscellaneousUUID}')"><span class="iconify" data-icon="mdi:trash-can-outline"></span></button>
+  
+  <div class="container">
+    <div class="input-group">
+      <label for="miscellaneousDescription-${miscellaneousUUID}">Description</label>
+      <textarea id="miscellaneousDescription-${miscellaneousUUID}" class="input-textarea" rows="4" style="resize: vertical;"></textarea>
+    </div>
+  </div>
 </div>
 `;
-return miscellaneousSection;
 
-//rule checks
-
+  return miscellaneousSection;
 };
 
-function adjustMiscellaneous(miscellaneousUUID) {
-//court ou long repos
-};
 
 function removeMiscellaneous(miscellaneousUUID) {
   const miscellaneousSection = document.getElementById(`miscellaneousSubsection-${miscellaneousUUID}`);
@@ -2959,7 +3259,12 @@ function removeMiscellaneous(miscellaneousUUID) {
   miscellaneousUUIDs = miscellaneousUUIDs.filter(uuid => uuid !== miscellaneousUUID);
 };
 
-
+function removeAllMiscellaneous() {
+  const miscellaneousUUIDsCopy = [...miscellaneousUUIDs];
+  miscellaneousUUIDsCopy.forEach(uuid => {
+    removeMiscellaneous(uuid);
+  });
+};
 
 
 

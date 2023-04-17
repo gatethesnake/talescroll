@@ -607,6 +607,7 @@ p {
 	margin: 5px;
 	padding: 5px;
 	flex: 1;
+	
 
   }
 
@@ -623,6 +624,9 @@ p {
 	position: relative;
   }
 
+
+  
+
   .subsection2 {
 	flex-grow: 1;
 	display: flex;
@@ -632,6 +636,10 @@ p {
 	box-sizing: border-box;
   }
   
+  .flex-start-behavior {
+	align-items: flex-start;
+  }
+
   .input-select,
   .input-text {
 	font-size: 14px;
@@ -1252,7 +1260,6 @@ p {
 
   .container {
 	display: flex;
-	align-items:baseline !important;
 	gap: 8px;
   }
 	
@@ -1265,7 +1272,6 @@ p {
   .wrapper {
 	display: flex;
 	flex-direction: column;
-	align-items:baseline !important;
   }
   
   .attack-name-wrapper {
@@ -1443,3 +1449,4 @@ body {
 	display: flex;
 	gap: 8px;
   }
+
