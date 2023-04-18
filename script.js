@@ -3,12 +3,14 @@
 //document.getElementById("diceGeneratorTab").click();
 document.getElementById("characterSheetTab").click();
 
+document.getElementById("sheetTabName").click();
+//document.getElementById("actionTabName").click()
 //document.getElementById("spellTabName").click();
-//document.getElementById("sheetTabName").click();
-document.getElementById("equipmentTabName").click();
-//document.getElementById("actionTabName").click();
 
-const splashLength = 0;
+//document.getElementById("equipmentTabName").click();
+;
+
+const splashLength = 3000;
 
 //------------------------- OUVERTURE -------------------------//
 // Prévenir la cache du css
@@ -574,7 +576,7 @@ function saveCharacter(saveTo) {
   // Save money values ********************
   for (const currencyKey of Object.keys(fondorCurrencies)) {
     const input = document.getElementById(`money-${currencyKey}`);
-    characterData.savedMoney[currencyKey] = parseInt(input.value, 10);
+    characterData.moneyInfo[currencyKey] = parseInt(input.value, 10);
   }
 
   // Saving to file or to localstorage
