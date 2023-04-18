@@ -1,27 +1,35 @@
 Fondor road map
 - v1
+    - extract data from select
+        - line: 362 hitdicetype
+        - line: 445 ability
+        - line: 457 ability
+        - line: 646 character class
+        - line: 676 religion 
+        - line: 705 background
+    -   finaliser Argent en cour:
+        - total trésor et grand total sur meme ligne
+        - calcul trésor
+        - calcul grand total?
+        - ajout/supprime/edit trésor
+        - save 
+        - open
     - Perrin : +Attributs (25), +équipements (17), +argent (2)+trésors
     - ajouts
-        2 - text area : popup full-screen
-        1 - money qty / pc,pa,pe,po, licorne, const GoldPieceConverter  totalMoneyValue = sum(qty*GPC) (en po),
-        1 - trésor  totalTreasureValue = sum(qty*value) (en po)
         1 - equipment  totalWeight= sum(qty*weight) + money (?)
         2 - short or long rest Reset.
-
     - custom-lists
         4 - feats custom-list mini-fiche DOM SOR
         6 - spells niveaux 1 a 9 sélection par character class, jet de base, custom-list, mini-fiche DOM SOR, option : apply class restriction or not (to load list)
+    - dnd5e
+        4 - multi-class
+    - ui-ux 
+        - image pour icone "ios" 
 - v2
     - ui-ux 
-        4 - localStorge : on every change + multiple name
+        4 - localStorge : on every change + multiple names
         2 - image S O R, resize 128X128 png ou jpg base64
         9 - 3D : d4 à d20, d2,d3, d100 !?
         9 - arrête un dé sur la bonne face
         4 - Option Roll  >talespire >on screen
-        9 - stl 
-    - dnd5e
-        4 - multi-class
-        4 - états de fatique (règles VdF)
-        9 - états : adapté chaque règles 
-        9 - database des weapons? ajustement des attaques
-        9 - database des équipement?
+    

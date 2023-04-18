@@ -1,792 +1,876 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta property="og:image" content="img/val-de-fondor-bg.jpg" />
-		<meta charset="UTF-8">
-		<title>Val de Fondor</title>
-		<link rel="shortcut icon" href="img/favicon.ico">
-		<link rel="stylesheet" href="styles.css">
-		<link href="https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap" rel="stylesheet">
-		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto&display=swap">
-		<script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r124/three.min.js"></script>
-		<script src="data.js"></script>
-		<script src="script.js" defer></script>
-	</head>
-	<body>
-		<div id="site-full">
-			<div id="diceContainerSplash">
+
+<head>
+	<meta property="og:image" content="img/val-de-fondor-bg.jpg" />
+	<meta charset="UTF-8">
+	<title>Val de Fondor</title>
+	<link rel="shortcut icon" href="img/favicon.ico">
+	<link rel="stylesheet" href="styles.css">
+	<link href="https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto&display=swap">
+	<script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r124/three.min.js"></script>
+	<script src="data.js"></script>
+	<script src="script.js" defer></script>
+</head>
+
+<body>
+	<div id="site-full">
+		<div id="diceContainerSplash">
+		</div>
+	</div>
+	<div id="site-top">
+		<div id="header">
+			<div class="imageContainer">
+				<img src="img/val-de-fondor.png" alt="Val de Fondor logo" id="logo" onclick="showSTL()">
+				<div class="circle">
+				</div>
+			</div>
+			<div id="stlContainer"></div>
+			<div id="menu">
+				<span class="iconify" data-icon="game-icons:hamburger-menu"></span>
+				<div id="menu-content" class="menu-content">
+					<div class="menu-item">
+						<span>Ouvrir</span>
+						<div class="submenu">
+							<div onclick="openCharacter('loadFromDisk')">
+								disque dur
+							</div>
+							<div onclick="openCharacter('loadFromLocalStorage')">
+								storage interne
+							</div>
+						</div>
+					</div>
+					<div class="menu-item">
+						<span>Sauvegarder</span>
+						<div class="submenu">
+							<div onclick="saveCharacter('saveToDisk')">
+								disque dur
+							</div>
+							<div onclick="saveCharacter('saveToLocalStorage')">
+								storage interne
+							</div>
+						</div>
+					</div>
+					<div class="menu-item" onclick="resetCharacter()">
+						<span>Réinitialiser</span>
+					</div>
+				</div>
+			</div>
+			<div id="titre">
+				<h1>
+					Val de Fondor
+				</h1>
+				<div id="statusBar">
+				</div>
+			</div>
+			<div id="perso">
+				<h2 id="character-title">
+				</h2>
+				<h3 id="characterClassClassAndLevel">
+				</h3>
 			</div>
 		</div>
-		<div id="site-top">
-			<div id="header">
-				<div class="imageContainer">
-					<img src="img/val-de-fondor.png" alt="Val de Fondor logo" id="logo" onclick="showSTL()">
-					<div class="circle">
-					</div>
-				</div>
-				<div id="stlContainer"></div>
-				<div id="menu">
-					<span class="iconify" data-icon="game-icons:hamburger-menu"></span>
-					<div id="menu-content" class="menu-content">
-						<div class="menu-item">
-							<span>Ouvrir</span>
-							<div class="submenu">
-								<div onclick="openCharacter('loadFromDisk')">
-									disque dur
-								</div>
-								<div onclick="openCharacter('loadFromLocalStorage')">
-									storage interne
-								</div>
-							</div>
-						</div>
-						<div class="menu-item">
-							<span>Sauvegarder</span>
-							<div class="submenu">
-								<div onclick="saveCharacter('saveToDisk')">
-									disque dur
-								</div>
-								<div onclick="saveCharacter('saveToLocalStorage')">
-									storage interne
-								</div>
-							</div>
-						</div>
-						<div class="menu-item" onclick="resetCharacter()">
-							<span>Réinitialiser</span>
-						</div>
-					</div>
-				</div>
-				<div id="titre">
-					<h1>
-						Val de Fondor
-					</h1>
-					<div id="statusBar">
-					</div>
-				</div>
-				<div id="perso">
-					<h2 id="character-title">
-					</h2>
-					<h3 id="characterClassClassAndLevel">
-					</h3>
-				</div>
-			</div>
-			<div id="groupTabModule" class="tab">
-				<button class="tablinks" onclick="openTab(event, 'dice-generator')" id="diceGeneratorTab">Générateur de dés</button>
-				<button class="tablinks" onclick="openTab(event, 'character-sheet')" id="characterSheetTab">Feuille de personnage</button>
-			</div>
+		<div id="groupTabModule" class="tab">
+			<button class="tablinks" onclick="openTab(event, 'dice-generator')" id="diceGeneratorTab">Générateur de
+				dés</button>
+			<button class="tablinks" onclick="openTab(event, 'character-sheet')" id="characterSheetTab">Feuille de
+				personnage</button>
 		</div>
-		<div id="site-bottom">
-			<div id="dice-generator" class="tabContent">
-				<div id="diceContainer">
-					<div id="main-content">
-						<div id="labelContainer">
-							<h4>
-								Libellé
-							</h4>
-							<input type="text" id="label_textbox" name="label_textbox">
-						</div>
-						<div id="buttonContainer">
-							<h3>
-								Dés
-							</h3>
-							<div id="theOptions">
-								<div id="numberOfDice">
-									<h4>
-										Nombre
-									</h4>
-									<select id="diceNumber" class="dice-select">
-									</select>
-								</div>
-								<div id="modifier">
-									<h4>
-										Modificateurs
-									</h4>
-									<select id="modifier-select">
-									</select>
-								</div>
-							</div>
-							<div class="dice-buttons">
-								<div class="dice-buttonContainer">
-									<button id="d4" class="button button_over" onclick="rollDice('d4')">D4</button>
-								</div>
-								<div class="dice-buttonContainer">
-									<button id="d6" class="button button_over" onclick="rollDice('d6')">D6</button>
-								</div>
-								<div class="dice-buttonContainer">
-									<button id="d8" class="button button_over" onclick="rollDice('d8')">D8</button>
-								</div>
-								<div class="dice-buttonContainer">
-									<button id="d10" class="button button_over" onclick="rollDice('d10')">D10</button>
-								</div>
-								<div class="dice-buttonContainer">
-									<button id="d12" class="button button_over" onclick="rollDice('d12')">D12</button>
-								</div>
-								<div class="dice-buttonContainer">
-									<button id="d20" class="button button_over" onclick="rollDice('d20')">D20</button>
-								</div>
-							</div>
-							<div id="resetOptions">
-								<button id="reset_button" class="button button_over">Réinitialiser</button>
-							</div>
-						</div>
-					</div>
-					<div id="arrows" class="collapsed">
-						<div id="arrow">&#9664;</div>
-					</div>
-					<div id="sidebar" class="collapsed">
+	</div>
+	<div id="site-bottom">
+		<div id="dice-generator" class="tabContent">
+			<div id="diceContainer">
+				<div id="main-content">
+					<div id="labelContainer">
 						<h4>
-							Libellés suggérés
+							Libellé
 						</h4>
-						<div id="sidebar-content" class="sidebar-content ">
-							<div class="namelistContainer">
-								<div class="listContainer">
-									<div class="list">
-										<div class="title">Habiletés</div>
-										<div class="name">Force</div>
-										<div class="name">Dextérité</div>
-										<div class="name">Constitution</div>
-										<div class="name">Intelligence</div>
-										<div class="name">Sagesse</div>
-										<div class="name">Charisme</div>
-									</div>
-									<div class="list">
-										<div class="title">Jets de Sauvegarde</div>
-										<div class="name">Force</div>
-										<div class="name">Dextérité</div>
-										<div class="name">Constitution</div>
-										<div class="name">Intelligence</div>
-										<div class="name">Sagesse</div>
-										<div class="name">Charisme</div>
-									</div>
-									<div class="list">
-										<div class="title">Compétences</div>
-										<div class="name">Acrobatie</div>
-										<div class="name">Conduite des Animaux</div>
-										<div class="name">Arcanes</div>
-										<div class="name">Athlétisme</div>
-										<div class="name">Tromperie</div>
-										<div class="name">Histoire</div>
-										<div class="name">Intuition</div>
-										<div class="name">Intimidation</div>
-										<div class="name">Investigation</div>
-										<div class="name">Médecine</div>
-										<div class="name">Nature</div>
-										<div class="name">Perception</div>
-										<div class="name">Performance</div>
-										<div class="name">Persuasion</div>
-										<div class="name">Religion</div>
-										<div class="name">Prestidigitation</div>
-										<div class="name">Discrétion</div>
-										<div class="name">Survie</div>
-									</div>
-									<div class="list">
-										<div class="title">Combat</div>
-										<div class="name">Initiative</div>
-										<div class="name">Attaque en Mêlée</div>
-										<div class="name">Attaque à Distance</div>
-										<div class="name">Attaque en Mêlée Magique</div>
-										<div class="name">Attaque à Distance Magique</div>
-										<div class="name">Dégâts</div>
-										<div class="name">Dégâts Magiques</div>
-									</div>
-									<div class="list">
-										<div class="title">Sorts</div>
-										<div class="name">Jet d'acide</div>
-										<div class="name">Déflagration d'Aganazzar</div>
-										<div class="name">Mains brûlantes</div>
-										<div class="name">Catapulte</div>
-										<div class="name">Toucher glacial</div>
-										<div class="name">Création de feu de camp</div>
-										<div class="name">Soins</div>
-										<div class="name">Explosion ésotérique</div>
-										<div class="name">Rayon de feu</div>
-										<div class="name">Boule de feu</div>
-										<div class="name">Rayon conducteur</div>
-										<div class="name">Mot de guérison</div>
-										<div class="name">Réprimande infernale</div>
-										<div class="name">Missile magique</div>
-										<div class="name">Rayon de givre</div>
-										<div class="name">Flamme sacrée</div>
-										<div class="name">Poigne choquante</div>
-										<div class="name">Sommeil</div>
-										<div class="name">Vague tonnante</div>
-										<div class="name">Moquerie cruelle</div>
-										<div class="name">Trait de sorcellerie</div>
-									</div>
+						<input type="text" id="label_textbox" name="label_textbox">
+					</div>
+					<div id="buttonContainer">
+						<h3>
+							Dés
+						</h3>
+						<div id="theOptions">
+							<div id="numberOfDice">
+								<h4>
+									Nombre
+								</h4>
+								<select id="diceNumber" class="dice-select">
+								</select>
+							</div>
+							<div id="modifier">
+								<h4>
+									Modificateurs
+								</h4>
+								<select id="modifier-select">
+								</select>
+							</div>
+						</div>
+						<div class="dice-buttons">
+							<div class="dice-buttonContainer">
+								<button id="d4" class="button button_over" onclick="rollDice('d4')">D4</button>
+							</div>
+							<div class="dice-buttonContainer">
+								<button id="d6" class="button button_over" onclick="rollDice('d6')">D6</button>
+							</div>
+							<div class="dice-buttonContainer">
+								<button id="d8" class="button button_over" onclick="rollDice('d8')">D8</button>
+							</div>
+							<div class="dice-buttonContainer">
+								<button id="d10" class="button button_over" onclick="rollDice('d10')">D10</button>
+							</div>
+							<div class="dice-buttonContainer">
+								<button id="d12" class="button button_over" onclick="rollDice('d12')">D12</button>
+							</div>
+							<div class="dice-buttonContainer">
+								<button id="d20" class="button button_over" onclick="rollDice('d20')">D20</button>
+							</div>
+						</div>
+						<div id="resetOptions">
+							<button id="reset_button" class="button button_over">Réinitialiser</button>
+						</div>
+					</div>
+				</div>
+				<div id="arrows" class="collapsed">
+					<div id="arrow">&#9664;</div>
+				</div>
+				<div id="sidebar" class="collapsed">
+					<h4>
+						Libellés suggérés
+					</h4>
+					<div id="sidebar-content" class="sidebar-content ">
+						<div class="namelistContainer">
+							<div class="listContainer">
+								<div class="list">
+									<div class="title">Habiletés</div>
+									<div class="name">Force</div>
+									<div class="name">Dextérité</div>
+									<div class="name">Constitution</div>
+									<div class="name">Intelligence</div>
+									<div class="name">Sagesse</div>
+									<div class="name">Charisme</div>
+								</div>
+								<div class="list">
+									<div class="title">Jets de Sauvegarde</div>
+									<div class="name">Force</div>
+									<div class="name">Dextérité</div>
+									<div class="name">Constitution</div>
+									<div class="name">Intelligence</div>
+									<div class="name">Sagesse</div>
+									<div class="name">Charisme</div>
+								</div>
+								<div class="list">
+									<div class="title">Compétences</div>
+									<div class="name">Acrobatie</div>
+									<div class="name">Conduite des Animaux</div>
+									<div class="name">Arcanes</div>
+									<div class="name">Athlétisme</div>
+									<div class="name">Tromperie</div>
+									<div class="name">Histoire</div>
+									<div class="name">Intuition</div>
+									<div class="name">Intimidation</div>
+									<div class="name">Investigation</div>
+									<div class="name">Médecine</div>
+									<div class="name">Nature</div>
+									<div class="name">Perception</div>
+									<div class="name">Performance</div>
+									<div class="name">Persuasion</div>
+									<div class="name">Religion</div>
+									<div class="name">Prestidigitation</div>
+									<div class="name">Discrétion</div>
+									<div class="name">Survie</div>
+								</div>
+								<div class="list">
+									<div class="title">Combat</div>
+									<div class="name">Initiative</div>
+									<div class="name">Attaque en Mêlée</div>
+									<div class="name">Attaque à Distance</div>
+									<div class="name">Attaque en Mêlée Magique</div>
+									<div class="name">Attaque à Distance Magique</div>
+									<div class="name">Dégâts</div>
+									<div class="name">Dégâts Magiques</div>
+								</div>
+								<div class="list">
+									<div class="title">Sorts</div>
+									<div class="name">Jet d'acide</div>
+									<div class="name">Déflagration d'Aganazzar</div>
+									<div class="name">Mains brûlantes</div>
+									<div class="name">Catapulte</div>
+									<div class="name">Toucher glacial</div>
+									<div class="name">Création de feu de camp</div>
+									<div class="name">Soins</div>
+									<div class="name">Explosion ésotérique</div>
+									<div class="name">Rayon de feu</div>
+									<div class="name">Boule de feu</div>
+									<div class="name">Rayon conducteur</div>
+									<div class="name">Mot de guérison</div>
+									<div class="name">Réprimande infernale</div>
+									<div class="name">Missile magique</div>
+									<div class="name">Rayon de givre</div>
+									<div class="name">Flamme sacrée</div>
+									<div class="name">Poigne choquante</div>
+									<div class="name">Sommeil</div>
+									<div class="name">Vague tonnante</div>
+									<div class="name">Moquerie cruelle</div>
+									<div class="name">Trait de sorcellerie</div>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-				<div class="toast" id="toast">
-					<span id="toast-message"></span>
-					<button class="close-toast" id="close-toast" onclick="closeToast()">&times;</button>
-				</div>
 			</div>
-			<div id="character-sheet" class="tabContent">
-				<div id="groupTabChacracter" class="tabCS">
-					<button class="tablinksCS" onclick="openTabCS(event, 'sheetTab')" id="sheetTabName">Fiche</button>
-					<button class="tablinksCS" onclick="openTabCS(event, 'actionTab')" id="actionTabName">Attaques</button>
-					<button class="tablinksCS" onclick="openTabCS(event, 'itemsTab')" id="equipmentTabName">Équipements</button>
-					<button class="tablinksCS" onclick="openTabCS(event, 'spellTab')" id="spellTabName">Sorts et dons</button>
-					<button class="tablinksCS" onclick="openTabCS(event, 'descriptionTab')" id="descriptionTabName">Description et autres</button>
-				</div>
-				<div id="character" class="flexCharacter">
-					<div id="sheetTab" class="meta-section tabContentCS">
-						<div id="abilities" class="section">
-							<h2 >Habiletés</h2>
-							<div id="strength" class="subsection">
-								<h4>Force</h4>
-								<select id="strengthScore" class="input-text input-strengthScore"></select>
-								<p id="strengthBonusScore" class="roundButton ability-modifier ability-bonus" onclick="rollAbility(this.parentNode.querySelector('h4').textContent, this.textContent)">+0</p>
-							</div>
-							<div id="dexterity" class="subsection">
-								<h4>Dextérité</h4>
-								<select id="dexterityScore" class="input-text input-dexterityScore"></select>
-								<p id="dexterityBonusScore" class="roundButton ability-modifier ability-bonus" onclick="rollAbility(this.parentNode.querySelector('h4').textContent, this.textContent)">+0</p>
-							</div>
-							<div id="constitution" class="subsection">
-								<h4>Constitution</h4>
-								<select id="constitutionScore" class="input-text input-constitutionScore"></select>
-								<p id="constitutionBonusScore" class="roundButton ability-modifier ability-bonus" onclick="rollAbility(this.parentNode.querySelector('h4').textContent, this.textContent)">+0</p>
-							</div>
-							<div id="intelligence" class="subsection">
-								<h4>Intelligence</h4>
-								<select id="intelligenceScore" class="input-text input-intelligenceScore"></select>
-								<p id="intelligenceBonusScore" class="roundButton ability-modifier ability-bonus" onclick="rollAbility(this.parentNode.querySelector('h4').textContent, this.textContent)">+0</p>
-							</div>
-							<div id="wisdom" class="subsection">
-								<h4>Sagesse</h4>
-								<select id="wisdomScore" class="input-text input-wisdomScore"></select>
-								<p id="wisdomBonusScore" class="roundButton ability-modifier ability-bonus" onclick="rollAbility(this.parentNode.querySelector('h4').textContent, this.textContent)">+0</p>
-							</div>
-							<div id="charisma" class="subsection">
-								<h4>Charisme</h4>
-								<select id="charismaScore" class="input-text input-charismaScore"></select>
-								<p id="charismaBonusScore" class="roundButton ability-modifier ability-bonus" onclick="rollAbility(this.parentNode.querySelector('h4').textContent, this.textContent)">+0</p>
-							</div>
+			<div class="toast" id="toast">
+				<span id="toast-message"></span>
+				<button class="close-toast" id="close-toast" onclick="closeToast()">&times;</button>
+			</div>
+		</div>
+		<div id="character-sheet" class="tabContent">
+			<div id="groupTabChacracter" class="tabCS">
+				<button class="tablinksCS" onclick="openTabCS(event, 'sheetTab')" id="sheetTabName">Fiche</button>
+				<button class="tablinksCS" onclick="openTabCS(event, 'actionTab')" id="actionTabName">Attaques</button>
+				<button class="tablinksCS" onclick="openTabCS(event, 'itemsTab')"
+					id="equipmentTabName">Équipements</button>
+				<button class="tablinksCS" onclick="openTabCS(event, 'spellTab')" id="spellTabName">Sorts et
+					dons</button>
+				<button class="tablinksCS" onclick="openTabCS(event, 'descriptionTab')"
+					id="descriptionTabName">Description et autres</button>
+			</div>
+			<div id="character" class="flexCharacter">
+				<div id="sheetTab" class="meta-section tabContentCS">
+					<div id="abilities" class="section">
+						<h2>Habiletés</h2>
+						<div id="strength" class="subsection">
+							<h4>Force</h4>
+							<select id="strengthScore" class="input-text input-strengthScore"></select>
+							<p id="strengthBonusScore" class="roundButton ability-modifier ability-bonus"
+								onclick="rollAbility(this.parentNode.querySelector('h4').textContent, this.textContent)">
+								+0</p>
 						</div>
-						<div id="savingThrows" class="section">
-							<h2>Sauvegardes</h2>
-							<div id="strength" class="subsection">
-								<h4>Force</h4>
-								<p id="strengthSaveValue" class="roundButton" onclick="rollSave('Force', this.textContent)">+0</p>
-							</div>
-							<div id="dexterity" class="subsection">
-								<h4>Dextérité</h4>
-								<p id="dexteritySaveValue" class="roundButton" onclick="rollSave('Dextérité', this.textContent)">+0</p>
-							</div>
-							<div id="constitution" class="subsection">
-								<h4>Constitution</h4>
-								<p id="constitutionSaveValue" class="roundButton" onclick="rollSave('Constitution', this.textContent)">+0</p>
-							</div>
-							<div id="intelligence" class="subsection">
-								<h4>Intelligence</h4>
-								<p id="intelligenceSaveValue" class="roundButton" onclick="rollSave('Intelligence', this.textContent)">+0</p>
-							</div>
-							<div id="wisdom" class="subsection">
-								<h4>Sagesse</h4>
-								<p id="wisdomSaveValue" class="roundButton" onclick="rollSave('Sagesse', this.textContent)">+0</p>
-							</div>
-							<div id="charisma" class="subsection">
-								<h4>Charisme</h4>
-								<p id="charismaSaveValue" class="roundButton" onclick="rollSave('Charisme', this.textContent)">+0</p>
-							</div>
+						<div id="dexterity" class="subsection">
+							<h4>Dextérité</h4>
+							<select id="dexterityScore" class="input-text input-dexterityScore"></select>
+							<p id="dexterityBonusScore" class="roundButton ability-modifier ability-bonus"
+								onclick="rollAbility(this.parentNode.querySelector('h4').textContent, this.textContent)">
+								+0</p>
 						</div>
-						<div id="skills" class="section">
-							<h2>Compétences</h2>
+						<div id="constitution" class="subsection">
+							<h4>Constitution</h4>
+							<select id="constitutionScore" class="input-text input-constitutionScore"></select>
+							<p id="constitutionBonusScore" class="roundButton ability-modifier ability-bonus"
+								onclick="rollAbility(this.parentNode.querySelector('h4').textContent, this.textContent)">
+								+0</p>
 						</div>
-						<div id="information" class="section">
-							<div class="flex-start-behavior">
-								<h2>Information</h2>
-								<div class="container">
-									<div id="avantage" class="subsection subsection">
-										<h4>Avantage</h4>
-										<div class="buttons-advantage center-buttons container">
-											<button id="disadvantage" class="button small-button dark-red-button advantage-buttons" onclick="setAdvantage('disadvantage')">Désavantage</button>
-											<button id="normal" class="button small-button dark-yellow-button advantage-buttons activated-button" onclick="setAdvantage('normal')">Normal</button>
-											<button id="advantage" class="button small-button dark-green-button advantage-buttons" onclick="setAdvantage('advantage')">Avantage</button>
-										</div>
-									</div>
-									<div id="inspiration" class="subsection subsection">
-										<h4>Inspiration</h4>
-										<div class="toggle">
-										<input type="checkbox" id="inspirationValue" class="toggle-checkbox" onchange="toggleInspiration()">
-										<label for="inspirationValue" class="toggle-switch"></label>
-										</div>
+						<div id="intelligence" class="subsection">
+							<h4>Intelligence</h4>
+							<select id="intelligenceScore" class="input-text input-intelligenceScore"></select>
+							<p id="intelligenceBonusScore" class="roundButton ability-modifier ability-bonus"
+								onclick="rollAbility(this.parentNode.querySelector('h4').textContent, this.textContent)">
+								+0</p>
+						</div>
+						<div id="wisdom" class="subsection">
+							<h4>Sagesse</h4>
+							<select id="wisdomScore" class="input-text input-wisdomScore"></select>
+							<p id="wisdomBonusScore" class="roundButton ability-modifier ability-bonus"
+								onclick="rollAbility(this.parentNode.querySelector('h4').textContent, this.textContent)">
+								+0</p>
+						</div>
+						<div id="charisma" class="subsection">
+							<h4>Charisme</h4>
+							<select id="charismaScore" class="input-text input-charismaScore"></select>
+							<p id="charismaBonusScore" class="roundButton ability-modifier ability-bonus"
+								onclick="rollAbility(this.parentNode.querySelector('h4').textContent, this.textContent)">
+								+0</p>
+						</div>
+					</div>
+					<div id="savingThrows" class="section">
+						<h2>Sauvegardes</h2>
+						<div id="strength" class="subsection">
+							<h4>Force</h4>
+							<p id="strengthSaveValue" class="roundButton" onclick="rollSave('Force', this.textContent)">
+								+0</p>
+						</div>
+						<div id="dexterity" class="subsection">
+							<h4>Dextérité</h4>
+							<p id="dexteritySaveValue" class="roundButton"
+								onclick="rollSave('Dextérité', this.textContent)">+0</p>
+						</div>
+						<div id="constitution" class="subsection">
+							<h4>Constitution</h4>
+							<p id="constitutionSaveValue" class="roundButton"
+								onclick="rollSave('Constitution', this.textContent)">+0</p>
+						</div>
+						<div id="intelligence" class="subsection">
+							<h4>Intelligence</h4>
+							<p id="intelligenceSaveValue" class="roundButton"
+								onclick="rollSave('Intelligence', this.textContent)">+0</p>
+						</div>
+						<div id="wisdom" class="subsection">
+							<h4>Sagesse</h4>
+							<p id="wisdomSaveValue" class="roundButton" onclick="rollSave('Sagesse', this.textContent)">
+								+0</p>
+						</div>
+						<div id="charisma" class="subsection">
+							<h4>Charisme</h4>
+							<p id="charismaSaveValue" class="roundButton"
+								onclick="rollSave('Charisme', this.textContent)">+0</p>
+						</div>
+					</div>
+					<div id="skills" class="section">
+						<h2>Compétences</h2>
+					</div>
+					<div id="information" class="section">
+						<div class="flex-start-behavior">
+							<h2>Information</h2>
+							<div class="container">
+								<div id="avantage" class="subsection subsection">
+									<h4>Avantage</h4>
+									<div class="buttons-advantage center-buttons container">
+										<button id="disadvantage"
+											class="button small-button dark-red-button advantage-buttons"
+											onclick="setAdvantage('disadvantage')">Désavantage</button>
+										<button id="normal"
+											class="button small-button dark-yellow-button advantage-buttons activated-button"
+											onclick="setAdvantage('normal')">Normal</button>
+										<button id="advantage"
+											class="button small-button dark-green-button advantage-buttons"
+											onclick="setAdvantage('advantage')">Avantage</button>
 									</div>
 								</div>
-								<div class="container">
-									<div id="proficiency-bonus" class="subsection subsection2">
-										<h4>Bonus de maîtrise</h4>
-										<p id="proficiencyBonusValue" class="roundButton">+2
-										<p>
+								<div id="inspiration" class="subsection subsection">
+									<h4>Inspiration</h4>
+									<div class="toggle">
+										<input type="checkbox" id="inspirationValue" class="toggle-checkbox"
+											onchange="toggleInspiration()">
+										<label for="inspirationValue" class="toggle-switch"></label>
 									</div>
-									<div id="initiative" class="subsection subsection2">
-										<h4>Initiative</h4> 
-										<p id="initiativeBonusValue" class="roundButton" onclick="rollInitiative(this.previousElementSibling.innerHTML, this.innerHTML);">+0</p>
-										<label for="otherInitiativeBonus">Bonus</label>
-										<input type="number" id="otherInitiativeBonus" value="0" min="-10" max="10" class="input-text input-initiativeBonus" name="otherInitiativeBonus">
+								</div>
+							</div>
+							<div class="container">
+								<div id="proficiency-bonus" class="subsection subsection2">
+									<h4>Bonus de maîtrise</h4>
+									<p id="proficiencyBonusValue" class="roundButton">+2
+									<p>
+								</div>
+								<div id="initiative" class="subsection subsection2">
+									<h4>Initiative</h4>
+									<p id="initiativeBonusValue" class="roundButton"
+										onclick="rollInitiative(this.previousElementSibling.innerHTML, this.innerHTML);">
+										+0</p>
+									<label for="otherInitiativeBonus">Bonus</label>
+									<input type="number" id="otherInitiativeBonus" value="0" min="-10" max="10"
+										class="input-text input-initiativeBonus" name="otherInitiativeBonus">
+								</div>
+								<div id="passive-perception" class="subsection subsection2">
+									<h4>Perception passive</h4>
+									<p id="passivePerceptionValue" class="roundButton">10
+									<p>
+								</div>
+							</div>
+							<div id="hit-points" class="subsection">
+								<h4>Points de vie</h4>
+								<div class="hit-points-container">
+									<div class="hit-points-input-wrapper">
+										<label for="actualHitPoints">PV</label>
+										<input type="number" id="actualHitPoints" name="actualHitPoints" value="0"
+											class="input-text input-actualHitPoints">
 									</div>
-									<div id="passive-perception" class="subsection subsection2">
-										<h4>Perception passive</h4>
-										<p id="passivePerceptionValue" class="roundButton">10
-										<p>
+									<div class="hit-points-input-wrapper">
+										<label for="maxHitPoints">Max</label>
+										<input type="number" id="maxHitPoints" name="maxHitPoints" value="0" min="0"
+											class="input-text input-maxHitPoints">
+									</div>
+									<div class="hit-points-input-wrapper">
+										<label for="tempHitPoints">Temp</label>
+										<input type="number" id="tempHitPoints" name="tempHitPoints" value="0" min="0"
+											class="input-text input-tempHitPoints">
 									</div>
 								</div>
 								<div id="hit-points" class="subsection">
-									<h4>Points de vie</h4>
-									<div class="hit-points-container">
-										<div class="hit-points-input-wrapper">
-											<label for="actualHitPoints">PV</label>
-											<input type="number" id="actualHitPoints" name="actualHitPoints" value="0" class="input-text input-actualHitPoints">
+									<h4>Dés de vie</h4>
+									<div class="hit-points-inputs">
+										<div class="container">
+											<label for="numberHitDice">Quantité</label>
+											<input type="number" id="numberHitDice" name="numberHitDice" value="0"
+												class="input-text input-numberHitDice">
 										</div>
-										<div class="hit-points-input-wrapper">
-											<label for="maxHitPoints">Max</label>
-											<input type="number" id="maxHitPoints" name="maxHitPoints" value="0" min="0" class="input-text input-maxHitPoints">
-										</div>
-										<div class="hit-points-input-wrapper">
-											<label for="tempHitPoints">Temp</label>
-											<input type="number" id="tempHitPoints" name="tempHitPoints" value="0" min="0" class="input-text input-tempHitPoints">
-										</div>
-									</div>
-									<div id="hit-points" class="subsection">
-										<h4>Dés de vie</h4>
-										<div class="hit-points-inputs">
-											<div class="container">
-												<label for="numberHitDice">Quantité</label>
-												<input type="number" id="numberHitDice" name="numberHitDice" value="0" class="input-text input-numberHitDice">
-											</div>
-											<div class="container">
-												<label for="hitDiceType">Type</label>
-												<select id="hitDiceType"  name="hitDiceType" class="input-text input-hitDiceType">
-													<option value="d4">d4</option>
-													<option value="d6">d6</option>
-													<option value="d8" selected class="input-hitDiceType">d8</option>
-													<option value="d10">d10</option>
-													<option value="d12">d12</option>
-													<option value="d20">d20</option>
-												</select>
-											</div>
+										<div class="container">
+											<label for="hitDiceType">Type</label>
+											<select id="hitDiceType" name="hitDiceType"
+												class="input-text input-hitDiceType">
+												<option value="d4">d4</option>
+												<option value="d6">d6</option>
+												<option value="d8" selected class="input-hitDiceType">d8</option>
+												<option value="d10">d10</option>
+												<option value="d12">d12</option>
+												<option value="d20">d20</option>
+											</select>
 										</div>
 									</div>
 								</div>
-								<div id="save-against-death" class="subsection">
-									<h4>Sauvegarde c. la mort</h4>
-									<div class="grid-container">
-										<div class="grid-header">
-											<span>Succès</span>
-											<span>Échec</span>
+							</div>
+							<div id="save-against-death" class="subsection">
+								<h4>Sauvegarde c. la mort</h4>
+								<div class="grid-container">
+									<div class="grid-header">
+										<span>Succès</span>
+										<span>Échec</span>
+									</div>
+									<div class="grid-content death-saves">
+										<div class="success-container">
+											<input type="checkbox" id="success1" name="success1"
+												class="checkbox-death-saving-throws">
+											<input type="checkbox" id="success2" name="success2"
+												class="checkbox-death-saving-throws" disabled>
+											<input type="checkbox" id="success3" name="success3"
+												class="checkbox-death-saving-throws" disabled>
 										</div>
-										<div class="grid-content death-saves">
-											<div class="success-container">
-												<input type="checkbox" id="success1" name="success1" class="checkbox-death-saving-throws">
-												<input type="checkbox" id="success2" name="success2" class="checkbox-death-saving-throws" disabled>
-												<input type="checkbox" id="success3" name="success3" class="checkbox-death-saving-throws" disabled>
-											</div>
-											<div class="failed-container">
-												<input type="checkbox" id="failed1" name="failed1" class="checkbox-death-saving-throws">
-												<input type="checkbox" id="failed2" name="failed2" class="checkbox-death-saving-throws" disabled>
-												<input type="checkbox" id="failed3" name="failed3" class="checkbox-death-saving-throws" disabled>
-											</div>
+										<div class="failed-container">
+											<input type="checkbox" id="failed1" name="failed1"
+												class="checkbox-death-saving-throws">
+											<input type="checkbox" id="failed2" name="failed2"
+												class="checkbox-death-saving-throws" disabled>
+											<input type="checkbox" id="failed3" name="failed3"
+												class="checkbox-death-saving-throws" disabled>
 										</div>
 									</div>
-									<div id="d20Container" class="overlay hidden">
-										<div class="close-btn" onclick="hideD20Container()">
-											&times;
-										</div>
-										<div id="diceWrapper">
-										</div>
-										<div id="resultDeathSave" class="result-death-save">
-											<h2 id="resultText" class="result-text">Jet de sauvegarde contre la mort</h2>
-											<h2 id="deadOrAlive" class="dead-or-alive"></h2>
-											<button id="buttonDeathSaveRollResult" class="button"  onclick="hideD20Container()"></button>
-										</div>
+								</div>
+								<div id="d20Container" class="overlay hidden">
+									<div class="close-btn" onclick="hideD20Container()">
+										&times;
 									</div>
-									<div class="button-container">
-										<button id="rollDeathSavingThrowsButton" class="button small-button blue-button" onclick="rollDeathSavingThrowsLocally()">
+									<div id="diceWrapper">
+									</div>
+									<div id="resultDeathSave" class="result-death-save">
+										<h2 id="resultText" class="result-text">Jet de sauvegarde contre la mort</h2>
+										<h2 id="deadOrAlive" class="dead-or-alive"></h2>
+										<button id="buttonDeathSaveRollResult" class="button"
+											onclick="hideD20Container()"></button>
+									</div>
+								</div>
+								<div class="button-container">
+									<button id="rollDeathSavingThrowsButton" class="button small-button blue-button"
+										onclick="rollDeathSavingThrowsLocally()">
 										<span class="iconify" data-icon="fa-solid:dice-d20"></span>
-										</button>
-										<button id="resetDeathSavingThrowsButton" class="button small-button red-button">
+									</button>
+									<button id="resetDeathSavingThrowsButton" class="button small-button red-button">
 										&#8634;
-										</button>
-									</div>
+									</button>
 								</div>
-								<div id="speed" class="subsection">
-									<h4>Déplacement</h4>
-									<div class="speed-container">
-										<div class="speed-input-wrapper">
-											<label for="speedValue">Cases</label>
-											<input type="number" id="speedValue" name="speedValue" value="0" min="0" class="input-text input-speedValue">
-										</div>
-										<div class="speed-input-wrapper">
-											<label for="speedValueFeet">Pieds</label>
-											<input type="text" id="speedValueFeet" name="speedValueFeet" value="" class="input-text input-speedValueFeet" disabled>
-										</div>
-										<div class="speed-input-wrapper">
-											<label for="speedValueMeters">Mètres</label>
-											<input type="text" id="speedValueMeters" name="speedValueMeters" value="" class="input-text input-speedValueMeters" disabled>
-										</div>
+							</div>
+							<div id="speed" class="subsection">
+								<h4>Déplacement</h4>
+								<div class="speed-container">
+									<div class="speed-input-wrapper">
+										<label for="speedValue">Cases</label>
+										<input type="number" id="speedValue" name="speedValue" value="0" min="0"
+											class="input-text input-speedValue">
+									</div>
+									<div class="speed-input-wrapper">
+										<label for="speedValueFeet">Pieds</label>
+										<input type="text" id="speedValueFeet" name="speedValueFeet" value=""
+											class="input-text input-speedValueFeet" disabled>
+									</div>
+									<div class="speed-input-wrapper">
+										<label for="speedValueMeters">Mètres</label>
+										<input type="text" id="speedValueMeters" name="speedValueMeters" value=""
+											class="input-text input-speedValueMeters" disabled>
 									</div>
 								</div>
 							</div>
-						</div>
-					</div>
-					<div id="actionTab" class="meta-section tabContentCS">
-						<div id="armorClass" class="section">
-							<div class="flex-start-behavior">
-								<h2>Classe d'armure</h2>
-								<div id="armorClassSubsection" class="subsection">
-									<input type="text" id="armorClassValue" class="roundButton" value="+10" readonly>
-								</div>
-								<div id="abilityAdjustmentSubsection" class="ability-adjustments subsection">
-									<div class="ability-adjustment">
-										<label for="abilityAdjustment1" id="abilityAdjustment1Label">Habileté 1</label>
-										<select id="abilityAdjustment1" class="input-text">
-											<option value=" ">Choisir</option>
-											<option value="strength">Force</option>
-											<option value="dexterity">Dextérité</option>
-											<option value="constitution">Constitution</option>
-											<option value="intelligence">Intelligence</option>
-											<option value="wisdom">Sagesse</option>
-											<option value="charisma">Charisme</option>
-										</select>
-									</div>
-									<div class="ability-adjustment">
-										<label for="abilityAdjustment2" id="abilityAdjustment2Label">Habileté 2</label>
-										<select id="abilityAdjustment2" class="input-text">
-											<option value=" ">Choisir</option>
-											<option value="strength">Force</option>
-											<option value="dexterity">Dextérité</option>
-											<option value="constitution">Constitution</option>
-											<option value="intelligence">Intelligence</option>
-											<option value="wisdom">Sagesse</option>
-											<option value="charisma">Charisme</option>
-										</select>
-									</div>
-								</div>
-								<div id="otherAdjustmentSubsection"class="subsection">
-									<label class="other-adjustments-label ">Autres ajustements</label>
-									<div class="other-adjustments">
-										<input type="text" id="otherArmorClassAdjustmentName" class="input-text" placeholder="Nom de l'ajustement">
-										<input type="number" id="otherArmorClassValue" class="input-text" min="-10" max="10" value="0">
-									</div>
-								</div>
-								
-
-								<div id="armorSubsection"class="subsection">
-									<div class="container">
-										<select id="armorSelection" class="input-text" onchange="selectChangedArmorClass(this, 'customArmorContainer')">
-										<!-- The options will be populated by the populateArmorOptions() function -->
-										</select>
-										<label class="toggle">
-											<input type="checkbox" id="armorActiveCheckbox" class="toggle-checkbox">
-											<span class="toggle-switch"></span>
-										</label>
-									</div>
-									<div id="customArmorContainer" class="armor-container">
-										<div class="armor-wrapper">
-											<label for="customArmorName">Armure personnalisée</label>
-											<input type="text" id="customArmorName" class="input-text">
-										</div>
-										<div class="armor-wrapper">
-											<label for="customArmorClassValue">Ajustement</label>
-											<input type="number" id="customArmorClassValue" class="input-text" value="0" min="-10" max="10">
-										</div>
-									</div>
-								</div>
-								<div id="shield1Subsection" class="subsection">
-									<div class="container">
-										<select id="shieldAndAccessoriesSelection1" class="input-text" onchange="selectChangedArmorClass(this, 'customShieldContainer')">
-											<!-- The options will be populated by the populateShieldAndAccessoriesOptions() function -->
-										</select>
-										<label class="toggle">
-											<input type="checkbox" id="shieldActiveCheckbox1" class="toggle-checkbox">
-											<span class="toggle-switch"></span>
-										</label>
-									</div>
-									<div id="customShieldContainer" class="shield-container">
-										<div class="shield-wrapper">
-											<label for="customShieldName1">Bouclier personnalisé</label>
-											<input type="text" id="customShieldName1" class="input-text">
-										</div>
-										<div class="shield-wrapper">
-											<label for="customShieldClassValue1">Ajustement</label>
-											<input type="number" id="customShieldClassValue1" class="input-text" value="0" min="-10" max="10">
-										</div>
-									</div>
-								</div>
-								<div id="shield2Subsection" class="subsection">
-									<div class="container">
-										<select id="shieldAndAccessoriesSelection2" class="input-text" onchange="selectChangedArmorClass(this, 'customShieldContainer2')">
-											<!-- The options will be populated by the populateShieldAndAccessoriesOptions() function -->
-										</select>
-										<label class="toggle">
-											<input type="checkbox" id="shieldActiveCheckbox2" class="toggle-checkbox">
-											<span class="toggle-switch"></span>
-										</label>
-									</div>
-									<div id="customShieldContainer2" class="shield-container">
-										<div class="shield-wrapper">
-											<label for="customShieldName2">Bouclier personnalisé</label>
-											<input type="text" id="customShieldName2" class="input-text">
-										</div>
-										<div class="shield-wrapper">
-											<label for="customShieldClassValue2">Ajustement</label>
-											<input type="number" id="customShieldClassValue2" class="input-text" value="0" min="-10" max="10">
-										</div>
-									</div>
-								</div>
-
-
-							</div>
-						</div>
-
-						<div id="attacks" class="section">
-							<h2>Attaques</h2>
-							<button id="addAttack" class="add-button" onclick="generateAttackSection()"><span class="iconify" data-icon="material-symbols:add"></span></button>
-							<div id="attacksContainer" class="attacks-container"></div>
-          				</div> 
-
-						<div id="resources" class="section">
-							<h2>Ressources</h2>
-							<button id="addResource" class="add-button" onclick="generateResourceSection()"><span class="iconify" data-icon="material-symbols:add"></span></button>
-							<div id="resourceContainer" class="resource-container"></div>
-
-						</div>
-						<div id="features" class="section">
-							<h2>Attributs</h2>
-							<button id="addFeature" class="add-button" onclick="generateFeatureSection()"><span class="iconify" data-icon="material-symbols:add"></span></button>
-							<div id="featureContainer" class="feature-container"></div>
-
-						</div>
-					</div>
-					<div id="itemsTab" class="meta-section tabContentCS">
-						<div id="equipment" class="section">
-							<h2>Équipement</h2>
-							<button id="addFeature" class="add-button" onclick="generateEquipmentSection()"><span class="iconify" data-icon="material-symbols:add"></span></button>
-							<div id="equipmentContainer" class="equipment-container"></div>
-						</div>
-						<div id="money" class="section">
-							<h2>Argent</h2>
-							<button id="addFeature" class="add-button" onclick="generateTreasureSection()"><span class="iconify" data-icon="material-symbols:add"></span></button>
-							<div id="treasureContainer" class="treasure-container"></div>
-						</div>
-					</div>
-					<div id="spellTab" class="meta-section tabContentCS">
-						<div id="spells" class="section">
-							<h2>Sorts</h2>
-							<label for="spellCasterSelect">Choisir un lanceur de sorts </label>
-							<select id="spellCasterSelect" class="input-text">
-								<option value=" ">Choisir une un lanceur de sort</option>
-							</select>
-							<div class="subsection-container">
-								<div id="level_0" class="subsection">
-									<h4>Niveau 0</h4>
-								</div>
-								<div id="level_1" class="subsection">
-									<h4>Niveau 1</h4>
-								</div>
-								<div id="level_2" class="subsection">
-									<h4>Niveau 2</h4>
-								</div>
-								<div id="level_3" class="subsection">
-									<h4>Niveau 3</h4>
-								</div>
-								<div id="level_4" class="subsection">
-									<h4>Niveau 4</h4>
-								</div>
-								<div id="level_5" class="subsection">
-									<h4>Niveau 5</h4>
-								</div>
-								<div id="level_6" class="subsection">
-									<h4>Niveau 6</h4>
-								</div>
-								<div id="level_7" class="subsection">
-									<h4>Niveau 7</h4>
-								</div>
-								<div id="level_8" class="subsection">
-									<h4>Niveau 8</h4>
-								</div>
-								<div id="level_9" class="subsection">
-									<h4>Niveau 9</h4>
-								</div>
-							</div>
-						</div>
-						<div id="feats" class="section">
-							<h2>Dons</h2>
-							<label for="feats-select">Choisissez un don </label>
-							<select id="feats-select" class="input-text" name="feats">
-							</select>
-							<div id="feat-details">
-							</div>
-						</div>
-						<div id="status" class="section">
-							<h2>États</h2>
-						</div>
-					</div>
-					<div id="descriptionTab" class="meta-section tabContentCS">
-						<div id="description" class="section">
-							<div class="flex-start-behavior">
-								<h2>Description</h2>
-								<div id="playerContainer" class="subsection">
-									<label for="player">Nom du joueur</label>
-									<input type="text" id="player" class="input-text" name="player" value=' '>
-								</div>
-								<div id="characterNameContainer" class="subsection">
-									<label for="characterName">Nom du personnage</label>
-									<input type="text" id="characterName" class="input-text" name="characterName" value=' '>
-								</div>
-								<div id="classNameContainer" class="subsection">
-									<label for="className">Classe</label>
-									<select id="className" class="input-text" name="className" onchange="selectChangedArmorClass(this,'customClass')" data-custom-input="customClass">
-										<option value=" ">Choisir une classe</option>
-										<option value="Barbare">Barbare</option>
-										<option value="Barde">Barde</option>
-										<option value="Clerc">Clerc</option>
-										<option value="Druide">Druide</option>
-										<option value="Ensorceleur">Ensorceleur</option>
-										<option value="Guerrier">Guerrier</option>
-										<option value="Mage">Mage</option>
-										<option value="Moine">Moine</option>
-										<option value="Occultiste">Occultiste</option>
-										<option value="Paladin">Paladin</option>
-										<option value="Rôdeur">Rôdeur</option>
-										<option value="Roublard">Roublard</option>
-										<option value="custom">Classe personnalisée</option>
-									</select>
-									<input type="text" id="customClass" class="input-text" name="customClass" style="display:none;" value=" ">
-								</div>
-								<div id="levelContainer" class="subsection">
-									<label for="levelName">Niveau </label>
-									<select id="levelName" class="input-text" name="levelName"></select>
-								</div>
-								<div id="raceContainer" class="subsection">
-									<label for="race">Race</label>
-									<select id="race" class="input-text" name="race" onchange="selectChangedArmorClass(this,'customRace')" data-custom-input="customRace">
-									</select>
-									<input type="text" id="customRace" class="input-text" name="customRace" style="display:none;" value=" ">
-								</div>							  
-								<div id="religionContainer" class="subsection">
-									<label for="religion">Religion</label>
-									<select id="religion" class="input-text" name="religion" onchange="selectChangedArmorClass(this,'customReligion')" data-custom-input="customReligion">
-										<option value=" ">Choisir une religion</option>
-										<option value="Ancien">Ancien</option>
-										<option value="Solis">Solis</option>
-										<option value="Luna">Luna</option>
-										<option value="Lunë">Lunë</option>
-										<option value="Centaure">Centaure</option>
-										<option value="Gorgone">Gorgone</option>
-										<option value="Couatl">Couatl</option>
-										<option value="Chimère">Chimère</option>
-										<option value="Lionne">Lionne</option>
-										<option value="Dragonne">Dragonne</option>
-										<option value="Chèvre">Chèvre</option>
-										<option value="Seigneur Roc">Seigneur Roc</option>
-										<option value="Grande Marée">Grande Marée</option>
-										<option value="Souffle de vie">Souffle de vie</option>
-										<option value="Reine Flamme">Reine Flamme</option>
-										<option value="Satyre">Satyre</option>
-										<option value="Fée">Fée</option>
-										<option value="Goliath">Goliath</option>
-										<option value="Cyclope">Cyclope</option>
-										<option value="Amon">Amon</option>
-										<option value="Gruumsh">Gruumsh</option>
-										<option value="custom">Autre religion</option>
-									</select>
-									<input type="text" id="customReligion" class="input-text" name="customReligion" style="display:none;" value=" ">
-								</div>
-								<div id="historiqueContainer" class="subsection">
-									<label for="historique">Historique</label>
-									<select id="historique" class="input-text" name="historique" onchange="selectChangedArmorClass(this,'customHistorique')" data-custom-input="customHistorique">
-										<option value=" ">Choisir un historique</option>
-										<option value="Acolyte">Acolyte</option>
-										<option value="Artisan de guilde">Artisan de guilde</option>
-										<option value="Artiste">Artiste</option>
-										<option value="Charlatan">Charlatan</option>
-										<option value="Chevalier">Chevalier</option>
-										<option value="Criminel">Criminel</option>
-										<option value="Enfant des rues">Enfant des rues</option>
-										<option value="Ermite">Ermite</option>
-										<option value="Espion">Espion</option>
-										<option value="Gladiateur">Gladiateur</option>
-										<option value="Héros du peuple">Héros du peuple</option>
-										<option value="Marchand de guilde">Marchand de guilde</option>
-										<option value="Marin">Marin</option>
-										<option value="Noble">Noble</option>
-										<option value="Pirate">Pirate</option>
-										<option value="Sage">Sage</option>
-										<option value="Sauvageon">Sauvageon</option>
-										<option value="Soldat">Soldat</option>
-										<option value="custom">Autre historique</option>
-									</select>
-									<input type="text" id="customHistorique" class="input-text" name="customHistorique" style="display:none;" value=" ">
-								</div>
-							</div>
-						</div>
-						<div id="apparence" class="section">
-							<div class="flex-start-behavior">
-								<h2>Apparence</h2>
-								<div id="ageContainer" class="subsection">
-									<label for="age">Âge</label>
-									<input type="text" id="age" class="input-text" name="age" value=' '>
-								</div>
-								<div id="tailleContainer" class="subsection">
-									<label for="taille">Taille</label>
-									<input type="text" id="taille" class="input-text" name="taille" value=' '>
-								</div>
-								<div id="poidsContainer" class="subsection">
-									<label for="poids">Poids</label>
-									<input type="text" id="poids" class="input-text" name="poids" value=' '>
-								</div>
-								<div id="yeuxContainer" class="subsection">
-									<label for="yeux">Yeux</label>
-									<input type="text" id="yeux" class="input-text" name="yeux" value=' '>
-								</div>
-								<div id="peauContainer" class="subsection">
-									<label for="peau">Peau</label>
-									<input type="text" id="peau" class="input-text" name="peau" value=' '>
-								</div>
-								<div id="cheveuxContainer" class="subsection">
-									<label for="cheveux">Cheveux</label>
-									<input type="text" id="cheveux" class="input-text" name="cheveux" value=' '>
-								</div>
-							</div>
-						</div>
-						
-						<div id="language" class="section">
-							<h2>Langue</h2>
-							<button id="addFeature" class="add-button" onclick="generateLanguageSection()"><span class="iconify" data-icon="material-symbols:add"></span></button>
-							<div id="languageContainer" class="language-container"></div>
-						</div>
-						<div id="miscellaneous" class="section">
-							<h2>Notes diverses</h2>
-							<button id="addFeature" class="add-button" onclick="generateMiscellaneousSection()"><span class="iconify" data-icon="material-symbols:add"></span></button>
-							<div id="miscellaneousContainer" class="miscellaneous-container"></div>
-						</div>
-					</div>
-					<div id="character-zone">
-						<div id="character-buttonContainer">
-							<button class="button button_over" onclick="openCharacter('loadFromDisk')">Ouvrir</button>
-							<button class="button button_over" onclick="saveCharacter('saveToDisk')">Sauvegarder</button>
-							<button id="reset_button" class="button button_over" onclick="resetCharacter()">Réinitialiser</button>
-							<div id="compteARebourd" read-only></div>
-						</div>
-					</div>
-					<div id="reset-popup" class="popup" style="display:none;">
-						<div class="popup-content">
-							<h3>Voulez-vous vraiment réinitialiser le personnage? (irréversible)</h3>
-							<button id="cancel_reset" class="button button_over" onclick="closePopup()">Annuler</button>
-							<button id="resume_reset" class="button button_over" onclick="confirmReset()">OK</button>
 						</div>
 					</div>
 				</div>
-				<footer>
-					<div id=footerContent class="footer-content">
-						<p>© 2022, Gaétan Lanthier. Utiliser à vos risques.</p>
+				<div id="actionTab" class="meta-section tabContentCS">
+					<div id="armorClass" class="section">
+						<div class="flex-start-behavior">
+							<h2>Classe d'armure</h2>
+							<div id="armorClassSubsection" class="subsection">
+								<input type="text" id="armorClassValue" class="roundButton" value="+10" readonly>
+							</div>
+							<div id="abilityAdjustmentSubsection" class="ability-adjustments subsection">
+								<div class="ability-adjustment">
+									<label for="abilityAdjustment1" id="abilityAdjustment1Label">Habileté 1</label>
+									<select id="abilityAdjustment1" class="input-text">
+										<option value=" ">Choisir</option>
+										<option value="strength">Force</option>
+										<option value="dexterity">Dextérité</option>
+										<option value="constitution">Constitution</option>
+										<option value="intelligence">Intelligence</option>
+										<option value="wisdom">Sagesse</option>
+										<option value="charisma">Charisme</option>
+									</select>
+								</div>
+								<div class="ability-adjustment">
+									<label for="abilityAdjustment2" id="abilityAdjustment2Label">Habileté 2</label>
+									<select id="abilityAdjustment2" class="input-text">
+										<option value=" ">Choisir</option>
+										<option value="strength">Force</option>
+										<option value="dexterity">Dextérité</option>
+										<option value="constitution">Constitution</option>
+										<option value="intelligence">Intelligence</option>
+										<option value="wisdom">Sagesse</option>
+										<option value="charisma">Charisme</option>
+									</select>
+								</div>
+							</div>
+							<div id="otherAdjustmentSubsection" class="subsection">
+								<label class="other-adjustments-label ">Autres ajustements</label>
+								<div class="other-adjustments">
+									<input type="text" id="otherArmorClassAdjustmentName" class="input-text"
+										placeholder="Nom de l'ajustement">
+									<input type="number" id="otherArmorClassValue" class="input-text" min="-10" max="10"
+										value="0">
+								</div>
+							</div>
+
+
+							<div id="armorSubsection" class="subsection">
+								<div class="container">
+									<select id="armorSelection" class="input-text"
+										onchange="selectChangedArmorClass(this, 'customArmorContainer')">
+										<!-- The options will be populated by the populateArmorOptions() function -->
+									</select>
+									<label class="toggle">
+										<input type="checkbox" id="armorActiveCheckbox" class="toggle-checkbox">
+										<span class="toggle-switch"></span>
+									</label>
+								</div>
+								<div id="customArmorContainer" class="armor-container">
+									<div class="armor-wrapper">
+										<label for="customArmorName">Armure personnalisée</label>
+										<input type="text" id="customArmorName" class="input-text">
+									</div>
+									<div class="armor-wrapper">
+										<label for="customArmorClassValue">Ajustement</label>
+										<input type="number" id="customArmorClassValue" class="input-text" value="0"
+											min="-10" max="10">
+									</div>
+								</div>
+							</div>
+							<div id="shield1Subsection" class="subsection">
+								<div class="container">
+									<select id="shieldAndAccessoriesSelection1" class="input-text"
+										onchange="selectChangedArmorClass(this, 'customShieldContainer')">
+										<!-- The options will be populated by the populateShieldAndAccessoriesOptions() function -->
+									</select>
+									<label class="toggle">
+										<input type="checkbox" id="shieldActiveCheckbox1" class="toggle-checkbox">
+										<span class="toggle-switch"></span>
+									</label>
+								</div>
+								<div id="customShieldContainer" class="shield-container">
+									<div class="shield-wrapper">
+										<label for="customShieldName1">Bouclier personnalisé</label>
+										<input type="text" id="customShieldName1" class="input-text">
+									</div>
+									<div class="shield-wrapper">
+										<label for="customShieldClassValue1">Ajustement</label>
+										<input type="number" id="customShieldClassValue1" class="input-text" value="0"
+											min="-10" max="10">
+									</div>
+								</div>
+							</div>
+							<div id="shield2Subsection" class="subsection">
+								<div class="container">
+									<select id="shieldAndAccessoriesSelection2" class="input-text"
+										onchange="selectChangedArmorClass(this, 'customShieldContainer2')">
+										<!-- The options will be populated by the populateShieldAndAccessoriesOptions() function -->
+									</select>
+									<label class="toggle">
+										<input type="checkbox" id="shieldActiveCheckbox2" class="toggle-checkbox">
+										<span class="toggle-switch"></span>
+									</label>
+								</div>
+								<div id="customShieldContainer2" class="shield-container">
+									<div class="shield-wrapper">
+										<label for="customShieldName2">Bouclier personnalisé</label>
+										<input type="text" id="customShieldName2" class="input-text">
+									</div>
+									<div class="shield-wrapper">
+										<label for="customShieldClassValue2">Ajustement</label>
+										<input type="number" id="customShieldClassValue2" class="input-text" value="0"
+											min="-10" max="10">
+									</div>
+								</div>
+							</div>
+
+
+						</div>
 					</div>
-				</footer>
+
+					<div id="attacks" class="section">
+						<h2>Attaques</h2>
+						<button id="addAttack" class="add-button" onclick="generateAttackSection()"><span
+								class="iconify" data-icon="material-symbols:add"></span></button>
+						<div id="attacksContainer" class="attacks-container"></div>
+					</div>
+
+					<div id="resources" class="section">
+						<h2>Ressources</h2>
+						<button id="addResource" class="add-button" onclick="generateResourceSection()"><span
+								class="iconify" data-icon="material-symbols:add"></span></button>
+						<div id="resourceContainer" class="resource-container"></div>
+
+					</div>
+					<div id="features" class="section">
+						<h2>Attributs</h2>
+						<button id="addFeature" class="add-button" onclick="generateFeatureSection()"><span
+								class="iconify" data-icon="material-symbols:add"></span></button>
+						<div id="featureContainer" class="feature-container"></div>
+
+					</div>
+				</div>
+				<div id="itemsTab" class="meta-section tabContentCS">
+					<div id="equipment" class="section">
+						<h2>Équipement</h2>
+						<button id="addFeature" class="add-button" onclick="generateEquipmentSection()"><span
+								class="iconify" data-icon="material-symbols:add"></span></button>
+						<div id="equipmentContainer" class="equipment-container"></div>
+					</div>
+					<div id="money" class="section">
+						<h2>Argent</h2>
+						<h3>Pièces</h3>
+						<div id="moneyPieces" class="subsection4"></div>
+						<h3>Trésors</h3>
+						<button id="addFeature" class="add-button" onclick="generateTreasureSection()"><span
+								class="iconify" data-icon="material-symbols:add"></span></button>
+						<div id="treasureContainer" class="treasure-container"></div>
+
+					</div>
+				</div>
+				<div id="spellTab" class="meta-section tabContentCS">
+					<div id="spells" class="section">
+						<h2>Sorts</h2>
+						<label for="spellCasterSelect">Choisir un lanceur de sorts </label>
+						<select id="spellCasterSelect" class="input-text">
+							<option value=" ">Choisir une un lanceur de sort</option>
+						</select>
+						<div class="subsection-container">
+							<div id="level_0" class="subsection">
+								<h4>Niveau 0</h4>
+							</div>
+							<div id="level_1" class="subsection">
+								<h4>Niveau 1</h4>
+							</div>
+							<div id="level_2" class="subsection">
+								<h4>Niveau 2</h4>
+							</div>
+							<div id="level_3" class="subsection">
+								<h4>Niveau 3</h4>
+							</div>
+							<div id="level_4" class="subsection">
+								<h4>Niveau 4</h4>
+							</div>
+							<div id="level_5" class="subsection">
+								<h4>Niveau 5</h4>
+							</div>
+							<div id="level_6" class="subsection">
+								<h4>Niveau 6</h4>
+							</div>
+							<div id="level_7" class="subsection">
+								<h4>Niveau 7</h4>
+							</div>
+							<div id="level_8" class="subsection">
+								<h4>Niveau 8</h4>
+							</div>
+							<div id="level_9" class="subsection">
+								<h4>Niveau 9</h4>
+							</div>
+						</div>
+					</div>
+					<div id="feats" class="section">
+						<h2>Dons</h2>
+						<label for="feats-select">Choisissez un don </label>
+						<select id="feats-select" class="input-text" name="feats">
+						</select>
+						<div id="feat-details">
+						</div>
+					</div>
+					<div id="status" class="section">
+						<h2>États</h2>
+					</div>
+				</div>
+				<div id="descriptionTab" class="meta-section tabContentCS">
+					<div id="description" class="section">
+						<div class="flex-start-behavior">
+							<h2>Description</h2>
+							<div id="playerContainer" class="subsection">
+								<label for="player">Nom du joueur</label>
+								<input type="text" id="player" class="input-text" name="player" value=' '>
+							</div>
+							<div id="characterNameContainer" class="subsection">
+								<label for="characterName">Nom du personnage</label>
+								<input type="text" id="characterName" class="input-text" name="characterName" value=' '>
+							</div>
+							<div id="classNameContainer" class="subsection">
+								<label for="className">Classe</label>
+								<select id="className" class="input-text" name="className"
+									onchange="selectChangedArmorClass(this,'customClass')"
+									data-custom-input="customClass">
+									<option value=" ">Choisir une classe</option>
+									<option value="Barbare">Barbare</option>
+									<option value="Barde">Barde</option>
+									<option value="Clerc">Clerc</option>
+									<option value="Druide">Druide</option>
+									<option value="Ensorceleur">Ensorceleur</option>
+									<option value="Guerrier">Guerrier</option>
+									<option value="Mage">Mage</option>
+									<option value="Moine">Moine</option>
+									<option value="Occultiste">Occultiste</option>
+									<option value="Paladin">Paladin</option>
+									<option value="Rôdeur">Rôdeur</option>
+									<option value="Roublard">Roublard</option>
+									<option value="custom">Classe personnalisée</option>
+								</select>
+								<input type="text" id="customClass" class="input-text" name="customClass"
+									style="display:none;" value=" ">
+							</div>
+							<div id="levelContainer" class="subsection">
+								<label for="levelName">Niveau </label>
+								<select id="levelName" class="input-text" name="levelName"></select>
+							</div>
+							<div id="raceContainer" class="subsection">
+								<label for="race">Race</label>
+								<select id="race" class="input-text" name="race"
+									onchange="selectChangedArmorClass(this,'customRace')"
+									data-custom-input="customRace">
+								</select>
+								<input type="text" id="customRace" class="input-text" name="customRace"
+									style="display:none;" value=" ">
+							</div>
+							<div id="religionContainer" class="subsection">
+								<label for="religion">Religion</label>
+								<select id="religion" class="input-text" name="religion"
+									onchange="selectChangedArmorClass(this,'customReligion')"
+									data-custom-input="customReligion">
+									<option value=" ">Choisir une religion</option>
+									<option value="Ancien">Ancien</option>
+									<option value="Solis">Solis</option>
+									<option value="Luna">Luna</option>
+									<option value="Lunë">Lunë</option>
+									<option value="Centaure">Centaure</option>
+									<option value="Gorgone">Gorgone</option>
+									<option value="Couatl">Couatl</option>
+									<option value="Chimère">Chimère</option>
+									<option value="Lionne">Lionne</option>
+									<option value="Dragonne">Dragonne</option>
+									<option value="Chèvre">Chèvre</option>
+									<option value="Seigneur Roc">Seigneur Roc</option>
+									<option value="Grande Marée">Grande Marée</option>
+									<option value="Souffle de vie">Souffle de vie</option>
+									<option value="Reine Flamme">Reine Flamme</option>
+									<option value="Satyre">Satyre</option>
+									<option value="Fée">Fée</option>
+									<option value="Goliath">Goliath</option>
+									<option value="Cyclope">Cyclope</option>
+									<option value="Amon">Amon</option>
+									<option value="Gruumsh">Gruumsh</option>
+									<option value="custom">Autre religion</option>
+								</select>
+								<input type="text" id="customReligion" class="input-text" name="customReligion"
+									style="display:none;" value=" ">
+							</div>
+							<div id="historiqueContainer" class="subsection">
+								<label for="historique">Historique</label>
+								<select id="historique" class="input-text" name="historique"
+									onchange="selectChangedArmorClass(this,'customHistorique')"
+									data-custom-input="customHistorique">
+									<option value=" ">Choisir un historique</option>
+									<option value="Acolyte">Acolyte</option>
+									<option value="Artisan de guilde">Artisan de guilde</option>
+									<option value="Artiste">Artiste</option>
+									<option value="Charlatan">Charlatan</option>
+									<option value="Chevalier">Chevalier</option>
+									<option value="Criminel">Criminel</option>
+									<option value="Enfant des rues">Enfant des rues</option>
+									<option value="Ermite">Ermite</option>
+									<option value="Espion">Espion</option>
+									<option value="Gladiateur">Gladiateur</option>
+									<option value="Héros du peuple">Héros du peuple</option>
+									<option value="Marchand de guilde">Marchand de guilde</option>
+									<option value="Marin">Marin</option>
+									<option value="Noble">Noble</option>
+									<option value="Pirate">Pirate</option>
+									<option value="Sage">Sage</option>
+									<option value="Sauvageon">Sauvageon</option>
+									<option value="Soldat">Soldat</option>
+									<option value="custom">Autre historique</option>
+								</select>
+								<input type="text" id="customHistorique" class="input-text" name="customHistorique"
+									style="display:none;" value=" ">
+							</div>
+						</div>
+					</div>
+					<div id="apparence" class="section">
+						<div class="flex-start-behavior">
+							<h2>Apparence</h2>
+							<div id="ageContainer" class="subsection">
+								<label for="age">Âge</label>
+								<input type="text" id="age" class="input-text" name="age" value=' '>
+							</div>
+							<div id="tailleContainer" class="subsection">
+								<label for="taille">Taille</label>
+								<input type="text" id="taille" class="input-text" name="taille" value=' '>
+							</div>
+							<div id="poidsContainer" class="subsection">
+								<label for="poids">Poids</label>
+								<input type="text" id="poids" class="input-text" name="poids" value=' '>
+							</div>
+							<div id="yeuxContainer" class="subsection">
+								<label for="yeux">Yeux</label>
+								<input type="text" id="yeux" class="input-text" name="yeux" value=' '>
+							</div>
+							<div id="peauContainer" class="subsection">
+								<label for="peau">Peau</label>
+								<input type="text" id="peau" class="input-text" name="peau" value=' '>
+							</div>
+							<div id="cheveuxContainer" class="subsection">
+								<label for="cheveux">Cheveux</label>
+								<input type="text" id="cheveux" class="input-text" name="cheveux" value=' '>
+							</div>
+						</div>
+					</div>
+
+					<div id="language" class="section">
+						<h2>Langue</h2>
+						<button id="addFeature" class="add-button" onclick="generateLanguageSection()"><span
+								class="iconify" data-icon="material-symbols:add"></span></button>
+						<div id="languageContainer" class="language-container"></div>
+					</div>
+					<div id="miscellaneous" class="section">
+						<h2>Notes diverses</h2>
+						<button id="addFeature" class="add-button" onclick="generateMiscellaneousSection()"><span
+								class="iconify" data-icon="material-symbols:add"></span></button>
+						<div id="miscellaneousContainer" class="miscellaneous-container"></div>
+					</div>
+				</div>
+				<div id="character-zone">
+					<div id="character-buttonContainer">
+						<button class="button button_over" onclick="openCharacter('loadFromDisk')">Ouvrir</button>
+						<button class="button button_over" onclick="saveCharacter('saveToDisk')">Sauvegarder</button>
+						<button id="reset_button" class="button button_over"
+							onclick="resetCharacter()">Réinitialiser</button>
+						<div id="compteARebourd" read-only></div>
+					</div>
+				</div>
+				<div id="reset-popup" class="popup" style="display:none;">
+					<div class="popup-content">
+						<h3>Voulez-vous vraiment réinitialiser le personnage? (irréversible)</h3>
+						<button id="cancel_reset" class="button button_over" onclick="closePopup()">Annuler</button>
+						<button id="resume_reset" class="button button_over" onclick="confirmReset()">OK</button>
+					</div>
+				</div>
 			</div>
+			<footer>
+				<div id=footerContent class="footer-content">
+					<p>© 2022, Gaétan Lanthier. Utiliser à vos risques.</p>
+				</div>
+			</footer>
 		</div>
-	</body>
+	</div>
+</body>
+
 </html>

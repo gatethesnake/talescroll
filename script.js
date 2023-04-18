@@ -5,20 +5,21 @@ document.getElementById("characterSheetTab").click();
 
 //document.getElementById("spellTabName").click();
 //document.getElementById("sheetTabName").click();
-document.getElementById("actionTabName").click();
+document.getElementById("equipmentTabName").click();
+//document.getElementById("actionTabName").click();
 
 const splashLength = 0;
 
 //------------------------- OUVERTURE -------------------------//
 // Prévenir la cache du css
-    document.addEventListener("DOMContentLoaded", function() {
-      var version = Math.floor(Math.random() * 1000000);
-      document.querySelectorAll('link[rel="stylesheet"]').forEach(function(link) {
-          link.href += "?v=" + version;
-      });
+document.addEventListener("DOMContentLoaded", function () {
+  var version = Math.floor(Math.random() * 1000000);
+  document.querySelectorAll('link[rel="stylesheet"]').forEach(function (link) {
+    link.href += "?v=" + version;
   });
+});
 
-  
+
 
 ////////// splash /////////
 let animationRunning = true;
@@ -61,7 +62,7 @@ function animateD20Splash() {
   camera.position.z = 20;
   d20Mesh.position.z = -10;
 
-   // Animate the die by continuously rotating it
+  // Animate the die by continuously rotating it
   function animateDie() {
     if (!animationRunning) return; // stop the animation loop
 
@@ -130,7 +131,7 @@ setInterval(saveToLocalStorage, 10000);
 */
 
 
-window.addEventListener('load', function() {
+window.addEventListener('load', function () {
   populateRaceDropdown();
 
   // get current year
@@ -143,7 +144,7 @@ window.addEventListener('load', function() {
 
 
 //----------- ONGLETS -----------//
-                     
+
 function openTab(evt, tabName) {
   var i, tabContent, tablinks;
   tabContent = document.getElementsByClassName("tabContent");
@@ -176,53 +177,53 @@ function openTabCS(evt, tabName) {
 
 //----------- RESET -----------//
 // Define click handler for reset button
-  function handleReset() {
-        // Reset modifier dropdown to default value
-      modifier.value = 0;
-      diceNumber.value = 1;
+function handleReset() {
+  // Reset modifier dropdown to default value
+  modifier.value = 0;
+  diceNumber.value = 1;
 
-      // Reset le label_textbox
-      document.getElementById("label_textbox").value = "";
+  // Reset le label_textbox
+  document.getElementById("label_textbox").value = "";
 
-  }
+}
 
-  // Get reference to reset button
-  const resetButton = document.getElementById('reset_button');
+// Get reference to reset button
+const resetButton = document.getElementById('reset_button');
 
-  resetButton.addEventListener('click', handleReset);
+resetButton.addEventListener('click', handleReset);
 
 //----------- SELECT -----------//
 
-  // Populate modifier dropdown with values from -10 to 10
-  const modifier = document.getElementById('modifier-select');
-  for (let i = -10; i <= 10; i++) {
-      const option = document.createElement('option');
-      option.value = i;
-      option.text = i;
-      modifier.appendChild(option);
-  }
+// Populate modifier dropdown with values from -10 to 10
+const modifier = document.getElementById('modifier-select');
+for (let i = -10; i <= 10; i++) {
+  const option = document.createElement('option');
+  option.value = i;
+  option.text = i;
+  modifier.appendChild(option);
+}
 
 // Populate modifier dropdown with values from 1 to 20
 const level_selector = document.getElementById('levelName');
 for (let i = 1; i <= 20; i++) {
-    const option = document.createElement('option');
-    option.value = i;
-    option.text = i;
-    level_selector.appendChild(option);
+  const option = document.createElement('option');
+  option.value = i;
+  option.text = i;
+  level_selector.appendChild(option);
 }
 
 
-  // Set default value of select to 0 or 1
-  modifier.value = 0;
-  level_selector.value=1;
+// Set default value of select to 0 or 1
+modifier.value = 0;
+level_selector.value = 1;
 
 
-  
+
 // Function to generate options for select boxes
 function generateSelectedDiceNumbers() {
   var selectElement = document.getElementById('diceNumber');
   selectElement.innerHTML = ''; // Clear existing options
-  
+
   for (var i = 1; i <= 20; i++) {
     var option = document.createElement('option');
     option.value = i;
@@ -233,76 +234,76 @@ function generateSelectedDiceNumbers() {
 
 //----------- TOAST -----------//
 
-  let toastCounter = 0;
+let toastCounter = 0;
 
 
-  function showToast(message) {
-    const toast = document.createElement('div');
-    toast.className = 'toast';
-    toast.innerHTML = `${message} <button class="close-toast" onclick="closeToast(this)">x</button>`;
-    document.body.appendChild(toast);
-      // Calculate the new bottom position based on toastCounter
-    const bottomPosition = 20 + (toastCounter * (toast.offsetHeight + 60));
-    toast.style.bottom = `${bottomPosition}px`;
-      // Increase the toastCounter and display the toast
-    toastCounter++;
-    toast.style.display = 'block';
-      // Hide the toast after 5 seconds
+function showToast(message) {
+  const toast = document.createElement('div');
+  toast.className = 'toast';
+  toast.innerHTML = `${message} <button class="close-toast" onclick="closeToast(this)">x</button>`;
+  document.body.appendChild(toast);
+  // Calculate the new bottom position based on toastCounter
+  const bottomPosition = 20 + (toastCounter * (toast.offsetHeight + 60));
+  toast.style.bottom = `${bottomPosition}px`;
+  // Increase the toastCounter and display the toast
+  toastCounter++;
+  toast.style.display = 'block';
+  // Hide the toast after 5 seconds
+  setTimeout(() => {
+    closeToast(toast.querySelector('.close-toast'));
+  }, 5000);
+}
+function closeToast(closeButton) {
+  if (closeButton) {
+    closeButton.parentElement.style.opacity = 0;
     setTimeout(() => {
-      closeToast(toast.querySelector('.close-toast'));
-    }, 5000);
+      closeButton.parentElement.remove();
+      toastCounter--;
+    }, 500);
   }
-    function closeToast(closeButton) {
-    if (closeButton) {
-      closeButton.parentElement.style.opacity = 0;
-      setTimeout(() => {
-        closeButton.parentElement.remove();
-        toastCounter--;
-      }, 500);
-    }
-  }
+}
 
 //----------- DICE ROLLER -----------//
 
-        // Talespire rollDice URL generator
-  function rollDice(command) {
-      const numberDie = document.getElementById('diceNumber').value;
-      const diceType = command
-      command = numberDie + command
-      const modifierSelect = document.getElementById('modifier-select');
-      const modifierValue = parseInt(modifierSelect.value);
-      if (modifierValue > 0) {
-          command += '+' + modifierValue;
-      } else if (modifierValue === 0 || isNaN(modifierValue)) {
-          // Do nothing
-      } else {
-          command += modifierValue;
-      }
-      // ajoute le libelé
-      let custom_label = document.getElementById("label_textbox").value;
-      if (custom_label !== "") {
-          command = encodeURI(custom_label) + ":" + command;
-
-      }
-
-         // Send command to Talespire
-         window.location.href = 'talespire://dice/' + command;
-
-        //const toastMessage = 'Ça roule ' + 'talespire://dice/' + command + ' !';
-        let toastMessage = `Ça roule `
-        if (custom_label !== "") {
-          toastMessage += `${custom_label} avec `;
-        }
-        toastMessage += `${numberDie} ${diceType}`;
-        
-        if (modifierValue !== 0) {
-          toastMessage += ` et un bonus ${modifierValue}`;
-        }
-        
-        // Show the toast
-        showToast(toastMessage);
-        //showToast('Ça roule ' + 'talespire://dice/' + command + ' !');
+// Talespire rollDice URL generator
+function rollDice(command) {
+  const numberDie = document.getElementById('diceNumber').value;
+  const diceType = command
+  command = numberDie + command
+  const modifierSelect = document.getElementById('modifier-select');
+  const modifierValue = parseInt(modifierSelect.value);
+  if (modifierValue > 0) {
+    command += '+' + modifierValue;
+  } else if (modifierValue === 0 || isNaN(modifierValue)) {
+    // Do nothing
+  } else {
+    command += modifierValue;
   }
+  // ajoute le libelé
+  let custom_label = document.getElementById("label_textbox").value;
+  if (custom_label !== "") {
+    command = encodeURI(custom_label) + ":" + command;
+
+  }
+
+  // Send command to Talespire
+  window.location.href = 'talespire://dice/' + command;
+
+  //const toastMessage = 'Ça roule ' + 'talespire://dice/' + command + ' !';
+  let toastMessage = `Ça roule `
+  if (custom_label !== "") {
+    toastMessage += `${custom_label} avec `;
+  }
+  toastMessage += `${numberDie} ${diceType}`;
+
+  if (modifierValue !== 0) {
+    toastMessage += ` et un bonus ${modifierValue}`;
+  }
+
+  // Show the toast
+  showToast(toastMessage);
+  //showToast('Ça roule ' + 'talespire://dice/' + command + ' !');
+}
 
 //----------- SIDEBAR -----------//
 // set hauteur du sidebar
@@ -343,7 +344,7 @@ function toggleSidebar() {
 
 document.getElementById('arrow').addEventListener('click', toggleSidebar);
 
-  // write label from suggested list
+// write label from suggested list
 function write_label(event) {
   const label_textbox = document.getElementById('label_textbox');
   label_textbox.value = event.target.textContent;
@@ -368,15 +369,16 @@ function saveCharacter(saveTo) {
       failed: []
     },
     status: {},
-    armorClassInfo:{},
+    armorClassInfo: {},
     attackInfo: {},
     resourceInfo: {},
     featureInfo: {},
     equipmentInfo: {},
     treasureInfo: {},
     languageInfo: {},
-    miscellaneousInfo: {}
-    };
+    miscellaneousInfo: {},
+    moneyInfo: {}
+  };
 
   for (const abilityId of ABILITY_NAMES) {
     const ability = document.getElementById(abilityId);
@@ -397,7 +399,7 @@ function saveCharacter(saveTo) {
     const inputElement = document.getElementById(inputId);
     characterData.apparence[inputId] = inputElement.value;
   }
-  
+
   for (const skill of skillsName) {
     const skillSection = document.getElementById(`${skill.id}Skill`);
     const proficientInput = skillSection.querySelector(`#${skill.id}ProficientBonus`);
@@ -434,143 +436,148 @@ function saveCharacter(saveTo) {
   });
   characterData.information["avantage"] = advantageState;
 
-/// Save status checkboxes
-for (const status in statusIcons) {
-  const statusCheckbox = document.getElementById(status);
-  characterData.status[status] = statusCheckbox.checked || false;
-}
+  /// Save status checkboxes
+  for (const status in statusIcons) {
+    const statusCheckbox = document.getElementById(status);
+    characterData.status[status] = statusCheckbox.checked || false;
+  }
 
-/// Save armorclassinfo
+  /// Save armorclassinfo
 
-characterData.armorClassInfo = {
-  ability1: document.getElementById("abilityAdjustment1").value || " ",
-  ability2: document.getElementById("abilityAdjustment2").value || " ",
-  otherAdjustmentName: document.getElementById("otherArmorClassAdjustmentName").value || " ",
-  otherAdjustmentValue: document.getElementById("otherArmorClassValue").value || "0",
-  armorActive: document.getElementById("armorActiveCheckbox").checked || false,
-  armorSelection: document.getElementById("armorSelection").value || " ",
-  customArmorName: document.getElementById("customArmorName").value || " ",
-  customArmorValue: document.getElementById("customArmorClassValue").value || "0",
-  shieldActive1: document.getElementById("shieldActiveCheckbox1").checked || false,
-  shieldSelection1: document.getElementById("shieldAndAccessoriesSelection1").value || " ",
-  customShieldName1: document.getElementById("customShieldName1").value || " ",
-  customShieldValue1: document.getElementById("customShieldClassValue1").value || "0",
-  shieldActive2: document.getElementById("shieldActiveCheckbox2").checked || false,
-  shieldSelection2: document.getElementById("shieldAndAccessoriesSelection2").value || " ",
-  customShieldName2: document.getElementById("customShieldName2").value || " ",
-  customShieldValue2: document.getElementById("customShieldClassValue2").value || "0"
-};
-
-// Save Attacks info 
-
-function getAttackInfoByUUID(uuid) {
-  return {
-    attackName: document.getElementById(`attackName-${uuid}`).value || " ",
-    damageType: document.getElementById(`damageType-${uuid}`).value || " ",
-    attackNote: document.getElementById(`attackNote-${uuid}`).value || " ",
-    attackAbilityAdjustment: document.getElementById(`attackAbilityAdjustment-${uuid}`).value || " ",
-    otherAttackAdjustmentValue: document.getElementById(`otherAttackAdjustmentValue-${uuid}`).value || "0",
-    attackProficientCheckBox: document.getElementById(`attackProficientCheckBox-${uuid}`)?.checked || false,
-    damageDiceQuantity: document.getElementById(`damageDiceQuantity-${uuid}`).value || "0",
-    damageHitDiceType: document.getElementById(`damageHitDiceType-${uuid}`).value || " ",
-    damageAbilityAdjustment: document.getElementById(`damageAbilityAdjustment-${uuid}`).value || " ",
-    otherDamageAdjustmentValue: document.getElementById(`otherDamageAdjustmentValue-${uuid}`).value || "0"
+  characterData.armorClassInfo = {
+    ability1: document.getElementById("abilityAdjustment1").value || " ",
+    ability2: document.getElementById("abilityAdjustment2").value || " ",
+    otherAdjustmentName: document.getElementById("otherArmorClassAdjustmentName").value || " ",
+    otherAdjustmentValue: document.getElementById("otherArmorClassValue").value || "0",
+    armorActive: document.getElementById("armorActiveCheckbox").checked || false,
+    armorSelection: document.getElementById("armorSelection").value || " ",
+    customArmorName: document.getElementById("customArmorName").value || " ",
+    customArmorValue: document.getElementById("customArmorClassValue").value || "0",
+    shieldActive1: document.getElementById("shieldActiveCheckbox1").checked || false,
+    shieldSelection1: document.getElementById("shieldAndAccessoriesSelection1").value || " ",
+    customShieldName1: document.getElementById("customShieldName1").value || " ",
+    customShieldValue1: document.getElementById("customShieldClassValue1").value || "0",
+    shieldActive2: document.getElementById("shieldActiveCheckbox2").checked || false,
+    shieldSelection2: document.getElementById("shieldAndAccessoriesSelection2").value || " ",
+    customShieldName2: document.getElementById("customShieldName2").value || " ",
+    customShieldValue2: document.getElementById("customShieldClassValue2").value || "0"
   };
-}
 
-attackUUIDs.forEach((uuid) => {
-  characterData.attackInfo[uuid] = getAttackInfoByUUID(uuid);
-});
+  // Save Attacks info 
 
-/// Save resourceInfo 
-function getResourceInfoByUUID(uuid) {
-  
-  return {
-    resourceName: document.getElementById(`resourceName-${uuid}`).value || " ",
-    resourceMax: document.getElementById(`resourceMax-${uuid}`).value || "0",
-    resourceActual: document.getElementById(`resourceActual-${uuid}`).value || "0",
-    longRestSwitch: document.getElementById(`longRestSwitch-${uuid}`)?.checked || false,
-    shortRestSwitch: document.getElementById(`shortRestSwitch-${uuid}`)?.checked || false,
-  };
-}
+  function getAttackInfoByUUID(uuid) {
+    return {
+      attackName: document.getElementById(`attackName-${uuid}`).value || " ",
+      damageType: document.getElementById(`damageType-${uuid}`).value || " ",
+      attackNote: document.getElementById(`attackNote-${uuid}`).value || " ",
+      attackAbilityAdjustment: document.getElementById(`attackAbilityAdjustment-${uuid}`).value || " ",
+      otherAttackAdjustmentValue: document.getElementById(`otherAttackAdjustmentValue-${uuid}`).value || "0",
+      attackProficientCheckBox: document.getElementById(`attackProficientCheckBox-${uuid}`)?.checked || false,
+      damageDiceQuantity: document.getElementById(`damageDiceQuantity-${uuid}`).value || "0",
+      damageHitDiceType: document.getElementById(`damageHitDiceType-${uuid}`).value || " ",
+      damageAbilityAdjustment: document.getElementById(`damageAbilityAdjustment-${uuid}`).value || " ",
+      otherDamageAdjustmentValue: document.getElementById(`otherDamageAdjustmentValue-${uuid}`).value || "0"
+    };
+  }
 
-resourceUUIDs.forEach((uuid) => {
-  characterData.resourceInfo[uuid] = getResourceInfoByUUID(uuid);
-});
+  attackUUIDs.forEach((uuid) => {
+    characterData.attackInfo[uuid] = getAttackInfoByUUID(uuid);
+  });
 
+  /// Save resourceInfo 
+  function getResourceInfoByUUID(uuid) {
 
-/// Save featureInfo 
-function getFeatureInfoByUUID(uuid) {
-  return {
-    featureName: document.getElementById(`featureName-${uuid}`).value || " ",
-	featureSource: document.getElementById(`featureSource-${uuid}`).value || " ",
-	featureType: document.getElementById(`featureType-${uuid}`).value || " ",
-	featureDescription: document.getElementById(`featureDescription-${uuid}`).value || " "
-    
-  };
-}
-featureUUIDs.forEach((uuid) => {
-  characterData.featureInfo[uuid] = getFeatureInfoByUUID(uuid);
-});
+    return {
+      resourceName: document.getElementById(`resourceName-${uuid}`).value || " ",
+      resourceMax: document.getElementById(`resourceMax-${uuid}`).value || "0",
+      resourceActual: document.getElementById(`resourceActual-${uuid}`).value || "0",
+      longRestSwitch: document.getElementById(`longRestSwitch-${uuid}`)?.checked || false,
+      shortRestSwitch: document.getElementById(`shortRestSwitch-${uuid}`)?.checked || false,
+    };
+  }
 
-
-/// Save equipmentInfo 
-function getEquipmentInfoByUUID(uuid) {
-  return {
-    equipmentName: document.getElementById(`equipmentName-${uuid}`).value || " ",
-    equipmentQuantity: document.getElementById(`equipmentQuantity-${uuid}`).value || "0",
-    equipmentWeight: document.getElementById(`equipmentWeight-${uuid}`).value || "0",
-    equipmentActive: document.getElementById(`equipmentActive-${uuid}`)?.checked || false,
-	equipmentOrigin: document.getElementById(`equipmentOrigin-${uuid}`).value || " ",
-
-  };
-}
-equipmentUUIDs.forEach((uuid) => {
-  characterData.equipmentInfo[uuid] = getEquipmentInfoByUUID(uuid);
-});
+  resourceUUIDs.forEach((uuid) => {
+    characterData.resourceInfo[uuid] = getResourceInfoByUUID(uuid);
+  });
 
 
-/// Save treasureInfo 
-function getTreasureInfoByUUID(uuid) {
-  return {
-    treasureName: document.getElementById(`treasureName-${uuid}`).value || " ",
-    treasureQuantity: document.getElementById(`treasureQuantity-${uuid}`).value || "0",
-    treasureValue: document.getElementById(`treasureValue-${uuid}`).value || "0",
-	treasureOrigin: document.getElementById(`treasureOrigin-${uuid}`).value || " "
-  };
-}
-treasureUUIDs.forEach((uuid) => {
-  characterData.treasureInfo[uuid] = getTreasureInfoByUUID(uuid);
-});
+  /// Save featureInfo 
+  function getFeatureInfoByUUID(uuid) {
+    return {
+      featureName: document.getElementById(`featureName-${uuid}`).value || " ",
+      featureSource: document.getElementById(`featureSource-${uuid}`).value || " ",
+      featureType: document.getElementById(`featureType-${uuid}`).value || " ",
+      featureDescription: document.getElementById(`featureDescription-${uuid}`).value || " "
 
-/// Save languageInfo 
-function getLanguageInfoByUUID(uuid) {
-  
-  return {
-    languageName: document.getElementById(`languageName-${uuid}`).value || " ",
-    languageSpoken: document.getElementById(`languageSpoken-${uuid}`)?.checked || false,
-	  languageWritten: document.getElementById(`languageWritten-${uuid}`)?.checked || false
-  };
-}
-
-languageUUIDs.forEach((uuid) => {
-  characterData.languageInfo[uuid] = getLanguageInfoByUUID(uuid);
-});
+    };
+  }
+  featureUUIDs.forEach((uuid) => {
+    characterData.featureInfo[uuid] = getFeatureInfoByUUID(uuid);
+  });
 
 
+  /// Save equipmentInfo 
+  function getEquipmentInfoByUUID(uuid) {
+    return {
+      equipmentName: document.getElementById(`equipmentName-${uuid}`).value || " ",
+      equipmentQuantity: document.getElementById(`equipmentQuantity-${uuid}`).value || "0",
+      equipmentWeight: document.getElementById(`equipmentWeight-${uuid}`).value || "0",
+      equipmentActive: document.getElementById(`equipmentActive-${uuid}`)?.checked || false,
+      equipmentOrigin: document.getElementById(`equipmentOrigin-${uuid}`).value || " ",
 
-/// Save miscellaneousInfo 
-function getMiscellaneousInfoByUUID(uuid) {
-  return {
-    miscellaneousDescription: document.getElementById(`miscellaneousDescription-${uuid}`).value || " "    
-  };
-}
-miscellaneousUUIDs.forEach((uuid) => {
-  characterData.miscellaneousInfo[uuid] = getMiscellaneousInfoByUUID(uuid);
-});
+    };
+  }
+  equipmentUUIDs.forEach((uuid) => {
+    characterData.equipmentInfo[uuid] = getEquipmentInfoByUUID(uuid);
+  });
 
 
-// Saving to file or to localstorage
+  /// Save treasureInfo 
+  function getTreasureInfoByUUID(uuid) {
+    return {
+      treasureName: document.getElementById(`treasureName-${uuid}`).value || " ",
+      treasureQuantity: document.getElementById(`treasureQuantity-${uuid}`).value || "0",
+      treasureValue: document.getElementById(`treasureValue-${uuid}`).value || "0",
+      treasureOrigin: document.getElementById(`treasureOrigin-${uuid}`).value || " "
+    };
+  }
+  treasureUUIDs.forEach((uuid) => {
+    characterData.treasureInfo[uuid] = getTreasureInfoByUUID(uuid);
+  });
+
+  /// Save languageInfo 
+  function getLanguageInfoByUUID(uuid) {
+
+    return {
+      languageName: document.getElementById(`languageName-${uuid}`).value || " ",
+      languageSpoken: document.getElementById(`languageSpoken-${uuid}`)?.checked || false,
+      languageWritten: document.getElementById(`languageWritten-${uuid}`)?.checked || false
+    };
+  }
+
+  languageUUIDs.forEach((uuid) => {
+    characterData.languageInfo[uuid] = getLanguageInfoByUUID(uuid);
+  });
+
+
+
+  /// Save miscellaneousInfo 
+  function getMiscellaneousInfoByUUID(uuid) {
+    return {
+      miscellaneousDescription: document.getElementById(`miscellaneousDescription-${uuid}`).value || " "
+    };
+  }
+  miscellaneousUUIDs.forEach((uuid) => {
+    characterData.miscellaneousInfo[uuid] = getMiscellaneousInfoByUUID(uuid);
+  });
+
+  // Save money values ********************
+  for (const currencyKey of Object.keys(fondorCurrencies)) {
+    const input = document.getElementById(`money-${currencyKey}`);
+    characterData.savedMoney[currencyKey] = parseInt(input.value, 10);
+  }
+
+  // Saving to file or to localstorage
 
   const jsonCharacterData = JSON.stringify(characterData, null, 2);
 
@@ -588,6 +595,7 @@ miscellaneousUUIDs.forEach((uuid) => {
   }
 }
 
+
 function openCharacter(loadFrom) {
   function loadCharacterData(characterData) {
 
@@ -602,6 +610,7 @@ function openCharacter(loadFrom) {
     const featureInfo = characterData.featureInfo;
     const languageInfo = characterData.languageInfo;
     const miscellaneousInfo = characterData.miscellaneousInfo;
+    const moneyInfo = characterData.moneyInfo;
 
     // Load abilities
     for (const abilityId in abilities) {
@@ -667,9 +676,9 @@ function openCharacter(loadFrom) {
           }
         }
       }
-      
+
     }
-    
+
     // Load death saves
     if (characterData.hasOwnProperty('deathSaves')) {
       const successCheckboxes = document.querySelectorAll('.checkbox-death-saving-throws[id^="success"]');
@@ -680,13 +689,13 @@ function openCharacter(loadFrom) {
       });
 
       const failedCheckboxes = document.querySelectorAll('.checkbox-death-saving-throws[id^="failed"]');
-    characterData.deathSaves.failed.forEach((value, index) => {
-    if (index < failedCheckboxes.length) {
-    failedCheckboxes[index].checked = value;
+      characterData.deathSaves.failed.forEach((value, index) => {
+        if (index < failedCheckboxes.length) {
+          failedCheckboxes[index].checked = value;
+        }
+      });
     }
-    });
-    }
-    
+
     // Load advantage state
     if (characterData.hasOwnProperty("information") && characterData.information.hasOwnProperty("avantage")) {
       const advantageButtons = document.querySelectorAll(".advantage-buttons");
@@ -730,7 +739,7 @@ function openCharacter(loadFrom) {
     selectChangedArmorClass(document.getElementById("armorSelection"), "customArmorContainer");
     selectChangedArmorClass(document.getElementById("shieldAndAccessoriesSelection1"), "customShieldContainer");
     selectChangedArmorClass(document.getElementById("shieldAndAccessoriesSelection2"), "customShieldContainer2");
-    
+
     // load attacks info
     removeAllAttacks();
 
@@ -746,27 +755,27 @@ function openCharacter(loadFrom) {
       document.getElementById(`damageAbilityAdjustment-${uuid}`).value = attack.damageAbilityAdjustment;
       document.getElementById(`otherDamageAdjustmentValue-${uuid}`).value = attack.otherDamageAdjustmentValue;
     }
-    
+
     function generateAllAttackSections(attackInfo) {
       Object.keys(attackInfo).forEach((uuid) => {
         generateAttackSection(uuid);
       });
     }
-    
+
     function loadAllAttackInfo(attackInfo) {
       Object.keys(attackInfo).forEach((uuid) => {
         const attack = attackInfo[uuid];
         loadAttackInfo(attack, uuid);
       });
     }
-    
+
     generateAllAttackSections(attackInfo);
     loadAllAttackInfo(attackInfo);
 
     // load resources info
 
     function loadResourceInfo(resource, uuid) {
-     
+
       document.getElementById(`resourceName-${uuid}`).value = resource.resourceName;
       document.getElementById(`resourceMax-${uuid}`).value = resource.resourceMax;
       document.getElementById(`resourceActual-${uuid}`).value = resource.resourceActual;
@@ -786,12 +795,12 @@ function openCharacter(loadFrom) {
         loadResourceInfo(resource, uuid);
       });
     }
-    
+
     removeAllResources();
     generateAllResourceSections(resourceInfo);
     loadAllResourceInfo(resourceInfo);
 
-   
+
     // Load feature info
     function loadFeatureInfo(feature, uuid) {
       document.getElementById(`featureName-${uuid}`).value = feature.featureName;
@@ -814,12 +823,12 @@ function openCharacter(loadFrom) {
     }
 
 
-        removeAllFeatures();
-        generateAllFeatureSections(featureInfo);
-        loadAllFeatureInfo(featureInfo);
+    removeAllFeatures();
+    generateAllFeatureSections(featureInfo);
+    loadAllFeatureInfo(featureInfo);
 
 
-  // load equipment info
+    // load equipment info
 
 
     function loadEquipmentInfo(equipment, uuid) {
@@ -844,9 +853,9 @@ function openCharacter(loadFrom) {
     }
 
 
-        removeAllEquipments();
-        generateAllEquipmentSections(equipmentInfo);
-        loadAllEquipmentInfo(equipmentInfo);
+    removeAllEquipments();
+    generateAllEquipmentSections(equipmentInfo);
+    loadAllEquipmentInfo(equipmentInfo);
 
 
     // Load treasure info
@@ -870,9 +879,9 @@ function openCharacter(loadFrom) {
       });
     }
 
-        removeAllTreasures();
-        generateAllTreasureSections(treasureInfo);
-        loadAllTreasureInfo(treasureInfo);
+    removeAllTreasures();
+    generateAllTreasureSections(treasureInfo);
+    loadAllTreasureInfo(treasureInfo);
 
 
     // Load language info
@@ -895,11 +904,11 @@ function openCharacter(loadFrom) {
       });
     }
 
-    
-        removeAllLanguages();
-        generateAllLanguageSections(languageInfo);
-        loadAllLanguageInfo(languageInfo);
-    
+
+    removeAllLanguages();
+    generateAllLanguageSections(languageInfo);
+    loadAllLanguageInfo(languageInfo);
+
 
     // Load miscellaneous info
     function loadMiscellaneousInfo(miscellaneous, uuid) {
@@ -919,54 +928,61 @@ function openCharacter(loadFrom) {
       });
     }
 
-    
-        removeAllMiscellaneous();
-        generateAllMiscellaneousSections(miscellaneousInfo);
-        loadAllMiscellaneousInfo(miscellaneousInfo);
-    
 
-// update and ajust all dependent fields
-    updateDependentElements();
-} 
+    removeAllMiscellaneous();
+    generateAllMiscellaneousSections(miscellaneousInfo);
+    loadAllMiscellaneousInfo(miscellaneousInfo);
 
-// load data from disk or localstorage 
-if (loadFrom === "loadFromDisk") {
-  const input = document.createElement("input");
-  input.type = "file";
-  input.accept = "application/json";
 
-  input.addEventListener("change", (event) => {
-    const file = event.target.files[0];
-    const reader = new FileReader();
-
-    reader.onload = (e) => {
-      try {
-        const characterData = JSON.parse(e.target.result);
-        loadCharacterData(characterData);
-      } catch (error) {
-        console.log(error);
-        alert("uh-oh, J'ai un mauvais pressentiment");
-      }
-    };
-
-    reader.readAsText(file);
-  });
-
-  input.click();
-} else if (loadFrom === "loadFromLocalStorage") {
-  try {
-    const characterData = JSON.parse(localStorage.getItem("characterData"));
-    if (!characterData) {
-      throw new Error("No character data found in local storage");
+    // Load money values***************************
+    for (const currencyKey of Object.keys(fondorCurrencies)) {
+      const input = document.getElementById(`money-${currencyKey}`);
+      input.value = moneyInfo[currencyKey] || 0;
     }
-    loadCharacterData(characterData);
-  } catch (error) {
-    console.log(error);
-    alert("uh-oh, J'ai un mauvais pressentiment");
+
+
+    // update and ajust all dependent fields
+    updateDependentElements();
   }
-} else {
-  console.error("Invalid loadFrom value provided");
-}
+
+  // load data from disk or localstorage 
+  if (loadFrom === "loadFromDisk") {
+    const input = document.createElement("input");
+    input.type = "file";
+    input.accept = "application/json";
+
+    input.addEventListener("change", (event) => {
+      const file = event.target.files[0];
+      const reader = new FileReader();
+
+      reader.onload = (e) => {
+        try {
+          const characterData = JSON.parse(e.target.result);
+          loadCharacterData(characterData);
+        } catch (error) {
+          console.log(error);
+          alert("uh-oh, J'ai un mauvais pressentiment");
+        }
+      };
+
+      reader.readAsText(file);
+    });
+
+    input.click();
+  } else if (loadFrom === "loadFromLocalStorage") {
+    try {
+      const characterData = JSON.parse(localStorage.getItem("characterData"));
+      if (!characterData) {
+        throw new Error("No character data found in local storage");
+      }
+      loadCharacterData(characterData);
+    } catch (error) {
+      console.log(error);
+      alert("uh-oh, J'ai un mauvais pressentiment");
+    }
+  } else {
+    console.error("Invalid loadFrom value provided");
+  }
 
 }
 
@@ -1009,12 +1025,12 @@ function confirmReset() {
       inputElement.value = 0;
     }
   }
-  
-updateSpeedValues();
+
+  updateSpeedValues();
 
 
   //reset deathSaves here
- 
+
 
   DEATHSAVE_INPUTS.forEach(inputId => {
     const inputElement = document.getElementById(inputId);
@@ -1028,47 +1044,55 @@ updateSpeedValues();
   document.getElementById("failed2").disabled = true;
   document.getElementById("failed3").disabled = true;
 
-// Reset advantage state to Normal
-setAdvantage('normal');
+  // Reset advantage state to Normal
+  setAdvantage('normal');
 
 
-// Reset status checkboxes
-for (const status in statusIcons) {
-  const statusCheckbox = document.getElementById(status);
-  statusCheckbox.checked = false;
-}
+  // Reset status checkboxes
+  for (const status in statusIcons) {
+    const statusCheckbox = document.getElementById(status);
+    statusCheckbox.checked = false;
+  }
 
-///reset  armorclassinfo
+  ///reset  armorclassinfo
 
-  document.getElementById("abilityAdjustment1").value =  " ",
-  document.getElementById("abilityAdjustment2").value = " ",
-  document.getElementById("otherArmorClassAdjustmentName").value = " ",
-  document.getElementById("otherArmorClassValue").value = "0",
-  document.getElementById("armorActiveCheckbox").checked = false,
-  document.getElementById("armorSelection").value = " ",
-  document.getElementById("customArmorName").value = " ",
-  document.getElementById("customArmorClassValue").value = "0",
-  document.getElementById("shieldActiveCheckbox1").checked = false,
-  document.getElementById("shieldAndAccessoriesSelection1").value = " ",
-  document.getElementById("customShieldName1").value = " ",
-  document.getElementById("customShieldClassValue1").value = "0",
-  document.getElementById("shieldActiveCheckbox2").checked = false,
-  document.getElementById("shieldAndAccessoriesSelection2").value = " ",
-  document.getElementById("customShieldName2").value = " ",
-  document.getElementById("customShieldClassValue2").value = "0"
+  document.getElementById("abilityAdjustment1").value = " ",
+    document.getElementById("abilityAdjustment2").value = " ",
+    document.getElementById("otherArmorClassAdjustmentName").value = " ",
+    document.getElementById("otherArmorClassValue").value = "0",
+    document.getElementById("armorActiveCheckbox").checked = false,
+    document.getElementById("armorSelection").value = " ",
+    document.getElementById("customArmorName").value = " ",
+    document.getElementById("customArmorClassValue").value = "0",
+    document.getElementById("shieldActiveCheckbox1").checked = false,
+    document.getElementById("shieldAndAccessoriesSelection1").value = " ",
+    document.getElementById("customShieldName1").value = " ",
+    document.getElementById("customShieldClassValue1").value = "0",
+    document.getElementById("shieldActiveCheckbox2").checked = false,
+    document.getElementById("shieldAndAccessoriesSelection2").value = " ",
+    document.getElementById("customShieldName2").value = " ",
+    document.getElementById("customShieldClassValue2").value = "0"
 
- ///reset  all Info
+  ///reset  all Info
 
- removeAllAttacks();
- removeAllResources();
- removeAllFeatures();
- removeAllEquipments();
- removeAllTreasures();
- removeAllLanguages();
- removeAllMiscellaneous();
+  removeAllAttacks();
+  removeAllResources();
+  removeAllFeatures();
+  removeAllEquipments();
+  removeAllTreasures();
+  removeAllLanguages();
+  removeAllMiscellaneous();
+
+  // Reset money values
+
+  for (const currencyKey of Object.keys(fondorCurrencies)) {
+    const input = document.getElementById(`money-${currencyKey}`);
+    input.value = 0;
+  }
 
 
-updateDependentElements();
+
+  updateDependentElements();
   //code continue here
   closePopup();
 }
@@ -1116,8 +1140,8 @@ function resetAllCustomList() {
       const customInputElement = document.getElementById(customInputId);
       customInputElement.style.display = "none";
     }
-  });  
-  
+  });
+
   const ARMOR_SHIELD_INPUTS = [
     {
       inputId: 'armorSelection',
@@ -1138,7 +1162,7 @@ function resetAllCustomList() {
 
   ARMOR_SHIELD_INPUTS.forEach(({ inputId, customInputId, customClassValueId }) => {
     const selectElement = document.getElementById(inputId);
-  
+
     if (selectElement.querySelector("option[value=custom]") || customInputId) {
       const customInputElement = document.getElementById(customInputId);
       customInputElement.style.display = "none";
@@ -1151,7 +1175,7 @@ function resetAllCustomList() {
         const customInputElement = document.getElementById(customInputId);
         customInputElement.style.display = "none";
       }
-  
+
       // Reset and hide customClassValue elements
       if (customClassValueId) {
         const customClassValueElement = document.getElementById(customClassValueId);
@@ -1193,6 +1217,7 @@ function updateDependentElements() {
   adjustStatusBar();
   adjustArmorClassValue();
   adjustAllAttacks();
+  calculateTotal();
 
   const characterNameInput = document.getElementById('characterName');
   characterTitle.textContent = characterNameInput.value;
@@ -1238,7 +1263,7 @@ function getAdvantage() {
 //----------- FONCTIONS COMMUNES AUX SELECT -----------//
 
 
-function selectChanged(selectElement,textboxID) {
+function selectChanged(selectElement, textboxID) {
   const textBoxInput = document.getElementById(textboxID);
   if (selectElement.value === 'custom') {
     textBoxInput.style.display = 'inline-flex';
@@ -1260,9 +1285,9 @@ function updateCharacterClassAndLevel() {
   const className = characterClassInput.value;
   const level = characterLevelInput.value;
   characterClassLevel.textContent = `${className} niveau ${level}`;
-  
+
   const classHitDice = classesHitDice.find(c => c.name === className);
-  
+
   if (classHitDice) {
     hitDiceTypeInput.value = classHitDice.hitDice;
     numberHitDiceInput.value = level;
@@ -1438,12 +1463,12 @@ function animateD20() {
   showD20Container();
 }
 
-   
+
 function createNumberedTexture(number) {
   const canvas = document.createElement('canvas');
   canvas.width = 1024;
   canvas.height = 1024;
-  canvas.className = 'dice-canvas'; 
+  canvas.className = 'dice-canvas';
 
 
   const ctx = canvas.getContext('2d');
@@ -1462,58 +1487,58 @@ function createNumberedTexture(number) {
   return texture;
 }
 
-  function createD20Geometry(size) {
-    const geometry = new THREE.IcosahedronGeometry(size, 0);
-    geometry.faceVertexUvs[0] = [];
+function createD20Geometry(size) {
+  const geometry = new THREE.IcosahedronGeometry(size, 0);
+  geometry.faceVertexUvs[0] = [];
 
-    geometry.faces.forEach((face, index) => {
-      const textureIndex = d20Mapping[index] - 1;
-      face.materialIndex = textureIndex;
+  geometry.faces.forEach((face, index) => {
+    const textureIndex = d20Mapping[index] - 1;
+    face.materialIndex = textureIndex;
 
-      const uvA = new THREE.Vector2(0.5, 1);
-      const uvB = new THREE.Vector2(0, 0.25);
-      const uvC = new THREE.Vector2(1, 0.25);
+    const uvA = new THREE.Vector2(0.5, 1);
+    const uvB = new THREE.Vector2(0, 0.25);
+    const uvC = new THREE.Vector2(1, 0.25);
 
-      geometry.faceVertexUvs[0].push([uvA, uvB, uvC]);
-    });
-
-    geometry.uvsNeedUpdate = true;
-
-    return geometry;
-  }
-
-  // ... IcosahedronGeometry code ...
-
-  const d20Geometry = new THREE.IcosahedronGeometry(1, 0);
-  const vertices = d20Geometry.vertices;
-  const icosahedronGeometry = new THREE.IcosahedronGeometry(1, 0);
-  const faceVertices = [];
-
-  for (let i = 0; i < icosahedronGeometry.faces.length; i++) {
-    const face = icosahedronGeometry.faces[i];
-    const a = icosahedronGeometry.vertices[face.a];
-    const b = icosahedronGeometry.vertices[face.b];
-    const c = icosahedronGeometry.vertices[face.c];
-    faceVertices.push([a, b, c]);
-  }
-
-  const faceCenters = faceVertices.map(face => {
-    const center = new THREE.Vector3();
-    center.add(face[0]).add(face[1]).add(face[2]).divideScalar(3);
-    return center;
+    geometry.faceVertexUvs[0].push([uvA, uvB, uvC]);
   });
 
-  const faceNormals = faceVertices.map(face => {
-    const ab = new THREE.Vector3().subVectors(face[1], face[0]);
-    const ac = new THREE.Vector3().subVectors(face[2], face[0]);
-    return new THREE.Vector3().crossVectors(ab, ac).normalize();
-  });
+  geometry.uvsNeedUpdate = true;
 
-  const faceRotations = faceNormals.map(normal => {
-    const quaternion = new THREE.Quaternion().setFromUnitVectors(normal, new THREE.Vector3(0, 1, 0));
-    const euler = new THREE.Euler().setFromQuaternion(quaternion);
-    return { x: euler.x, y: euler.y };
-  });
+  return geometry;
+}
+
+// ... IcosahedronGeometry code ...
+
+const d20Geometry = new THREE.IcosahedronGeometry(1, 0);
+const vertices = d20Geometry.vertices;
+const icosahedronGeometry = new THREE.IcosahedronGeometry(1, 0);
+const faceVertices = [];
+
+for (let i = 0; i < icosahedronGeometry.faces.length; i++) {
+  const face = icosahedronGeometry.faces[i];
+  const a = icosahedronGeometry.vertices[face.a];
+  const b = icosahedronGeometry.vertices[face.b];
+  const c = icosahedronGeometry.vertices[face.c];
+  faceVertices.push([a, b, c]);
+}
+
+const faceCenters = faceVertices.map(face => {
+  const center = new THREE.Vector3();
+  center.add(face[0]).add(face[1]).add(face[2]).divideScalar(3);
+  return center;
+});
+
+const faceNormals = faceVertices.map(face => {
+  const ab = new THREE.Vector3().subVectors(face[1], face[0]);
+  const ac = new THREE.Vector3().subVectors(face[2], face[0]);
+  return new THREE.Vector3().crossVectors(ab, ac).normalize();
+});
+
+const faceRotations = faceNormals.map(normal => {
+  const quaternion = new THREE.Quaternion().setFromUnitVectors(normal, new THREE.Vector3(0, 1, 0));
+  const euler = new THREE.Euler().setFromQuaternion(quaternion);
+  return { x: euler.x, y: euler.y };
+});
 
 function showD20Container() {
   document.getElementById("d20Container").classList.remove("hidden");
@@ -1538,7 +1563,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // loaded above Gestion fichier
   //const successCheckboxes = document.querySelectorAll('.success-container .checkbox-death-saving-throws');
   //const failedCheckboxes = document.querySelectorAll('.failed-container .checkbox-death-saving-throws');
-  
+
   const resetButton1 = document.getElementById('resetDeathSavingThrowsButton');
 
   // Function to enable/disable the next checkbox in a container
@@ -1553,7 +1578,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   };
-  
+
   window.rollDeathSavingThrowsLocally = () => {
     const roll = Math.floor(Math.random() * 20) + 1; // Roll a d20
 
@@ -1594,11 +1619,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       }
     }
-  
+
     // Update enable/disable status of the checkboxes
     updateCheckboxes(successCheckboxes);
     updateCheckboxes(failedCheckboxes);
-  
+
     if (successCheckboxes[2].checked) {
       console.log('alive');
       //alert('Votre état est stabilisé');
@@ -1613,7 +1638,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
   };
-  
+
   // Add event listeners to checkboxes
   successCheckboxes.forEach((checkbox) => {
     checkbox.addEventListener('change', () => updateCheckboxes(successCheckboxes));
@@ -1655,11 +1680,11 @@ function updateButton(roll) {
 //----------- HABILETÉS -----------//
 
 const characterTitle = document.getElementById('character-title');
-  const characterNameInput = document.getElementById('characterName');
+const characterNameInput = document.getElementById('characterName');
 
-  characterNameInput.addEventListener('input', () => {
-    characterTitle.textContent = characterNameInput.value;
-  });
+characterNameInput.addEventListener('input', () => {
+  characterTitle.textContent = characterNameInput.value;
+});
 
 
 // Populate score dropdowns with values from 1 to 20
@@ -1691,7 +1716,7 @@ function updateAbilityModifier(ability) {
 
 
 
-// Display the modifier with a plus sign for positive values
+  // Display the modifier with a plus sign for positive values
   modifier_p.textContent = `${modifier >= 0 ? '+' : ''}${modifier}`;
 }
 
@@ -1724,7 +1749,7 @@ function rollAbility(abilityName, abilityBonus) {
 
 
 
-window.addEventListener('load', function() {
+window.addEventListener('load', function () {
   generateSelectedDiceNumbers();
 });
 
@@ -1792,7 +1817,7 @@ levelNameSelect.addEventListener('change', () => {
 
 function applySaveButtonColors() {
   const saveButtons = document.querySelectorAll('.save-modifier');
-  
+
   saveButtons.forEach((button) => {
     switch (button.id) {
       case 'strengthSaveValue':
@@ -1885,7 +1910,7 @@ function adjustSkillBonus(skillId) {
     newSkillBonus += proficiencyBonus;
   }
 
-  
+
   // Get the corresponding ability bonus
   const skillNameElement = skillSubsection.querySelector('h4');
   const skillName = skillNameElement.textContent.trim();
@@ -1920,11 +1945,11 @@ abilityBonusElements.forEach(element => {
 
 function addCharacteristicsToSkills() {
   const skillSections = document.querySelectorAll('#skills .subsection');
-  
+
   for (let i = 0; i < skillSections.length; i++) {
     const skillName = skillSections[i].querySelector('h4').textContent.trim();
     const ability = abilitiesSkills.find(skill => skill.nom === skillName);
-    
+
     if (ability) {
       const characteristic = ability.caracteristique;
       const characteristicElement = document.createElement('p');
@@ -1932,7 +1957,7 @@ function addCharacteristicsToSkills() {
       skillSections[i].insertAdjacentElement('afterbegin', characteristicElement);
     }
   }
-    // Add event listeners for Perception checkboxes
+  // Add event listeners for Perception checkboxes
 
   document.getElementById("perceptionProficientBonus").addEventListener("change", updatePassivePerception);
   document.getElementById("perceptionExpertBonus").addEventListener("change", updatePassivePerception);
@@ -1994,7 +2019,7 @@ function createSkillSection(skill) {
   proficientInput.addEventListener('change', () => {
     adjustSkillBonus(skill.id);
   });
-  
+
   expertInput.addEventListener('change', () => {
     adjustSkillBonus(skill.id);
   });
@@ -2067,7 +2092,7 @@ function toggleInspiration() {
 
 //----------- Déplacement speed vitesse -----------//
 
-document.getElementById("speedValue").addEventListener("input", function() {
+document.getElementById("speedValue").addEventListener("input", function () {
   const speedValue = this.value;
   const speedValueFeet = document.getElementById("speedValueFeet");
   const speedValueMeters = document.getElementById("speedValueMeters");
@@ -2124,7 +2149,7 @@ for (let i = 0; i < feats.length; i++) {
   select.appendChild(option);
 }
 
-select.addEventListener('change', function() {
+select.addEventListener('change', function () {
   featDetails.innerHTML = ''; // Clear existing details
   if (this.value === '') {
     return; // Do nothing if no feat is selected
@@ -2323,7 +2348,7 @@ function createToggleSwitch(parent, id, labelText, onChange) {
     toggleContainer.appendChild(toggleLabel);
   }
 
-  toggleCheckbox.addEventListener('change', function() {
+  toggleCheckbox.addEventListener('change', function () {
     const isChecked = this.checked;
     onChange(isChecked);
   });
@@ -2448,7 +2473,7 @@ function populateShieldAndAccessoriesOptions2() {
 }
 
 
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
   populateArmorOptions();
   populateShieldAndAccessoriesOptions();
   populateShieldAndAccessoriesOptions2();
@@ -2497,9 +2522,9 @@ function adjustArmorClassValue() {
       const selectedShield2 = shieldAndAccessories.find(shield => shield.id === shieldAndAccessoriesSelection2.value);
       totalArmorClass += selectedShield2 ? selectedShield2.armorClassAjustment : 0;
     }
-  } 
-  
-  armorClassValue.value =  (totalArmorClass >= 0 ? '+' : '') + totalArmorClass;
+  }
+
+  armorClassValue.value = (totalArmorClass >= 0 ? '+' : '') + totalArmorClass;
 }
 
 function validateBonusValue(value) {
@@ -2538,7 +2563,7 @@ customShieldClassValue2.addEventListener('change', adjustArmorClassValue);
 
 function generateUUID() {
   const cryptoAvailable = typeof crypto !== 'undefined' && typeof crypto.getRandomValues === 'function';
-  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
     const r = (cryptoAvailable ? crypto.getRandomValues(new Uint8Array(1))[0] : Math.random() * 16) | 0;
     const v = c === 'x' ? r : (r & 0x3 | 0x8);
     return v.toString(16);
@@ -2556,7 +2581,7 @@ function generateAttackSection(optionalUUID) {
   attackSection.innerHTML = getAttackSectionHTML(attackUUID);
   const attackContainer = document.getElementById('attacksContainer'); // Replace 'attacksContainer' with the ID of your container
   attackContainer.appendChild(attackSection);
-  
+
   createAttackSubsection(attackUUID);
 };
 
@@ -2670,7 +2695,7 @@ function getAttackSectionHTML(attackUUID) {
     </div>
 </div>
  `;
- return attackAndDamageSection;
+  return attackAndDamageSection;
 
 };
 
@@ -2716,11 +2741,11 @@ function adjustAttack(uuid) {
   const attackAbilityAdjustmentElement = document.getElementById(`attackAbilityAdjustment-${uuid}`);
   const attackAbilityAdjustment = attackAbilityAdjustmentElement.value;
   const otherAttackAdjustmentValueElement = document.getElementById(`otherAttackAdjustmentValue-${uuid}`);
-  const otherAttackAdjustmentValue =  parseInt(otherAttackAdjustmentValueElement.value, 10) || 0;
+  const otherAttackAdjustmentValue = parseInt(otherAttackAdjustmentValueElement.value, 10) || 0;
   const attackProficientCheckBoxElement = document.getElementById(`attackProficientCheckBox-${uuid}`);
   const attackProficientCheckBox = attackProficientCheckBoxElement ? attackProficientCheckBoxElement.checked : false;
   const damageDiceQuantityElement = document.getElementById(`damageDiceQuantity-${uuid}`);
-  const damageDiceQuantity =  parseInt(damageDiceQuantityElement.value, 10) || 1;
+  const damageDiceQuantity = parseInt(damageDiceQuantityElement.value, 10) || 1;
   const damageHitDiceTypeElement = document.getElementById(`damageHitDiceType-${uuid}`);
   const damageHitDiceType = damageHitDiceTypeElement.value;
   const damageAbilityAdjustmentElement = document.getElementById(`damageAbilityAdjustment-${uuid}`);
@@ -2755,7 +2780,7 @@ function adjustAttack(uuid) {
   }
 
   const damageDice = damageDiceQuantity.toString() + damageHitDiceType;
-  
+
   let damageAdjustment = 0;
 
   if (damageAbilityAdjustment !== ' ') {
@@ -2787,8 +2812,8 @@ function setupUUIDListeners(uuid) {
 
   elementsToWatchWithUUID.forEach((elementId) => {
     const element = document.getElementById(elementId);
-      element.removeEventListener('change', onElementChange);
-      element.addEventListener('change', onElementChange);
+    element.removeEventListener('change', onElementChange);
+    element.addEventListener('change', onElementChange);
   });
 };
 
@@ -2879,11 +2904,11 @@ function removeAllAttacks() {
     removeAttack(uuid);
   });
 }
-  
-  const elementsToWatch = [
-    ...ABILITY_NAMES.map((ability) => `${ability}Score`),
-    'levelName',
-  ];
+
+const elementsToWatch = [
+  ...ABILITY_NAMES.map((ability) => `${ability}Score`),
+  'levelName',
+];
 
 // Add event listeners for each element in elementsToWatch
 elementsToWatch.forEach((elementId) => {
@@ -2903,10 +2928,10 @@ let resourceUUIDs = [];
 
 function generateResourceSection(optionalUUID) {
   const resourceUUID = optionalUUID || generateUUID(); // Use the optionalUUID if provided, otherwise generate a new UUID
-  resourceUUIDs.push(resourceUUID); 
+  resourceUUIDs.push(resourceUUID);
   const resourceSection = document.createElement('div');
   resourceSection.innerHTML = getResourceSectionHTML(resourceUUID);
-  const resourceContainer = document.getElementById('resourceContainer'); 
+  const resourceContainer = document.getElementById('resourceContainer');
   resourceContainer.appendChild(resourceSection);
 
 };
@@ -2975,18 +3000,18 @@ let featureUUIDs = [];
 
 function generateFeatureSection(optionalUUID) {
   const featureUUID = optionalUUID || generateUUID(); // Use the optionalUUID if provided, otherwise generate a new UUID
-  featureUUIDs.push(featureUUID); 
+  featureUUIDs.push(featureUUID);
 
   const featureSection = document.createElement('div');
   featureSection.innerHTML = getFeatureSectionHTML(featureUUID);
-  const featureContainer = document.getElementById('featureContainer'); 
+  const featureContainer = document.getElementById('featureContainer');
   featureContainer.appendChild(featureSection);
 
 };
 
 function getFeatureSectionHTML(featureUUID) {
   const featureSection = `
-<div id="featureSubsection-${featureUUID}" class="subsection">
+<div id="featureSubsection-${featureUUID}" class="subsection3">
   <button id="removeFeature" class="remove-button" onclick="removeFeature('${featureUUID}')"><span class="iconify" data-icon="mdi:trash-can-outline"></span></button>
   
   <div class="container">
@@ -3007,8 +3032,7 @@ function getFeatureSectionHTML(featureUUID) {
   <div class="container">
     <div class="input-group">
       <div class="textarea-container">
-        <label for="featureDescription-${featureUUID}">Description</label>
-        <textarea id="featureDescription-${featureUUID}" class="input-textarea" rows="4"></textarea>
+        <textarea id="featureDescription-${featureUUID}" class="input-textarea input-text" rows="6"></textarea>
       </div>
     </div>
   </div>
@@ -3039,10 +3063,10 @@ let equipmentUUIDs = [];
 
 function generateEquipmentSection(optionalUUID) {
   const equipmentUUID = optionalUUID || generateUUID(); // Use the optionalUUID if provided, otherwise generate a new UUID
-  equipmentUUIDs.push(equipmentUUID); 
+  equipmentUUIDs.push(equipmentUUID);
   const equipmentSection = document.createElement('div');
   equipmentSection.innerHTML = getEquipmentSectionHTML(equipmentUUID);
-  const equipmentContainer = document.getElementById('equipmentContainer'); 
+  const equipmentContainer = document.getElementById('equipmentContainer');
   equipmentContainer.appendChild(equipmentSection);
 
 };
@@ -3104,11 +3128,11 @@ let treasureUUIDs = [];
 
 function generateTreasureSection(optionalUUID) {
   const treasureUUID = optionalUUID || generateUUID(); // Use the optionalUUID if provided, otherwise generate a new UUID
-  treasureUUIDs.push(treasureUUID); 
-
+  treasureUUIDs.push(treasureUUID);
+  console.log(treasureUUIDs);
   const treasureSection = document.createElement('div');
   treasureSection.innerHTML = getTreasureSectionHTML(treasureUUID);
-  const treasureContainer = document.getElementById('treasureContainer'); 
+  const treasureContainer = document.getElementById('treasureContainer');
   treasureContainer.appendChild(treasureSection);
 
 };
@@ -3159,17 +3183,161 @@ function removeAllTreasures() {
   });
 };
 
+
+
+//----------- PIECE, CURRENCY ARGENT -----------//
+function generateMoneyInputs() {
+  const moneyContainer = document.getElementById("moneyPieces");
+
+  const row = document.createElement("div");
+  row.className = "row";
+
+  const moneyInputsContainer = document.createElement("div");
+  moneyInputsContainer.className = "container money-inputs-container";
+
+  for (const [currencyKey, currency] of Object.entries(fondorCurrencies)) {
+    const moneyInputWrapper = document.createElement("div");
+    moneyInputWrapper.className = "wrapper  money-input-wrapper";
+
+    const label = document.createElement("label");
+    label.htmlFor = `money-${currencyKey}`;
+    label.textContent = currency.name_fr;
+
+    const input = document.createElement("input");
+    input.type = "number";
+    input.id = `money-${currencyKey}`;
+    input.className = "input-money input-text";
+    input.min = 0;
+    input.value = 0;
+    input.style.width = "70px";
+    input.style.textAlign = "center";
+    input.style.backgroundColor = currency.color;
+    input.style.opacity = 0.7;
+    input.addEventListener("input", calculateTotal);
+
+    moneyInputWrapper.appendChild(label);
+    moneyInputWrapper.appendChild(input);
+    moneyInputsContainer.appendChild(moneyInputWrapper);
+  }
+
+  row.appendChild(moneyInputsContainer);
+
+  const totalWrapper = document.createElement("div");
+  totalWrapper.className = "wrapper money-input-wrapper";
+
+  const treasureTotalLabel = document.createElement("label");
+  treasureTotalLabel.textContent = "Total trésor";
+
+  const treasureTotalInput = document.createElement("input");
+  treasureTotalInput.type = "number";
+  treasureTotalInput.id = "TreasureTotal";
+  treasureTotalInput.className = "input-text";
+  treasureTotalInput.readOnly = true;
+  treasureTotalInput.value = 0;
+  treasureTotalInput.style.fontWeight = "bold";
+  treasureTotalInput.style.width = "120px";
+  treasureTotalInput.style.textAlign = "right";
+
+  const totalLabel = document.createElement("label");
+  totalLabel.textContent = "Grand Total";
+
+  const totalInput = document.createElement("input");
+  totalInput.type = "number";
+  totalInput.id = "money-total";
+  totalInput.className = "input-text total";
+  totalInput.readOnly = true;
+  totalInput.value = 0;
+  totalInput.style.fontWeight = "bold";
+  totalInput.style.width = "120px";
+  totalInput.style.textAlign = "right";
+
+  totalWrapper.appendChild(treasureTotalLabel);
+  totalWrapper.appendChild(treasureTotalInput);
+  totalWrapper.appendChild(totalLabel);
+  totalWrapper.appendChild(totalInput);
+  totalWrapper.style.justifyContent = "flex-end";
+
+  row.appendChild(totalWrapper);
+
+  moneyContainer.appendChild(row);
+}
+
+
+function updateTreasureTotal() {
+  const treasureTotalInput = document.getElementById("TreasureTotal");
+  let treasureTotal = 0;
+
+  for (const treasureUUID of treasureUUIDs) {
+    const quantityInput = document.getElementById(`treasureQuantity-${treasureUUID}`);
+    const valueInput = document.getElementById(`treasureValue-${treasureUUID}`);
+
+    const quantity = parseInt(quantityInput.value) || 0;
+    const value = parseInt(valueInput.value) || 0;
+
+    treasureTotal += quantity * value;
+  }
+
+  treasureTotalInput.value = treasureTotal;
+  calculateTotal();
+}
+
+// Call updateTreasureTotal() when the qty or value inputs change
+for (const treasureUUID of treasureUUIDs) {
+  const quantityInput = document.getElementById(`treasureQuantity-${treasureUUID}`);
+  const valueInput = document.getElementById(`treasureValue-${treasureUUID}`);
+
+  quantityInput.addEventListener("input", updateTreasureTotal);
+  valueInput.addEventListener("input", updateTreasureTotal);
+}
+
+for (const treasureUUID of treasureUUIDs) {
+  const quantityInput = document.getElementById(`treasureQuantity-${treasureUUID}`);
+  const valueInput = document.getElementById(`treasureValue-${treasureUUID}`);
+
+  quantityInput.addEventListener("change", updateTreasureTotal);
+  valueInput.addEventListener("change", updateTreasureTotal);
+}
+
+
+// Calculate the total amount in gold pieces
+function calculateTotal() {
+  const totalInput = document.getElementById("money-total");
+  const treasureTotalInput = document.getElementById("TreasureTotal");
+  let total = 0;
+
+  for (const [currencyKey, currency] of Object.entries(fondorCurrencies)) {
+    const input = document.getElementById(`money-${currencyKey}`);
+    const value = parseInt(input.value) || 0;
+    total += value * currency.conversion_rate;
+  }
+
+  total += parseInt(treasureTotalInput.value) || 0;
+  totalInput.value = total.toFixed(2);
+}
+
+
+
+
+
+
+// Generate the money inputs on load
+document.addEventListener('DOMContentLoaded', function () {
+  generateMoneyInputs();
+});
+
+
+
 //----------- LANGUE -----------//
 
 let languageUUIDs = [];
 
 function generateLanguageSection(optionalUUID) {
   const languageUUID = optionalUUID || generateUUID(); // Use the optionalUUID if provided, otherwise generate a new UUID
-  languageUUIDs.push(languageUUID); 
+  languageUUIDs.push(languageUUID);
 
   const languageSection = document.createElement('div');
   languageSection.innerHTML = getLanguageSectionHTML(languageUUID);
-  const languageContainer = document.getElementById('languageContainer'); 
+  const languageContainer = document.getElementById('languageContainer');
   languageContainer.appendChild(languageSection);
 
 };
@@ -3243,18 +3411,18 @@ let miscellaneousUUIDs = [];
 
 function generateMiscellaneousSection(optionalUUID) {
   const miscellaneousUUID = optionalUUID || generateUUID(); // Use the optionalUUID if provided, otherwise generate a new UUID
-  miscellaneousUUIDs.push(miscellaneousUUID); 
+  miscellaneousUUIDs.push(miscellaneousUUID);
 
   const miscellaneousSection = document.createElement('div');
   miscellaneousSection.innerHTML = getMiscellaneousSectionHTML(miscellaneousUUID);
-  const miscellaneousContainer = document.getElementById('miscellaneousContainer'); 
+  const miscellaneousContainer = document.getElementById('miscellaneousContainer');
   miscellaneousContainer.appendChild(miscellaneousSection);
 
 };
 
 function getMiscellaneousSectionHTML(miscellaneousUUID) {
   const miscellaneousSection = `
-<div id="miscellaneousSubsection-${miscellaneousUUID}" class="subsection">
+<div id="miscellaneousSubsection-${miscellaneousUUID}" class="subsection3">
   <button id="removeMiscellaneous" class="remove-button" onclick="removeMiscellaneous('${miscellaneousUUID}')"><span class="iconify" data-icon="mdi:trash-can-outline"></span></button>
   
   <div class="container">
@@ -3290,24 +3458,21 @@ function removeAllMiscellaneous() {
 //----------- EVENT LISTENER -----------//
 
 const selectElements = document.querySelectorAll('select[data-custom-input]');
-  
-  selectElements.forEach((selectElement) => {
-    const textboxID = selectElement.dataset.customInput;
-    const textBoxInput = document.getElementById(textboxID);
-    
-    selectElement.addEventListener('change', () => {
-      if (selectElement.value === 'custom') {
-        textBoxInput.style.display = 'inline-flex';
-      } else {
-        textBoxInput.style.display = 'none';
-      }
-    });
+
+selectElements.forEach((selectElement) => {
+  const textboxID = selectElement.dataset.customInput;
+  const textBoxInput = document.getElementById(textboxID);
+
+  selectElement.addEventListener('change', () => {
+    if (selectElement.value === 'custom') {
+      textBoxInput.style.display = 'inline-flex';
+    } else {
+      textBoxInput.style.display = 'none';
+    }
   });
+});
 
-  document.getElementById("menu").addEventListener("click", function () {
-    const menuContent = document.getElementById("menu-content");
-    menuContent.style.display = menuContent.style.display === "block" ? "none" : "block";
-  });
-
-
-  
+document.getElementById("menu").addEventListener("click", function () {
+  const menuContent = document.getElementById("menu-content");
+  menuContent.style.display = menuContent.style.display === "block" ? "none" : "block";
+});
