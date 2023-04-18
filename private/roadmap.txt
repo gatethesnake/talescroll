@@ -6,9 +6,8 @@ Fondor road map
         1 - money qty / pc,pa,pe,po, licorne, const GoldPieceConverter  totalMoneyValue = sum(qty*GPC) (en po),
         1 - trésor  totalTreasureValue = sum(qty*value) (en po)
         1 - equipment  totalWeight= sum(qty*weight) + money (?)
-        1 - check to toggle : armures, états, inspiration,  skills(déplacé à droite)
         2 - short or long rest Reset.
-        1 - états : multicolonne ?, +concentré, icone inconscient = se reposer.
+
     - custom-lists
         4 - feats custom-list mini-fiche DOM SOR
         6 - spells niveaux 1 a 9 sélection par character class, jet de base, custom-list, mini-fiche DOM SOR, option : apply class restriction or not (to load list)
