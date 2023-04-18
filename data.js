@@ -7024,6 +7024,12 @@ const feats = [
  ]
  
  const characterStatus = {
+  CONCENTRATED: {
+    name_en: "Concentrated",
+    name_fr: "Concentré",
+    description_fr: "Le personnage est concentré à cause d'un sort qu'il a lancé.",
+    source: "État personnalisé"
+  },
   UNCONSCIOUS: {
     name_en: "Unconscious",
     name_fr: "Inconscient",
@@ -7195,7 +7201,8 @@ const feats = [
     };
 
     const statusIcons = {
-      UNCONSCIOUS: "mdi-sleep",
+      CONCENTRATED: "game-icons:concentration-orb",
+      UNCONSCIOUS: "icon-park-outline:sleep-two",
       STUNNED: "mdi-flash-circle",
       POISONED: "mdi-skull-crossbones",
       CHARMED: "mdi-heart",

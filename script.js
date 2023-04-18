@@ -3,10 +3,11 @@
 //document.getElementById("diceGeneratorTab").click();
 document.getElementById("characterSheetTab").click();
 
-document.getElementById("sheetTabName").click();
-//document.getElementById("actionTabName").click();
+//document.getElementById("spellTabName").click();
+//document.getElementById("sheetTabName").click();
+document.getElementById("actionTabName").click();
 
-const splashLength = 3000;
+const splashLength = 0;
 
 //------------------------- OUVERTURE -------------------------//
 // Prévenir la cache du css
@@ -659,12 +660,14 @@ function openCharacter(loadFrom) {
       for (const inputId of INFORMATION_INPUTS) {
         const inputElement = document.getElementById(inputId);
         if (characterData.information.hasOwnProperty(inputId)) {
-          inputElement.value = characterData.information[inputId];
           if (inputId === "inspirationValue") {
-            inputElement.innerText = inputElement.value === "oui" ? "Oui" : "Non";
+            inputElement.checked = characterData.information[inputId] === "oui";
+          } else {
+            inputElement.value = characterData.information[inputId];
           }
         }
       }
+      
     }
     
     // Load death saves
@@ -998,13 +1001,15 @@ function confirmReset() {
   });
 
   // Reset information
-for (const inputId of INFORMATION_INPUTS) {
-  const inputElement = document.getElementById(inputId);
-  inputElement.value = inputId === "inspirationValue" ? "non" : 0;
-  if (inputId === "inspirationValue") {
-    inputElement.innerText = "Non";
+  for (const inputId of INFORMATION_INPUTS) {
+    const inputElement = document.getElementById(inputId);
+    if (inputId === "inspirationValue") {
+      inputElement.checked = false;
+    } else {
+      inputElement.value = 0;
+    }
   }
-}
+  
 updateSpeedValues();
 
 
@@ -1898,17 +1903,7 @@ function adjustSkillBonus(skillId) {
     const abilityBonus = document.getElementById(englishSaveName + 'BonusScore').textContent;
     newSkillBonus += parseInt(abilityBonus);
   }
-  /*
-  // Check class proficiency
-  const classNameElement = document.getElementById('className');
-  const className = classNameElement.value;
-  const classSkill = classesSkills.find(skill => skill.id === skillId && skill.maitrise.includes(className));
-  if (classSkill) {
-    proficientInput.checked = true;
-    newSkillBonus += proficiencyBonus;
-    skillValueDisplay.textContent = `+${newSkillBonus}`;
-  } 
-    */
+
 
   skillValueDisplay.textContent = newSkillBonus > 0 ? `+${newSkillBonus}` : (newSkillBonus === 0 ? "+0" : newSkillBonus);
 }
@@ -2060,20 +2055,14 @@ function rollSkill(skillName, skillBonus) {
 
 function toggleInspiration() {
   const button = document.getElementById('inspirationValue');
-  const value = button.value;
 
-  if (value === 'non') {
-    button.textContent = 'Oui';
+  if (inspirationValue.checked) {
     button.value = 'oui';
-    button.classList.remove('toggle-button-non');
-    button.classList.add('toggle-button-oui');
   } else {
-    button.textContent = 'Non';
     button.value = 'non';
-    button.classList.remove('toggle-button-oui');
-    button.classList.add('toggle-button-non');
   }
 }
+
 
 
 //----------- Déplacement speed vitesse -----------//
@@ -2250,31 +2239,28 @@ window.addEventListener("load", populateSpellCasterSelect);
 //----------- STATUS ÉTATS -----------//
 
 function generateStatusCheckboxes() {
-
   const statusContainer = document.getElementById("status");
 
-  const statusList = document.createElement("ul");
-  statusList.style.columns = "1";
-  statusList.style.listStyleType = "none";
-  statusList.style.margin = "0";
-  statusList.style.padding = "0";
-  
   const statusBar = document.getElementById("statusBar"); // get status bar element
-  
-  for (const [statusKey, statusValue] of Object.entries(characterStatus)) {
-    const listItem = document.createElement("li");
-    listItem.style.whiteSpace = "nowrap"; // Prevent text from wrapping to multiple lines
 
-    const checkbox = document.createElement("input");
-    checkbox.type = "checkbox";
-    checkbox.id = statusKey;
-    checkbox.name = "status";
-    
+  const statusRow = document.createElement("div");
+  statusRow.className = "status-row";
+
+  for (const [statusKey, statusValue] of Object.entries(characterStatus)) {
+    const subsection = document.createElement("div");
+    subsection.className = "subsection";
+    subsection.style.display = "flex";
+    subsection.style.flexDirection = "column";
+
     const label = document.createElement("label");
-    label.htmlFor = statusKey;
     label.title = statusValue.description_fr;
-    label.style.display = "inline-flex"; // Use flex to align icon and text
+    label.style.display = "flex";
+    label.style.flexDirection = "column";
     label.style.alignItems = "center"; // Align icon and text vertically
+
+    const iconToggleWrapper = document.createElement("div");
+    iconToggleWrapper.style.display = "flex";
+    iconToggleWrapper.style.alignItems = "center";
 
     const icon = document.createElement("span");
     icon.className = `iconify`;
@@ -2282,21 +2268,15 @@ function generateStatusCheckboxes() {
     icon.setAttribute("data-inline", "false");
     icon.style.marginRight = "4px"; // Add some space between the icon and the text
 
-    label.appendChild(icon);
-    label.appendChild(document.createTextNode(statusValue.name_fr));
-    listItem.appendChild(checkbox);
-    listItem.appendChild(label);
-    statusList.appendChild(listItem);
-    
-    checkbox.addEventListener('change', function() {
-      const isChecked = this.checked;
+    iconToggleWrapper.appendChild(icon);
+
+    createToggleSwitch(iconToggleWrapper, statusKey, null, function (isChecked) {
       const iconCopy = icon.cloneNode(true);
       iconCopy.style.fontSize = "24px";
       iconCopy.title = characterStatus[statusKey].name_fr; // Set the French name as a tooltip on hover
       if (isChecked) {
         // add the icon to the status bar
         statusBar.appendChild(iconCopy);
-
       } else {
         // remove the icon from the status bar
         const iconsInStatusBar = statusBar.querySelectorAll(`[data-icon='${statusIcons[statusKey]}']`);
@@ -2308,12 +2288,50 @@ function generateStatusCheckboxes() {
         }
       }
     });
+
+    label.appendChild(iconToggleWrapper);
+    label.appendChild(document.createTextNode(statusValue.name_fr));
+    subsection.appendChild(label);
+    statusRow.appendChild(subsection);
   }
-  
-  statusContainer.appendChild(statusList);
-  
+
+  statusContainer.appendChild(statusRow);
   return statusContainer;
 }
+
+
+function createToggleSwitch(parent, id, labelText, onChange) {
+  const toggleContainer = document.createElement('div');
+  toggleContainer.classList.add('toggle-container');
+
+  const toggleCheckbox = document.createElement('input');
+  toggleCheckbox.type = 'checkbox';
+  toggleCheckbox.id = id;
+  toggleCheckbox.className = 'toggle-checkbox';
+  toggleContainer.appendChild(toggleCheckbox);
+
+  const toggleSwitch = document.createElement('label');
+  toggleSwitch.className = 'toggle-switch';
+  toggleSwitch.htmlFor = id;
+  toggleContainer.appendChild(toggleSwitch);
+
+  if (labelText) {
+    const toggleLabel = document.createElement('label');
+    toggleLabel.className = 'toggle-label';
+    toggleLabel.htmlFor = id;
+    toggleLabel.textContent = labelText;
+    toggleContainer.appendChild(toggleLabel);
+  }
+
+  toggleCheckbox.addEventListener('change', function() {
+    const isChecked = this.checked;
+    onChange(isChecked);
+  });
+
+  parent.appendChild(toggleContainer);
+}
+
+
 
 function adjustStatusBar() {
   const statusBar = document.getElementById("statusBar");

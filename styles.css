@@ -614,13 +614,13 @@ p {
   .subsection {
 	border: 1px solid white;
 	border-radius: 5px;
-	margin: 5px;
+	margin: 3px;
 	padding: 5px;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	flex: 1;
-	min-width: 150px; /* Adjust the minimum width of the subsections as needed */
+	min-width: 145x; /* Adjust the minimum width of the subsections as needed */
 	position: relative;
   }
 
@@ -1047,8 +1047,7 @@ p {
   .buttons-advantage {
 	display: flex;
 	flex-direction: row;
-	justify-content: space-around;
-	width: 100%;
+	width: 50%;
   }
   
   .advantage-buttons {
@@ -1178,25 +1177,6 @@ p {
 	margin-top: 4px;
 	margin-bottom: 8px;
 }
-
-.subsection .controls {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-  }
-  
-  .left-controls, .right-controls {
-	display: flex;
-	align-items: center;
-  }
-  
-  .left-controls {
-	text-align: left;
-  }
-  
-  .right-controls {
-	text-align: right;
-  }
 
 
   #menu {
@@ -1449,4 +1429,13 @@ body {
 	display: flex;
 	gap: 8px;
   }
+
+  .status-row {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+  }
+  
+
+  
 
