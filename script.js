@@ -10,7 +10,7 @@ document.getElementById("sheetTabName").click();
 //document.getElementById("equipmentTabName").click();
 ;
 
-const splashLength = 3000;
+const splashLength = 0;
 
 //------------------------- OUVERTURE -------------------------//
 // Prévenir la cache du css
@@ -284,7 +284,7 @@ function rollDice(command) {
   // ajoute le libelé
   let custom_label = document.getElementById("label_textbox").value;
   if (custom_label !== "") {
-    command = encodeURI(custom_label) + ":" + command;
+    command = encodeURI(removeAccents(custom_label)) + ":" + command;
 
   }
 
@@ -1226,8 +1226,128 @@ function updateDependentElements() {
 
 }
 
+//---------------------- informations----------------------//
+//------------------hitdice ------------------
 
-///////// 
+function populateHitDiceSelect() {
+  const select = document.getElementById('hitDiceType');
+
+  hitDiceTypes.forEach((hitDiceType) => {
+    const option = document.createElement('option');
+    option.value = hitDiceType.value;
+    option.textContent = hitDiceType.text;
+
+    if (hitDiceType.selected) {
+      option.selected = true;
+      option.className = 'input-hitDiceType';
+    }
+
+    select.appendChild(option);
+  });
+}
+
+// Call the function on page load
+document.addEventListener('DOMContentLoaded', populateHitDiceSelect);
+
+
+function populateAbilityAdjustmentSelect(abilityAdjustment) {
+  const selectElement = document.getElementById(abilityAdjustment);
+  const chooseOption = document.createElement('option');
+  chooseOption.value = ' ';
+  chooseOption.textContent = 'Choisir';
+  selectElement.appendChild(chooseOption);
+
+  abilityOptions.forEach(option => {
+    const optionElement = document.createElement('option');
+    optionElement.value = option.value;
+    optionElement.textContent = option.text;
+    selectElement.appendChild(optionElement);
+  });
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+  populateAbilityAdjustmentSelect('abilityAdjustment1');
+  populateAbilityAdjustmentSelect('abilityAdjustment2');
+});
+
+
+function populateClassSelect() {
+  const selectElement = document.getElementById('className');
+
+  const chooseOption = document.createElement('option');
+  chooseOption.value = ' ';
+  chooseOption.textContent = 'Choisir une classe';
+  selectElement.appendChild(chooseOption);
+
+  classOptions.forEach(option => {
+    const optionElement = document.createElement('option');
+    optionElement.value = option.value;
+    optionElement.textContent = option.text;
+    selectElement.appendChild(optionElement);
+  });
+
+  // Add custom option directly in the function
+  const customOption = document.createElement('option');
+  customOption.value = 'custom';
+  customOption.textContent = 'Classe personnalisée';
+  selectElement.appendChild(customOption);
+}
+
+
+window.addEventListener('DOMContentLoaded', populateClassSelect);
+
+// Function to populate the religion select element
+function populateReligionSelect() {
+  const selectElement = document.getElementById('religion');
+
+  const chooseOption = document.createElement('option');
+  chooseOption.value = ' ';
+  chooseOption.textContent = 'Choisir une religion';
+  selectElement.appendChild(chooseOption);
+
+  religionOptions.forEach(option => {
+    const optionElement = document.createElement('option');
+    optionElement.value = option.value;
+    optionElement.textContent = option.text;
+    selectElement.appendChild(optionElement);
+  });
+
+  // Add custom option directly in the function
+  const customOption = document.createElement('option');
+  customOption.value = 'custom';
+  customOption.textContent = 'Autre religion';
+  selectElement.appendChild(customOption);
+}
+
+// Event listener to run the function on page load
+window.addEventListener('DOMContentLoaded', populateReligionSelect);
+
+
+// Function to populate the background select element
+function populateBackgroundSelect() {
+  const selectElement = document.getElementById('historique');
+
+  const chooseOption = document.createElement('option');
+  chooseOption.value = ' ';
+  chooseOption.textContent = 'Choisir un historique';
+  selectElement.appendChild(chooseOption);
+
+  backgroundOptions.forEach(option => {
+    const optionElement = document.createElement('option');
+    optionElement.value = option.value;
+    optionElement.textContent = option.text;
+    selectElement.appendChild(optionElement);
+  });
+
+  // Add custom option directly in the function
+  const customOption = document.createElement('option');
+  customOption.value = 'custom';
+  customOption.textContent = 'Autre historique';
+  selectElement.appendChild(customOption);
+}
+
+// Event listener to run the function on page load
+window.addEventListener('DOMContentLoaded', populateBackgroundSelect);
 
 
 //----------- AVANTAGES -----------//
@@ -1383,7 +1503,7 @@ function rollInitiative(initiativeName, initiativeBonus) {
     diceCount = `d20${commandBonus}`;
   }
 
-  const command = `${encodeURI(initiativeName)}:${diceCount}`;
+  const command = `${encodeURI(removeAccents(initiativeName))}:${diceCount}`;
   const toastMessage = `Ça roule ${initiativeName} avec ${diceCount}${toastBonus}`;
 
   // Send command to Talespire
@@ -1729,10 +1849,10 @@ function rollAbility(abilityName, abilityBonus) {
   let advantageText = '';
 
   if (advantageState === 'normal') {
-    command = `${encodeURI(abilityName)}:d20${abilityBonus}`;
+    command = `${encodeURI(removeAccents(abilityName))}:d20${abilityBonus}`;
   } else {
     advantageText = advantageState === 'advantage' ? 'avantage' : 'désavantage';
-    command = `${encodeURI(abilityName + " " + advantageText)}:d20${abilityBonus}/d20${abilityBonus}`;
+    command = `${encodeURI(removeAccents(abilityName + " " + advantageText))}:d20${abilityBonus}/d20${abilityBonus}`;
   }
 
   const toastMessage = advantageState === 'normal'
@@ -1863,10 +1983,10 @@ function rollSave(saveName, saveBonus) {
   let advantageText = '';
 
   if (advantageState === 'normal') {
-    command = `${encodeURI("Sauvgarde " + saveName)}:d20${saveBonus}`;
+    command = `${encodeURI(removeAccents("Sauvegarde " + saveName))}:d20${saveBonus}`;
   } else {
     advantageText = advantageState === 'advantage' ? 'avantage' : 'désavantage';
-    command = `${encodeURI("Sauvgarde " + saveName + " " + advantageText)}:d20${saveBonus}/d20${saveBonus}`;
+    command = `${encodeURI(removeAccents("Sauvegarde " + saveName + " " + advantageText))}:d20${saveBonus}/d20${saveBonus}`;
   }
 
   const toastMessage = advantageState === 'normal'
@@ -2058,10 +2178,10 @@ function rollSkill(skillName, skillBonus) {
   let advantageText = '';
 
   if (advantageState === 'normal') {
-    command = `${encodeURI("Compétence " + skillName)}:d20${skillBonus}`;
+    command = `${encodeURI(removeAccents(skillName))}:d20${skillBonus}`;
   } else {
     advantageText = advantageState === 'advantage' ? 'avantage' : 'désavantage';
-    command = `${encodeURI("Compétence " + skillName + " " + advantageText)}:d20${skillBonus}/d20${skillBonus}`;
+    command = `${encodeURI(removeAccents(skillName + " " + advantageText))}:d20${skillBonus}/d20${skillBonus}`;
   }
 
   const toastMessage = advantageState === 'normal'
@@ -2794,7 +2914,7 @@ function adjustAttack(uuid) {
   }
 
   attackValueElement.value = attackAdjustment >= 0 ? '+' + attackAdjustment : attackAdjustment;
-  damageElement.value = damageDice + (damageAdjustment > 0 ? ' + ' + damageAdjustment : (damageAdjustment < 0 ? ' ' + damageAdjustment : ''));
+  damageElement.value = damageDice + (damageAdjustment > 0 ? '+' + damageAdjustment : (damageAdjustment < 0 ? '' + damageAdjustment : ''));
 };
 
 function setupUUIDListeners(uuid) {
@@ -2846,10 +2966,10 @@ function rollAttack(attackName, attackBonus) {
   let advantageText = '';
 
   if (advantageState === 'normal') {
-    command = `${encodeURI('Attaque ' + attackName)}:d20${attackBonus}`;
+    command = `${encodeURI(removeAccents('Attaque ' + attackName))}:d20${attackBonus}`;
   } else {
     advantageText = advantageState === 'advantage' ? 'avantage' : 'désavantage';
-    command = `${encodeURI('Attaque ' + attackName + " " + advantageText)}:d20${attackBonus}/d20${attackBonus}`;
+    command = `${encodeURI(removeAccents('Attaque ' + attackName + " " + advantageText))}:d20${attackBonus}/d20${attackBonus}`;
   }
 
   const toastMessage = advantageState === 'normal'
@@ -2869,15 +2989,16 @@ function rollDamage(attackName, damageType, damage) {
   let toastBonus = '';
   if (damage !== 'Choisir') {
     commandBonus = damage;
+    console.log(damage);
     toastBonus = `${damage}`;
   }
 
   let command, toastMessage;
   if (damageType === "Choisir" || damageType === '') {
-    command = `${encodeURI('Dégâts pour ' + attackName)}:d20${commandBonus}`;
+    command = `${encodeURI(removeAccents('Degats ' + attackName))}:${commandBonus}`;
     toastMessage = `Ça roule dégâts pour ${attackName} de ${toastBonus}`;
   } else {
-    command = `${encodeURI('Dégâts de type ${damageType} pour ' + attackName)}:d20${commandBonus}`;
+    command = `${encodeURI(removeAccents('Degats ${damageType} ' + attackName))}:${commandBonus}`;
     toastMessage = `Ça roule dégâts de type ${damageType} pour ${attackName} de ${toastBonus}`;
   }
 
@@ -2887,6 +3008,7 @@ function rollDamage(attackName, damageType, damage) {
   // Show the toast
   showToast(toastMessage);
   //showToast(`talespire://dice/${command}`);
+  //console.log(`talespire://dice/${command}`)
 };
 
 function removeAttack(attackUUID) {
@@ -3478,3 +3600,9 @@ document.getElementById("menu").addEventListener("click", function () {
   const menuContent = document.getElementById("menu-content");
   menuContent.style.display = menuContent.style.display === "block" ? "none" : "block";
 });
+
+function removeAccents(str) {
+  return str
+    .normalize('NFD') // Normalize the string to decompose accentuated characters
+    .replace(/[\u0300-\u036f]/g, ''); // Remove decomposed accentuated characters
+}

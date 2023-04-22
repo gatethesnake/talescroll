@@ -1,6 +1,24 @@
 // Predefined texture index mapping for d20
 const d20Mapping = [1, 19, 13, 7, 18, 4, 3, 9, 10, 6, 20, 12, 11, 5, 14, 8, 15, 17, 2, 16];
 
+const hitDiceTypes = [
+  { value: 'd4', text: 'd4' },
+  { value: 'd6', text: 'd6' },
+  { value: 'd8', text: 'd8', selected: true },
+  { value: 'd10', text: 'd10' },
+  { value: 'd12', text: 'd12' },
+  { value: 'd20', text: 'd20' },
+];
+
+const abilityOptions = [
+  { value: 'strength', text: 'Force' },
+  { value: 'dexterity', text: 'Dextérité' },
+  { value: 'constitution', text: 'Constitution' },
+  { value: 'intelligence', text: 'Intelligence' },
+  { value: 'wisdom', text: 'Sagesse' },
+  { value: 'charisma', text: 'Charisme' },
+];
+
 const ABILITY_NAMES = [
   'strength',
   'dexterity',
@@ -83,6 +101,23 @@ const classSavingThrows = [
   { className: 'Roublard', proficientSaves: ['Dextérité', 'Intelligence'] },
 ];
 
+const classOptions = [
+  { value: 'Barbare', text: 'Barbare' },
+  { value: 'Barde', text: 'Barde' },
+  { value: 'Clerc', text: 'Clerc' },
+  { value: 'Druide', text: 'Druide' },
+  { value: 'Ensorceleur', text: 'Ensorceleur' },
+  { value: 'Guerrier', text: 'Guerrier' },
+  { value: 'Mage', text: 'Mage' },
+  { value: 'Moine', text: 'Moine' },
+  { value: 'Occultiste', text: 'Occultiste' },
+  { value: 'Paladin', text: 'Paladin' },
+  { value: 'Rôdeur', text: 'Rôdeur' },
+  { value: 'Roublard', text: 'Roublard' },
+];
+
+
+
 const raceOptions = [
   "Sylvestre",
   "Montagnais des cîmes",
@@ -95,6 +130,52 @@ const raceOptions = [
   "Gitans",
   "Impurs"
 ];
+
+const religionOptions = [
+  { value: 'Ancien', text: 'Ancien' },
+  { value: 'Solis', text: 'Solis' },
+  { value: 'Luna', text: 'Luna' },
+  { value: 'Lunë', text: 'Lunë' },
+  { value: 'Centaure', text: 'Centaure' },
+  { value: 'Gorgone', text: 'Gorgone' },
+  { value: 'Couatl', text: 'Couatl' },
+  { value: 'Chimère', text: 'Chimère' },
+  { value: 'Lionne', text: 'Lionne' },
+  { value: 'Dragonne', text: 'Dragonne' },
+  { value: 'Chèvre', text: 'Chèvre' },
+  { value: 'Seigneur Roc', text: 'Seigneur Roc' },
+  { value: 'Grande Marée', text: 'Grande Marée' },
+  { value: 'Souffle de vie', text: 'Souffle de vie' },
+  { value: 'Reine Flamme', text: 'Reine Flamme' },
+  { value: 'Satyre', text: 'Satyre' },
+  { value: 'Fée', text: 'Fée' },
+  { value: 'Goliath', text: 'Goliath' },
+  { value: 'Cyclope', text: 'Cyclope' },
+  { value: 'Amon', text: 'Amon' },
+  { value: 'Gruumsh', text: 'Gruumsh' }
+];
+
+const backgroundOptions = [
+  { value: 'Acolyte', text: 'Acolyte' },
+  { value: 'Artisan de guilde', text: 'Artisan de guilde' },
+  { value: 'Artiste', text: 'Artiste' },
+  { value: 'Charlatan', text: 'Charlatan' },
+  { value: 'Chevalier', text: 'Chevalier' },
+  { value: 'Criminel', text: 'Criminel' },
+  { value: 'Enfant des rues', text: 'Enfant des rues' },
+  { value: 'Ermite', text: 'Ermite' },
+  { value: 'Espion', text: 'Espion' },
+  { value: 'Gladiateur', text: 'Gladiateur' },
+  { value: 'Héros du peuple', text: 'Héros du peuple' },
+  { value: 'Marchand de guilde', text: 'Marchand de guilde' },
+  { value: 'Marin', text: 'Marin' },
+  { value: 'Noble', text: 'Noble' },
+  { value: 'Pirate', text: 'Pirate' },
+  { value: 'Sage', text: 'Sage' },
+  { value: 'Sauvageon', text: 'Sauvageon' },
+  { value: 'Soldat', text: 'Soldat' }
+];
+
 
 const worldLanguage = [
   { id: "elanais", nom: "Élanais" },
@@ -7314,3 +7395,6 @@ const fondorCurrencies = {
     color: "#eeeeee" // Example purple color for unicorne/licorne
   }
 };
+
+
+

@@ -398,14 +398,7 @@
 										</div>
 										<div class="container">
 											<label for="hitDiceType">Type</label>
-											<select id="hitDiceType" name="hitDiceType"
-												class="input-text input-hitDiceType">
-												<option value="d4">d4</option>
-												<option value="d6">d6</option>
-												<option value="d8" selected class="input-hitDiceType">d8</option>
-												<option value="d10">d10</option>
-												<option value="d12">d12</option>
-												<option value="d20">d20</option>
+											<select id="hitDiceType" name="hitDiceType" class="input-text input-hitDiceType">
 											</select>
 										</div>
 									</div>
@@ -494,25 +487,11 @@
 								<div class="ability-adjustment">
 									<label for="abilityAdjustment1" id="abilityAdjustment1Label">Habileté 1</label>
 									<select id="abilityAdjustment1" class="input-text">
-										<option value=" ">Choisir</option>
-										<option value="strength">Force</option>
-										<option value="dexterity">Dextérité</option>
-										<option value="constitution">Constitution</option>
-										<option value="intelligence">Intelligence</option>
-										<option value="wisdom">Sagesse</option>
-										<option value="charisma">Charisme</option>
 									</select>
 								</div>
 								<div class="ability-adjustment">
 									<label for="abilityAdjustment2" id="abilityAdjustment2Label">Habileté 2</label>
 									<select id="abilityAdjustment2" class="input-text">
-										<option value=" ">Choisir</option>
-										<option value="strength">Force</option>
-										<option value="dexterity">Dextérité</option>
-										<option value="constitution">Constitution</option>
-										<option value="intelligence">Intelligence</option>
-										<option value="wisdom">Sagesse</option>
-										<option value="charisma">Charisme</option>
 									</select>
 								</div>
 							</div>
@@ -631,14 +610,15 @@
 						<div id="equipmentContainer" class="equipment-container"></div>
 					</div>
 					<div id="money" class="section">
-						<h2>Argent</h2>
-						<h3>Pièces</h3>
-						<div id="moneyPieces" class="subsection4"></div>
-						<h3>Trésors</h3>
-						<button id="addFeature" class="add-button" onclick="generateTreasureSection()"><span
-								class="iconify" data-icon="material-symbols:add"></span></button>
-						<div id="treasureContainer" class="treasure-container"></div>
-
+						<div class="flex-start-behavior">
+							<h2>Argent</h2>
+							<h3>Pièces</h3>
+							<div id="moneyPieces" class="subsection4"></div>
+							<h3>Trésors</h3>
+							<button id="addFeature" class="add-button" onclick="generateTreasureSection()"><span
+									class="iconify" data-icon="material-symbols:add"></span></button>
+							<div id="treasureContainer" class="treasure-container"></div>
+						</div>
 					</div>
 				</div>
 				<div id="spellTab" class="meta-section tabContentCS">
@@ -710,20 +690,6 @@
 								<select id="className" class="input-text" name="className"
 									onchange="selectChangedArmorClass(this,'customClass')"
 									data-custom-input="customClass">
-									<option value=" ">Choisir une classe</option>
-									<option value="Barbare">Barbare</option>
-									<option value="Barde">Barde</option>
-									<option value="Clerc">Clerc</option>
-									<option value="Druide">Druide</option>
-									<option value="Ensorceleur">Ensorceleur</option>
-									<option value="Guerrier">Guerrier</option>
-									<option value="Mage">Mage</option>
-									<option value="Moine">Moine</option>
-									<option value="Occultiste">Occultiste</option>
-									<option value="Paladin">Paladin</option>
-									<option value="Rôdeur">Rôdeur</option>
-									<option value="Roublard">Roublard</option>
-									<option value="custom">Classe personnalisée</option>
 								</select>
 								<input type="text" id="customClass" class="input-text" name="customClass"
 									style="display:none;" value=" ">
@@ -746,29 +712,6 @@
 								<select id="religion" class="input-text" name="religion"
 									onchange="selectChangedArmorClass(this,'customReligion')"
 									data-custom-input="customReligion">
-									<option value=" ">Choisir une religion</option>
-									<option value="Ancien">Ancien</option>
-									<option value="Solis">Solis</option>
-									<option value="Luna">Luna</option>
-									<option value="Lunë">Lunë</option>
-									<option value="Centaure">Centaure</option>
-									<option value="Gorgone">Gorgone</option>
-									<option value="Couatl">Couatl</option>
-									<option value="Chimère">Chimère</option>
-									<option value="Lionne">Lionne</option>
-									<option value="Dragonne">Dragonne</option>
-									<option value="Chèvre">Chèvre</option>
-									<option value="Seigneur Roc">Seigneur Roc</option>
-									<option value="Grande Marée">Grande Marée</option>
-									<option value="Souffle de vie">Souffle de vie</option>
-									<option value="Reine Flamme">Reine Flamme</option>
-									<option value="Satyre">Satyre</option>
-									<option value="Fée">Fée</option>
-									<option value="Goliath">Goliath</option>
-									<option value="Cyclope">Cyclope</option>
-									<option value="Amon">Amon</option>
-									<option value="Gruumsh">Gruumsh</option>
-									<option value="custom">Autre religion</option>
 								</select>
 								<input type="text" id="customReligion" class="input-text" name="customReligion"
 									style="display:none;" value=" ">
@@ -778,26 +721,6 @@
 								<select id="historique" class="input-text" name="historique"
 									onchange="selectChangedArmorClass(this,'customHistorique')"
 									data-custom-input="customHistorique">
-									<option value=" ">Choisir un historique</option>
-									<option value="Acolyte">Acolyte</option>
-									<option value="Artisan de guilde">Artisan de guilde</option>
-									<option value="Artiste">Artiste</option>
-									<option value="Charlatan">Charlatan</option>
-									<option value="Chevalier">Chevalier</option>
-									<option value="Criminel">Criminel</option>
-									<option value="Enfant des rues">Enfant des rues</option>
-									<option value="Ermite">Ermite</option>
-									<option value="Espion">Espion</option>
-									<option value="Gladiateur">Gladiateur</option>
-									<option value="Héros du peuple">Héros du peuple</option>
-									<option value="Marchand de guilde">Marchand de guilde</option>
-									<option value="Marin">Marin</option>
-									<option value="Noble">Noble</option>
-									<option value="Pirate">Pirate</option>
-									<option value="Sage">Sage</option>
-									<option value="Sauvageon">Sauvageon</option>
-									<option value="Soldat">Soldat</option>
-									<option value="custom">Autre historique</option>
 								</select>
 								<input type="text" id="customHistorique" class="input-text" name="customHistorique"
 									style="display:none;" value=" ">

@@ -1,35 +1,59 @@
 Fondor road map
 - v1
-    - extract data from select
-        - line: 362 hitdicetype
-        - line: 445 ability
-        - line: 457 ability
-        - line: 646 character class
+   - extract data from select
         - line: 676 religion 
         - line: 705 background
-    -   finaliser Argent en cour:
+    -   finaliser Argent en cour
         - total trésor et grand total sur meme ligne
-        - calcul trésor
+        - argent en rond
+        - calcul trésor?
         - calcul grand total?
-        - ajout/supprime/edit trésor
-        - save 
-        - open
-    - Perrin : +Attributs (25), +équipements (17), +argent (2)+trésors
-    - ajouts
-        1 - equipment  totalWeight= sum(qty*weight) + money (?)
-        2 - short or long rest Reset.
+		- miscellaneous name new field
+    - Perrin : 
+    - Ajouts
+		- attributs: collapsable
+		- états : HASTED, fatiqué
+		- Fatigue : niveau 1 à 10
+        - equipment totalWeight= sum(qty*weight) + money (?)
+        - bonus général (proche de : A.N.D.)
+        - short or long rest Reset.
+		- changer les onglets les sous-onglets deviennent main. 	
+		- refaire le générateur de dé. qty dés bonus libellé (pas de liste)
     - custom-lists
-        4 - feats custom-list mini-fiche DOM SOR
-        6 - spells niveaux 1 a 9 sélection par character class, jet de base, custom-list, mini-fiche DOM SOR, option : apply class restriction or not (to load list)
+        - feats custom-list mini-fiche DOM SOR
+			- nom
+			- vo
+			- prérequis
+			- description
+			- source (à débogguer)
+        - spells niveaux 1 a 9 sélection
+			- option class par défaut set sur classe du perso. option: toutes les classes
+			- global
+				- Spell Casting ability
+				- DC for spells
+				 -Spell attack Bonus
+			- per level: 
+				- max
+				- actual
+			 	- fiche de sort 
+					- nom combo par class du personnage
+					- vo
+					- école
+					- incantation (conjusring time)
+					- Composante VSC
+					- durée 
+					- description
+					- source
+					- url (lien _blank)
+					- Prêt (switch
     - dnd5e
-        4 - multi-class
+        - multi-class
     - ui-ux 
         - image pour icone "ios" 
 - v2
     - ui-ux 
-        4 - localStorge : on every change + multiple names
-        2 - image S O R, resize 128X128 png ou jpg base64
-        9 - 3D : d4 à d20, d2,d3, d100 !?
-        9 - arrête un dé sur la bonne face
-        4 - Option Roll  >talespire >on screen
-    
+        - localStorge : on every change + multiple names
+        - image S O R, resize 128X128 png ou jpg base64
+        - 3D : d4 à d20, d2,d3, d100 !?
+        - arrête un dé sur la bonne face
+        - Option Roll  >talespire >on screen
