@@ -992,11 +992,17 @@ function confirmReset() {
     const selectElement = document.getElementById(`${ability}Score`);
     selectElement.value = 10;
   });
+  
 
   DESCRIPTION_INPUTS.forEach((inputId) => {
     const inputElement = document.getElementById(inputId);
-    inputElement.value = ' ';  
+    if (inputElement === characterNameInput) {
+      inputElement.value = '<nom>';
+    } else {
+      inputElement.value = ' ';
+    }
   });
+  
   
 
   // Reset levelName to 1
@@ -1490,9 +1496,16 @@ function rollInitiative(initiativeName, initiativeBonus) {
   const advantageState = getAdvantage();
   let commandBonus = '';
   let toastBonus = '';
-  if (initiativeBonus !== '+0') {
-    commandBonus = initiativeBonus;
-    toastBonus = ` et un bonus de ${initiativeBonus}`;
+
+  // Get the value of generalBonusValue
+  const generalBonusValue = parseInt(document.getElementById("generalBonusValue").value) || 0;
+
+  // Update initiativeBonus
+  initiativeBonus = parseInt(initiativeBonus) + generalBonusValue;
+
+  if (initiativeBonus !== 0) {
+    commandBonus = initiativeBonus >= 0 ? `+${initiativeBonus}` : initiativeBonus;
+    toastBonus = ` et un bonus de ${commandBonus}`;
   }
 
   let diceCount = 'd20';
@@ -1511,8 +1524,8 @@ function rollInitiative(initiativeName, initiativeBonus) {
 
   // Show the toast
   showToast(toastMessage);
-  //showToast(`talespire://dice/${command}`);
 }
+
 
 
 //----------- PERCEPTION PASSIVE -----------//
@@ -1805,13 +1818,12 @@ const characterTitle = document.getElementById('character-title');
 const characterNameInput = document.getElementById('characterName');
 
 characterNameInput.addEventListener('input', () => {
-  if (characterNameInput.value === "" || characterNameInput.value === " " ) {
+  if (characterNameInput.value === "" || characterNameInput.value === " " || characterNameInput.value === null  ) {
     characterTitle.textContent = "Val de Fondor";
   } else {
     characterTitle.textContent = characterNameInput.value;
   }
 });
-
 
 // Populate score dropdowns with values from 1 to 20
 for (let i = 1; i <= 20; i++) {
@@ -1852,6 +1864,16 @@ function rollAbility(abilityName, abilityBonus) {
   let command = '';
   let advantageText = '';
 
+  // Get the value of generalBonusValue
+  const generalBonusValue = parseInt(document.getElementById("generalBonusValue").value) || 0;
+
+  // Update abilityBonus
+  abilityBonus = parseInt(abilityBonus) + generalBonusValue;
+
+  if (abilityBonus >= 0) {
+    abilityBonus = `+${abilityBonus}`;
+  }
+
   if (advantageState === 'normal') {
     command = `${encodeURI(removeAccents(abilityName))}:d20${abilityBonus}`;
   } else {
@@ -1870,6 +1892,7 @@ function rollAbility(abilityName, abilityBonus) {
   showToast(toastMessage);
   //showToast(`talespire://dice/${command}`);
 }
+
 
 
 
@@ -1986,6 +2009,16 @@ function rollSave(saveName, saveBonus) {
   let command = '';
   let advantageText = '';
 
+  // Get the value of generalBonusValue
+  const generalBonusValue = parseInt(document.getElementById("generalBonusValue").value) || 0;
+
+  // Update saveBonus
+  saveBonus = parseInt(saveBonus) + generalBonusValue;
+
+  if (saveBonus >= 0) {
+    saveBonus = `+${saveBonus}`;
+  }
+
   if (advantageState === 'normal') {
     command = `${encodeURI(removeAccents("Sauvegarde " + saveName))}:d20${saveBonus}`;
   } else {
@@ -2004,6 +2037,7 @@ function rollSave(saveName, saveBonus) {
   showToast(toastMessage);
   //showToast(`talespire://dice/${command}`);
 }
+
 
 
 // Update ability modifiers when score dropdowns are changed
@@ -2181,6 +2215,16 @@ function rollSkill(skillName, skillBonus) {
   let command = '';
   let advantageText = '';
 
+  // Get the value of generalBonusValue
+  const generalBonusValue = parseInt(document.getElementById("generalBonusValue").value) || 0;
+
+  // Update skillBonus
+  skillBonus = parseInt(skillBonus) + generalBonusValue;
+
+  if (skillBonus >= 0) {
+    skillBonus = `+${skillBonus}`;
+  }
+
   if (advantageState === 'normal') {
     command = `${encodeURI(removeAccents(skillName))}:d20${skillBonus}`;
   } else {
@@ -2199,6 +2243,7 @@ function rollSkill(skillName, skillBonus) {
   showToast(toastMessage);
   //showToast(`talespire://dice/${command}`);
 }
+
 
 
 //----------- INSPIRATION -----------//
@@ -2982,6 +3027,16 @@ function rollAttack(attackName, attackBonus) {
   let command = '';
   let advantageText = '';
 
+  // Get the value of generalBonusValue
+  const generalBonusValue = parseInt(document.getElementById("generalBonusValue").value) || 0;
+
+  // Update attackBonus
+  attackBonus = parseInt(attackBonus) + generalBonusValue;
+
+  if (attackBonus >= 0) {
+    attackBonus = `+${attackBonus}`;
+  }
+
   if (advantageState === 'normal') {
     command = `${encodeURI(removeAccents('Attaque ' + attackName))}:d20${attackBonus}`;
   } else {
@@ -3001,12 +3056,12 @@ function rollAttack(attackName, attackBonus) {
   //showToast(`talespire://dice/${command}`);
 };
 
+
 function rollDamage(attackName, damageType, damage) {
   let commandBonus = '';
   let toastBonus = '';
   if (damage !== 'Choisir') {
     commandBonus = damage;
-    console.log(damage);
     toastBonus = `${damage}`;
   }
 
@@ -3015,7 +3070,7 @@ function rollDamage(attackName, damageType, damage) {
     command = `${encodeURI(removeAccents('Degats ' + attackName))}:${commandBonus}`;
     toastMessage = `Ça roule dégâts pour ${attackName} de ${toastBonus}`;
   } else {
-    command = `${encodeURI(removeAccents('Degats ${damageType} ' + attackName))}:${commandBonus}`;
+    command = `${encodeURI(removeAccents(' ' + damageType))}:${commandBonus}`;
     toastMessage = `Ça roule dégâts de type ${damageType} pour ${attackName} de ${toastBonus}`;
   }
 
