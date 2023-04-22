@@ -1,10 +1,6 @@
 Fondor road map
 - v1
-	- Ajouts
-        - equipment totalWeight= sum(qty*weight) + money (?)
-        - bonus général (proche de : A.N.D.)
-        - short or long rest Reset.
-    - custom-lists
+	- custom-lists
         - feats custom-list mini-fiche DOM SOR
 			- nom
 			- vo
@@ -36,6 +32,8 @@ Fondor road map
 	- dnd5e
 		- multi-class
 		- Fatigue : niveau 1 à 10
+		- Equipment totalWeight= sum(qty*weight) + money (?)
+		- short or long rest Reset.
     - ui-ux 
 		- refaire le générateur de dé. qty dés bonus libellé (pas de liste)
         - localStorge : on every change + multiple names
@@ -43,4 +41,5 @@ Fondor road map
         - 3D : d4 à d20, d2,d3, d100 !?
         - arrête un dé sur la bonne face
         - Option Roll  >talespire >on screen
-		- image pour icone "ios" 
+		- image pour icone "ios"
+	- Tale-GPT : remove reference to Val de Fondor, ne repo puplic
