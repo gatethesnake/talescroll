@@ -1,0 +1,900 @@
+{
+	"uuid": "5fbabe7a-02f4-4122-98c1-f0658e49b56a",
+	"characterName": "Perrin",
+	"playerName": "Perrin",
+	"classes": [
+		{
+			"className": "Moine",
+			"level": 5
+		}
+	],
+	"alingment": {
+		"orderAligment": "Loyal",
+		"goodAligments": "Good"
+	},
+	"race": {
+		"race": "Sylvestre"
+	},
+	"antecedent": {
+		"antecedent": "Idiot du village"
+	},
+	"exp": 0,
+	"imageUrl": "blob:https://talesheet.web.app/077cf87c-6bad-4024-8eb7-6b5bb19cbac6",
+	"strenght": {
+		"name": "strength",
+		"value": 10
+	},
+	"dextery": {
+		"name": "dextery",
+		"value": 16
+	},
+	"constitution": {
+		"name": "constitution",
+		"value": 14
+	},
+	"intelect": {
+		"name": "intelligence",
+		"value": 10
+	},
+	"wisdom": {
+		"name": "wisdom",
+		"value": 15
+	},
+	"charisma": {
+		"name": "charisma",
+		"value": 10
+	},
+	"inspirations": 0,
+	"saves": {
+		"strenghSave": {
+			"name": "strength",
+			"trained": true,
+			"specialist": false,
+			"otherBonus": 0,
+			"ability": 0
+		},
+		"dexteryhSave": {
+			"name": "dextery",
+			"trained": true,
+			"specialist": false,
+			"otherBonus": 0,
+			"ability": 1
+		},
+		"constitutionSave": {
+			"name": "constitution",
+			"trained": false,
+			"specialist": false,
+			"otherBonus": 0,
+			"ability": 2
+		},
+		"intelectSave": {
+			"name": "intelligence",
+			"trained": false,
+			"specialist": false,
+			"otherBonus": 0,
+			"ability": 3
+		},
+		"wisdomSave": {
+			"name": "wisdom",
+			"trained": false,
+			"specialist": false,
+			"otherBonus": 0,
+			"ability": 4
+		},
+		"charismaSave": {
+			"name": "charisma",
+			"trained": false,
+			"specialist": false,
+			"otherBonus": 0,
+			"ability": 5
+		}
+	},
+	"versatil": false,
+	"skills": [
+		{
+			"uuid": "e5e6ef15-e2c5-4ed5-a847-127b71cf45bd",
+			"name": "Acrobaties",
+			"trained": true,
+			"specialist": false,
+			"master": false,
+			"otherBonus": 0,
+			"ability": 1
+		},
+		{
+			"uuid": "6458eb42-51b8-4ec2-a6ad-c7cabd3be10a",
+			"name": "Arcanes",
+			"trained": false,
+			"specialist": false,
+			"master": false,
+			"otherBonus": 0,
+			"ability": 3
+		},
+		{
+			"uuid": "03f8d43c-2168-40ff-a8b5-35616b5c4404",
+			"name": "Athlétisme",
+			"trained": false,
+			"specialist": false,
+			"master": false,
+			"otherBonus": 0,
+			"ability": 0
+		},
+		{
+			"uuid": "9cc96699-b392-488f-a7ad-379ec7baf289",
+			"name": "Discrétion",
+			"trained": true,
+			"specialist": false,
+			"master": false,
+			"otherBonus": 0,
+			"ability": 1
+		},
+		{
+			"uuid": "c5253cb9-2bec-4932-b4a0-8a0fbbd67e75",
+			"name": "Dressage",
+			"trained": false,
+			"specialist": false,
+			"master": false,
+			"otherBonus": 0,
+			"ability": 4
+		},
+		{
+			"uuid": "605476fc-f4a8-4f0c-bd50-67995f7e72b4",
+			"name": "Escamotage",
+			"trained": true,
+			"specialist": false,
+			"master": false,
+			"otherBonus": 0,
+			"ability": 1
+		},
+		{
+			"uuid": "9056dab6-c24f-46c6-930c-5dcae3ad2044",
+			"name": "Histoire",
+			"trained": false,
+			"specialist": false,
+			"master": false,
+			"otherBonus": 0,
+			"ability": 3
+		},
+		{
+			"uuid": "7960dd80-cf76-4fb4-a8fc-a399a9d0684a",
+			"name": "intimidation",
+			"trained": false,
+			"specialist": false,
+			"master": false,
+			"otherBonus": 0,
+			"ability": 5
+		},
+		{
+			"uuid": "9cb02e9c-dd64-40bc-b244-571af67673d2",
+			"name": "investigation",
+			"trained": false,
+			"specialist": false,
+			"master": false,
+			"otherBonus": 0,
+			"ability": 3
+		},
+		{
+			"uuid": "adc2493f-da59-483e-90b6-81842a4f95b9",
+			"name": "Médicine",
+			"trained": false,
+			"specialist": false,
+			"master": false,
+			"otherBonus": 0,
+			"ability": 4
+		},
+		{
+			"uuid": "93f09f81-ffbb-44e7-bd98-1494d08b550a",
+			"name": "nature",
+			"trained": false,
+			"specialist": false,
+			"master": false,
+			"otherBonus": 0,
+			"ability": 3
+		},
+		{
+			"uuid": "c2190f1b-e602-4c27-a99e-de297134fbbe",
+			"name": "perception",
+			"trained": true,
+			"specialist": false,
+			"master": false,
+			"otherBonus": 0,
+			"ability": 4
+		},
+		{
+			"uuid": "3f5266b7-bc0d-407f-b0d4-5710fccf888d",
+			"name": "Perspicacité",
+			"trained": false,
+			"specialist": false,
+			"master": false,
+			"otherBonus": 0,
+			"ability": 4
+		},
+		{
+			"uuid": "ac08c153-402e-405c-b2f3-a18a0ebe77dc",
+			"name": "persuation",
+			"trained": false,
+			"specialist": false,
+			"master": false,
+			"otherBonus": 0,
+			"ability": 5
+		},
+		{
+			"uuid": "0340a9d2-dd78-4bc8-b66c-e5e789918c17",
+			"name": "religion",
+			"trained": false,
+			"specialist": false,
+			"master": false,
+			"otherBonus": 0,
+			"ability": 3
+		},
+		{
+			"uuid": "0098eb7e-cdf9-48d2-9e48-f456763226d5",
+			"name": "Représentation",
+			"trained": true,
+			"specialist": false,
+			"master": false,
+			"otherBonus": 0,
+			"ability": 5
+		},
+		{
+			"uuid": "d4a8af80-40e5-4fff-93bd-eb929d21205c",
+			"name": "Survie",
+			"trained": false,
+			"specialist": false,
+			"master": false,
+			"otherBonus": 0,
+			"ability": 4
+		},
+		{
+			"uuid": "caa07de1-8c7b-4228-a338-143cf170bea4",
+			"name": "Tromperie",
+			"trained": false,
+			"specialist": false,
+			"master": false,
+			"otherBonus": 0,
+			"ability": 5
+		},
+		{
+			"uuid": "4ef93951-a1f7-4cc4-8e84-1860ed5d482e",
+			"name": "_DD Sauv. Ki",
+			"trained": false,
+			"specialist": false,
+			"master": false,
+			"otherBonus": 0,
+			"ability": 4
+		},
+		{
+			"uuid": "f9a80571-ed26-4982-b7d9-145afd55ac2a",
+			"name": "_Représentation Ocarina",
+			"trained": true,
+			"specialist": true,
+			"master": false,
+			"otherBonus": 0,
+			"ability": 5
+		},
+		{
+			"uuid": "0f4b0af8-6d68-4b4b-a79f-a026f82f3b09",
+			"name": "_Sifflet",
+			"trained": true,
+			"specialist": false,
+			"master": false,
+			"otherBonus": 0,
+			"ability": 4
+		},
+		{
+			"uuid": "1c25fdc1-52b8-46ca-819d-c63f6d68978e",
+			"name": "_Tour Hanoi",
+			"trained": true,
+			"specialist": false,
+			"master": false,
+			"otherBonus": 0,
+			"ability": 3
+		}
+	],
+	"wearedArmor": {
+		"name": "Armure naturelle de moine",
+		"base": 10,
+		"obs": ""
+	},
+	"amorClass": {
+		"otherBonus": 0,
+		"firstAbility": 1,
+		"secondAbility": 4
+	},
+	"initiative": {
+		"ability": 1,
+		"otherBonus": 0
+	},
+	"lifeDice": [
+		{
+			"side": 8
+		}
+	],
+	"actualLifeDices": [
+		0
+	],
+	"actualLifePoints": 40,
+	"maxLifePoints": 40,
+	"temporaryLifePoints": 0,
+	"deathSave": {
+		"success": 0,
+		"fails": 0
+	},
+	"attacks": [
+		{
+			"uuid": "64b60019-701b-44e3-a276-8e3451ef03a4",
+			"name": "Javelin de foudre Gietzlë",
+			"abilityAtack": 1,
+			"abilityDamage": 1,
+			"damageDice": {
+				"side": 6
+			},
+			"diceQuantity": 1,
+			"type": "perf+mag",
+			"trained": true,
+			"otherAttackBonus": 1,
+			"otherDamageBonus": 1,
+			"position": 0,
+			"obs": ""
+		},
+		{
+			"uuid": "a6c21f89-6be3-45cd-9816-f0fee2ec7dfa",
+			"name": "Arts martiaux",
+			"abilityAtack": 1,
+			"abilityDamage": 1,
+			"damageDice": {
+				"side": 6
+			},
+			"diceQuantity": 1,
+			"type": "radiant",
+			"trained": true,
+			"otherAttackBonus": 0,
+			"otherDamageBonus": 0,
+			"position": 1,
+			"obs": ""
+		},
+		{
+			"uuid": "e4a24f4f-d91d-4452-ad07-24f16da56bbe",
+			"name": "Hankyu (arc court asymetrique)",
+			"abilityAtack": 1,
+			"abilityDamage": 1,
+			"damageDice": {
+				"side": 6
+			},
+			"diceQuantity": 1,
+			"type": "perforant",
+			"trained": true,
+			"otherAttackBonus": 0,
+			"otherDamageBonus": 0,
+			"position": 2,
+			"obs": ""
+		},
+		{
+			"uuid": "74dab2c2-10e7-465f-8b47-0a4422bc07bb",
+			"name": "Nunchaku (club)",
+			"abilityAtack": 1,
+			"abilityDamage": 1,
+			"damageDice": {
+				"side": 4
+			},
+			"diceQuantity": 1,
+			"type": "contondant",
+			"trained": true,
+			"otherAttackBonus": 0,
+			"otherDamageBonus": 0,
+			"position": 3,
+			"obs": ""
+		},
+		{
+			"uuid": "e0882d25-b8bf-4512-ac90-8d4735fdcf6e",
+			"name": "Shuriken (dart)",
+			"abilityAtack": 1,
+			"abilityDamage": 1,
+			"damageDice": {
+				"side": 4
+			},
+			"diceQuantity": 1,
+			"type": "perforant",
+			"trained": true,
+			"otherAttackBonus": 0,
+			"otherDamageBonus": 0,
+			"position": 4,
+			"obs": ""
+		}
+	],
+	"shield": {
+		"name": "Bracelet de défense Peyfois",
+		"bonus": 2,
+		"wield": true
+	},
+	"personality": [],
+	"ideals": [],
+	"bonds": [],
+	"flaws": [],
+	"languages": [
+		"Sylvestre P+E",
+		"Élanais P+E",
+		"Faune P",
+		"LangueMère (TMVC)",
+		"Gnééééé"
+	],
+	"age": 28,
+	"height": 5,
+	"weight": 70,
+	"description": "Amnésique (idiot du village)\nDéclenchée par voyage dans le temps .\n\nKi\nÀ partir du niveau 2, votre entrainement vous permet d'exploiter cette mystérieuse énergie qu'est le ki. Votre accès à cette énergie est représenté par un nombre de points ki. Votre niveau de moine détermine le nombre de points ki que vous possédez, comme indiqué dans la colonne Ki de la table ci-dessus. Vous pouvez dépenser ces points pour déclencher diverses capacités ki. Vous débutez en connaissant trois de ces capacités ki : Déluge de coups, Défense patiente et Déplacement aérien. Vous apprendrez de nouvelles capacités ki en gagnant des niveaux de moine.\n\nLorsque vous dépensez un point ki, il n'est plus disponible jusqu'à ce que vous finissiez un repos court ou long, à la fin desquels vous récupérez tous les points ki utilisés. Vous devez passer au moins 30 minutes de votre repos à méditer pour pouvoir regagner vos points ki. Plusieurs de vos capacités ki nécessitent que votre cible effectue un jet de sauvegarde pour résister à leurs effets. Le DD du jet de sauvegarde est calculé ainsi :\n\nDD du jet de sauvegarde du ki = 8 + votre bonus de maîtrise + votre modificateur de Sagesse\n\nquand je serai niveau 8\nau niveau 8\nprochain feat: Telekinetic\nSource: Tasha's Cauldron of Everything\n\nYou learn to move things with your mind, granting you the following benefits:\n\nIncrease your Intelligence, Wisdom, or Charisma score by 1, to a maximum of 20.\nYou learn the Mage Hand cantrip. You can cast it without verbal or somatic components, and you can make the spectral hand invisible. If you already know this spell, its range increases by 30 feet when you cast it. Its spellcasting ability is the ability increased by this feat.\nAs a bonus action, you can try to telekinetically shove one creature you can see within 30 feet of you. When you do so, the target must succeed on a Strength saving throw (DC 8 + your proficiency bonus + the ability modifier of the score increased by this feat) or be moved 5 feet toward or away from you. A creature can willingly fail this save.\n\nJe suis un moine du Coualt, sylvestre, qui vient de voyager dans le temps.\n\nJ'ai l'esprit très embrumé et une amnésie partiel sur mon passé.\n\nTout ça m'a value d'être admis (sans violence) à l'asile.\n\nJ'ai des tatouages sur le front et le torse\n\nSimple d'esprit avéré, en toutes circonstances, mes actions et réactions sont totalement inattendues. Ces facéties amusent ou agacent les gens qui les subissent, mais dans tous les cas, ils m'en excusent, car ce n'est pas de ma faute si je suis comme ça. Je passe la plupart de votre temps à errer sans but évident. Vous interpellez les passants avec des exclamations incompréhensibles, du style « Le futur est maintenant le passé, la passé est inconnue, le futur, je le connais ».\n\nIl est évident que je suis limité et que je ne suis pas responsable de mes actes... Tout le monde s'en rend compte dès le premier regard et cela me permet d'être traité différemment des personnes ordinaires. La plupart des gens font comme si je n'étais pas là et je peux donc traîner un peu partout sans attirer la méfiance.\n\nDe plus, je fais pitié et, en conséquence, le châtiment est toujours plus doux que le crime. Lorsque je réalise des actes répréhensibles ou que je me trouve à un endroit où je ne devrais pas me trouver, je ne suis pas , la plupart du temps, inquiété. « C'est pas sa faute, il est débile ! ». Mais cela ne m'empêche pas de prendre des coups de temps en temps lorsque je me fais virerJe suis un moine du Coualt, sylvestre, qui vient de voyager dans le temps.\n\nJ'ai l'esprit très embrumé et une amnésie partiel sur mon passé.\n\nTout ça m'a value d'être admis (sans violence) à l'asile.\n\nJ'ai des tatouages sur le front et le torse\n\nSimple d'esprit avéré, en toutes circonstances, mes actions et réactions sont totalement inattendues. Ces facéties amusent ou agacent les gens qui les subissent, mais dans tous les cas, ils m'en excusent, car ce n'est pas de ma faute si je suis comme ça. Je passe la plupart de votre temps à errer sans but évident. Vous interpellez les passants avec des exclamations incompréhensibles, du style « Le futur est maintenant le passé, la passé est inconnue, le futur, je le connais ».\n\nIl est évident que je suis limité et que je ne suis pas responsable de mes actes... Tout le monde s'en rend compte dès le premier regard et cela me permet d'être traité différemment des personnes ordinaires. La plupart des gens font comme si je n'étais pas là et je peux donc traîner un peu partout sans attirer la méfiance.\n\nDe plus, je fais pitié et, en conséquence, le châtiment est toujours plus doux que le crime. Lorsque je réalise des actes répréhensibles ou que je me trouve à un endroit où je ne devrais pas me trouver, je ne suis pas , la plupart du temps, inquiété. « C'est pas sa faute, il est débile ! ». Mais cela ne m'empêche pas de prendre des coups de temps en temps lorsque je me fais virer",
+	"allys": [],
+	"enemies": [],
+	"history": "Tradition monastique de la Voie céleste\nInspiré de la voie du dragon ascendant des Trésors des dragons de Fizban\nL'enseignement fondamental de cette tradition soutient qu’un moine devient un canal entre le monde et les cieux. En modifiant leur esprit pour résonner avec la puissance céleste, les moines qui suivent cette tradition augmentent leurs prouesses au combat, renforcent leurs alliés et peuvent même voler dans les airs sur des ailes spirituelles. Mais tout ce pouvoir est au service d'un objectif plus grand : réaliser une unité spirituelle avec l'essence du plan matériel.\nEn tant que partisan de cette tradition monastique, vous décidez comment vous avez débloqué le pouvoir céleste grâce à votre ki. La table ci-dessous offre certaines possibilités. \nOrigine \nD6 Origine\n1\tXuriel a personnellement joué un rôle actif dans la formation de votre énergie intérieure.\n2\tVous avez étudié dans un monastère les enseignements et l’histoire de Xuriel.\n3\tVous avez passé de longues périodes à méditer sur Xuriel, absorbant sa magie ambiante.\n4\tVous avez trouvé un parchemin écrit en céleste qui contenait de nouvelles techniques inspirantes.\n5\tAprès un rêve prémonitoire avec Xuriel, vous vous êtes réveillé avec un ki modifié.\n6\tRejoué\nDisciple céleste\nAu niveau 3, vous pouvez canaliser le pouvoir céleste pour amplifier votre présence et imprégner vos frappes à mains nues de l'essence céleste. Vous bénéficiez des avantages suivants :\nPrésence céleste. Si vous échouez à un test de Charisme (Intimidation) ou de Charisme (Persuasion), vous pouvez utiliser votre réaction pour relancer le test, tout en puisant dans la puissance céleste. Une fois que cette fonctionnalité transforme un échec en succès, vous ne pouvez plus l'utiliser avant d'avoir terminé un repos long.\nFrappe céleste. Lorsque vous infligez des dégâts à une cible avec un coup à mains nues, vous pouvez changer le type de dégâts en radiant.\nLanguemère. Vous apprenez à parler, lire et écrire la Languemère (la langue des anges, des diables et des démons) ou une autre langue de votre choix.\nRayon céleste\nAu niveau 3, vous pouvez canaliser des vagues d'énergie destructrices, comme celles créées par les créatures célestes. Lorsque vous effectuez l'action Attaquer à votre tour, vous pouvez remplacer l'une des attaques par un rayon d’énergie radiante dans un cône de 20’ ou une ligne de 30’ et 5’ de large (au choix). Chaque créature dans cette zone doit effectuer un jet de sauvegarde de Dextérité contre votre DD de sauvegarde de ki, subissant des dégâts radiants équivalent à deux jets de votre dé d'arts martiaux en cas d'échec, ou la moitié de ces dégâts en cas de réussite.\nAu niveau 11, les dégâts de cette capacité passent à trois jets de votre dé d'arts martiaux.\nVous pouvez utiliser cette capacité un nombre de fois égal à votre bonus de compétence, et vous récupérez toutes les utilisations dépensées lorsque vous terminez un repos long. Tant que vous n'avez aucune utilisation disponible, vous pouvez dépenser 2 points ki pour utiliser à nouveau cette fonctionnalité.\nAiles spirituelles\nAu niveau 6, lorsque vous utilisez votre Déplacement aérien, vous pouvez déployer des ailes spectrales depuis votre dos qui disparaissent à la fin de votre tour. Tant que les ailes existent, vous avez une vitesse de vol égale à votre vitesse de marche.\nVous pouvez utiliser cette capacité un nombre de fois égal à votre bonus de compétence, et vous récupérez toutes les utilisations dépensées lorsque vous terminez un repos long.\nAspect céleste\nAu niveau 11, la puissance céleste rayonne désormais de vous, protégeant vos alliés ou inspirant la peur à vos ennemis. Par une action bonus, vous pouvez créer une aura de puissance céleste qui irradie à 10’ de vous pendant 1 minute. Pendant la durée, vous gagnez l'un des effets suivants de votre choix :\nPrésence divine rédemptrice. Lorsque vous créez cette aura, et en tant qu'action bonus lors des tours suivants, vous pouvez choisir une créature dans l'aura. La cible doit réussir un jet de sauvegarde de Sagesse contre votre DD de sauvegarde de ki ou avoir peur de vous pendant 1 minute. La cible peut répéter le jet de sauvegarde à la fin de chacun de ses tours, mettant fin à l'effet sur elle-même en cas de sauvegarde réussie.\nRésistance. Vous et vos alliés dans l'aura avez une résistance aux dégâts nécrotiques.\nUne fois que vous avez créé cette aura, vous ne pouvez pas la recréer tant que vous n'avez pas terminé un repos long, à moins que vous ne dépensiez 3 points de ki pour la recréer.\nAspect divin\nAu niveau 17, votre esprit céleste atteint son apogée. Vous bénéficiez des avantages suivants :\nAugmenter le rayon. Lorsque vous utilisez votre rayon céleste, vous pouvez dépenser 1 point de ki pour augmenter sa forme et sa puissance. La création d'énergie céleste devient soit un cône de 60’, soit une ligne de 90’ et de 5’ de large (au choix), et chaque créature dans cette zone subit des dégâts égaux à quatre lancers de votre dé d'arts martiaux en cas d'échec de sauvegarde, ou moitié moins de dégâts en cas de réussite.\nVision de l’aveugle (blindsight). Vous gagnez la vision de l’aveugle jusqu'à 10 pieds. Dans cette plage, vous pouvez voir efficacement tout ce qui n'est pas à couvert, même si vous êtes aveuglé ou dans l'obscurité. De plus, vous pouvez voir une créature invisible dans cette plage, à moins que la créature ne réussisse à se cacher de vous.\nFurie explosive. Lorsque vous activez votre aspect céleste, une fureur céleste explose de vous. Choisissez n'importe quel nombre de créatures que vous pouvez voir dans votre aura. Chacune de ces créatures doit réussir un jet de sauvegarde de Dextérité contre votre DD de sauvegarde de ki ou subir 3d10 dégâts radiants.\n\nSource et traduction libre de http://dnd5e.wikidot.com/monk:ascendant-dragon \n\n\nSide Quest:\nLa légende de LellahLestras Morani\n\nAu moment où Perrin touche le disque, il est frappé par une lumière radiante éclatante qui enveloppe tout son corps et il se met à tourner sur lui-même. La pression est tellement forte qu’il en perd conscience.\n\nÀ son réveil, il se trouve allongé sur une petite berge près de laquelle s’écoule un ruisseau peu profond et large de quelques enjambées. Il se relève doucement et s’appuie sur un rocher qui s'élève de quelques mètres au plus haut. Droit devant et de chaque côté, partout où son regard peut porter, une dense forêt de feuillus composée d’arbres centenaires et de bosquets de toutes sortes au sol se comptent par dizaines voir par centaines. Un douce brise s’entend provenant des cimes inatteignables. Quelques gazouillis se font entendre.\n\nPerrin se sent bien. Son esprit est encore embrumé mais il ne ressent aucune douleur. Il examine ses possessions qui semblent toutes là. C’est déjà ça.\n\nSoudain, au travers d’un buisson à sa droite, il croit entendre un léger craquement de branche. On l’épie.\n\nIl se lève nonchalamment et se dirige vers le ruisseau droit devant en prenant soin de ne pas dévoiler qu’il sait maintenant qu’on l’observe.Il s’agenouille pour s’abreuver. Il remplit également sa gourde. Il utilise alors un petit miroir pour regarder vers le buisson sans se faire remarquer.\n\nIl voit alors une petite créature humanoïde au cheveux roux coupés en brosse et aux oreilles avec des pointes saillantes. Une couronne de fleur lui fait office de camouflage. En guise de pied, 2 petits sabots bien campés dans le sol. Elle est habillée de haillons autour de la taille et du torse.\n\nPerrin se relève alors subitement et d’un mouvement rapide comme on le connaît, fonce vers le buisson et agrippe la petite créature. A sa grand surprise, il comprend très vite qu’il n’aura pas une grande résistance puisque la créature est tout bonnement une enfant.\n\nElle a beau se débattre comme une petite démone, elle couine et prononce des mots que Perrin reconnaît comme étant la langue des faunes. Il la maîtrise donc et s’adresse à elle en faune. La petite faune reste bouche bée car c’est bien la dernière chose à laquelle elle s’attendait.\n\nElle se calme peu à peu et Perrin la ramène au rocher et l’assoie devant. Il s’assoit à genoux devant elle lui offrant peu de chance de s’évader.\n\n- ‘Quel est ton nom?’ Lui dit-il en faune\n\n- ‘LellahLestras Morani’ lui répond-elle\n\n- Et quelle âge as-tu?\n\n- 12 ans et 33%.\n\nSachant que les faunes vivent beaucoup plus longtemps que les Élanais ou les Sylvestres, Perrin est encore plus surpris.\n\n- Pourquoi es-tu seule dans la forêt et où sont tes parents?\n\nLellah se met alors à sangloter.\n\n- J’ai faim et j’ai froid. Ca fait maintenant 1 semaine que mes parents ont été capturés alors qu’on allait rendre visite à mes grands-parents pour nos vacances d’automne.\n\nPerrin sort alors 2 rations de son sac et en offre une à Lellah.\n\nPerrin apprendra pendant la conversation avec Lellah qui suivra qu’un groupe étrange de créature en forme de sphère, de cube et de triangles avait fait irruption comme par magie au campement non loin de l’endroit où ils se trouvent. Lellah s’était caché dans les couvertures de fourrures et avait entrevu les monstres assommé ses 2 parents avec qui elle voyageait puis, les monstres avaient traîné ses parents pour passer dans un cercle lumineux. Une fois tout le groupe passé, le cercle s’est refermé puis pouf, plus rien.\n\nNe sachant pas où elle était, Lellah avait décidé de rester là. Le campement lui avait fourni de la nourriture et elle savait comment maintenir un feu allumé, ce n’était plus une bébé. Mais il y a 4 nuits, un violent orage avait éteint le feu et depuis, les nuits étaient devenues de plus en plus froides et la nourriture apportée par ses parents avait fini par se tarir depuis hier.\n\nLellah raccompagne Perrin au campement et lui montre l’emplacement du cercle. Perrin retrouve aisément les traces de corps traînés et compte un total de 3 créatures. Aucun autre indice ne permet à Perrin de savoir comment retrouver ou rouvrir le portail.\n\nPerrin allume un feu auprès duquel Lellah s’approche, bien heureuse de se réchauffer. Les journées passent et malgré les explorations quotidiennes, aucune route, village ou présence autour du campement. Même en grimpant au sommet des arbres, la forêt semble s’étendre à l'infini autour du campement des Morani.\n\nPerrin demeurera pendant 8 ans dans ce lieu, une forêt infinie. Il entraînera Lellah comme une moine du Couatl . Elle atteindra le niveau 2. Ensemble, il prieront Le serpent de leur ouvrir leur portail.\n\nUn jour, durant leur exploration, Perrin et Lellah retrouvent les trois modrons et veulent les attaquer, mais réalisent que ces créatures sont la seule façon de sortir de ce lieu. Ils les épient, les modrons restent longtemps (2 ans) sans bouger, jusqu’au jour où ils utilisent le sceptre qu’ils ont volé aux parents de Lellah, pour ouvrir un portail dans la réalité.\n\nLes modrons y passent pour aller accomplir une tâche, et pendant ce temps, Perrin et Lellah libèrent les parents qui étaient encore en captivité car dans cette bulle, le temps ne s’écoulait pas à la même vitesse.\n\nIl se trouve que les parents avaient été kidnappé parce qu’ils transportait un artifact appartenant au modron, un sceptre étrange qu’ils utilisent comme une manivelle pour ouvrir un portail.\n\nPerrin comprend que le portail va rester ouvert seulement encore quelques instants. Il décide de dire adieu à Lellah et à ses parents.\n\nPour remercier Perrin, la père de Lellah lui donna une bénédiction du Satyre, et Perrin reçut le don d’avoir été touché par les faunes.\n\nÀ ce moment le portail commence à se refermer, la famille sourit à Perrin: il comprend alors qu’ils ne viendront pas, Ils se disent adieu. Lorsque Perrin passe, il ne revient pas dans la forêt mais revient dans Jzadurine. Il n’a pas vieilli d’une seconde.",
+	"raceFeatures": [
+		{
+			"title": "Archer",
+			"description": "Sylvestre\nMaîtrise tous les arcs "
+		},
+		{
+			"title": "Attentif",
+			"description": "Sylvestre\nMaitrise de la perception"
+		},
+		{
+			"title": "Vitesse +5 (+1c)",
+			"description": "Sylvestre\nva plus vite"
+		},
+		{
+			"title": "Furtivité sauvage",
+			"description": "Sylvestre\nPeut tenter de se dissimuler dans un milieu naturel extérieur même s’il ne bénéficie que d’une couverture légère"
+		},
+		{
+			"title": "Ancêtre de la nature",
+			"description": "Sylvestre\nAvantage sur les jets de compétence reliés ou exécutés dans un milieu naturel extérieur (discrétion, connaissance, etc…)"
+		}
+	],
+	"classFeatures": [
+		{
+			"title": "Attaque supplémentaire",
+			"description": "Moine niv5\n2 attaques par tour"
+		},
+		{
+			"title": "Objectif ciblé",
+			"description": "Moine niv5 opt.\nlorsque vous ratez un jet d'attaque, vous pouvez dépenser 1 à 3 points de ki pour augmenter votre jet d'attaque de 2 pour chacun de ces points de ki que vous dépensez, transformant potentiellement le raté en coup sûr. (Focus aim)"
+		},
+		{
+			"title": "Arme dédiée",
+			"description": "Moine niv2 opt.\n(Dedicated Weapon) you train yourself to use a variety of weapons as monk weapons, not just simple melee weapons and shortswords. Whenever you finish a short or long rest, you can touch one weapon, focus your ki on it, and then count that weapon as a monk weapon until you use this feature again.\n\nThe chosen weapon must meet these criteria:\n\nThe weapon must be a simple or martial weapon.\nYou must be proficient with it.\nIt must lack the heavy and special properties."
+		},
+		{
+			"title": "Armure naturelle",
+			"description": "Moine niv1\nArmure +Dex + Sag"
+		},
+		{
+			"title": "Défense patiente",
+			"description": "Moine niv2\nVous pouvez dépenser 1 point ki pour utiliser l'action Esquiver via une action bonus au cours de votre tour.\n\n"
+		},
+		{
+			"title": "Déplacement aérien",
+			"description": "Moine niv2\nVous pouvez dépenser 1 point ki pour utiliser l'action Se Désengager ou l'action Foncer via une action bonus au cours de votre tour, de plus votre distance de saut est doublée pour le tour.\n\n"
+		},
+		{
+			"title": "Guérison rapide",
+			"description": "Moine niv4 opt.\n(Quickened Healing) as an action, you can spend 2 ki points and roll a Martial Arts die. You regain a number of hit points equal to the number rolled plus your proficiency bonus."
+		},
+		{
+			"title": "Chute ralentie",
+			"description": "Moine niv4\nDès le niveau 4, vous pouvez utiliser votre réaction lorsque vous tombez pour réduire les dégâts consécutifs à une chute d'un montant égal à cinq fois votre niveau de moine. \n"
+		},
+		{
+			"title": "Parade de projectiles",
+			"description": "Moine niv3\nvous pouvez utiliser votre réaction pour dévier ou attraper les projectiles lorsque vous êtes touché lors d'une attaque à distance avec une arme. \n\nLorsque vous choisissez d'utiliser la parade de projectiles, les dégâts que vous subissez de l'attaque sont réduits de 1d10 + votre modificateur de Dextérité + votre niveau de moine. \n\nSi vous réduisez les dégâts à 0, vous pouvez attraper le projectile s'il est suffisamment petit pour que vous puissiez le tenir à une main et si bien sûr vous avez une main de libre. \n\nSi vous attrapez le projectile de cette façon, vous pouvez dépenser 1 point ki pour effectuer une attaque à distance avec cette arme ou cette munition (portée 6/18 mètres) ; cette attaque fait partie de votre réaction. \n\nVous effectuez cette attaque avec votre bonus de maîtrise, que vous maîtrisiez ou non l'arme en question, et le projectile compte comme une arme de moine pour cette attaque."
+		},
+		{
+			"title": "Frappe étourdissante",
+			"description": "Moine niv5\nÀ partir du niveau 5, vous pouvez perturber le flux du ki du corps de votre adversaire. \n\nLorsque vous touchez une autre créature lors d'une attaque au corps à corps avec une arme, vous pouvez dépenser 1 point ki pour tenter d'effectuer une frappe étourdissante. \n\nLa cible doit réussir un jet de sauvegarde de Constitution sous peine d'être étourdie jusqu'à la fin de votre prochain tour.\n\n"
+		},
+		{
+			"title": "Arts Martiaux Bonus",
+			"description": "Moine niv1\naprès une attaque de mêlée (art martiaux ou arme simple), permet une attaque d'arts martiaux en action bonus\n"
+		},
+		{
+			"title": "Attaque de Ki",
+			"description": "Moine niv3 opt.\n(Ki-Fueled Attack) if you spend 1 ki point or more as part of your action on your turn, you can make one attack with an unarmed strike or a monk weapon as a bonus action before the end of the turn."
+		},
+		{
+			"title": "Déluge de coups",
+			"description": "Moine niv2\nImmédiatement après avoir utilisé une action Attaquer au cours de votre tour, vous pouvez dépenser 1 point ki pour effectuer deux attaques à mains nues via une action bonus.\n\n"
+		}
+	],
+	"otherFeatures": [
+		{
+			"title": "+10 ans d'âge",
+			"description": "causé par Spectre du cimetière de l'Ancient"
+		},
+		{
+			"title": "Présence céleste",
+			"description": "Tradition monastique Voie Céleste niv3\nSi vous échouez à un test de Charisme (Intimidation) ou de Charisme (Persuasion), vous pouvez utiliser votre réaction pour relancer le test, tout en puisant dans la puissance céleste. Une fois que cette fonctionnalité transforme un échec en succès, vous ne pouvez plus l'utiliser avant d'avoir terminé un repos long."
+		},
+		{
+			"title": "Frappe céleste",
+			"description": "Tradition monastique Voie Céleste niv3\nLorsque vous infligez des dégâts à une cible avec un coup à mains nues, vous pouvez changer le type de dégâts en radiant"
+		},
+		{
+			"title": "Rayon Céleste",
+			"description": "Tradition monastique Voie Céleste niv3\nAu niveau 3, vous pouvez canaliser des vagues d'énergie destructrices, comme celles créées par les créatures célestes. \n\nLorsque vous effectuez l'action Attaquer à votre tour, vous pouvez remplacer l'une des attaques par un rayon d’énergie radiante dans un cône de 20’ ou une ligne de 30’ et 5’ de large (au choix). Chaque créature dans cette zone doit effectuer un jet de sauvegarde de Dextérité contre votre DD de sauvegarde de ki, subissant des dégâts radiants équivalent à deux jets de votre dé d'arts martiaux en cas d'échec, ou la moitié de ces dégâts en cas de réussite.\n\nAu niveau 11, les dégâts de cette capacité passent à trois jets de votre dé d'arts martiaux.\n\nVous pouvez utiliser cette capacité un nombre de fois égal à votre bonus de compétence, et vous récupérez toutes les utilisations dépensées lorsque vous terminez un repos long. Tant que vous n'avez aucune utilisation disponible, vous pouvez dépenser 2 points ki pour utiliser à nouveau cette fonctionnalité.\n\n"
+		},
+		{
+			"title": "Inspiration Bardique Ocarina",
+			"description": "Compétence acquise par études\npour savoir si ça marche: jet de représentation 2X bonus\n\ndd10 1d4\ndd15 1d6\ndd20 1d8\n= Action"
+		},
+		{
+			"title": "Gieztlë",
+			"description": "Javelin de foudre +1\n\nCette javeline est une arme magique +1. \n\nQuand vous la lancez et prononcez son mot de commande \"Gieztlë\", elle se transforme en un éclair formant une ligne de 5' de large qui s'étend de vous jusqu'à une cible éloignée de 120' au maximum. \n\nChaque créature sur la ligne à l'exception de vous et de la cible subit 4d6 dégâts de foudre. Un jet de sauvegarde de Dextérité DD 13 réussit permet de réduire ces dégâts de moitié. \n\nL'éclair se retransforme en javeline une fois qu'il atteint sa cible. \n\nFaites une attaque à distance contre la cible. Si vous la touchez, elle subit les dégâts de la javeline plus 4d6 dégâts de foudre. \n\nCette propriété de la javeline ne peut plus être utilisée de nouveau avant la prochaine aube. \n\nEntre temps, la javeline peut toujours être utilisée comme une arme magique. \n\nhttps://www.aidedd.org/dnd/images-om/javelin-of-lightning.jpg"
+		},
+		{
+			"title": "Mobile",
+			"description": "Don niv1\n+10 vitesse  (+2c.)\nAttaque mélée, pas d'attaque d'opportunité.\nDash en terrain diff, "
+		},
+		{
+			"title": "Faveur des faunes",
+			"description": "Don  niv 4\n+1 en Int., Sag. ou Cha., et vous apprenez foulée brumeuse et un sort de divination ou d'enchantement de niveau 1 (marque du chasseur). Spécial: mon personnage gagne une pleine connaissance du faune\n\nhttps://www.aidedd.org/search/?q=faveur%20des%20f%C3%A9es"
+		}
+	],
+	"conjurerClasses": [
+		{
+			"uuid": "40dd33e3-63a6-4efd-947d-b438724a6df1",
+			"conjurerName": "",
+			"magicAttributes": {
+				"ability": 4,
+				"cdBonuses": 0,
+				"attackBonuses": 0,
+				"base": 8,
+				"attackTrained": true
+			},
+			"cantrips": {
+				"total": 0,
+				"actual": 0,
+				"level": 0,
+				"spells": []
+			},
+			"spells1": {
+				"total": 0,
+				"actual": 0,
+				"level": 1,
+				"spells": [
+					{
+						"uuid": "8f589a77-607f-45ad-9ad6-04e74f771cfd",
+						"name": "Marque du chasseur",
+						"conjuringTime": {
+							"time": "bonusAction"
+						},
+						"range": 0,
+						"components": "V",
+						"duration": "Concentration, max 1 heure",
+						"description": "Divination\n\nChoisir Symbole de la cible (concentration) \n\nVous choisissez une créature que vous pouvez voir et à portée, et la marquez magiquement comme étant votre cible. \n\nJusqu'à ce que le sort prenne fin, vous infligez 1d6 dégâts supplémentaires à la cible lorsque vous la touchez lors d'une attaque avec une arme, et vous avez un avantage à tous vos jets de Sagesse (Perception) ou Sagesse (Survie) effectués pour la trouver. \n\nSi la cible tombe à 0 point de vie avant que le sort ne prenne fin, vous pouvez utiliser votre action bonus lors de l'un de vos tours suivants pour marquer une nouvelle créature.\n\nhttps://www.aidedd.org/dnd/sorts.php?vf=marque-du-chasseur\n\nÀ plus haut niveau\n\nLorsque vous lancez ce sort en utilisant un emplacement de sort de niveau 3 ou 4, vous pouvez maintenir votre concentration sur ce sort pendant 8 heures maximum.\n\nLorsque vous lancez ce sort en utilisant un emplacement de sort de niveau 5 ou supérieur, vous pouvez maintenir votre concentration sur ce sort pendant 24 heures maximum.",
+						"prepared": true
+					}
+				]
+			},
+			"spells2": {
+				"total": 0,
+				"actual": 0,
+				"level": 2,
+				"spells": [
+					{
+						"uuid": "93d7c924-264b-4607-b59b-024090cb4cbe",
+						"name": "Foulée brumeuse",
+						"conjuringTime": {
+							"time": "bonusAction"
+						},
+						"range": 0,
+						"components": "V",
+						"duration": "instant",
+						"description": "Invocation\nUne brume argentée vous enveloppe puis vous vous téléportez jusqu'à 9 mètres (6 cases) dans un espace inoccupé que vous pouvez voir.\n\nhttps://www.aidedd.org/dnd/sorts.php?vf=foulee-brumeuse",
+						"prepared": true
+					}
+				]
+			},
+			"spells3": {
+				"total": 0,
+				"actual": 0,
+				"level": 3,
+				"spells": []
+			},
+			"spells4": {
+				"total": 0,
+				"actual": 0,
+				"level": 4,
+				"spells": []
+			},
+			"spells5": {
+				"total": 0,
+				"actual": 0,
+				"level": 5,
+				"spells": []
+			},
+			"spells6": {
+				"total": 0,
+				"actual": 0,
+				"level": 6,
+				"spells": []
+			},
+			"spells7": {
+				"total": 0,
+				"actual": 0,
+				"level": 7,
+				"spells": []
+			},
+			"spells8": {
+				"total": 0,
+				"actual": 0,
+				"level": 8,
+				"spells": []
+			},
+			"spells9": {
+				"total": 0,
+				"actual": 0,
+				"level": 9,
+				"spells": []
+			}
+		},
+		{
+			"uuid": "eff39044-57ed-4a61-bdb8-d3f15f862692",
+			"conjurerName": "",
+			"magicAttributes": {
+				"ability": 3,
+				"cdBonuses": 0,
+				"attackBonuses": 0,
+				"base": 8,
+				"attackTrained": true
+			},
+			"cantrips": {
+				"total": 0,
+				"actual": 0,
+				"level": 0,
+				"spells": []
+			},
+			"spells1": {
+				"total": 0,
+				"actual": 0,
+				"level": 1,
+				"spells": []
+			},
+			"spells2": {
+				"total": 0,
+				"actual": 0,
+				"level": 2,
+				"spells": []
+			},
+			"spells3": {
+				"total": 0,
+				"actual": 0,
+				"level": 3,
+				"spells": []
+			},
+			"spells4": {
+				"total": 0,
+				"actual": 0,
+				"level": 4,
+				"spells": []
+			},
+			"spells5": {
+				"total": 0,
+				"actual": 0,
+				"level": 5,
+				"spells": []
+			},
+			"spells6": {
+				"total": 0,
+				"actual": 0,
+				"level": 6,
+				"spells": []
+			},
+			"spells7": {
+				"total": 0,
+				"actual": 0,
+				"level": 7,
+				"spells": []
+			},
+			"spells8": {
+				"total": 0,
+				"actual": 0,
+				"level": 8,
+				"spells": []
+			},
+			"spells9": {
+				"total": 0,
+				"actual": 0,
+				"level": 9,
+				"spells": []
+			}
+		}
+	],
+	"resources": [
+		{
+			"uuid": "f4050559-b7d7-4695-bb42-bc3da55db178",
+			"name": "Ki",
+			"max": 5,
+			"actual": 5
+		},
+		{
+			"uuid": "90acc2c2-8c25-497e-8045-9be23cbea21c",
+			"name": "Foul brum",
+			"max": 1,
+			"actual": 1
+		},
+		{
+			"uuid": "1bd4000c-5c12-4aff-8354-e59b4ae5a6cb",
+			"name": "Rayon céleste",
+			"max": 3,
+			"actual": 3
+		},
+		{
+			"uuid": "3e991147-db0a-4020-869d-0705d7cdefcb",
+			"name": "Prés. céleste",
+			"max": 1,
+			"actual": 1
+		},
+		{
+			"uuid": "2e71fc1d-a733-4f7f-9879-f6f2737be2bb",
+			"name": "Récup 5(d8+2)",
+			"max": 2,
+			"actual": 2
+		},
+		{
+			"uuid": "dcbcd1dd-f26b-4172-92de-8b13cc3393f6",
+			"name": "Gieztlë",
+			"max": 1,
+			"actual": 1
+		},
+		{
+			"uuid": "8fcea1bd-f65b-488e-b3dc-ccabb5da56e2",
+			"name": "Marq chasseur",
+			"max": 1,
+			"actual": 1
+		},
+		{
+			"uuid": "4a5ffc48-09af-4d72-800e-49f1cdb04978",
+			"name": "Insp bardique",
+			"max": 1,
+			"actual": 1
+		},
+		{
+			"uuid": "f31b7bfd-1d46-4218-8d39-665cecbe2459",
+			"name": "Arme dédiée",
+			"max": 1,
+			"actual": 1
+		}
+	],
+	"showDelete": true,
+	"speeds": [
+		{
+			"name": "Mouvement",
+			"squares": 11
+		}
+	],
+	"equipaments": [
+		{
+			"uuid": "395e7f48-2f97-42a3-8751-ec6c522e870b",
+			"quantity": 1,
+			"name": "CARQUOIS",
+			"weight": 1,
+			"obs": "",
+			"position": 1
+		},
+		{
+			"uuid": "3125f975-893b-480b-bc31-b59afccc1c20",
+			"quantity": 20,
+			"name": "flèches",
+			"weight": 4,
+			"obs": "",
+			"position": 2
+		},
+		{
+			"uuid": "bf9e7de2-65b2-47f3-8a0e-9fec2e06ebe1",
+			"quantity": 1,
+			"name": "CEINTURE À POCHETTES",
+			"weight": 1,
+			"obs": "",
+			"position": 3
+		},
+		{
+			"uuid": "f0af18b5-80c9-490e-8457-0f1f0f6342c7",
+			"quantity": 1,
+			"name": "Potiion de guérison 2d4+2",
+			"weight": 1,
+			"obs": "",
+			"position": 4
+		},
+		{
+			"uuid": "93df3936-2e85-4708-a74d-f873dee40a20",
+			"quantity": 1,
+			"name": "Potion de guérison majeure 4d4+4",
+			"weight": 1,
+			"obs": "",
+			"position": 5
+		},
+		{
+			"uuid": "72487a3e-c888-4ec8-b714-4125d5966731",
+			"quantity": 10,
+			"name": "shuriken",
+			"weight": 1,
+			"obs": "",
+			"position": 6
+		},
+		{
+			"uuid": "81dd118b-4d4e-4635-b711-903cba3a9e8d",
+			"quantity": 1,
+			"name": "sifflet",
+			"weight": 1,
+			"obs": "",
+			"position": 7
+		},
+		{
+			"uuid": "fe860e0d-2f66-44af-adee-f3408f7fc21b",
+			"quantity": 1,
+			"name": "ocarina",
+			"weight": 1,
+			"obs": "",
+			"position": 8
+		},
+		{
+			"uuid": "4ad07a02-1dc3-4206-974c-ff2331154f82",
+			"quantity": 1,
+			"name": "SAC À DOS",
+			"weight": 1,
+			"obs": "",
+			"position": 9
+		},
+		{
+			"uuid": "033cd074-a01b-4165-b9f1-df7db7713a1e",
+			"quantity": 1,
+			"name": "symbol (inconnu) 5po",
+			"weight": 1,
+			"obs": "",
+			"position": 10
+		},
+		{
+			"uuid": "758f66fa-24f6-4fda-808e-ea0cad444ab6",
+			"quantity": 8,
+			"name": "Torches",
+			"weight": 8,
+			"obs": "",
+			"position": 11
+		},
+		{
+			"uuid": "1a194ad2-a70f-47a0-8668-aa3971b5e350",
+			"quantity": 1,
+			"name": "gourde d'eau",
+			"weight": 1,
+			"obs": "",
+			"position": 12
+		},
+		{
+			"uuid": "8f89f225-1a55-4f4a-9810-463ba753496d",
+			"quantity": 1,
+			"name": "corde 50'",
+			"weight": 10,
+			"obs": "",
+			"position": 13
+		},
+		{
+			"uuid": "1fb421d6-b1fb-4468-8672-2d2d41504506",
+			"quantity": 1,
+			"name": "Habit de moine noir",
+			"weight": 4,
+			"obs": "",
+			"position": 14
+		},
+		{
+			"uuid": "b539183c-f873-4c62-9282-935e4f0ca6bb",
+			"quantity": 1,
+			"name": "sandale anti-dérapante",
+			"weight": 1,
+			"obs": "",
+			"position": 15
+		},
+		{
+			"uuid": "8b43414b-5e33-412d-85ea-f99525a51d0a",
+			"quantity": 4,
+			"name": "trousse de médecine",
+			"weight": 1,
+			"obs": "",
+			"position": 16
+		}
+	]
+}
