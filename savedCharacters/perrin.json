@@ -315,152 +315,146 @@
     "19687ee0f642c1b0-9874661b-495f555-b67763c-12c3d2b73e5b72845e4e9a65": {
       "featureName": " Archer",
       "featureSource": " Sylvestre",
-      "featureType": " ",
+      "featureType": " Race",
       "featureDescription": "Maîtrise tous les arcs"
     },
     "3d38c79c78cca9ef-b633a730-4b72018-bcee6be-e8f859b6a9a7dc95729ddcf": {
       "featureName": "Attentif",
       "featureSource": "Sylvestre",
-      "featureType": " ",
+      "featureType": " Race",
       "featureDescription": "Maitrise de la perception"
     },
     "4c3289d11c6a010-0ad1d2a-4a38193-a4219e3-992ab019e35b1bde841c48e9": {
       "featureName": "Vitesse +5 (+1c)",
       "featureSource": "Sylvestre",
-      "featureType": " ",
+      "featureType": " Race",
       "featureDescription": "va plus vite"
     },
     "e2ebd0d142f8eeb-cb6f146d-4cb8920-95518e4-d52aa155655b3454caf1dbe": {
       "featureName": "Furtivité sauvage",
       "featureSource": "Sylvestre",
-      "featureType": " ",
+      "featureType": " Race",
       "featureDescription": "Peut tenter de se dissimuler dans un milieu naturel extérieur même s’il ne bénéficie que d’une couverture légère"
     },
     "7ffccb2d9345609c-552f1543-4b5698e-87edeb6-c93567f477f5e11cc387431d": {
       "featureName": "Ancêtre de la nature",
       "featureSource": "Sylvestre",
-      "featureType": " ",
+      "featureType": " Race",
       "featureDescription": "Avantage sur les jets de compétence reliés ou exécutés dans un milieu naturel extérieur (discrétion, connaissance, etc…)"
     },
     "2654f73931a3a187-41944cfd-47a3911-8d25f9d-154f543c59de762602f52": {
       "featureName": "Attaque supplémentaire",
       "featureSource": "Moine niv5",
-      "featureType": " ",
+      "featureType": " Classe",
       "featureDescription": "1 attaque extra par tour"
     },
     "d519c8d5b0976c-95a77bec-4b12b8c-84d2ffe-726534a348e64d3f89fa147": {
       "featureName": "Objectif ciblé",
       "featureSource": "Moine niv5 opt.",
-      "featureType": " ",
+      "featureType": " Classe",
       "featureDescription": "lorsque vous ratez un jet d'attaque, vous pouvez dépenser 1 à 3 points de ki pour augmenter votre jet d'attaque de 2 pour chacun de ces points de ki que vous dépensez, transformant potentiellement le raté en coup sûr. (Focus aim)"
     },
     "f4aadccbfd9783d-d0467efc-44a8ab-ae8e4a5-8ced26a95e535df387e968c": {
       "featureName": "Arme dédiée",
       "featureSource": "Moine niv2 opt.",
-      "featureType": " ",
+      "featureType": " Classe",
       "featureDescription": "(Dedicated Weapon) you train yourself to use a variety of weapons as monk weapons, not just simple melee weapons and shortswords. Whenever you finish a short or long rest, you can touch one weapon, focus your ki on it, and then count that weapon as a monk weapon until you use this feature again.\n\nThe chosen weapon must meet these criteria:\\n\\nThe weapon must be a simple or martial weapon.\\nYou must be proficient with it.\nIt must lack the heavy and special properties."
     },
     "5b64a4c6f8e3eaff-68cdeedb-4a26dbb-93d2e36-9acfe3358bec696bf58f89c3": {
       "featureName": "Armure naturelle",
       "featureSource": "Moine niv1",
-      "featureType": " ",
+      "featureType": " Classe",
       "featureDescription": "Armure +Dex + Sag"
     },
     "891d1c973d837af8-6781c86a-4666790-bf7718a-339d43664a6498138968912": {
       "featureName": "Défense patiente",
-      "featureSource": "Défense patiente",
-      "featureType": " ",
+      "featureSource": "Moine niv2",
+      "featureType": " Classe",
       "featureDescription": "Vous pouvez dépenser 1 point ki pour utiliser l'action Esquiver via une action bonus au cours de votre tour."
     },
     "259d29b81e4320ed-1d8b826-49f281e-8151888-778be8dd93df8b1151ab3c24": {
       "featureName": "Déplacement aérien",
       "featureSource": "Moine niv2",
-      "featureType": " ",
+      "featureType": "Classe ",
       "featureDescription": "Vous pouvez dépenser 1 point ki pour utiliser l'action Se Désengager ou l'action Foncer via une action bonus au cours de votre tour, de plus votre distance de saut est doublée pour le tour."
     },
     "c1bca7daf93fd539-eb6fd625-4b2db2-a4b8fa2-aa4f959c164c8a2e52245418": {
       "featureName": "Guérison rapide",
       "featureSource": "Moine niv4",
-      "featureType": " ",
+      "featureType": " Classe",
       "featureDescription": "(Quickened Healing) as an action, you can spend 2 ki points and roll a Martial Arts die. You regain a number of hit points equal to the number rolled plus your proficiency bonus."
     },
     "7452f17d27e11742-994dd5ee-435f42a-8ded944-354a3ba6655735729cd4d4db": {
       "featureName": "Chute ralentie",
       "featureSource": "Moine niv4",
-      "featureType": " ",
+      "featureType": " Classe",
       "featureDescription": "Dès le niveau 4, vous pouvez utiliser votre réaction lorsque vous tombez pour réduire les dégâts consécutifs à une chute d'un montant égal à cinq fois votre niveau de moine. "
     },
     "131bebf1cf14184c-c5ee64cd-45682b-8ffa865-1ef951dc542e296f2a3141d9": {
       "featureName": "Parade de projectiles",
       "featureSource": "Moine niv3",
-      "featureType": " ",
+      "featureType": " Classe",
       "featureDescription": "vous pouvez utiliser votre réaction pour dévier ou attraper les projectiles lorsque vous êtes touché lors d'une attaque à distance avec une arme. \n\nLorsque vous choisissez d'utiliser la parade de projectiles, les dégâts que vous subissez de l'attaque sont réduits de 1d10 + votre modificateur de Dextérité + votre niveau de moine. \n\nSi vous réduisez les dégâts à 0, vous pouvez attraper le projectile s'il est suffisamment petit pour que vous puissiez le tenir à une main et si bien sûr vous avez une main de libre. \n\nSi vous attrapez le projectile de cette façon, vous pouvez dépenser 1 point ki pour effectuer une attaque à distance avec cette arme ou cette munition (portée 6/18 mètres) ; cette attaque fait partie de votre réaction. \n\nVous effectuez cette attaque avec votre bonus de maîtrise, que vous maîtrisiez ou non l'arme en question, et le projectile compte comme une arme de moine pour cette attaque."
     },
     "6c72c4edc755f1bd-3d4675f-4e2d1bd-ab9d456-288ae9a5ed1f20eebd3fbee7": {
       "featureName": "Frappe étourdissante",
       "featureSource": "Moine niv5",
-      "featureType": " ",
+      "featureType": " Classe",
       "featureDescription": "À partir du niveau 5, vous pouvez perturber le flux du ki du corps de votre adversaire. \n\nLorsque vous touchez une autre créature lors d'une attaque au corps à corps avec une arme, vous pouvez dépenser 1 point ki pour tenter d'effectuer une frappe étourdissante. \\n\\nLa cible doit réussir un jet de sauvegarde de Constitution sous peine d'être étourdie jusqu'à la fin de votre prochain tour."
     },
     "c8dd77bc3965b4ca-a8cd465b-4179bd9-8b3b20-a1192afca9c11a649d8019": {
-      "featureName": "Arts Martiaux Bonu",
+      "featureName": "Arts Martiaux Bonus",
       "featureSource": "Moine niv1",
-      "featureType": " ",
+      "featureType": " Classe",
       "featureDescription": "après une attaque de mêlée (art martiaux ou arme simple), permet une attaque d'arts martiaux en action bonus"
     },
     "e879f62b6137da7-d7373326-4d2b2d-b92fe2a-f057e1f123407acf18fed818": {
       "featureName": "Attaque de Ki",
       "featureSource": "Moine niv3 opt.",
-      "featureType": " ",
+      "featureType": " Classe",
       "featureDescription": "(Ki-Fueled Attack) if you spend 1 ki point or more as part of your action on your turn, you can make one attack with an unarmed strike or a monk weapon as a bonus action before the end of the turn."
     },
     "ab9240c42e22e14-f53d9c11-4cce7d3-a375b78-16277347d3512b3af5d7a35": {
       "featureName": "Déluge de coups",
       "featureSource": "Moine niv2",
-      "featureType": " ",
+      "featureType": " Classe",
       "featureDescription": "Immédiatement après avoir utilisé une action Attaquer au cours de votre tour, vous pouvez dépenser 1 point ki pour effectuer deux attaques à mains nues via une action bonus."
     },
     "e51a42bde6778fd-7144304b-48f178e-87426d2-ee75c46f4477f536129aad": {
       "featureName": "+10 ans d'âge",
-      "featureSource": " ",
-      "featureType": " ",
+      "featureSource": "Ancien",
+      "featureType": "Spécial",
       "featureDescription": "causé par Spectre du cimetière de l'Ancient"
     },
     "76c8ecb458fbd90-be6031bf-4b2fbe1-b4eb1b-f067dff0769c51613cf5172f": {
       "featureName": "Présence céleste",
       "featureSource": "Tradition monastique Voie Céleste niv3",
-      "featureType": " ",
+      "featureType": "Classe",
       "featureDescription": "Si vous échouez à un test de Charisme (Intimidation) ou de Charisme (Persuasion), vous pouvez utiliser votre réaction pour relancer le test, tout en puisant dans la puissance céleste. Une fois que cette fonctionnalité transforme un échec en succès, vous ne pouvez plus l'utiliser avant d'avoir terminé un repos long."
     },
     "e7c752ba923edb1-98f89363-4599c25-920d0f0-2f8d7b9770e6171acf3f8c4": {
       "featureName": "Frappe céleste",
       "featureSource": "Tradition monastique Voie Céleste niv3",
-      "featureType": " ",
+      "featureType": " Classe",
       "featureDescription": "Lorsque vous infligez des dégâts à une cible avec un coup à mains nues, vous pouvez changer le type de dégâts en radiant"
     },
     "d5b6a7eaacd15ae7-72676462-4d85e53-886439f-2dc5253affa332d513ed7486": {
       "featureName": "Rayon Céleste",
       "featureSource": "Tradition monastique Voie Céleste niv3",
-      "featureType": " ",
+      "featureType": " Classe",
       "featureDescription": "Au niveau 3, vous pouvez canaliser des vagues d'énergie destructrices, comme celles créées par les créatures célestes. \n\nLorsque vous effectuez l'action Attaquer à votre tour, vous pouvez remplacer l'une des attaques par un rayon d’énergie radiante dans un cône de 20’ ou une ligne de 30’ et 5’ de large (au choix). Chaque créature dans cette zone doit effectuer un jet de sauvegarde de Dextérité contre votre DD de sauvegarde de ki, subissant des dégâts radiants équivalent à deux jets de votre dé d'arts martiaux en cas d'échec, ou la moitié de ces dégâts en cas de réussite.\n\nAu niveau 11, les dégâts de cette capacité passent à trois jets de votre dé d'arts martiaux.\n\nVous pouvez utiliser cette capacité un nombre de fois égal à votre bonus de compétence, et vous récupérez toutes les utilisations dépensées lorsque vous terminez un repos long. Tant que vous n'avez aucune utilisation disponible, vous pouvez dépenser 2 points ki pour utiliser à nouveau cette fonctionnalité."
     },
     "8c668d2d103817e1-13dccacb-44b92d1-8eb1f76-adda2a357be24b97186670d5": {
       "featureName": "Inspiration Bardique Ocarina",
       "featureSource": "Compétence acquise par études",
-      "featureType": " ",
+      "featureType": " Spécial",
       "featureDescription": "pour savoir si ça marche: jet de représentation 2X bonus\ndd10 1d4\ndd15 1d6\ndd20 1d8"
     },
     "685198a689c3554f-c7c66f6b-48e573b-9ac8154-d8c72136e2d6513fe452a249": {
       "featureName": "Gieztlë",
       "featureSource": "Javelin de foudre +1",
-      "featureType": " ",
+      "featureType": " Arme",
       "featureDescription": "Javelin de foudre +1\n\nCette javeline est une arme magique +1. \n\nQuand vous la lancez et prononcez son mot de commande \\\"Gieztlë\\\", elle se transforme en un éclair formant une ligne de 5' de large qui s'étend de vous jusqu'à une cible éloignée de 120' au maximum. \n\nChaque créature sur la ligne à l'exception de vous et de la cible subit 4d6 dégâts de foudre. Un jet de sauvegarde de Dextérité DD 13 réussit permet de réduire ces dégâts de moitié. \n\nL'éclair se retransforme en javeline une fois qu'il atteint sa cible. \n\nFaites une attaque à distance contre la cible. Si vous la touchez, elle subit les dégâts de la javeline plus 4d6 dégâts de foudre. \n\nCette propriété de la javeline ne peut plus être utilisée de nouveau avant la prochaine aube. \n\nEntre temps, la javeline peut toujours être utilisée comme une arme magique.\n\nhttps://www.aidedd.org/dnd/images-om/javelin-of-lightning.jpg\""
-    },
-    "f24fcafcfdf6924a-b249b6d5-4ef8d9c-939a799-e13553e74d50f971986336": {
-      "featureName": " ",
-      "featureSource": " ",
-      "featureType": " ",
-      "featureDescription": " "
     },
     "9dbefe7c531cc2de-6f9769c0-47f5822-b14b8a6-50c4c2b3e2f93b3937c9b23f": {
       "featureName": "Mobile",
@@ -539,13 +533,6 @@
       "equipmentActive": false,
       "equipmentOrigin": " "
     },
-    "6f828e2e6dc6de99-94ff91ba-47d7c95-a9ac774-7de97f131c6b588ee6c6213": {
-      "equipmentName": "Symbole inconnu (5po)",
-      "equipmentQuantity": "1",
-      "equipmentWeight": ".5",
-      "equipmentActive": false,
-      "equipmentOrigin": " "
-    },
     "32d2c263faae3949-95835ddb-45ef343-92421f-5a9ca7d0f4be69371dfc0": {
       "equipmentName": "torches",
       "equipmentQuantity": "5",
@@ -591,10 +578,10 @@
   },
   "treasureInfo": {
     "5ecc35b2e12e66e1-d930bea6-417fae-ad3abf1-8e21a446d2a6c3da7b47454": {
-      "treasureName": " ",
-      "treasureQuantity": "0",
-      "treasureValue": "0",
-      "treasureOrigin": " "
+      "treasureName": " Symbole",
+      "treasureQuantity": "1",
+      "treasureValue": "5",
+      "treasureOrigin": "inconnu"
     }
   },
   "languageInfo": {

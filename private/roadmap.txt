@@ -1,15 +1,6 @@
 Fondor road map
 - v1
-	= arranger le fckin css 
-	
-	- Finaliser Argent en cour
-		- total trésor et grand total sur meme ligne
-		- argent en rond
-		- calcul trésor?
-		- calcul grand total?
-    - Ajouts
-			- états : HASTED, fatiqué
-		- Fatigue : niveau 1 à 10
+	- Ajouts
         - equipment totalWeight= sum(qty*weight) + money (?)
         - bonus général (proche de : A.N.D.)
         - short or long rest Reset.
@@ -39,11 +30,12 @@ Fondor road map
 					- description
 					- source
 					- url (lien _blank)
-					- Prêt (switch)
-    - dnd5e
-        - multi-class
+					- Prêt (switch)        
     
 - v2
+	- dnd5e
+		- multi-class
+		- Fatigue : niveau 1 à 10
     - ui-ux 
 		- refaire le générateur de dé. qty dés bonus libellé (pas de liste)
         - localStorge : on every change + multiple names

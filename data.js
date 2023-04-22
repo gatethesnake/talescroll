@@ -78,7 +78,8 @@ const INFORMATION_INPUTS = [
   'maxHitPoints',
   'tempHitPoints',
   'inspirationValue',
-  'speedValue'
+  'speedValue',
+  'generalBonusValue'
 ];
 
 const DEATHSAVE_INPUTS = [
@@ -7105,6 +7106,18 @@ const feats = [
 ]
 
 const characterStatus = {
+  HASTED: {
+    name_en: "hasted",
+    name_fr: "Accéléré",
+    description_fr: "Voir le sort Hâte.",
+    source: "Player's Handbook"
+  },
+  EXHAUSTED: {
+    name_en: "Exhausted",
+    name_fr: "Épuisé",
+    description_fr: "Voir avec le grand manitou. Règles maison à appliquée. Le personnage a un désavantage sur tous les tests de compétence et les jets d'attaque, ainsi que sur sa vitesse. Cet état peut être causé par divers facteurs, tels que la privation de sommeil, la maladie ou la magie.",
+    source: "Player's Handbook"
+  },
   CONCENTRATED: {
     name_en: "Concentrated",
     name_fr: "Concentré",
@@ -7151,12 +7164,6 @@ const characterStatus = {
     name_en: "Petrified",
     name_fr: "Pétrifié",
     description_fr: "Le personnage est transformé en pierre et est considéré comme étant inconscient et paralysé. Cet état peut être causé par des sorts ou des capacités spéciales.",
-    source: "Player's Handbook"
-  },
-  EXHAUSTED: {
-    name_en: "Exhausted",
-    name_fr: "Épuisé",
-    description_fr: "Le personnage a un désavantage sur tous les tests de compétence et les jets d'attaque, ainsi que sur sa vitesse. Cet état peut être causé par divers facteurs, tels que la privation de sommeil, la maladie ou la magie.",
     source: "Player's Handbook"
   },
   BLINDED: {
@@ -7282,6 +7289,8 @@ const characterStatus = {
 };
 
 const statusIcons = {
+  HASTED: "mdi:run-fast",
+  EXHAUSTED: "fluent-emoji-high-contrast:tired-face",
   CONCENTRATED: "game-icons:concentration-orb",
   UNCONSCIOUS: "icon-park-outline:sleep-two",
   STUNNED: "mdi-flash-circle",
@@ -7290,7 +7299,6 @@ const statusIcons = {
   FRIGHTENED: "mdi-emoticon-sad",
   PARALYZED: "mdi-wheelchair-accessibility",
   PETRIFIED: "game-icons:stoned-skull",
-  EXHAUSTED: "fluent-emoji-high-contrast:tired-face",
   BLINDED: "mdi-eye-off",
   INVISIBLE: "game-icons:invisible",
   ENVELOPED_IN_MAGICAL_DARKNESS: "mdi-weather-night",

@@ -174,8 +174,7 @@ p {
 
 .button {
   display: block;
-  margin: 10px 20px;
-  padding: 10px 20px;
+  padding: 5px 10px;
   background-color: #c6995d;
   border: none;
   border-radius: 10px;
@@ -1213,6 +1212,7 @@ p {
   display: flex;
   flex-direction: column;
   margin-right: 1rem;
+  width:100%;
   /* Add some space between the two columns */
 }
 
@@ -1225,6 +1225,7 @@ p {
   flex-direction: row;
   gap: 0.5rem;
   margin-top: 0.5rem;
+  width:100%;
 }
 
 .armor-container {
@@ -1334,6 +1335,7 @@ p {
   flex: 1;
   min-width: calc(50% - 10px);
 }
+
 .container4 {
   display: flex;
   justify-content: space-between;
@@ -1350,6 +1352,17 @@ p {
   flex-grow: 2;
 }
 
+.container6 {
+  display: flex;
+  justify-content:flex-start;
+  width: 90%;
+}
+
+.container5 {
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
 
 .wrapper {
   display: flex;
@@ -1579,10 +1592,31 @@ body {
 }
 
 
+.input-group-90 {
+  display: flex;
+  flex-direction: column;
+  width:90% !important;
+}
+
 .toggle-group {
   display: flex;
   gap: 8px;
 }
+
+
+.resource-input-group {
+  flex: 1;
+  max-width: 100px; /* Adjust this value according to your desired width */
+}
+
+.resource-toggle-group {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex: 2;
+  max-width: 250px; /* Adjust this value according to your desired width */
+}
+
 
 .status-row {
   display: flex;
@@ -1648,4 +1682,31 @@ body {
 .token-input {
   border-radius: 50%;
   padding: 0;
+}
+
+.section-max-width {
+  max-width: 20% !important;
+}
+
+
+
+.attack-wrapper-1 {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+}
+
+.attack-wrapper-2 {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.full-width-button {
+  width: 100%;
+}
+
+#armorClassDetail {
+  display: none;
 }

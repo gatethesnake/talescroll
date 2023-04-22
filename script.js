@@ -1,13 +1,11 @@
 // fast dev settings
 
 //document.getElementById("sheetTabName").click();
-//document.getElementById("actionTabName").click()
+document.getElementById("actionTabName").click()
 //document.getElementById("spellTabName").click();
 //document.getElementById("featTabName").click();
 //document.getElementById("equipmentTabName").click();
-document.getElementById("descriptionTabName").click();
-
-;
+//document.getElementById("descriptionTabName").click();
 
 const splashLength = 0;
 
@@ -573,7 +571,7 @@ function saveCharacter(saveTo) {
     characterData.miscellaneousInfo[uuid] = getMiscellaneousInfoByUUID(uuid);
   });
 
-  // Save money values ********************
+  // Save money values
   for (const currencyKey of Object.keys(fondorCurrencies)) {
     const input = document.getElementById(`money-${currencyKey}`);
     characterData.moneyInfo[currencyKey] = parseInt(input.value, 10);
@@ -937,7 +935,7 @@ function openCharacter(loadFrom) {
     loadAllMiscellaneousInfo(miscellaneousInfo);
 
 
-    // Load money values***************************
+    // Load money values
     for (const currencyKey of Object.keys(fondorCurrencies)) {
       const input = document.getElementById(`money-${currencyKey}`);
       input.value = moneyInfo[currencyKey] || 0;
@@ -997,8 +995,9 @@ function confirmReset() {
 
   DESCRIPTION_INPUTS.forEach((inputId) => {
     const inputElement = document.getElementById(inputId);
-    inputElement.value = ' ';
+    inputElement.value = ' ';  
   });
+  
 
   // Reset levelName to 1
   const levelNameElement = document.getElementById("levelName");
@@ -1806,7 +1805,7 @@ const characterTitle = document.getElementById('character-title');
 const characterNameInput = document.getElementById('characterName');
 
 characterNameInput.addEventListener('input', () => {
-  if (characterNameInput.value === "") {
+  if (characterNameInput.value === "" || characterNameInput.value === " " ) {
     characterTitle.textContent = "Val de Fondor";
   } else {
     characterTitle.textContent = characterNameInput.value;
@@ -2686,6 +2685,17 @@ shieldAndAccessoriesSelection2.addEventListener('change', adjustArmorClassValue)
 customShieldClassValue2.addEventListener('change', adjustArmorClassValue);
 
 
+function toggleArmorClassDetails() {
+  const armorClassDetail = document.getElementById('armorClassDetail');
+  const armorClassShowDetails = document.getElementById('armorClassShowDetails');
+
+  if (armorClassShowDetails.checked) {
+    armorClassDetail.style.display = 'block';
+  } else {
+    armorClassDetail.style.display = 'none';
+  }
+}
+
 //----------- ATTAQUES-----------//
 
 function generateUUID() {
@@ -2715,16 +2725,16 @@ function generateAttackSection(optionalUUID) {
 function getAttackSectionHTML(attackUUID) {
   const attackAndDamageSection = `
   <div id="attackAndDamageValuesSubsection-${attackUUID}" class="subsection">
-  <div id="attackAndDamage"class="container">
+  <div id="attackAndDamage"class="container4">
       <div class="wrapper attack-name-wrapper">
           <label for="attackName-${attackUUID}" id="attackNameLabel">Nom</label>
             <input type="text" id="attackName-${attackUUID}" name="attackName-${attackUUID}" value=" " class="input-text attack-name-input">
         </div>
-        <div class="wrapper fixed-size-wrapper">
+        <div class="wrapper ">
           <label for="attackValue-${attackUUID}" id="attackValueLabel">Attaque</label>
           <input type="text" id="attackValue-${attackUUID}" name="attackValue-${attackUUID}" class="roundButton" value="+0" readonly onclick="callRollAttack('${attackUUID}')"> 
         </div>
-        <div class="wrapper fixed-size-wrapper">
+        <div class="wrapper ">
           <label for="damage-${attackUUID}" id="damageLabel">Dégâts</label>
           <input type="text" id="damage-${attackUUID}" name="damage-${attackUUID}" class="rectangleButton" value=" " readonly onclick="callRollDamage('${attackUUID}')">
         </div>
@@ -2733,9 +2743,11 @@ function getAttackSectionHTML(attackUUID) {
       <span id="arrowIconify-${attackUUID}" class="iconify arrow-icon-${attackUUID}" data-icon="mdi:chevron-down" data-inline="false"></span>
     </span>
     <button id="removeAttack" class="remove-button" onclick="removeAttack('${attackUUID}')"><span class="iconify" data-icon="mdi:trash-can-outline"></span></button>
-    <div id="attackAndDamageBonusSubsection-${attackUUID}" class="attack-subsection subsection hidden">
+
+
+    <div id="attackAndDamageBonusSubsection-${attackUUID}" class="attack-subsection subsection container5 hidden">
     <h4>Information supplémentaire</h4>
-    <div id="damageSupplementContainer"class="container">
+    <div id="damageSupplementContainer"class="container5">
         <div class="wrapper">
           <label for="damageType-${attackUUID}" id="damageTypeLabel">Type de dégât</label>
           <select id="damageType-${attackUUID}" name="damageType-${attackUUID}" class="input-text input-damage-type">
@@ -2761,35 +2773,35 @@ function getAttackSectionHTML(attackUUID) {
         </div>
     </div>
         <h4>Bonus d'attaques</h4>
-        <div id="attackContainer"class="container">
-            <div class="wrapper">
-              <label for="attackAbilityAdjustment-${attackUUID}" id="attackAbilityAdjustmentLabel">Habileté</label>
-              <select id="attackAbilityAdjustment-${attackUUID}" name="attackAbilityAdjustment-${attackUUID}" class="input-text">
-                    <option value=" ">Choisir</option>
-                    <option value="strength">Force</option>
-                    <option value="dexterity">Dextérité</option>
-                    <option value="constitution">Constitution</option>
-                    <option value="intelligence">Intelligence</option>
-                    <option value="wisdom">Sagesse</option>
-                    <option value="charisma">Charisme</option>
-                </select>
-            </div>
-            <div class="wrapper">
-              <label for="otherAttackAdjustmentValue-${attackUUID}" id="otherAttackAdjustmentValueLabel">Bonus</label>
-              <input type="number" id="otherAttackAdjustmentValue-${attackUUID}" name="otherAttackAdjustmentValue-${attackUUID}" class="input-text" min="-10" max="10" value="0">
-            </div>
-            <div class="wrapper">
-              <label for="attackProficientCheckBox-${attackUUID}">Maîtrise</label>
-              <input type="checkbox" id="attackProficientCheckBox-${attackUUID}" name="attackProficientCheckBox-${attackUUID}">
-            </div>
+        <div id="attackContainer" class="container3">
+        <div class="input-group resource-input-group">
+          <label for="attackAbilityAdjustment-${attackUUID}" id="attackAbilityAdjustmentLabel">Habileté</label>
+          <select id="attackAbilityAdjustment-${attackUUID}" name="attackAbilityAdjustment-${attackUUID}" class="input-text">
+            <option value=" ">Choisir</option>
+            <option value="strength">Force</option>
+            <option value="dexterity">Dextérité</option>
+            <option value="constitution">Constitution</option>
+            <option value="intelligence">Intelligence</option>
+            <option value="wisdom">Sagesse</option>
+            <option value="charisma">Charisme</option>
+          </select>
         </div>
+        <div class="input-group resource-input-group">
+          <label for="otherAttackAdjustmentValue-${attackUUID}" id="otherAttackAdjustmentValueLabel">Bonus</label>
+          <input type="number" id="otherAttackAdjustmentValue-${attackUUID}" name="otherAttackAdjustmentValue-${attackUUID}" class="input-text" min="-10" max="10" value="0">
+        </div>
+        <div class="input-group resource-input-group">
+          <label for="attackProficientCheckBox-${attackUUID}">Maîtrise</label>
+          <input type="checkbox" id="attackProficientCheckBox-${attackUUID}" name="attackProficientCheckBox-${attackUUID}">
+        </div>
+      </div>
         <h4>Dégâts</h4>
-        <div id="damageContainer" class="container">
-            <div class="wrapper">
+        <div id="damageContainer" class="container3">
+            <div class="input-group resource-input-group">
               <label for="damageDiceQuantity-${attackUUID}" id="damageDiceQuantityLabel">Quantité</label>
               <input type="number" id="damageDiceQuantity-${attackUUID}" name="damageDiceQuantity-${attackUUID}" class="input-text" min="1" max="10" value="1">
             </div>
-            <div class="wrapper">
+            <div class="input-group resource-input-group">
               <label for="damageHitDiceType-${attackUUID}" id="damageHitDiceTypeLabel">Type</label>
               <select id="damageHitDiceType-${attackUUID}" name="damageHitDiceType-${attackUUID}" class="input-text input-damageHitDiceType">
                     <option value="d4" selected class="input-damageHitDiceType">d4</option>
@@ -2801,8 +2813,8 @@ function getAttackSectionHTML(attackUUID) {
                 </select>
             </div>
         </div>
-        <div id="damageAdjustmentContainer"class="container">
-            <div class="wrapper">
+        <div id="damageAdjustmentContainer"class="container3">
+            <div class="input-group resource-input-group">
               <label for="damageAbilityAdjustment-${attackUUID}" id="damageAbilityAdjustmentLabel">Habileté</label>
               <select id="damageAbilityAdjustment-${attackUUID}" name="damageAbilityAdjustment-${attackUUID}" class="input-text">
                     <option value=" ">Choisir</option>
@@ -2814,7 +2826,7 @@ function getAttackSectionHTML(attackUUID) {
                     <option value="charisma">Charisme</option>
                 </select>
             </div>
-            <div class="wrapper">
+            <div class="input-group resource-input-group">
               <label for="otherDamageAdjustmentValue-${attackUUID}" id="otherDamageAdjustmentValueLabel">Bonus</label>
               <input type="number" id="otherDamageAdjustmentValue-${attackUUID}" name="otherDamageAdjustmentValue-${attackUUID}" class="input-text" min="-10" max="10" value="0">
             </div>
@@ -3070,39 +3082,40 @@ function getResourceSectionHTML(resourceUUID) {
 <div id="resourceSubsection-${resourceUUID}" class="subsection">
   <button id="removeResource" class="remove-button" onclick="removeResource('${resourceUUID}')"><span class="iconify" data-icon="mdi:trash-can-outline"></span></button>
   
-  <div class="container">
+  <div class="container4">
     <div class="input-group">
       <label for="resourceName-${resourceUUID}">Nom</label>
       <input type="text" id="resourceName-${resourceUUID}" class="input-text" value="">
     </div>
-    <div class="input-group">
-      <label for="resourceMax-${resourceUUID}">Maximum</label>
-      <input type="number" id="resourceMax-${resourceUUID}" class="input-text" value="0" min="0">
-    </div>
-    <div class="input-group">
-      <label for="resourceActual-${resourceUUID}">Actuel</label>
-      <input type="number" id="resourceActual-${resourceUUID}" class="input-text" value="0" min="0">
-    </div>
+    
   </div>
   
-  <div class="wrapper">
-    <div class="toggle-group">
-      <div class="toggle">
-        <input type="checkbox" id="longRestSwitch-${resourceUUID}" class="toggle-checkbox">
-        <label class="toggle-switch" for="longRestSwitch-${resourceUUID}"></label>
-        <label class="toggle-label" for="longRestSwitch-${resourceUUID}">Long repos</label>
-      </div>
-      <div class="toggle">
-        <input type="checkbox" id="shortRestSwitch-${resourceUUID}" class="toggle-checkbox">
-        <label class="toggle-switch" for="shortRestSwitch-${resourceUUID}"></label>
-        <label class="toggle-label" for="shortRestSwitch-${resourceUUID}">Court repos</label>
-      </div>
+  <div class="container4">
+  <div class="input-group resource-input-group">
+    <label for="resourceMax-${resourceUUID}">Maximum</label>
+    <input type="number" id="resourceMax-${resourceUUID}" class="input-text" value="0" min="0">
+  </div>
+  <div class="input-group resource-input-group">
+    <label for="resourceActual-${resourceUUID}">Actuel</label>
+    <input type="number" id="resourceActual-${resourceUUID}" class="input-text" value="0" min="0">
+  </div>
+  <div class="toggle-group resource-toggle-group">
+    <div class="toggle">
+      <label class="toggle-label" for="longRestSwitch-${resourceUUID}">Long repos</label>
+      <input type="checkbox" id="longRestSwitch-${resourceUUID}" class="toggle-checkbox">
+      <label class="toggle-switch" for="longRestSwitch-${resourceUUID}"></label>
+    </div>
+    <div class="toggle">
+      <label class="toggle-label" for="shortRestSwitch-${resourceUUID}">Court repos</label>
+      <input type="checkbox" id="shortRestSwitch-${resourceUUID}" class="toggle-checkbox">
+      <label class="toggle-switch" for="shortRestSwitch-${resourceUUID}"></label>
     </div>
   </div>
 </div>
+</div>
 `;
 
-  return resourceSection;
+return resourceSection;
 };
 
 function removeResource(resourceUUID) {
@@ -3228,10 +3241,17 @@ function getEquipmentSectionHTML(equipmentUUID) {
 <div id="equipmentSubsection-${equipmentUUID}" class="subsection">
   <button id="removeEquipment" class="remove-button" onclick="removeEquipment('${equipmentUUID}')"><span class="iconify" data-icon="mdi:trash-can-outline"></span></button>
   
-  <div class="container">
+  <div class="container4">
     <div class="input-group">
       <label for="equipmentName-${equipmentUUID}">Nom</label>
       <input type="text" id="equipmentName-${equipmentUUID}" class="input-text" value="">
+    </div>
+  </div>
+
+  <div class="container6">
+    <div class="input-group">
+      <label for="equipmentOrigin-${equipmentUUID}">Origine</label>
+      <input type="text" id="equipmentOrigin-${equipmentUUID}" class="input-text" value="">
     </div>
     <div class="input-group">
       <label for="equipmentQuantity-${equipmentUUID}">Quantité</label>
@@ -3241,17 +3261,11 @@ function getEquipmentSectionHTML(equipmentUUID) {
       <label for="equipmentWeight-${equipmentUUID}">Poids</label>
       <input type="number" id="equipmentWeight-${equipmentUUID}" class="input-text" value="0" min="0">
     </div>
-  </div>
-
-  <div class="container">
-    <div class="input-group">
-      <label for="equipmentOrigin-${equipmentUUID}">Origine</label>
-      <input type="text" id="equipmentOrigin-${equipmentUUID}" class="input-text" value="">
-    </div>
     <div class="toggle">
+      <label class="toggle-label" for="equipmentActive-${equipmentUUID}">Actif</label>
       <input type="checkbox" id="equipmentActive-${equipmentUUID}" class="toggle-checkbox">
       <label class="toggle-switch" for="equipmentActive-${equipmentUUID}"></label>
-      <label class="toggle-label" for="equipmentActive-${equipmentUUID}">Actif</label>
+      
     </div>
   </div>
 </div>
@@ -3304,26 +3318,27 @@ function getTreasureSectionHTML(treasureUUID) {
 <div id="treasureSubsection-${treasureUUID}" class="subsection">
   <button id="removeTreasure" class="remove-button" onclick="removeTreasure('${treasureUUID}')"><span class="iconify" data-icon="mdi:trash-can-outline"></span></button>
   
-  <div class="container">
+  <div class="container4">
     <div class="input-group">
       <label for="treasureName-${treasureUUID}">Nom</label>
       <input type="text" id="treasureName-${treasureUUID}" class="input-text" value="">
     </div>
-    <div class="input-group">
-      <label for="treasureQuantity-${treasureUUID}">Quantité</label>
-      <input type="number" id="treasureQuantity-${treasureUUID}" class="input-text" value="0" min="0">
-    </div>
-    <div class="input-group">
-      <label for="treasureValue-${treasureUUID}">Valeur</label>
-      <input type="number" id="treasureValue-${treasureUUID}" class="input-text" value="0" min="0">
-    </div>
   </div>
 
-  <div class="container">
+  <div class="container6">
     <div class="input-group">
       <label for="treasureOrigin-${treasureUUID}">Origine</label>
       <input type="text" id="treasureOrigin-${treasureUUID}" class="input-text" value="">
     </div>
+    <div class="input-group ">
+      <label for="treasureQuantity-${treasureUUID}">Quantité</label>
+      <input type="number" id="treasureQuantity-${treasureUUID}" class="input-text" value="0" min="0">
+    </div>
+    <div class="input-group ">
+      <label for="treasureValue-${treasureUUID}">Valeur</label>
+      <input type="number" id="treasureValue-${treasureUUID}" class="input-text" value="0" min="0">
+    </div>
+
   </div>
 </div>
 `;
