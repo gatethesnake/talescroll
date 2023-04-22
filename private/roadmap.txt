@@ -1,21 +1,18 @@
 Fondor road map
 - v1
-        -   finaliser Argent en cour
-        - total trésor et grand total sur meme ligne
-        - argent en rond
-        - calcul trésor?
-        - calcul grand total?
-		- miscellaneous name new field
-    - Perrin : 
+	= arranger le fckin css 
+	
+	- Finaliser Argent en cour
+		- total trésor et grand total sur meme ligne
+		- argent en rond
+		- calcul trésor?
+		- calcul grand total?
     - Ajouts
-		- attributs: collapsable
-		- états : HASTED, fatiqué
+			- états : HASTED, fatiqué
 		- Fatigue : niveau 1 à 10
         - equipment totalWeight= sum(qty*weight) + money (?)
         - bonus général (proche de : A.N.D.)
         - short or long rest Reset.
-		- changer les onglets les sous-onglets deviennent main. 	
-		- refaire le générateur de dé. qty dés bonus libellé (pas de liste)
     - custom-lists
         - feats custom-list mini-fiche DOM SOR
 			- nom
@@ -42,15 +39,16 @@ Fondor road map
 					- description
 					- source
 					- url (lien _blank)
-					- Prêt (switch
+					- Prêt (switch)
     - dnd5e
         - multi-class
-    - ui-ux 
-        - image pour icone "ios" 
+    
 - v2
     - ui-ux 
+		- refaire le générateur de dé. qty dés bonus libellé (pas de liste)
         - localStorge : on every change + multiple names
         - image S O R, resize 128X128 png ou jpg base64
         - 3D : d4 à d20, d2,d3, d100 !?
         - arrête un dé sur la bonne face
         - Option Roll  >talespire >on screen
+		- image pour icone "ios" 

@@ -1,13 +1,12 @@
 // fast dev settings
 
-//document.getElementById("diceGeneratorTab").click();
-document.getElementById("characterSheetTab").click();
-
-document.getElementById("sheetTabName").click();
+//document.getElementById("sheetTabName").click();
 //document.getElementById("actionTabName").click()
 //document.getElementById("spellTabName").click();
-
+//document.getElementById("featTabName").click();
 //document.getElementById("equipmentTabName").click();
+document.getElementById("descriptionTabName").click();
+
 ;
 
 const splashLength = 0;
@@ -157,7 +156,7 @@ function openTab(evt, tabName) {
   for (i = 0; i < tablinks.length; i++) {
     tablinks[i].className = tablinks[i].className.replace(" active", "");
   }
-  document.getElementById(tabName).style.display = "block";
+  document.getElementById(tabName).style.display = "flex";
   evt.currentTarget.className += " active";
 }
 
@@ -566,7 +565,8 @@ function saveCharacter(saveTo) {
   /// Save miscellaneousInfo 
   function getMiscellaneousInfoByUUID(uuid) {
     return {
-      miscellaneousDescription: document.getElementById(`miscellaneousDescription-${uuid}`).value || " "
+      miscellaneousDescription: document.getElementById(`miscellaneousDescription-${uuid}`).value || " ",
+      miscellaneousName: document.getElementById(`miscellaneousName-${uuid}`).value || " "
     };
   }
   miscellaneousUUIDs.forEach((uuid) => {
@@ -915,6 +915,7 @@ function openCharacter(loadFrom) {
     // Load miscellaneous info
     function loadMiscellaneousInfo(miscellaneous, uuid) {
       document.getElementById(`miscellaneousDescription-${uuid}`).value = miscellaneous.miscellaneousDescription;
+      document.getElementById(`miscellaneousName-${uuid}`).value = miscellaneous.miscellaneousName;
     }
 
     function generateAllMiscellaneousSections(miscellaneousInfo) {
@@ -1276,7 +1277,7 @@ function populateClassSelect() {
 
   const chooseOption = document.createElement('option');
   chooseOption.value = ' ';
-  chooseOption.textContent = 'Choisir une classe';
+  chooseOption.textContent = 'Choisir';
   selectElement.appendChild(chooseOption);
 
   classOptions.forEach(option => {
@@ -1302,7 +1303,7 @@ function populateReligionSelect() {
 
   const chooseOption = document.createElement('option');
   chooseOption.value = ' ';
-  chooseOption.textContent = 'Choisir une religion';
+  chooseOption.textContent = 'Choisir';
   selectElement.appendChild(chooseOption);
 
   religionOptions.forEach(option => {
@@ -1329,7 +1330,7 @@ function populateBackgroundSelect() {
 
   const chooseOption = document.createElement('option');
   chooseOption.value = ' ';
-  chooseOption.textContent = 'Choisir un historique';
+  chooseOption.textContent = 'Choisir';
   selectElement.appendChild(chooseOption);
 
   backgroundOptions.forEach(option => {
@@ -1430,7 +1431,7 @@ function populateRaceDropdown() {
   // Add "Choisir une race" at the beginning
   const firstOption = document.createElement("option");
   firstOption.value = " ";
-  firstOption.text = "Choisir une race";
+  firstOption.text = "Choisir";
   raceSelect.add(firstOption);
 
   // Add other race options from the constant array
@@ -1805,7 +1806,11 @@ const characterTitle = document.getElementById('character-title');
 const characterNameInput = document.getElementById('characterName');
 
 characterNameInput.addEventListener('input', () => {
-  characterTitle.textContent = characterNameInput.value;
+  if (characterNameInput.value === "") {
+    characterTitle.textContent = "Val de Fondor";
+  } else {
+    characterTitle.textContent = characterNameInput.value;
+  }
 });
 
 
@@ -2310,7 +2315,7 @@ function generateSelectBoxes() {
 
     const defaultOption = document.createElement("option");
     defaultOption.value = "";
-    defaultOption.textContent = `Choisir un sort niveau ${level}`;
+    defaultOption.textContent = `Choisir `;
     selectBox.appendChild(defaultOption);
 
     const spellsForLevel = spells.filter((spell) => spell.Niv === level);
@@ -3138,18 +3143,29 @@ function getFeatureSectionHTML(featureUUID) {
 <div id="featureSubsection-${featureUUID}" class="subsection3">
   <button id="removeFeature" class="remove-button" onclick="removeFeature('${featureUUID}')"><span class="iconify" data-icon="mdi:trash-can-outline"></span></button>
   
-  <div class="container">
-    <div class="input-group">
-      <label for="featureName-${featureUUID}">Nom</label>
-      <input type="text" id="featureName-${featureUUID}" class="input-text" value="">
+  <div class="wrapper">
+    <div class="container">
+      <div class="input-group">
+        <label for="featureName-${featureUUID}">Nom</label>
+        <input type="text" id="featureName-${featureUUID}" class="input-text" value="">
+      </div>
     </div>
-    <div class="input-group">
-      <label for="featureSource-${featureUUID}">Source</label>
-      <input type="text" id="featureSource-${featureUUID}" class="input-text" value="">
-    </div>
-    <div class="input-group">
-      <label for="featureType-${featureUUID}">Type</label>
-      <input type="text" id="featureType-${featureUUID}" class="input-text" value="">
+    <div class="container">
+      <div class="input-group">
+        <label for="featureSource-${featureUUID}">Source</label>
+        <input type="text" id="featureSource-${featureUUID}" class="input-text" value="">
+      </div>
+      <div class="input-group">
+        <label for="featureType-${featureUUID}">Type</label>
+        <input type="text" id="featureType-${featureUUID}" class="input-text" value="">
+      </div>
+      <div class="input-group">
+        <label for="showDetails-${featureUUID}">Détails</label>
+        <label class="toggle">
+          <input type="checkbox" id="showDetails-${featureUUID}" class="toggle-checkbox" onchange="toggleFeatureDetails('${featureUUID}')">
+          <span class="toggle-switch"></span>
+        </label>
+      </div>
     </div>
   </div>
 
@@ -3165,6 +3181,18 @@ function getFeatureSectionHTML(featureUUID) {
 
   return featureSection;
 };
+
+
+function toggleFeatureDetails(featureUUID) {
+  const showDetailsCheckbox = document.getElementById(`showDetails-${featureUUID}`);
+  const featureDescriptionTextarea = document.getElementById(`featureDescription-${featureUUID}`);
+
+  if (showDetailsCheckbox.checked) {
+    featureDescriptionTextarea.style.display = 'block';
+  } else {
+    featureDescriptionTextarea.style.display = 'none';
+  }
+}
 
 
 function removeFeature(featureUUID) {
@@ -3253,11 +3281,21 @@ let treasureUUIDs = [];
 function generateTreasureSection(optionalUUID) {
   const treasureUUID = optionalUUID || generateUUID(); // Use the optionalUUID if provided, otherwise generate a new UUID
   treasureUUIDs.push(treasureUUID);
-  console.log(treasureUUIDs);
+
   const treasureSection = document.createElement('div');
   treasureSection.innerHTML = getTreasureSectionHTML(treasureUUID);
   const treasureContainer = document.getElementById('treasureContainer');
   treasureContainer.appendChild(treasureSection);
+
+  // Add event listeners for quantity and value inputs
+  const quantityInput = document.getElementById(`treasureQuantity-${treasureUUID}`);
+  const valueInput = document.getElementById(`treasureValue-${treasureUUID}`);
+
+  quantityInput.addEventListener("input", updateTreasureTotal);
+  valueInput.addEventListener("input", updateTreasureTotal);
+
+  quantityInput.addEventListener("change", updateTreasureTotal);
+  valueInput.addEventListener("change", updateTreasureTotal);
 
 };
 
@@ -3330,13 +3368,16 @@ function generateMoneyInputs() {
     const input = document.createElement("input");
     input.type = "number";
     input.id = `money-${currencyKey}`;
-    input.className = "input-money input-text";
+    input.className = "input-money input-text  token-input";
     input.min = 0;
     input.value = 0;
-    input.style.width = "70px";
+    input.style.width = "50px"; // Adjust the width
+    input.style.height = "50px"; // Set the height
+    input.style.borderRadius = "50%"; // Set border-radius to 50%
     input.style.textAlign = "center";
     input.style.backgroundColor = currency.color;
     input.style.opacity = 0.7;
+    input.style.boxShadow = "4px 4px 4px rgba(0, 0, 0, 0.4)"; // Add drop shadow effect
     input.addEventListener("input", calculateTotal);
 
     moneyInputWrapper.appendChild(label);
@@ -3468,10 +3509,10 @@ function generateLanguageSection(optionalUUID) {
 
 function getLanguageSectionHTML(languageUUID) {
   const languageSection = `
-<div id="languageSubsection-${languageUUID}" class="subsection">
+<div id="languageSubsection-${languageUUID}" class="subsection3">
   <button id="removeLanguage" class="remove-button" onclick="removeLanguage('${languageUUID}')"><span class="iconify" data-icon="mdi:trash-can-outline"></span></button>
   
-  <div class="container">
+  <div class="container container3">
     <div class="input-group">
       <label for="languageName-${languageUUID}">Nom</label>
       <select id="languageName-${languageUUID}" class="input-text">
@@ -3489,22 +3530,20 @@ function getLanguageSectionHTML(languageUUID) {
         <option value="element">Élément</option>
       </select>
     </div>
-  </div>
-  
-  <div class="wrapper">
+
     <div class="toggle-group">
       <div class="toggle">
         <div class="wrapper">
+          <label class="toggle-label" for="languageSpoken-${languageUUID}">Parlé</label>
           <input type="checkbox" id="languageSpoken-${languageUUID}" class="toggle-checkbox">
           <label class="toggle-switch" for="languageSpoken-${languageUUID}"></label>
-          <label class="toggle-label" for="languageSpoken-${languageUUID}">Parlé</label>
         </div>
       </div>
       <div class="toggle">
         <div class="wrapper">
+          <label class="toggle-label" for="languageWritten-${languageUUID}">Écrit</label>
           <input type="checkbox" id="languageWritten-${languageUUID}" class="toggle-checkbox">
           <label class="toggle-switch" for="languageWritten-${languageUUID}"></label>
-          <label class="toggle-label" for="languageWritten-${languageUUID}">Écrit</label>
         </div>
       </div>
     </div>
@@ -3513,7 +3552,8 @@ function getLanguageSectionHTML(languageUUID) {
 `;
 
   return languageSection;
-}
+};
+
 
 function removeLanguage(languageUUID) {
   const languageSection = document.getElementById(`languageSubsection-${languageUUID}`);
@@ -3548,10 +3588,21 @@ function getMiscellaneousSectionHTML(miscellaneousUUID) {
   const miscellaneousSection = `
 <div id="miscellaneousSubsection-${miscellaneousUUID}" class="subsection3">
   <button id="removeMiscellaneous" class="remove-button" onclick="removeMiscellaneous('${miscellaneousUUID}')"><span class="iconify" data-icon="mdi:trash-can-outline"></span></button>
-  
+  <div class="container container4">
+    <div class="input-group">
+      <label for="miscellaneousName-${miscellaneousUUID}">Nom</label>
+      <input type="text" id="miscellaneousName-${miscellaneousUUID}" class="input-text" value="">
+    </div>
+    <div class="input-group">
+      <label for="showDetails-${miscellaneousUUID}">Détails</label>
+      <label class="toggle">
+        <input type="checkbox" id="showDetails-${miscellaneousUUID}" class="toggle-checkbox" onchange="toggleMiscellaneousDetails('${miscellaneousUUID}')">
+        <span class="toggle-switch"></span>
+      </label>
+    </div>
+  </div>
   <div class="container">
     <div class="input-group">
-      <label for="miscellaneousDescription-${miscellaneousUUID}">Description</label>
       <textarea id="miscellaneousDescription-${miscellaneousUUID}" class="input-textarea" rows="4" style="resize: vertical;"></textarea>
     </div>
   </div>
@@ -3560,6 +3611,20 @@ function getMiscellaneousSectionHTML(miscellaneousUUID) {
 
   return miscellaneousSection;
 };
+
+
+
+
+function toggleMiscellaneousDetails(miscellaneousUUID) {
+  const showDetailsCheckbox = document.getElementById(`showDetails-${miscellaneousUUID}`);
+  const miscellaneousDescriptionTextarea = document.getElementById(`miscellaneousDescription-${miscellaneousUUID}`);
+
+  if (showDetailsCheckbox.checked) {
+    miscellaneousDescriptionTextarea.style.display = 'block';
+  } else {
+    miscellaneousDescriptionTextarea.style.display = 'none';
+  }
+}
 
 
 function removeMiscellaneous(miscellaneousUUID) {
