@@ -1,9 +1,6 @@
 Fondor road map
 - v1
-   - extract data from select
-        - line: 676 religion 
-        - line: 705 background
-    -   finaliser Argent en cour
+        -   finaliser Argent en cour
         - total trésor et grand total sur meme ligne
         - argent en rond
         - calcul trésor?
