@@ -1642,8 +1642,16 @@ body {
   min-width: 350px;
   min-height: 6em;
   resize: both;
-  font-size:x-small !important;
+  font-size:small !important;
   display:none;
+}
+
+.input-textarea2 {
+  min-width: 350px;
+  min-height: 6em;
+  resize: both;
+  font-size:small !important;
+  display:block;
 }
 
 

@@ -1,9 +1,9 @@
 // fast dev settings
 
 //document.getElementById("sheetTabName").click();
-document.getElementById("actionTabName").click()
+//document.getElementById("actionTabName").click()
 //document.getElementById("spellTabName").click();
-//document.getElementById("featTabName").click();
+document.getElementById("featTabName").click();
 //document.getElementById("equipmentTabName").click();
 //document.getElementById("descriptionTabName").click();
 
@@ -376,7 +376,8 @@ function saveCharacter(saveTo) {
     treasureInfo: {},
     languageInfo: {},
     miscellaneousInfo: {},
-    moneyInfo: {}
+    moneyInfo: {},
+    featInfo: {}
   };
 
   for (const abilityId of ABILITY_NAMES) {
@@ -571,6 +572,21 @@ function saveCharacter(saveTo) {
     characterData.miscellaneousInfo[uuid] = getMiscellaneousInfoByUUID(uuid);
   });
 
+  /// Save featInfo 
+  function getFeatInfoByUUID(uuid) {
+    return {
+      featName: document.getElementById(`featName-${uuid}`).value || " "
+    };
+  }
+
+  // Save feats data
+featUUIDs.forEach((uuid) => {
+  characterData.featInfo[uuid] = getFeatInfoByUUID(uuid);
+});
+  
+
+
+
   // Save money values
   for (const currencyKey of Object.keys(fondorCurrencies)) {
     const input = document.getElementById(`money-${currencyKey}`);
@@ -611,6 +627,7 @@ function openCharacter(loadFrom) {
     const languageInfo = characterData.languageInfo;
     const miscellaneousInfo = characterData.miscellaneousInfo;
     const moneyInfo = characterData.moneyInfo;
+    const featInfo = characterData.featInfo;
 
     // Load abilities
     for (const abilityId in abilities) {
@@ -934,7 +951,30 @@ function openCharacter(loadFrom) {
     generateAllMiscellaneousSections(miscellaneousInfo);
     loadAllMiscellaneousInfo(miscellaneousInfo);
 
+        // Load feat info
+        function loadFeatInfo(feat, uuid) {
+          document.getElementById(`featName-${uuid}`).value = feat.featName;
+          if (feat.featName.trim !== "") {
+             loadFeatData(uuid);
+          }
+        }
+        function generateAllFeatSections(featsInfo) {
+          Object.keys(featsInfo).forEach((uuid) => {
+            generateFeatSection(uuid);
+          });
+        }
+        function loadAllFeatInfo(featsInfo) {
+          Object.keys(featsInfo).forEach((uuid) => {
+            const feat = featsInfo[uuid];
+            loadFeatInfo(feat, uuid);
 
+          });
+        }
+      removeAllFeats();
+      generateAllFeatSections(featInfo);
+      loadAllFeatInfo(featInfo);
+
+   
     // Load money values
     for (const currencyKey of Object.keys(fondorCurrencies)) {
       const input = document.getElementById(`money-${currencyKey}`);
@@ -1090,6 +1130,8 @@ function confirmReset() {
   removeAllTreasures();
   removeAllLanguages();
   removeAllMiscellaneous();
+  removeAllFeats();
+
 
   // Reset money values
 
@@ -2300,51 +2342,102 @@ function adjustSpeed() {
   });
 }
 
-
-
-
-
-
 //----------- DONS -----------//
 
-// Sélectionner l'élément HTML où afficher le menu déroulant
-const select = document.querySelector('#feats-select');
-const featDetails = document.querySelector('#feat-details');
+let featUUIDs = [];
+
+function generateFeatSection(optionalUUID) {
+  const featUUID = optionalUUID || generateUUID();
+  featUUIDs.push(featUUID);
+
+  const featSection = document.createElement('div');
+  featSection.innerHTML = getFeatSectionHTML(featUUID);
+  const featContainer = document.getElementById('featContainer');
+  featContainer.appendChild(featSection);
+};
+
+function getFeatSectionHTML(featUUID) {
+  const featOptions = feats.map(feat => `<option value="${feat.nameFeats}">${feat.nameFeats}</option>`).join('');
+  const featSection = `
+<div id="featSubsection-${featUUID}" class="subsection3">
+  <button id="removeFeat" class="remove-button" onclick="removeFeat('${featUUID}')"><span class="iconify" data-icon="mdi:trash-can-outline"></span></button>
+    
+  <div class="wrapper">
+    <div class="container">
+      <div class="input-group">
+        <label for="featName-${featUUID}">Nom</label>
+        <select id="featName-${featUUID}" class="input-text" onchange="loadFeatData('${featUUID}')">
+          <option value="">Choisir</option>
+          ${featOptions}
+        </select>
+      </div>
+    </div>
+    <div class="container">
+      <div class="input-group">
+        <label for="featNameVO-${featUUID}">Nom anglais</label>
+        <input type="text" id="featNameVO-${featUUID}" class="input-text" value=" " readonly>
+      </div>
+    </div>
+    <div class="container">
+      <div class="input-group">
+        <label for="featSource-${featUUID}">Source</label>
+        <input type="text" id="featSource-${featUUID}" class="input-text" value=" " readonly>
+      </div>
+    </div>
+    <div class="container">
+      <div class="input-group">
+        <label for="featPrerequisite-${featUUID}">Prérequis</label>
+        <input type="text" id="featPrerequisite-${featUUID}" class="input-text" value=" " readonly>
+      </div>
+    </div>
+    <div class="container3">
+      <div class="input-group">
+        <div class="textarea-container">
+          <textarea id="featDescription-${featUUID}" class="input-textarea2 input-text" rows=" " readonly></textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+  return featSection;
+};
 
 
-// Ajouter chaque don au menu déroulant
-for (let i = 0; i < feats.length; i++) {
-  const option = document.createElement('option');
-  option.value = feats[i].nameFeats;
-  option.text = feats[i].nameFeats;
-  select.appendChild(option);
+
+function loadFeatData(featUUID) {
+  const featNameSelect = document.getElementById(`featName-${featUUID}`);
+  const selectedFeat = feats.find(feat => feat.nameFeats === featNameSelect.value);
+  
+  if (selectedFeat) {
+    document.getElementById(`featNameVO-${featUUID}`).value = selectedFeat.nameVoFeats;
+    document.getElementById(`featPrerequisite-${featUUID}`).value = selectedFeat.prerequisiteFeats;
+    document.getElementById(`featDescription-${featUUID}`).value = selectedFeat.descriptionFeats;
+    document.getElementById(`featSource-${featUUID}`).value = selectedFeat.sourceFeats;
+  } else {
+    document.getElementById(`featNameVO-${featUUID}`).value = " " ;
+    document.getElementById(`featPrerequisite-${featUUID}`).value = " "; 
+    document.getElementById(`featDescription-${featUUID}`).value = " " ;
+    document.getElementById(`featSource-${featUUID}`).value = " " ;
+  }
 }
 
-select.addEventListener('change', function () {
-  featDetails.innerHTML = ''; // Clear existing details
-  if (this.value === '') {
-    return; // Do nothing if no feat is selected
-  }
 
-  const selectedFeat = feats.find(feat => feat.nameFeats === this.value);
+function removeFeat(featUUID) {
+  const featSection = document.getElementById(`featSubsection-${featUUID}`);
+  featSection.remove();
 
-  const nameElement = document.createElement('h3');
-  nameElement.textContent = selectedFeat.nameFeats;
-  featDetails.appendChild(nameElement);
+  featUUIDs = featUUIDs.filter(uuid => uuid !== featUUID);
+};
 
-  const labels = [
-    { key: 'nameVoFeats', label: 'VO' },
-    { key: 'prerequisiteFeats', label: 'Prérequis' },
-    { key: 'descriptionFeats', label: 'Description' },
-    { key: 'sourceFeats', label: 'Source' },
-  ];
+function removeAllFeats() {
+  const featUUIDsCopy = [...featUUIDs];
+  featUUIDsCopy.forEach(uuid => {
+    removeFeat(uuid);
+  });
+};
 
-  for (const { key, label } of labels) {
-    const labelElement = document.createElement('p');
-    labelElement.innerHTML = `<strong>${label}</strong> ${selectedFeat[key]}`;
-    featDetails.appendChild(labelElement);
-  }
-});
 
 //----------- SORTS spells -----------//
 
