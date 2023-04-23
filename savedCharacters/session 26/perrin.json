@@ -121,6 +121,7 @@
     "tempHitPoints": "0",
     "inspirationValue": "on",
     "speedValue": "11",
+    "generalBonusValue": "0",
     "avantage": "normal"
   },
   "deathSaves": {
@@ -136,6 +137,8 @@
     ]
   },
   "status": {
+    "HASTED": true,
+    "EXHAUSTED": false,
     "CONCENTRATED": false,
     "UNCONSCIOUS": false,
     "STUNNED": false,
@@ -144,7 +147,6 @@
     "FRIGHTENED": false,
     "PARALYZED": false,
     "PETRIFIED": false,
-    "EXHAUSTED": false,
     "BLINDED": false,
     "INVISIBLE": false,
     "ENVELOPED_IN_MAGICAL_DARKNESS": false,
@@ -169,10 +171,10 @@
   "armorClassInfo": {
     "ability1": "dexterity",
     "ability2": "wisdom",
-    "otherAdjustmentName": " haste tmp",
+    "otherAdjustmentName": " haste tmp session 26",
     "otherAdjustmentValue": "2",
-    "armorActive": true,
-    "armorSelection": "custom",
+    "armorActive": false,
+    "armorSelection": " ",
     "customArmorName": " ",
     "customArmorValue": "0",
     "shieldActive1": true,
@@ -637,10 +639,18 @@
     }
   },
   "moneyInfo": {
-    "cp": 12,
+    "cp": 0,
     "sp": 0,
     "ep": 0,
-    "gp": 6,
+    "gp": 0,
     "pp": 0
+  },
+  "featInfo": {
+    "2e234d4c3cbf79b-5295dd3-41cdd4f-92ca3b9-d281963a29c14c3a11ad45d2": {
+      "featName": "Mobile"
+    },
+    "39e35a5518f7e5-17415ee7-4fa32a-9694acf-9554206ed0edfe97afcfcb73": {
+      "featName": "Faveur des fées"
+    }
   }
 }

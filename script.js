@@ -2447,9 +2447,6 @@ function generateSelectBoxes() {
     selectBox.setAttribute("class", "input-text");
     selectBox.setAttribute("name", `spells${level}`);
 
-    const label = document.createElement("label");
-    label.innerHTML = `Choisir un sort niveau ${level}`;
-
     const defaultOption = document.createElement("option");
     defaultOption.value = "";
     defaultOption.textContent = `Choisir `;
