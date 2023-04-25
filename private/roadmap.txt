@@ -1,33 +1,20 @@
 Fondor road map
 - v1
-	- custom-lists
-        - feats custom-list mini-fiche DOM SOR
-			- nom
-			- vo
-			- prérequis
-			- description
-			- source (à débogguer)
-        - spells niveaux 1 a 9 sélection
-			- option class par défaut set sur classe du perso. option: toutes les classes
-			- global
-				- Spell Casting ability
-				- DC for spells
-				 -Spell attack Bonus
-			- per level: 
-				- max
-				- actual
-			 	- fiche de sort 
-					- nom combo par class du personnage
-					- vo
-					- école
-					- incantation (conjusring time)
-					- Composante VSC
-					- durée 
-					- description
-					- source
-					- url (lien _blank)
-					- Prêt (switch)        
-    
+	- url ???
+	- spell per level: 
+		- max
+		- actual
+	- spellCasterInfo
+		- Save
+			max, actuel par niveaux
+			- all spell info by level
+		-  Open
+			- removeAllSpells
+			- generate sections from spellinfo by level
+			- load spellinfo by level
+		- Reset
+			- removeAllSpells
+
 - v2
 	- dnd5e
 		- multi-class
@@ -42,4 +29,4 @@ Fondor road map
         - arrête un dé sur la bonne face
         - Option Roll  >talespire >on screen
 		- image pour icone "ios"
-	- Tale-GPT : remove reference to Val de Fondor, ne repo puplic
+	- Tale-GPT : remove reference to Val de Fondor, new repo puplic

@@ -1,13 +1,13 @@
 // fast dev settings
 
-//document.getElementById("sheetTabName").click();
+document.getElementById("sheetTabName").click();
 //document.getElementById("actionTabName").click()
 //document.getElementById("spellTabName").click();
-document.getElementById("featTabName").click();
+//document.getElementById("featTabName").click();
 //document.getElementById("equipmentTabName").click();
 //document.getElementById("descriptionTabName").click();
 
-const splashLength = 0;
+const splashLength = 3000;
 
 //------------------------- OUVERTURE -------------------------//
 // Prévenir la cache du css
@@ -377,7 +377,8 @@ function saveCharacter(saveTo) {
     languageInfo: {},
     miscellaneousInfo: {},
     moneyInfo: {},
-    featInfo: {}
+    featInfo: {},
+    spellAttackInfo: {}
   };
 
   for (const abilityId of ABILITY_NAMES) {
@@ -593,6 +594,16 @@ featUUIDs.forEach((uuid) => {
     characterData.moneyInfo[currencyKey] = parseInt(input.value, 10);
   }
 
+  // Save spellAttack info
+
+  characterData.spellAttackInfo = {
+    spellCastingAbilitySelect: document.getElementById("spellCastingAbilitySelect").value || " ",
+    otherDcSpellBonus: document.getElementById("otherDcSpellBonus").value || "0",
+    otherSpellAttackBonus: document.getElementById("otherSpellAttackBonus").value || "0"
+  };
+
+
+
   // Saving to file or to localstorage
 
   const jsonCharacterData = JSON.stringify(characterData, null, 2);
@@ -628,6 +639,7 @@ function openCharacter(loadFrom) {
     const miscellaneousInfo = characterData.miscellaneousInfo;
     const moneyInfo = characterData.moneyInfo;
     const featInfo = characterData.featInfo;
+    const spellAttackInfo = characterData.spellAttackInfo;
 
     // Load abilities
     for (const abilityId in abilities) {
@@ -753,9 +765,9 @@ function openCharacter(loadFrom) {
     document.getElementById("customShieldName2").value = armorClassInfo.customShieldName2;
     document.getElementById("customShieldClassValue2").value = armorClassInfo.customShieldValue2;
 
-    selectChangedArmorClass(document.getElementById("armorSelection"), "customArmorContainer");
-    selectChangedArmorClass(document.getElementById("shieldAndAccessoriesSelection1"), "customShieldContainer");
-    selectChangedArmorClass(document.getElementById("shieldAndAccessoriesSelection2"), "customShieldContainer2");
+    selectChangedContainer(document.getElementById("armorSelection"), "customArmorContainer");
+    selectChangedContainer(document.getElementById("shieldAndAccessoriesSelection1"), "customShieldContainer");
+    selectChangedContainer(document.getElementById("shieldAndAccessoriesSelection2"), "customShieldContainer2");
 
     // load attacks info
     removeAllAttacks();
@@ -982,6 +994,14 @@ function openCharacter(loadFrom) {
     }
 
 
+    // Load spellAttack values
+
+    document.getElementById("spellCastingAbilitySelect").value = spellAttackInfo.spellCastingAbilitySelect;
+    document.getElementById("otherDcSpellBonus").value = spellAttackInfo.otherDcSpellBonus;
+    document.getElementById("otherSpellAttackBonus").value = spellAttackInfo.otherSpellAttackBonus;
+    
+
+
     // update and ajust all dependent fields
     updateDependentElements();
   }
@@ -1140,7 +1160,12 @@ function confirmReset() {
     input.value = 0;
   }
 
+  // Reset spellAttack values
 
+  document.getElementById("spellCastingAbilitySelect").value = " ";
+  document.getElementById("otherDcSpellBonus").value = "0";
+  document.getElementById("otherSpellAttackBonus").value = "0";
+  
 
   updateDependentElements();
   //code continue here
@@ -1268,6 +1293,8 @@ function updateDependentElements() {
   adjustArmorClassValue();
   adjustAllAttacks();
   calculateTotal();
+  updateDcForSpell();
+	updateSpellAttackBonus();
 
   const characterNameInput = document.getElementById('characterName');
   characterTitle.textContent = characterNameInput.value;
@@ -2359,7 +2386,7 @@ function generateFeatSection(optionalUUID) {
 function getFeatSectionHTML(featUUID) {
   const featOptions = feats.map(feat => `<option value="${feat.nameFeats}">${feat.nameFeats}</option>`).join('');
   const featSection = `
-<div id="featSubsection-${featUUID}" class="subsection3">
+<div id="featSubsection-${featUUID}" class="subsection6">
   <button id="removeFeat" class="remove-button" onclick="removeFeat('${featUUID}')"><span class="iconify" data-icon="mdi:trash-can-outline"></span></button>
     
   <div class="wrapper">
@@ -2393,7 +2420,7 @@ function getFeatSectionHTML(featUUID) {
     <div class="container3">
       <div class="input-group">
         <div class="textarea-container">
-          <textarea id="featDescription-${featUUID}" class="input-textarea2 input-text" rows=" " readonly></textarea>
+          <textarea id="featDescription-${featUUID}" class="input-textarea2" rows=" " readonly></textarea>
         </div>
       </div>
     </div>
@@ -2441,86 +2468,547 @@ function removeAllFeats() {
 
 //----------- SORTS spells -----------//
 
-function generateSelectBoxes() {
-  for (let level = 0; level <= 9; level++) {
-    const selectBox = document.createElement("select");
-    selectBox.setAttribute("class", "input-text");
-    selectBox.setAttribute("name", `spells${level}`);
+//------ populate les listes  ------//
 
-    const defaultOption = document.createElement("option");
-    defaultOption.value = "";
-    defaultOption.textContent = `Choisir `;
-    selectBox.appendChild(defaultOption);
-
-    const spellsForLevel = spells.filter((spell) => spell.Niv === level);
-
-    for (const spell of spellsForLevel) {
-      const option = document.createElement("option");
-      option.value = spell.id;
-      option.textContent = spell.Sort;
-      selectBox.appendChild(option);
-    }
-
-    const subsection = document.getElementById(`level_${level}`);
-    subsection.appendChild(label);
-    subsection.appendChild(selectBox);
-
-    const spellInfoContainer = document.createElement("div");
-    spellInfoContainer.setAttribute("id", `spellInfo${level}`);
-    subsection.appendChild(spellInfoContainer);
-
-    selectBox.addEventListener("change", function () {
-      const selectedSpell = spells.find((spell) => spell.id === this.value);
-      displaySpellInfo(selectedSpell, `spellInfo${level}`);
-    });
-  }
-}
-
-function displaySpellInfo(spell, containerId) {
-  const container = document.getElementById(containerId);
-  container.innerHTML = "";
-
-  if (!spell) {
-    return;
-  }
-
-  const spellName = document.createElement("h3");
-  spellName.textContent = spell.Sort;
-  container.appendChild(spellName);
-
-  const keysToDisplay = [
-    "VO",
-    "École",
-    "Incantation",
-    "Concentration",
-    "Rituel",
-    "Description",
-    "Source",
-    "URL",
-  ];
-
-  for (const key of keysToDisplay) {
-    if (spell[key]) {
-      const pInfo = document.createElement("p");
-      pInfo.innerHTML = `<strong>${key}</strong> ${spell[key]}`;
-      container.appendChild(pInfo);
-    }
-  }
-}
-
-window.addEventListener("load", generateSelectBoxes);
-
-function populateSpellCasterSelect() {
-  const spellCasterSelect = document.getElementById('spellCasterSelect');
-  spellCasters.forEach(spellCaster => {
-    const option = document.createElement('option');
-    option.value = spellCaster.name;
-    option.text = spellCaster.name;
-    spellCasterSelect.add(option);
+function populateSpellCastingAbilities() {
+  const spellCastingAbilitySelect = document.getElementById('spellCastingAbilitySelect');
+  abilityOptions.forEach((option) => {
+    const opt = document.createElement('option');
+    opt.value = option.value;
+    opt.innerHTML = option.text;
+    spellCastingAbilitySelect.appendChild(opt);
   });
 }
 
-window.addEventListener("load", populateSpellCasterSelect);
+window.addEventListener('load', () => {
+  populateSpellCastingAbilities();
+});
+
+function populateSpellCasters() {
+  const spellCasterSelect = document.getElementById('spellCasterSelect');
+
+  // Add "Choisir" option
+  const defaultOption = document.createElement('option');
+  defaultOption.value = " ";
+  defaultOption.textContent = 'Choisir';
+  spellCasterSelect.appendChild(defaultOption);
+
+  // Add spellCasters options
+  spellCasters.forEach(spellCaster => {
+    const option = document.createElement('option');
+    option.value = spellCaster.name;
+    option.textContent = spellCaster.name;
+    spellCasterSelect.appendChild(option);
+  });
+
+}
+
+
+
+// Function to populate the spell school select element
+function populateSpellSchools() {
+  const selectElement = document.getElementById("spellSchool");
+  
+  // Add the "Choisir" option as the first option
+  const firstOptionElement = document.createElement("option");
+  firstOptionElement.value = "";
+  firstOptionElement.textContent = "Choisir";
+  selectElement.appendChild(firstOptionElement);
+  
+  for (const school in SCHOOLS_OF_MAGIC) {
+    const optionElement = document.createElement("option");
+    optionElement.value = SCHOOLS_OF_MAGIC[school];
+    optionElement.textContent = SCHOOLS_OF_MAGIC[school];
+    selectElement.appendChild(optionElement);
+  }
+  
+}
+
+// Function to populate the spell source select element
+function populateSpellSources() {
+  const selectElement = document.getElementById("spellSource");
+  
+  // Add the "Choisir" option as the first option
+  const firstOptionElement = document.createElement("option");
+  firstOptionElement.value = "";
+  firstOptionElement.textContent = "Choisir";
+  selectElement.appendChild(firstOptionElement);
+  
+  SPELL_SOURCES.forEach(source => {
+    const optionElement = document.createElement("option");
+    optionElement.value = source.name;
+    optionElement.textContent = source.name;
+    selectElement.appendChild(optionElement);
+  });
+  
+
+}
+
+// Call the functions to populate the select elements when the DOM is loaded
+document.addEventListener("DOMContentLoaded", () => {
+  populateSpellCasters();
+  populateSpellSchools();
+  populateSpellSources();
+});
+
+//------ update les valeurs  ------//
+
+function getAbilityScoreBonus(ability) {
+  if (ability === "" || ability === " " || ability === null) {
+    return 0;
+  }
+
+  const abilityScoreElement = document.getElementById(ability + 'Score');
+  if (!abilityScoreElement) {
+    return 0;
+  }
+  const abilityScore = parseInt(abilityScoreElement.value, 10);
+  const abilityBonus = Math.floor((abilityScore - 10) / 2);
+  return abilityBonus;
+}
+
+
+function getProficiencyBonus() {
+  const proficiencyBonusElement = document.getElementById("proficiencyBonusValue");
+  const proficiencyBonusValue = parseInt(proficiencyBonusElement.textContent, 10);
+
+  return proficiencyBonusValue;
+}
+
+function updateDcForSpell() {
+  const ability = document.getElementById('spellCastingAbilitySelect').value;
+  const abilityBonus = getAbilityScoreBonus(ability); 
+  const proficiencyBonus = getProficiencyBonus(); 
+  const otherDcSpellBonus = parseInt(document.getElementById('otherDcSpellBonus').value);
+
+  const dcForSpellValue = 8 + abilityBonus + proficiencyBonus + otherDcSpellBonus;
+  document.getElementById('dcForSpell').innerHTML = dcForSpellValue;
+}
+
+function updateSpellAttackBonus() {
+  const ability = document.getElementById('spellCastingAbilitySelect').value;
+  const abilityBonus = getAbilityScoreBonus(ability); 
+  const proficiencyBonus = getProficiencyBonus(); 
+  const otherSpellAttackBonus = parseInt(document.getElementById('otherSpellAttackBonus').value);
+
+  const spellAttackBonusValue = abilityBonus + proficiencyBonus + otherSpellAttackBonus;
+  
+  let displayValue = spellAttackBonusValue;
+  if (spellAttackBonusValue > 0) {
+    displayValue = "+" + spellAttackBonusValue;
+  }
+
+  document.getElementById('spellAttackBonus').innerHTML = displayValue;
+}
+
+
+document.getElementById('spellCastingAbilitySelect').addEventListener('change', () => {
+  updateDcForSpell();
+  updateSpellAttackBonus();
+});
+
+document.getElementById('otherDcSpellBonus').addEventListener('change', updateDcForSpell);
+document.getElementById('otherSpellAttackBonus').addEventListener('change', updateSpellAttackBonus);
+
+document.getElementById('levelName').addEventListener('change', () => {
+  updateDcForSpell();
+  updateSpellAttackBonus();
+});
+
+abilityOptions.forEach((abilityOption) => {
+  document.getElementById(`${abilityOption.value}Score`).addEventListener('change', () => {
+    updateDcForSpell();
+    updateSpellAttackBonus();
+  });
+});
+
+function rollSpellAttack(attackBonus) {
+  const advantageState = getAdvantage();
+  let command = '';
+  let advantageText = '';
+
+  // Get the value of generalBonusValue
+  const generalBonusValue = parseInt(document.getElementById("generalBonusValue").value) || 0;
+
+  // Update attackBonus
+  attackBonus = parseInt(attackBonus) + generalBonusValue;
+
+  if (attackBonus >= 0) {
+    attackBonus = `+${attackBonus}`;
+  }
+
+  if (advantageState === 'normal') {
+    command = `${encodeURI(removeAccents('Attaque sort '))}:d20${attackBonus}`;
+  } else {
+    advantageText = advantageState === 'advantage' ? 'avantage' : 'désavantage';
+    command = `${encodeURI(removeAccents('Attaque sort '+ advantageText))}:d20${attackBonus}/d20${attackBonus}`;
+  }
+
+  const toastMessage = advantageState === 'normal'
+    ? `Ça roule Attaque de sort avec d20 et un bonus de ${attackBonus}`
+    : `Ça roule Attaque de sort (${advantageText}) avec d20 et un bonus de ${attackBonus}`;
+
+  // Send command to Talespire
+  window.location.href = `talespire://dice/${command}`;
+
+  // Show the toast
+  showToast(toastMessage);
+  //showToast(`talespire://dice/${command}`);
+};
+
+
+//------ générer les sorts custom-list  SPELLBOOK------//
+
+const spellBook = document.getElementById('spellBook');
+
+
+for (let i = 0; i <= 9; i++) {
+  const levelDiv = document.createElement('div');
+  levelDiv.id = `level_${i}`;
+  levelDiv.className = 'level_';
+
+  levelDiv.innerHTML = `
+  <h2>Niveau ${i}</h2>
+  <div class="wrapper"> 
+    <div class="level-controls"> 
+      <button id="addSpell${i}" class="add-button" onclick="getSpellId(${i})"><span class="iconify" data-icon="material-symbols:add"></span></button>
+      <div class="input-group">
+        <label for="spellMax-${i}">Maximum</label>
+        <input type="number" id="spellMax-${i}" class="input-text" value="0" min="0">
+      </div>
+      <div class="input-group">
+        <label for="spellActual-${i}">Actuel</label>
+        <input type="number" id="spellActual-${i}" class="input-text" value="0" min="0">
+      </div>
+    </div>
+  </div>
+  <div id="spellContainer${i}" class="spell-container"></div>
+  `;
+
+  spellBook.appendChild(levelDiv);
+}
+
+
+
+let spellUUIDs = [];
+
+function generateSpellSection(level, optionalUUID) {
+  const spellUUID = optionalUUID || generateUUID();
+  spellUUIDs.push({ uuid: spellUUID, level: level });
+
+  const spellSection = document.createElement('div');
+  spellSection.innerHTML = getSpellSectionHTML(spellUUID);
+  const spellContainer = document.getElementById(`spellContainer${level}`);
+  spellContainer.appendChild(spellSection);
+
+  return spellUUID; // Return the spellUUID
+
+};
+
+function addSpellFromPopup(level) {
+  const spellSelect = document.getElementById('spellSelect');
+  const selectedSpellId = spellSelect.value;
+
+  if (selectedSpellId) {
+    const selectedSpell = spells.find(spell => spell.id === selectedSpellId);
+    const newSpellUUID = generateUUID();
+    generateSpellSection(level, newSpellUUID);
+
+    // Use setTimeout to allow the DOM to be updated
+    setTimeout(() => {
+      loadSpellData(newSpellUUID, selectedSpell);
+    }, 0);
+  } else {
+    generateSpellSection(level);
+  }
+
+  closeSpellPopup();
+}
+
+function isCasterValid(spell, caster) {
+  if (caster.trim() === "") {
+    return true;
+  }
+
+  const casters = ["Barde", "Clerc", "Druide", "Ensorceleur", "Mage", "Occultiste", "Paladin", "Rôdeur"];
+  const casterKey = casters.find(c => c.toLowerCase() === caster.toLowerCase());
+
+  return casterKey && spell[casterKey] === true;
+}
+
+function getSpellId(level) {
+  const popup = document.createElement('div');
+  popup.id = 'spell-popup';
+  popup.className = 'fullscreen-popup';
+
+  // Get the values of caster, school, and source from the DOM elements
+  const caster = document.getElementById("spellCasterSelect").value;
+  const school = document.getElementById("spellSchool").value;
+  const source = document.getElementById("spellSource").value;
+
+  const filteredSpells = spells.filter(spell => {
+    return (
+      spell.Niv === level &&
+      isCasterValid(spell, caster) &&
+      (school.trim() === "" || spell.Ecole === school) &&
+      (source.trim() === "" || spell.Source === source)
+    );
+  });
+  const spellOptions = filteredSpells.map(spell => `<option value="${spell.id}">${spell.Sort}</option>`).join('');
+
+  popup.innerHTML = `
+    <div class="fullscreen-popup-content">
+      <h3>Choisir un sort</h3>
+      <select id="spellSelect" class="input-select" style="width: 50%;">
+        <option value="">Saisie manuelle</option>
+        ${spellOptions}
+      </select>
+      <div class="button-container">
+        <button class="button" onclick="closeSpellPopup()">Annuler</button>
+        <button class="button" onclick="addSpellFromPopup(${level})">Ajouter</button>
+      </div>
+    </div>
+  `;
+
+  document.body.appendChild(popup);
+}
+
+
+function closeSpellPopup() {
+  const popup = document.getElementById('spell-popup');
+  if (popup) {
+    document.body.removeChild(popup);
+  }
+}
+
+function getSpellSectionHTML(spellUUID) {
+  
+  const spellSection = `
+<div id="spellSubsection-${spellUUID}" class="subsection3">
+  <button id="removeSpell" class="remove-button" onclick="removeSpell('${spellUUID}')"><span class="iconify" data-icon="mdi:trash-can-outline"></span></button>
+
+
+  <div class="wrapper">
+    <div class="container">
+      <div class="input-group">
+        <label for="spellName-${spellUUID}">Sort</label>
+          <input type="text" id="spellName-${spellUUID}" class="input-text" value=" ">
+      </div>
+      <div class="wrapper">
+
+        <label>Prêt</label>
+        <label class="toggle">
+          <input type="checkbox" id="spellReady-${spellUUID}" class="toggle-checkbox">
+            <span class="toggle-switch"></span>
+        </label>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="input-group">
+        <label>Détails</label>
+        <label class="toggle">
+          <input type="checkbox" id="spellDetails" class="toggle-checkbox" onchange="toggleSpellDetails('${spellUUID}')">
+            <span class="toggle-switch"></span>
+        </label>
+      </div>
+    </div>
+    <div id="spellDetail-${spellUUID}" class="hidden">
+      <div class="container">
+        <label>Composantes</label>
+        <div class="input-group">
+          <label for="spellComposantesVerbales-${spellUUID}">Verbales</label>
+          <label class="toggle">
+            <input type="checkbox" id="spellComposantesVerbales-${spellUUID}" class="toggle-checkbox">
+              <span class="toggle-switch"></span>
+          </label>
+        </div>
+        <div class="input-group">
+          <label for="spellComposantesSomatiques-${spellUUID}">Somatiques</label>
+          <label class="toggle">
+            <input type="checkbox" id="spellComposantesSomatiques-${spellUUID}" class="toggle-checkbox">
+              <span class="toggle-switch"></span>
+          </label>
+        </div>
+        <div class="input-group">
+          <label for="spellComposantesMaterielles-${spellUUID}">Matérielles</label>
+          <label class="toggle">
+            <input type="checkbox" id="spellComposantesMaterielles-${spellUUID}" class="toggle-checkbox">
+              <span class="toggle-switch"></span>
+          </label>
+        </div>
+      </div>
+      <div class="container">
+        <div class="input-group">
+          <label for="spellDuree-${spellUUID}">Durée</label>
+          <input type="text" id="spellDuree-${spellUUID}" class="input-text" value=" ">
+        </div>
+        <div class="input-group">
+          <label for="spellPortee-${spellUUID}">Portée</label>
+          <input type="text" id="spellPortee-${spellUUID}" class="input-text" value=" ">
+        </div>
+      </div>
+      <div class="container">
+        <div class="input-group">
+          <label for="spellZoneEffet-${spellUUID}">Zone d'effet</label>
+          <input type="text" id="spellZoneEffet-${spellUUID}" class="input-text" value=" ">
+        </div>
+        <div class="input-group">
+          <label for="spellCible-${spellUUID}">Cible</label>
+          <input type="text" id="spellCible-${spellUUID}" class="input-text" value=" ">
+        </div>
+      </div>
+      <div class="container">
+        <div class="input-group">
+          <div class="wrapper">
+            <label for="spellConcentration-${spellUUID}">Concentration</label>
+            <label class="toggle">
+              <input type="checkbox" id="spellConcentration-${spellUUID}" class="toggle-checkbox">
+                <span class="toggle-switch"></span>
+            </label>
+          </div>
+        </div>
+        <div class="input-group">
+          <div class="wrapper">
+            <label for="spellRituel-${spellUUID}">Rituel</label>
+            <label class="toggle">
+              <input type="checkbox" id="spellRituel-${spellUUID}" class="toggle-checkbox">
+                <span class="toggle-switch"></span>
+            </label>
+          </div>
+        </div>
+        <div class="input-group">
+          <label for="spellURLButton-${spellUUID}">Lien</label>
+          <button id="spellURLButton-${spellUUID}" class="url-button" onclick="openSpellURL('spellURL-${spellUUID}')"><span class="iconify" data-icon="mdi:link-box-variant-outline"></span></button>
+          </div>
+      </div>
+      <div class="container">
+        <div class="input-group">
+          <label for="spellEcole-${spellUUID}">École de magie</label>
+          <input type="text" id="spellEcole-${spellUUID}" class="input-text" value=" ">
+        </div>
+        <div class="input-group">
+          <label for="spellIncantation-${spellUUID}">Temps d'incantation</label>
+          <input type="text" id="spellIncantation-${spellUUID}" class="input-text" value=" ">
+        </div>
+      </div>
+      <div class="container3">
+        <div class="input-group">
+          <div class="textarea-container">
+            <textarea id="spellDescription-${spellUUID}" class="input-textarea2 input-text" rows=" "></textarea>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="input-group">
+          <label for="spellNameVO-${spellUUID}">Nom anglais</label>
+          <input type="text" id="spellNameVO-${spellUUID}" class="input-text" value=" ">
+        </div>
+      </div>
+      <div class="container3">
+        <div class="input-group">
+          <label for="spellSource-${spellUUID}">Source</label>
+          <input type="text" id="spellSource-${spellUUID}" class="input-text" value=" ">
+        </div>
+      </div>
+    </div>
+  </div> 
+
+</div>
+      `;
+      return spellSection;
+};
+
+function openSpellURL(spellURLId) {
+  spellURLId
+  const spellURL = document.getElementById(spellURLId);
+  alert(spellURL);
+  if (spellURL) {
+    window.open(spellURL.value, '_blank');
+  } else {
+    console.error(`Element with ID "${spellURLId}" not found.`);
+  }
+}
+
+
+
+
+  function toggleSpellDetails(spellUUID) {
+    const spellDetail = document.getElementById(`spellDetail-${spellUUID}`);
+    const spellDetailsCheckbox = document.getElementById(`spellDetails`);
+  
+    if (spellDetailsCheckbox.checked) {
+      spellDetail.style.display = 'block';
+    } else {
+      spellDetail.style.display = 'none';
+    }
+  }
+  
+  function loadSpellData(spellUUID,selectedSpell) {
+    if (!selectedSpell) {
+      const spellNameSelect = document.getElementById(`spellName-${spellUUID}`);
+      selectedSpell = spells.find(spell => spell.Sort === spellNameSelect.value);
+    }
+
+    if (selectedSpell) {
+      document.getElementById(`spellName-${spellUUID}`).value = selectedSpell.Sort; 
+      document.getElementById(`spellNameVO-${spellUUID}`).value = selectedSpell.VO;
+      document.getElementById(`spellEcole-${spellUUID}`).value = selectedSpell.Ecole;
+      document.getElementById(`spellIncantation-${spellUUID}`).value = selectedSpell.Incantation;
+      document.getElementById(`spellConcentration-${spellUUID}`).checked = selectedSpell.Concentration;
+      document.getElementById(`spellRituel-${spellUUID}`).checked = selectedSpell.Rituel;
+      document.getElementById(`spellDescription-${spellUUID}`).value = selectedSpell.Description;
+      document.getElementById(`spellSource-${spellUUID}`).value = selectedSpell.Source;
+      document.getElementById(`spellURLButton-${spellUUID}`).value = selectedSpell.URL;
+    } else {
+      document.getElementById(`spellNameVO-${spellUUID}`).value = " ";
+      document.getElementById(`spellEcole-${spellUUID}`).value = " ";
+      document.getElementById(`spellIncantation-${spellUUID}`).value = " ";
+      document.getElementById(`spellConcentration-${spellUUID}`).checked = false;
+      document.getElementById(`spellRituel-${spellUUID}`).checked = false;
+      document.getElementById(`spellDescription-${spellUUID}`).value = " ";
+      document.getElementById(`spellSource-${spellUUID}`).value = " ";
+      document.getElementById(`spellURLButton-${spellUUID}`).value = " ";
+    }
+  }
+  
+  function removeSpell(spellUUID) {
+    const spellSection = document.getElementById(`spellSubsection-${spellUUID}`);
+    spellSection.remove();
+  
+    spellUUIDs = spellUUIDs.filter(uuid => uuid !== spellUUID);
+  };
+  
+  function removeAllSpells() {
+    const spellUUIDsCopy = [...spellUUIDs];
+    spellUUIDsCopy.forEach(uuid => {
+      removeSpell(uuid);
+    });
+  };
+  
+
+      function updateSpellCasterSelect() {
+        const classNameSelect = document.getElementById("className");
+        const spellCasterSelect = document.getElementById("spellCasterSelect");
+      
+        classNameSelect.addEventListener("change", () => {
+          const selectedClass = classNameSelect.value;
+          const spellCasterOptions = spellCasterSelect.options;
+      
+          for (let i = 0; i < spellCasterOptions.length; i++) {
+            if (spellCasterOptions[i].value.toLowerCase() === selectedClass.toLowerCase()) {
+              spellCasterSelect.value = spellCasterOptions[i].value;
+              break;
+            }
+          }
+        });
+      }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        updateSpellCasterSelect();
+      });
+      
+      
 
 //----------- STATUS ÉTATS -----------//
 
@@ -2676,7 +3164,7 @@ function populateArmorOptions() {
   armorSelect.appendChild(customOption);
 }
 
-function selectChangedArmorClass(selectElement, containerID) {
+function selectChangedContainer(selectElement, containerID) {
   const container = document.getElementById(containerID);
   if (selectElement.value === 'custom') {
     container.style.display = 'flex';
@@ -2785,7 +3273,7 @@ function adjustArmorClassValue() {
     }
   }
 
-  armorClassValue.value = (totalArmorClass >= 0 ? '+' : '') + totalArmorClass;
+  armorClassValue.value = totalArmorClass;
 }
 
 function validateBonusValue(value) {
@@ -3327,7 +3815,7 @@ function getFeatureSectionHTML(featureUUID) {
     </div>
   </div>
 
-  <div class="container">
+  <div class="container3">
     <div class="input-group">
       <div class="textarea-container">
         <textarea id="featureDescription-${featureUUID}" class="input-textarea input-text" rows="6"></textarea>
@@ -3761,9 +4249,11 @@ function getMiscellaneousSectionHTML(miscellaneousUUID) {
       </label>
     </div>
   </div>
-  <div class="container">
+  <div class="container3">
     <div class="input-group">
-      <textarea id="miscellaneousDescription-${miscellaneousUUID}" class="input-textarea" rows="4" style="resize: vertical;"></textarea>
+      <div class="textarea-container">
+        <textarea id="miscellaneousDescription-${miscellaneousUUID}" class="input-textarea" rows="4"></textarea>
+      </div>
     </div>
   </div>
 </div>

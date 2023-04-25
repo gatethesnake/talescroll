@@ -96,7 +96,7 @@
 					<div id="classNameContainer" class="subsection">
 						<label for="className">Classe</label>
 						<select id="className" class="input-text" name="className"
-							onchange="selectChangedArmorClass(this,'customClass')"
+							onchange="selectChangedContainer(this,'customClass')"
 							data-custom-input="customClass">
 						</select>
 						<input type="text" id="customClass" class="input-text" name="customClass"
@@ -109,7 +109,7 @@
 					<div id="raceContainer" class="subsection">
 						<label for="race">Race</label>
 						<select id="race" class="input-text" name="race"
-							onchange="selectChangedArmorClass(this,'customRace')"
+							onchange="selectChangedContainer(this,'customRace')"
 							data-custom-input="customRace">
 						</select>
 						<input type="text" id="customRace" class="input-text" name="customRace"
@@ -118,7 +118,7 @@
 					<div id="religionContainer" class="subsection">
 						<label for="religion">Religion</label>
 						<select id="religion" class="input-text" name="religion"
-							onchange="selectChangedArmorClass(this,'customReligion')"
+							onchange="selectChangedContainer(this,'customReligion')"
 							data-custom-input="customReligion">
 						</select>
 						<input type="text" id="customReligion" class="input-text" name="customReligion"
@@ -127,7 +127,7 @@
 					<div id="historiqueContainer" class="subsection">
 						<label for="historique">Historique</label>
 						<select id="historique" class="input-text" name="historique"
-							onchange="selectChangedArmorClass(this,'customHistorique')"
+							onchange="selectChangedContainer(this,'customHistorique')"
 							data-custom-input="customHistorique">
 						</select>
 						<input type="text" id="customHistorique" class="input-text" name="customHistorique"
@@ -255,7 +255,7 @@
 						<div id="armorClass" class="subsection">
 								<h4>Classe d'armure</h4>
 								<div class="container">
-									<input type="text" id="armorClassValue" class="roundButton" value="+10" readonly>
+									<input type="text" id="armorClassValue" class="roundButton" value="10" readonly>
 									<div class="wrapper">
 										<label>Détails</label>
 										<label class="toggle">
@@ -289,7 +289,7 @@
 									<div id="armorSubsection" class="subsection">
 										<div class="container4">
 											<select id="armorSelection" class="input-text"
-												onchange="selectChangedArmorClass(this, 'customArmorContainer')">
+												onchange="selectChangedContainer(this, 'customArmorContainer')">
 												<!-- The options will be populated by the populateArmorOptions() function -->
 											</select>
 											<label class="toggle">
@@ -312,7 +312,7 @@
 									<div id="shield1Subsection" class="subsection">
 										<div class="container4">
 											<select id="shieldAndAccessoriesSelection1" class="input-text"
-												onchange="selectChangedArmorClass(this, 'customShieldContainer')">
+												onchange="selectChangedContainer(this, 'customShieldContainer')">
 												<!-- The options will be populated by the populateShieldAndAccessoriesOptions() function -->
 											</select>
 											<label class="toggle">
@@ -335,7 +335,7 @@
 									<div id="shield2Subsection" class="subsection">
 										<div class="container4">
 											<select id="shieldAndAccessoriesSelection2" class="input-text"
-												onchange="selectChangedArmorClass(this, 'customShieldContainer2')">
+												onchange="selectChangedContainer(this, 'customShieldContainer2')">
 												<!-- The options will be populated by the populateShieldAndAccessoriesOptions() function -->
 											</select>
 											<label class="toggle">
@@ -516,45 +516,45 @@
 				</div>
 			</div>
 		</div>
-		<div id="spellTab" class="meta-section tabContentCS">
-			<div id="spells" class="section">
-				<h2>Sorts</h2>
-				<label for="spellCasterSelect">Choisir un lanceur de sorts </label>
-				<select id="spellCasterSelect" class="input-text">
-					<option value=" ">Choisir une un lanceur de sort</option>
-				</select>
-				<div class="subsection-container">
-					<div id="level_0" class="subsection">
-						<h4>Niveau 0</h4>
-					</div>
-					<div id="level_1" class="subsection">
-						<h4>Niveau 1</h4>
-					</div>
-					<div id="level_2" class="subsection">
-						<h4>Niveau 2</h4>
-					</div>
-					<div id="level_3" class="subsection">
-						<h4>Niveau 3</h4>
-					</div>
-					<div id="level_4" class="subsection">
-						<h4>Niveau 4</h4>
-					</div>
-					<div id="level_5" class="subsection">
-						<h4>Niveau 5</h4>
-					</div>
-					<div id="level_6" class="subsection">
-						<h4>Niveau 6</h4>
-					</div>
-					<div id="level_7" class="subsection">
-						<h4>Niveau 7</h4>
-					</div>
-					<div id="level_8" class="subsection">
-						<h4>Niveau 8</h4>
-					</div>
-					<div id="level_9" class="subsection">
-						<h4>Niveau 9</h4>
+		<div id="spellTab" class="meta-section-no-wrap tabContentCS">
+			<div class="spell-content section-20">
+				<div id="spellCaster">
+					<h2>Lanceur de sorts</h2>
+					<div class="flex-start-behavior spell-border">
+						<div id="spellCasterAbility" class="subsection">
+							<h4>Habilité de sort</h4>
+							<select id="spellCastingAbilitySelect" class="input-text">
+							<option value=" ">Choisir</option>
+							</select>
+						</div>
+						<div id="difficultyClass" class="subsection">
+							<h4>Degré de difficulté</h4>
+							<div class="roundButton" id="dcForSpell">8</div>
+							<label for="otherDcSpellBonus">Autre bonus</label>
+							<input id="otherDcSpellBonus" type="number" class="input-text" value="0" min="-10" max="10">
+						</div>
+						<div id="spellAttack" class="subsection">
+							<h4>Attaque de sort</h4>
+							<div class="roundButton" id="spellAttackBonus" onclick="rollSpellAttack(this.textContent)">+0</div>
+							<label for="otherSpellAttackBonus">Autre bonus</label>
+							<input id="otherSpellAttackBonus" type="number" class="input-text" value="0" min="-10" max="10">
+						</div>
+						<div id="spellFiltres" class="subsection">
+							<h4>Filtres</h4>
+							<label for="spellCasterSelect">Lanceur de sorts</label>
+							<select id="spellCasterSelect" class="input-text">
+							</select>
+							<label for="spellSchool">École</label>
+							<select id="spellSchool" class="input-text"></select>
+							<label for="spellSource">Source</label>
+							<select id="spellSource" class="input-text"></select>
+						</div>
 					</div>
 				</div>
+			</div>
+			<div  class="section-wrap">
+				<h2>Livre de sorts</h2>
+				<div id="spellBook" class="spell-section"></div>
 			</div>
 		</div>
 		<div id="featTab" class="meta-section tabContentCS">
@@ -576,7 +576,7 @@
 			</div>
 		</div>
 		<div id="descriptionTab" class="meta-section tabContentCS">
-			<div id="apparence" class="section">
+			<div id="apparence" class="section section-20">
 				<div class="flex-start-behavior">
 					<h2>Apparence</h2>
 					<div id="ageContainer" class="subsection">
@@ -605,7 +605,7 @@
 					</div>
 				</div>
 			</div>
-			<div id="language" class="section">
+			<div id="language" class="section  section-20">
 				<h2>Langue</h2>
 				<button id="addFeature" class="add-button" onclick="generateLanguageSection()"><span
 						class="iconify" data-icon="material-symbols:add"></span></button>
