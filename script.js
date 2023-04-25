@@ -1,13 +1,13 @@
 // fast dev settings
 
-document.getElementById("sheetTabName").click();
+//document.getElementById("sheetTabName").click();
 //document.getElementById("actionTabName").click()
-//document.getElementById("spellTabName").click();
+document.getElementById("spellTabName").click();
 //document.getElementById("featTabName").click();
 //document.getElementById("equipmentTabName").click();
 //document.getElementById("descriptionTabName").click();
 
-const splashLength = 3000;
+const splashLength = 0;
 
 //------------------------- OUVERTURE -------------------------//
 // Prévenir la cache du css
@@ -2503,9 +2503,6 @@ function populateSpellCasters() {
 
 }
 
-
-
-// Function to populate the spell school select element
 function populateSpellSchools() {
   const selectElement = document.getElementById("spellSchool");
   
@@ -2524,7 +2521,6 @@ function populateSpellSchools() {
   
 }
 
-// Function to populate the spell source select element
 function populateSpellSources() {
   const selectElement = document.getElementById("spellSource");
   
@@ -2567,7 +2563,6 @@ function getAbilityScoreBonus(ability) {
   return abilityBonus;
 }
 
-
 function getProficiencyBonus() {
   const proficiencyBonusElement = document.getElementById("proficiencyBonusValue");
   const proficiencyBonusValue = parseInt(proficiencyBonusElement.textContent, 10);
@@ -2601,12 +2596,10 @@ function updateSpellAttackBonus() {
   document.getElementById('spellAttackBonus').innerHTML = displayValue;
 }
 
-
 document.getElementById('spellCastingAbilitySelect').addEventListener('change', () => {
   updateDcForSpell();
   updateSpellAttackBonus();
 });
-
 document.getElementById('otherDcSpellBonus').addEventListener('change', updateDcForSpell);
 document.getElementById('otherSpellAttackBonus').addEventListener('change', updateSpellAttackBonus);
 
@@ -2656,7 +2649,6 @@ function rollSpellAttack(attackBonus) {
   //showToast(`talespire://dice/${command}`);
 };
 
-
 //------ générer les sorts custom-list  SPELLBOOK------//
 
 const spellBook = document.getElementById('spellBook');
@@ -2688,52 +2680,55 @@ for (let i = 0; i <= 9; i++) {
   spellBook.appendChild(levelDiv);
 }
 
-
-
 let spellUUIDs = [];
 
-function generateSpellSection(level, optionalUUID) {
-  const spellUUID = optionalUUID || generateUUID();
+function generateSpellSection(level, optionalUUID, selectedSpell) {
+  const spellUUID = optionalUUID ? optionalUUID : generateUUID();
+  const spellURL = selectedSpell ? selectedSpell.URL : 'https://aidedd.org';
   spellUUIDs.push({ uuid: spellUUID, level: level });
 
   const spellSection = document.createElement('div');
-  spellSection.innerHTML = getSpellSectionHTML(spellUUID);
+  spellSection.innerHTML = getSpellSectionHTML(spellUUID, spellURL);
   const spellContainer = document.getElementById(`spellContainer${level}`);
   spellContainer.appendChild(spellSection);
 
   return spellUUID; // Return the spellUUID
+}
 
-};
+  
 
 function addSpellFromPopup(level) {
   const spellSelect = document.getElementById('spellSelect');
   const selectedSpellId = spellSelect.value;
 
-  if (selectedSpellId) {
-    const selectedSpell = spells.find(spell => spell.id === selectedSpellId);
-    const newSpellUUID = generateUUID();
-    generateSpellSection(level, newSpellUUID);
+  let selectedSpell;
 
-    // Use setTimeout to allow the DOM to be updated
-    setTimeout(() => {
-      loadSpellData(newSpellUUID, selectedSpell);
-    }, 0);
-  } else {
-    generateSpellSection(level);
+  if (selectedSpellId) {
+    selectedSpell = spells.find(spell => spell.id === selectedSpellId);
+    selectedSpell.uuid = generateUUID(); // Add a uuid property to the selected spell
   }
+
+  const newSpellUUID = generateSpellSection(level, selectedSpell.uuid, selectedSpell);
+
+  // Use setTimeout to allow the DOM to be updated
+  setTimeout(() => {
+    if (selectedSpell) {
+      loadSpellData(newSpellUUID, selectedSpell);
+    }
+  }, 0);
 
   closeSpellPopup();
 }
+
 
 function isCasterValid(spell, caster) {
   if (caster.trim() === "") {
     return true;
   }
 
-  const casters = ["Barde", "Clerc", "Druide", "Ensorceleur", "Mage", "Occultiste", "Paladin", "Rôdeur"];
-  const casterKey = casters.find(c => c.toLowerCase() === caster.toLowerCase());
+  const casterKey = spellCasters.find(c => c.name.toLowerCase() === caster.toLowerCase());
 
-  return casterKey && spell[casterKey] === true;
+  return casterKey && spell[casterKey.name] === true;
 }
 
 function getSpellId(level) {
@@ -2781,7 +2776,7 @@ function closeSpellPopup() {
   }
 }
 
-function getSpellSectionHTML(spellUUID) {
+function getSpellSectionHTML(spellUUID,spellURL) {
   
   const spellSection = `
 <div id="spellSubsection-${spellUUID}" class="subsection3">
@@ -2795,7 +2790,6 @@ function getSpellSectionHTML(spellUUID) {
           <input type="text" id="spellName-${spellUUID}" class="input-text" value=" ">
       </div>
       <div class="wrapper">
-
         <label>Prêt</label>
         <label class="toggle">
           <input type="checkbox" id="spellReady-${spellUUID}" class="toggle-checkbox">
@@ -2808,7 +2802,7 @@ function getSpellSectionHTML(spellUUID) {
       <div class="input-group">
         <label>Détails</label>
         <label class="toggle">
-          <input type="checkbox" id="spellDetails" class="toggle-checkbox" onchange="toggleSpellDetails('${spellUUID}')">
+          <input type="checkbox" id="spellDetails-${spellUUID}" class="toggle-checkbox" onchange="toggleSpellDetails('${spellUUID}')">
             <span class="toggle-switch"></span>
         </label>
       </div>
@@ -2878,9 +2872,12 @@ function getSpellSectionHTML(spellUUID) {
           </div>
         </div>
         <div class="input-group">
-          <label for="spellURLButton-${spellUUID}">Lien</label>
-          <button id="spellURLButton-${spellUUID}" class="url-button" onclick="openSpellURL('spellURL-${spellUUID}')"><span class="iconify" data-icon="mdi:link-box-variant-outline"></span></button>
-          </div>
+          <label for="spellURL-${spellUUID}">Lien</label>
+          <button id="spellURL-${spellUUID}" class="url-button" onclick="openSpellURL('${spellURL}')">
+            <span class="iconify" data-icon="mdi:link-box-variant-outline"></span>
+          </button>
+        </div>
+
       </div>
       <div class="container">
         <div class="input-group">
@@ -2919,23 +2916,22 @@ function getSpellSectionHTML(spellUUID) {
       return spellSection;
 };
 
-function openSpellURL(spellURLId) {
-  spellURLId
-  const spellURL = document.getElementById(spellURLId);
-  alert(spellURL);
-  if (spellURL) {
-    window.open(spellURL.value, '_blank');
+function openSpellURL(url) {
+  if (url) {
+    window.open(url, '_blank');
   } else {
-    console.error(`Element with ID "${spellURLId}" not found.`);
+    console.error(`URL is not defined.`);
   }
 }
 
 
 
 
+
+
   function toggleSpellDetails(spellUUID) {
     const spellDetail = document.getElementById(`spellDetail-${spellUUID}`);
-    const spellDetailsCheckbox = document.getElementById(`spellDetails`);
+    const spellDetailsCheckbox = document.getElementById(`spellDetails-${spellUUID}`);
   
     if (spellDetailsCheckbox.checked) {
       spellDetail.style.display = 'block';
@@ -2959,7 +2955,7 @@ function openSpellURL(spellURLId) {
       document.getElementById(`spellRituel-${spellUUID}`).checked = selectedSpell.Rituel;
       document.getElementById(`spellDescription-${spellUUID}`).value = selectedSpell.Description;
       document.getElementById(`spellSource-${spellUUID}`).value = selectedSpell.Source;
-      document.getElementById(`spellURLButton-${spellUUID}`).value = selectedSpell.URL;
+      document.getElementById(`spellURL-${spellUUID}`).value = selectedSpell.URL;
     } else {
       document.getElementById(`spellNameVO-${spellUUID}`).value = " ";
       document.getElementById(`spellEcole-${spellUUID}`).value = " ";
@@ -2968,7 +2964,7 @@ function openSpellURL(spellURLId) {
       document.getElementById(`spellRituel-${spellUUID}`).checked = false;
       document.getElementById(`spellDescription-${spellUUID}`).value = " ";
       document.getElementById(`spellSource-${spellUUID}`).value = " ";
-      document.getElementById(`spellURLButton-${spellUUID}`).value = " ";
+      document.getElementById(`spellURL-${spellUUID}`).value = " ";
     }
   }
   

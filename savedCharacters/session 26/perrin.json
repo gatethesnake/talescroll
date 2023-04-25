@@ -121,7 +121,7 @@
     "tempHitPoints": "0",
     "inspirationValue": "on",
     "speedValue": "11",
-    "generalBonusValue": "0",
+    "generalBonusValue": "-1",
     "avantage": "normal"
   },
   "deathSaves": {
@@ -138,7 +138,7 @@
   },
   "status": {
     "HASTED": true,
-    "EXHAUSTED": false,
+    "EXHAUSTED": true,
     "CONCENTRATED": false,
     "UNCONSCIOUS": false,
     "STUNNED": false,
@@ -652,5 +652,10 @@
     "39e35a5518f7e5-17415ee7-4fa32a-9694acf-9554206ed0edfe97afcfcb73": {
       "featName": "Faveur des fées"
     }
+  },
+  "spellAttackInfo": {
+    "spellCastingAbilitySelect": " ",
+    "otherDcSpellBonus": "0",
+    "otherSpellAttackBonus": "0"
   }
 }
