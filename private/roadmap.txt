@@ -1,16 +1,4 @@
 Fondor road map
-- v1
-	- url ???
-	- spellInfo
-		- Save
-			- max, actuel par niveau
-			- all spell info by level
-		-  Open
-			- removeAllSpells
-			- generate sections from spellinfo by level
-			- load spellinfo by level
-		- Reset
-			- removeAllSpells
 - v2
 	- dnd5e
 		- multi-class

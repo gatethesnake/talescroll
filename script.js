@@ -1,13 +1,13 @@
 // fast dev settings
 
-//document.getElementById("sheetTabName").click();
+document.getElementById("sheetTabName").click();
 //document.getElementById("actionTabName").click()
-document.getElementById("spellTabName").click();
+//document.getElementById("spellTabName").click();
 //document.getElementById("featTabName").click();
 //document.getElementById("equipmentTabName").click();
 //document.getElementById("descriptionTabName").click();
 
-const splashLength = 0;
+const splashLength = 2500;
 
 //------------------------- OUVERTURE -------------------------//
 // Prévenir la cache du css
@@ -378,7 +378,9 @@ function saveCharacter(saveTo) {
     miscellaneousInfo: {},
     moneyInfo: {},
     featInfo: {},
-    spellAttackInfo: {}
+    spellAttackInfo: {},
+    spellLevelInfo: {}, 
+    spellBookInfo: {}
   };
 
   for (const abilityId of ABILITY_NAMES) {
@@ -602,6 +604,42 @@ featUUIDs.forEach((uuid) => {
     otherSpellAttackBonus: document.getElementById("otherSpellAttackBonus").value || "0"
   };
 
+// save spellbook info
+
+for (let i = 0; i <= 9; i++) {
+  characterData.spellLevelInfo[i] = {
+    maximum: document.getElementById(`spellMax-${i}`).value  || "0",
+    actual: document.getElementById(`spellActual-${i}`).value || "0 "
+  };
+
+  characterData.spellBookInfo[i] = {};
+
+  spellUUIDs.filter(spell => spell.level === i).forEach(spell => {
+    const spellUUID = spell.uuid;
+    characterData.spellBookInfo[i][spellUUID] = {
+      name: document.getElementById(`spellName-${spellUUID}`).value || " ",
+      nameVO: document.getElementById(`spellNameVO-${spellUUID}`).value || " ",
+      school: document.getElementById(`spellEcole-${spellUUID}`).value || " ",
+      incantation: document.getElementById(`spellIncantation-${spellUUID}`).value || " ",
+      concentration: document.getElementById(`spellConcentration-${spellUUID}`).checked || false,
+      ritual: document.getElementById(`spellRituel-${spellUUID}`).checked || false,
+      description: document.getElementById(`spellDescription-${spellUUID}`).value || " ",
+      source: document.getElementById(`spellSource-${spellUUID}`).value || " ",
+      url: document.getElementById(`spellURL-${spellUUID}`).value || " ",
+      ready: document.getElementById(`spellReady-${spellUUID}`).checked || false,
+      components: {
+        verbal: document.getElementById(`spellComposantesVerbales-${spellUUID}`).checked || false,
+        somatic: document.getElementById(`spellComposantesSomatiques-${spellUUID}`).checked || false,
+        material: document.getElementById(`spellComposantesMaterielles-${spellUUID}`).checked || false
+      },
+      duration: document.getElementById(`spellDuree-${spellUUID}`).value || " ",
+      range: document.getElementById(`spellPortee-${spellUUID}`).value || " ",
+      areaOfEffect: document.getElementById(`spellZoneEffet-${spellUUID}`).value || " ",
+      target: document.getElementById(`spellCible-${spellUUID}`).value || " "
+    };
+  });
+}
+
 
 
   // Saving to file or to localstorage
@@ -640,6 +678,8 @@ function openCharacter(loadFrom) {
     const moneyInfo = characterData.moneyInfo;
     const featInfo = characterData.featInfo;
     const spellAttackInfo = characterData.spellAttackInfo;
+    const spellLevelInfo = characterData.spellLevelInfo;
+    const spellBookInfo = characterData.spellBookInfo;
 
     // Load abilities
     for (const abilityId in abilities) {
@@ -1000,7 +1040,63 @@ function openCharacter(loadFrom) {
     document.getElementById("otherDcSpellBonus").value = spellAttackInfo.otherDcSpellBonus;
     document.getElementById("otherSpellAttackBonus").value = spellAttackInfo.otherSpellAttackBonus;
     
+// load spell info
 
+function loadSpellLevelInfo(level, spellLevel) {
+  document.getElementById(`spellMax-${level}`).value = spellLevel.maximum;
+  document.getElementById(`spellActual-${level}`).value = spellLevel.actual;
+}
+
+function loadAllSpellLevelInfo(spellLevelInfo) {
+  Object.keys(spellLevelInfo).forEach(level => {
+    loadSpellLevelInfo(level, spellLevelInfo[level]);
+  });
+}
+
+function generateAllSpellSections(spellBookInfo) {
+  Object.entries(spellBookInfo).forEach(([level, spells]) => {
+    Object.keys(spells).forEach((spellUUID) => {
+      generateSpellSection(level, spellUUID);
+    });
+  });
+}
+
+function loadAllSpellBookInfo(spellBookInfo) {
+  Object.entries(spellBookInfo).forEach(([level, spells]) => {
+    Object.keys(spells).forEach((spellUUID) => {
+      const spell = spells[spellUUID];
+      
+      document.getElementById(`spellName-${spellUUID}`).value = spell.name;
+      document.getElementById(`spellNameVO-${spellUUID}`).value = spell.nameVO;
+      document.getElementById(`spellEcole-${spellUUID}`).value = spell.school;
+      document.getElementById(`spellIncantation-${spellUUID}`).value = spell.castTime;
+      document.getElementById(`spellConcentration-${spellUUID}`).checked = spell.concentration;
+      document.getElementById(`spellRituel-${spellUUID}`).checked = spell.ritual;
+      document.getElementById(`spellDescription-${spellUUID}`).value = spell.description;
+      document.getElementById(`spellSource-${spellUUID}`).value = spell.source;
+      document.getElementById(`spellURL-${spellUUID}`).value = spell.URL;
+      document.getElementById(`spellReady-${spellUUID}`).checked = spell.ready;
+      document.getElementById(`spellComposantesVerbales-${spellUUID}`).checked = spell.components.verbal;
+      document.getElementById(`spellComposantesSomatiques-${spellUUID}`).checked = spell.components.somatic;
+      document.getElementById(`spellComposantesMaterielles-${spellUUID}`).checked = spell.components.material;
+      document.getElementById(`spellDuree-${spellUUID}`).value = spell.duration;
+      document.getElementById(`spellPortee-${spellUUID}`).value = spell.range;
+      document.getElementById(`spellZoneEffet-${spellUUID}`).value = spell.areaOfEffect;
+      document.getElementById(`spellCible-${spellUUID}`).value = spell.target;
+      
+    });
+  });
+}
+
+  
+  resetMaxAndActual(); //ok tested
+  removeAllSpells(); //ok tested
+  loadAllSpellLevelInfo(characterData.spellLevelInfo); //ok tested
+  generateAllSpellSections(characterData.spellBookInfo); //ok tested
+  loadAllSpellBookInfo(characterData.spellBookInfo);
+
+
+  
 
     // update and ajust all dependent fields
     updateDependentElements();
@@ -1165,10 +1261,16 @@ function confirmReset() {
   document.getElementById("spellCastingAbilitySelect").value = " ";
   document.getElementById("otherDcSpellBonus").value = "0";
   document.getElementById("otherSpellAttackBonus").value = "0";
+
+  
+// reset spellbook info
+  resetMaxAndActual();
+  removeAllSpells();
   
 
+
   updateDependentElements();
-  //code continue here
+  
   closePopup();
 }
 
@@ -2686,7 +2788,7 @@ function generateSpellSection(level, optionalUUID, selectedSpell) {
   const spellUUID = optionalUUID ? optionalUUID : generateUUID();
   const spellURL = selectedSpell ? selectedSpell.URL : 'https://aidedd.org';
   spellUUIDs.push({ uuid: spellUUID, level: level });
-
+  console.log(spellUUIDs);
   const spellSection = document.createElement('div');
   spellSection.innerHTML = getSpellSectionHTML(spellUUID, spellURL);
   const spellContainer = document.getElementById(`spellContainer${level}`);
@@ -2706,19 +2808,22 @@ function addSpellFromPopup(level) {
   if (selectedSpellId) {
     selectedSpell = spells.find(spell => spell.id === selectedSpellId);
     selectedSpell.uuid = generateUUID(); // Add a uuid property to the selected spell
+  } else {
+    selectedSpell = { uuid: generateUUID() }; // Create an empty spell with only a uuid property
   }
 
   const newSpellUUID = generateSpellSection(level, selectedSpell.uuid, selectedSpell);
 
   // Use setTimeout to allow the DOM to be updated
   setTimeout(() => {
-    if (selectedSpell) {
+    if (selectedSpellId) {
       loadSpellData(newSpellUUID, selectedSpell);
     }
   }, 0);
 
   closeSpellPopup();
 }
+
 
 
 function isCasterValid(spell, caster) {
@@ -2917,17 +3022,12 @@ function getSpellSectionHTML(spellUUID,spellURL) {
 };
 
 function openSpellURL(url) {
-  if (url) {
+  if (url && url !== 'undefined') {
     window.open(url, '_blank');
   } else {
-    console.error(`URL is not defined.`);
+    window.open("https://aidedd.org", '_blank');
   }
 }
-
-
-
-
-
 
   function toggleSpellDetails(spellUUID) {
     const spellDetail = document.getElementById(`spellDetail-${spellUUID}`);
@@ -2968,20 +3068,34 @@ function openSpellURL(url) {
     }
   }
   
+
   function removeSpell(spellUUID) {
     const spellSection = document.getElementById(`spellSubsection-${spellUUID}`);
-    spellSection.remove();
+    if (spellSection) {
+      spellSection.remove();
+      spellUUIDs = spellUUIDs.filter(spell => spell.uuid !== spellUUID);
+      console.log(spellUUIDs);
+    } else {
+      console.warn(`Element with id 'spellSubsection-${spellUUID}' not found`);
+    }
+  }
   
-    spellUUIDs = spellUUIDs.filter(uuid => uuid !== spellUUID);
-  };
   
   function removeAllSpells() {
     const spellUUIDsCopy = [...spellUUIDs];
-    spellUUIDsCopy.forEach(uuid => {
-      removeSpell(uuid);
+    spellUUIDsCopy.forEach(spell => {
+      removeSpell(spell.uuid);
     });
-  };
+  }
   
+  
+
+  function resetMaxAndActual() {
+    for (let i = 0; i <= 9; i++) {
+      document.getElementById(`spellMax-${i}`).value = "0";
+      document.getElementById(`spellActual-${i}`).value = "0";
+    }
+  }
 
       function updateSpellCasterSelect() {
         const classNameSelect = document.getElementById("className");
