@@ -9,12 +9,12 @@
 	<link rel="stylesheet" href="styles.css">
 	<link href="https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto&display=swap">
+	<script src="ga4.js"></script>
 	<script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r124/three.min.js"></script>
 	<script src="data.js"></script>
 	<script src="script.js" defer></script>
 </head>
-
 <body>
 	<div id="site-full">
 		<div id="diceContainerSplash">
@@ -428,7 +428,7 @@
 							</div>
 						</div>
 						<div id="d20Container" class="overlay hidden">
-							<div class="close-btn" onclick="hideD20Container()">
+							<div class="close-btn" onclick="hideDiceContainer()">
 								&times;
 							</div>
 							<div id="diceWrapper">
@@ -437,7 +437,7 @@
 								<h2 id="resultText" class="result-text">Jet de sauvegarde contre la mort</h2>
 								<h2 id="deadOrAlive" class="dead-or-alive"></h2>
 								<button id="buttonDeathSaveRollResult" class="button"
-									onclick="hideD20Container()"></button>
+									onclick="hideDiceContainer()"></button>
 							</div>
 						</div>
 						<div class="button-container">
