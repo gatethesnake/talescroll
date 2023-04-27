@@ -119,8 +119,9 @@
     "actualHitPoints": "0",
     "maxHitPoints": "0",
     "tempHitPoints": "0",
-    "inspirationValue": "non",
+    "inspirationValue": "on",
     "speedValue": "0",
+    "generalBonusValue": "0",
     "avantage": "normal"
   },
   "deathSaves": {
@@ -136,6 +137,9 @@
     ]
   },
   "status": {
+    "HASTED": false,
+    "EXHAUSTED": false,
+    "CONCENTRATED": false,
     "UNCONSCIOUS": false,
     "STUNNED": false,
     "POISONED": false,
@@ -143,7 +147,6 @@
     "FRIGHTENED": false,
     "PARALYZED": false,
     "PETRIFIED": false,
-    "EXHAUSTED": false,
     "BLINDED": false,
     "INVISIBLE": false,
     "ENVELOPED_IN_MAGICAL_DARKNESS": false,
@@ -189,5 +192,72 @@
   "equipmentInfo": {},
   "treasureInfo": {},
   "languageInfo": {},
-  "miscellaneousInfo": {}
+  "miscellaneousInfo": {},
+  "moneyInfo": {
+    "cp": 0,
+    "sp": 0,
+    "ep": 0,
+    "gp": 0,
+    "pp": 0
+  },
+  "featInfo": {},
+  "spellAttackInfo": {
+    "spellCastingAbilitySelect": " ",
+    "otherDcSpellBonus": "0",
+    "otherSpellAttackBonus": "0"
+  },
+  "spellLevelInfo": {
+    "0": {
+      "maximum": "0",
+      "actual": "0"
+    },
+    "1": {
+      "maximum": "0",
+      "actual": "0"
+    },
+    "2": {
+      "maximum": "0",
+      "actual": "0"
+    },
+    "3": {
+      "maximum": "0",
+      "actual": "0"
+    },
+    "4": {
+      "maximum": "0",
+      "actual": "0"
+    },
+    "5": {
+      "maximum": "0",
+      "actual": "0"
+    },
+    "6": {
+      "maximum": "0",
+      "actual": "0"
+    },
+    "7": {
+      "maximum": "0",
+      "actual": "0"
+    },
+    "8": {
+      "maximum": "0",
+      "actual": "0"
+    },
+    "9": {
+      "maximum": "0",
+      "actual": "0"
+    }
+  },
+  "spellBookInfo": {
+    "0": {},
+    "1": {},
+    "2": {},
+    "3": {},
+    "4": {},
+    "5": {},
+    "6": {},
+    "7": {},
+    "8": {},
+    "9": {}
+  }
 }
