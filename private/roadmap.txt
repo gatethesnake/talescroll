@@ -1,10 +1,17 @@
 Fondor road map
+- v1.5
+	- arranger ga4
+	- ajouter Mait Exp aux Saves
+	- ajouter other Bonus aux Saves
+
 - v2
 	- dnd5e
 		- multi-class
 		- Fatigue : niveau 1 à 10
 		- Equipment totalWeight= sum(qty*weight) + money (?)
 		- short or long rest Reset.
+		- 3e niveau aux skills
+		- StateMachine sur les états
     - ui-ux 
 		- refaire le générateur de dé. qty dés bonus libellé (pas de liste)
         - localStorge : on every change + multiple names
@@ -13,4 +20,4 @@ Fondor road map
         - arrête un dé sur la bonne face
         - Option Roll  >talespire >on screen
 		- image pour icone "ios"
-	- Tale-GPT : remove reference to Val de Fondor, new repo puplic
+	- Tale-GPT : remove reference to Val de Fondor, en anglais, new repo puplic
