@@ -1397,6 +1397,8 @@ function updateDependentElements() {
   calculateTotal();
   updateDcForSpell();
 	updateSpellAttackBonus();
+  updateTotalWeight();
+
 
   const characterNameInput = document.getElementById('characterName');
   characterTitle.textContent = characterNameInput.value;
@@ -3977,6 +3979,17 @@ function generateEquipmentSection(optionalUUID) {
   const equipmentContainer = document.getElementById('equipmentContainer');
   equipmentContainer.appendChild(equipmentSection);
 
+  updateTotalWeight();
+
+  // Add event listeners for quantity and weight changes
+  const quantityElement = document.getElementById(`equipmentQuantity-${equipmentUUID}`);
+  const weightElement = document.getElementById(`equipmentWeight-${equipmentUUID}`);
+  quantityElement.addEventListener('change', updateTotalWeight);
+  weightElement.addEventListener('change', updateTotalWeight);
+  
+  
+ 
+
 };
 
 function getEquipmentSectionHTML(equipmentUUID) {
@@ -4022,6 +4035,8 @@ function removeEquipment(equipmentUUID) {
   equipmentSection.remove();
 
   equipmentUUIDs = equipmentUUIDs.filter(uuid => uuid !== equipmentUUID);
+  updateTotalWeight();
+
 };
 
 function removeAllEquipments() {
@@ -4030,6 +4045,24 @@ function removeAllEquipments() {
     removeEquipment(uuid);
   });
 };
+
+function updateTotalWeight() {
+  let totalWeight = 0;
+
+  equipmentUUIDs.forEach((equipmentUUID) => {
+    const quantityElement = document.getElementById(`equipmentQuantity-${equipmentUUID}`);
+    const weightElement = document.getElementById(`equipmentWeight-${equipmentUUID}`);
+
+    const quantity = parseInt(quantityElement.value, 10) || 0;
+    const weight = parseFloat(weightElement.value) || 0;
+
+    totalWeight += quantity * weight;
+  });
+
+  const totalWeightElement = document.getElementById('totalWeightValue');
+  totalWeightElement.value = totalWeight;
+}
+
 
 //----------- TRESORS -----------//
 
