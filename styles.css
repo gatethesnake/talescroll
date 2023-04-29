@@ -47,7 +47,6 @@ body {
   margin-bottom: 20px;
 }
 
-
 footer {
   position: fixed;
   bottom: 0;
@@ -67,7 +66,6 @@ footer {
 .footer-content p {
   text-align: center;
 }
-
 
 /* header styles */
 #header {
@@ -90,7 +88,6 @@ footer {
   height: 75px;
   opacity: 0.8;
 }
-
 
 #titre {
   flex: 1;
@@ -154,7 +151,6 @@ p {
   flex: 1 0 auto;
 }
 
-
 .button {
   display: block;
   padding: 5px 10px;
@@ -207,7 +203,6 @@ p {
 
 /* modifier styles */
 
-
 #modifier select {
   font-size: 24px;
   padding: 5px;
@@ -230,9 +225,6 @@ p {
   align-items: center;
   margin-top: 20px;
 }
-
-
-
 
 /* Style the tab buttons */
 .tab button {
@@ -332,7 +324,6 @@ p {
   white-space: nowrap;
   text-overflow: ellipsis;
 }
-
 
 .tablinksCS {
   width: 25%;
@@ -454,7 +445,6 @@ p {
   margin: 15px;
 }
 
-
 .flexCharacter {
   display: flex;
   flex-direction: row;
@@ -492,7 +482,6 @@ p {
   margin: 5px;
   padding: 5px;
   flex: 1;
-
 
 }
 
@@ -540,8 +529,6 @@ p {
   position: relative;
 }
 
-
-
 .flex-start-behavior {
   align-items: flex-start;
 }
@@ -560,8 +547,6 @@ p {
   transition: background-color 0.2s;
 }
 
-
-
 .input-text:focus {
   background-color: #fff;
   outline: none;
@@ -570,7 +555,6 @@ p {
 .input-select2 {
   width: 100%;
 }
-
 
 .roundButton {
   display: inline-grid;
@@ -600,9 +584,6 @@ p {
   width: 2.5em;
   height: 2.5em;
 }
-
-
-
 
 .roundButton:hover {
   background-color: #FF5722;
@@ -701,7 +682,6 @@ p {
   flex-direction: row;
   justify-content: space-between;
 }
-
 
 /* skill buttons colors */
 
@@ -926,8 +906,6 @@ p {
   color: white;
 }
 
-
-
 .close-btn {
   position: absolute;
   top: 12px;
@@ -959,7 +937,6 @@ p {
   height: 100%;
 }
 
-
 .rounded-canvas {
   border-radius: 10px;
   /* Adjust this value to change the roundness of the corners */
@@ -968,7 +945,6 @@ p {
 .hidden {
   display: none;
 }
-
 
 .dark-red-button {
   background-color: darkred;
@@ -993,7 +969,6 @@ p {
 .toggle-button-oui {
   background-color: green;
 }
-
 
 .toggle-button:hover {
   background-color: #555;
@@ -1094,7 +1069,6 @@ p {
   flex-direction: row;
 }
 
-
 .ability-adjustment {
   display: flex;
   flex-direction: column;
@@ -1139,7 +1113,6 @@ p {
   margin-top: 4px;
   margin-bottom: 8px;
 }
-
 
 #menu {
   position: relative;
@@ -1317,11 +1290,9 @@ p {
   cursor: pointer;
 }
 
-
 .arrow-icon.arrow-up .iconify {
   transform: rotate(180deg);
 }
-
 
 .add-button {
   background-color: #4CAF50;
@@ -1350,8 +1321,6 @@ p {
   /* Set explicit height */
 
 }
-
-
 
 .add-button:hover {
   background-color: #45a049;
@@ -1394,7 +1363,6 @@ p {
   z-index: 1;
   /* Make sure it is on top of other elements */
 }
-
 
 .remove-button:hover {
   background-color: #7e0101;
@@ -1473,13 +1441,11 @@ body {
 
 /* end of toggle*/
 
-
 .input-group {
   display: flex;
   flex-direction: column;
   width:100% !important;
 }
-
 
 .input-group-90 {
   display: flex;
@@ -1491,7 +1457,6 @@ body {
   display: flex;
   gap: 8px;
 }
-
 
 .resource-input-group {
   flex: 1;
@@ -1506,15 +1471,11 @@ body {
   max-width: 250px; /* Adjust this value according to your desired width */
 }
 
-
 .status-row {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
 }
-
-
-
 
 .textarea-container {
   display: inline-block;
@@ -1535,7 +1496,6 @@ body {
   font-size:small !important;
   display:flex;
 }
-
 
 .subsection4 {
   border: 1px solid white;
@@ -1578,8 +1538,6 @@ body {
   max-width: 20% !important;
 }
 
-
-
 .attack-wrapper-1 {
   flex: 2;
   display: flex;
@@ -1617,7 +1575,6 @@ body {
 .spell-content {
   display: flex;
 }
-
 
 .section-wrap {
   flex-grow: 1;
@@ -1666,7 +1623,6 @@ body {
   align-items: flex-start;
   gap: 1rem;
 }
-
 
 .fullscreen-popup {
   display: flex;

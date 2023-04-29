@@ -3,18 +3,16 @@ Fondor road map
 - v2
 	- dnd5e
 		- multi-class
-		- Fatigue : niveau 1 à 10
 		- short or long rest Reset.
 		- 3e niveau aux skills
 		- StateMachine sur les états
 		- ajouter Mait Exp aux Saves)
 		- ajouter other Bonus aux Saves
     - ui-ux 
-		- refaire le générateur de dé. qty dés bonus libellé (pas de liste)
-        - localStorge : on every change + multiple names
+		- localStorage : on every change + multiple names
         - image S O R, resize 128X128 png ou jpg base64
         - 3D : d4 à d20, d2,d3, d100 !?
         - arrête un dé sur la bonne face
         - Option Roll  >talespire >on screen
 		- image pour icone "ios"
-	- Tale-GPT : remove reference to Val de Fondor, en anglais, new repo puplicû
+	- Tale-GPT : remove reference to Val de Fondor, en anglais, new repo puplic

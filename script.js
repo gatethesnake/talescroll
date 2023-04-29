@@ -19,8 +19,6 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-
-
 ////////// splash /////////
 let animationRunning = true;
 
@@ -130,7 +128,6 @@ setInterval(saveToLocalStorage, 10000);
 
 */
 
-
 window.addEventListener('load', function () {
   populateRaceDropdown();
 
@@ -141,7 +138,6 @@ window.addEventListener('load', function () {
   const footerContent = document.getElementById('footerContent');
   footerContent.innerHTML = `<p>©${currentYear} · Gaétan Lanthier · Conçu avec chat-GPT · Utilisation à vos risques · Vous aimez? 💰 bc1qay734rj64dgf585zanp84tt64akkjz3dwcx73c 🔒</p>`;
 });
-
 
 //----------- ONGLETS -----------//
 
@@ -212,12 +208,9 @@ for (let i = 1; i <= 20; i++) {
   level_selector.appendChild(option);
 }
 
-
 // Set default value of select to 0 or 1
 modifier.value = 0;
 level_selector.value = 1;
-
-
 
 // Function to generate options for select boxes
 function generateSelectedDiceNumbers() {
@@ -235,7 +228,6 @@ function generateSelectedDiceNumbers() {
 //----------- TOAST -----------//
 
 let toastCounter = 0;
-
 
 function showToast(message) {
   const toast = document.createElement('div');
@@ -331,7 +323,7 @@ function saveCharacter(saveTo) {
     moneyInfo: {},
     featInfo: {},
     spellAttackInfo: {},
-    spellLevelInfo: {}, 
+    spellLevelInfo: {},
     spellBookInfo: {}
   };
 
@@ -455,7 +447,6 @@ function saveCharacter(saveTo) {
     characterData.resourceInfo[uuid] = getResourceInfoByUUID(uuid);
   });
 
-
   /// Save featureInfo 
   function getFeatureInfoByUUID(uuid) {
     return {
@@ -469,7 +460,6 @@ function saveCharacter(saveTo) {
   featureUUIDs.forEach((uuid) => {
     characterData.featureInfo[uuid] = getFeatureInfoByUUID(uuid);
   });
-
 
   /// Save equipmentInfo 
   function getEquipmentInfoByUUID(uuid) {
@@ -485,7 +475,6 @@ function saveCharacter(saveTo) {
   equipmentUUIDs.forEach((uuid) => {
     characterData.equipmentInfo[uuid] = getEquipmentInfoByUUID(uuid);
   });
-
 
   /// Save treasureInfo 
   function getTreasureInfoByUUID(uuid) {
@@ -514,8 +503,6 @@ function saveCharacter(saveTo) {
     characterData.languageInfo[uuid] = getLanguageInfoByUUID(uuid);
   });
 
-
-
   /// Save miscellaneousInfo 
   function getMiscellaneousInfoByUUID(uuid) {
     return {
@@ -535,11 +522,9 @@ function saveCharacter(saveTo) {
   }
 
   // Save feats data
-featUUIDs.forEach((uuid) => {
-  characterData.featInfo[uuid] = getFeatInfoByUUID(uuid);
-});
-  
-
+  featUUIDs.forEach((uuid) => {
+    characterData.featInfo[uuid] = getFeatInfoByUUID(uuid);
+  });
 
 
   // Save money values
@@ -556,43 +541,41 @@ featUUIDs.forEach((uuid) => {
     otherSpellAttackBonus: document.getElementById("otherSpellAttackBonus").value || "0"
   };
 
-// save spellbook info
+  // save spellbook info
 
-for (let i = 0; i <= 9; i++) {
-  characterData.spellLevelInfo[i] = {
-    maximum: document.getElementById(`spellMax-${i}`).value  || "0",
-    actual: document.getElementById(`spellActual-${i}`).value || "0 "
-  };
-
-  characterData.spellBookInfo[i] = {};
-
-  spellUUIDs.filter(spell => spell.level === i).forEach(spell => {
-    const spellUUID = spell.uuid;
-    characterData.spellBookInfo[i][spellUUID] = {
-      name: document.getElementById(`spellName-${spellUUID}`).value || " ",
-      nameVO: document.getElementById(`spellNameVO-${spellUUID}`).value || " ",
-      school: document.getElementById(`spellEcole-${spellUUID}`).value || " ",
-      incantation: document.getElementById(`spellIncantation-${spellUUID}`).value || " ",
-      concentration: document.getElementById(`spellConcentration-${spellUUID}`).checked || false,
-      ritual: document.getElementById(`spellRituel-${spellUUID}`).checked || false,
-      description: document.getElementById(`spellDescription-${spellUUID}`).value || " ",
-      source: document.getElementById(`spellSource-${spellUUID}`).value || " ",
-      url: document.getElementById(`spellURL-${spellUUID}`).value || " ",
-      ready: document.getElementById(`spellReady-${spellUUID}`).checked || false,
-      components: {
-        verbal: document.getElementById(`spellComposantesVerbales-${spellUUID}`).checked || false,
-        somatic: document.getElementById(`spellComposantesSomatiques-${spellUUID}`).checked || false,
-        material: document.getElementById(`spellComposantesMaterielles-${spellUUID}`).checked || false
-      },
-      duration: document.getElementById(`spellDuree-${spellUUID}`).value || " ",
-      range: document.getElementById(`spellPortee-${spellUUID}`).value || " ",
-      areaOfEffect: document.getElementById(`spellZoneEffet-${spellUUID}`).value || " ",
-      target: document.getElementById(`spellCible-${spellUUID}`).value || " "
+  for (let i = 0; i <= 9; i++) {
+    characterData.spellLevelInfo[i] = {
+      maximum: document.getElementById(`spellMax-${i}`).value || "0",
+      actual: document.getElementById(`spellActual-${i}`).value || "0 "
     };
-  });
-}
 
+    characterData.spellBookInfo[i] = {};
 
+    spellUUIDs.filter(spell => spell.level === i).forEach(spell => {
+      const spellUUID = spell.uuid;
+      characterData.spellBookInfo[i][spellUUID] = {
+        name: document.getElementById(`spellName-${spellUUID}`).value || " ",
+        nameVO: document.getElementById(`spellNameVO-${spellUUID}`).value || " ",
+        school: document.getElementById(`spellEcole-${spellUUID}`).value || " ",
+        incantation: document.getElementById(`spellIncantation-${spellUUID}`).value || " ",
+        concentration: document.getElementById(`spellConcentration-${spellUUID}`).checked || false,
+        ritual: document.getElementById(`spellRituel-${spellUUID}`).checked || false,
+        description: document.getElementById(`spellDescription-${spellUUID}`).value || " ",
+        source: document.getElementById(`spellSource-${spellUUID}`).value || " ",
+        url: document.getElementById(`spellURL-${spellUUID}`).value || " ",
+        ready: document.getElementById(`spellReady-${spellUUID}`).checked || false,
+        components: {
+          verbal: document.getElementById(`spellComposantesVerbales-${spellUUID}`).checked || false,
+          somatic: document.getElementById(`spellComposantesSomatiques-${spellUUID}`).checked || false,
+          material: document.getElementById(`spellComposantesMaterielles-${spellUUID}`).checked || false
+        },
+        duration: document.getElementById(`spellDuree-${spellUUID}`).value || " ",
+        range: document.getElementById(`spellPortee-${spellUUID}`).value || " ",
+        areaOfEffect: document.getElementById(`spellZoneEffet-${spellUUID}`).value || " ",
+        target: document.getElementById(`spellCible-${spellUUID}`).value || " "
+      };
+    });
+  }
 
   // Saving to file or to localstorage
 
@@ -611,7 +594,6 @@ for (let i = 0; i <= 9; i++) {
     console.error('Invalid saveTo parameter.');
   }
 }
-
 
 function openCharacter(loadFrom) {
   function loadCharacterData(characterData) {
@@ -821,7 +803,6 @@ function openCharacter(loadFrom) {
     generateAllResourceSections(resourceInfo);
     loadAllResourceInfo(resourceInfo);
 
-
     // Load feature info
     function loadFeatureInfo(feature, uuid) {
       document.getElementById(`featureName-${uuid}`).value = feature.featureName;
@@ -843,14 +824,11 @@ function openCharacter(loadFrom) {
       });
     }
 
-
     removeAllFeatures();
     generateAllFeatureSections(featureInfo);
     loadAllFeatureInfo(featureInfo);
 
-
     // load equipment info
-
 
     function loadEquipmentInfo(equipment, uuid) {
       document.getElementById(`equipmentName-${uuid}`).value = equipment.equipmentName;
@@ -873,11 +851,9 @@ function openCharacter(loadFrom) {
       });
     }
 
-
     removeAllEquipments();
     generateAllEquipmentSections(equipmentInfo);
     loadAllEquipmentInfo(equipmentInfo);
-
 
     // Load treasure info
     function loadTreasureInfo(treasure, uuid) {
@@ -904,7 +880,6 @@ function openCharacter(loadFrom) {
     generateAllTreasureSections(treasureInfo);
     loadAllTreasureInfo(treasureInfo);
 
-
     // Load language info
     function loadLanguageInfo(language, uuid) {
       document.getElementById(`languageName-${uuid}`).value = language.languageName;
@@ -925,11 +900,9 @@ function openCharacter(loadFrom) {
       });
     }
 
-
     removeAllLanguages();
     generateAllLanguageSections(languageInfo);
     loadAllLanguageInfo(languageInfo);
-
 
     // Load miscellaneous info
     function loadMiscellaneousInfo(miscellaneous, uuid) {
@@ -950,105 +923,102 @@ function openCharacter(loadFrom) {
       });
     }
 
-
     removeAllMiscellaneous();
     generateAllMiscellaneousSections(miscellaneousInfo);
     loadAllMiscellaneousInfo(miscellaneousInfo);
 
-        // Load feat info
-        function loadFeatInfo(feat, uuid) {
-          document.getElementById(`featName-${uuid}`).value = feat.featName;
-          if (feat.featName.trim !== "") {
-             loadFeatData(uuid);
-          }
-        }
-        function generateAllFeatSections(featsInfo) {
-          Object.keys(featsInfo).forEach((uuid) => {
-            generateFeatSection(uuid);
-          });
-        }
-        function loadAllFeatInfo(featsInfo) {
-          Object.keys(featsInfo).forEach((uuid) => {
-            const feat = featsInfo[uuid];
-            loadFeatInfo(feat, uuid);
+    // Load feat info
+    function loadFeatInfo(feat, uuid) {
+      document.getElementById(`featName-${uuid}`).value = feat.featName;
+      if (feat.featName.trim !== "") {
+        loadFeatData(uuid);
+      }
+    }
+    function generateAllFeatSections(featsInfo) {
+      Object.keys(featsInfo).forEach((uuid) => {
+        generateFeatSection(uuid);
+      });
+    }
+    function loadAllFeatInfo(featsInfo) {
+      Object.keys(featsInfo).forEach((uuid) => {
+        const feat = featsInfo[uuid];
+        loadFeatInfo(feat, uuid);
 
-          });
-        }
-      removeAllFeats();
-      generateAllFeatSections(featInfo);
-      loadAllFeatInfo(featInfo);
+      });
+    }
+    removeAllFeats();
+    generateAllFeatSections(featInfo);
+    loadAllFeatInfo(featInfo);
 
-   
+
     // Load money values
     for (const currencyKey of Object.keys(fondorCurrencies)) {
       const input = document.getElementById(`money-${currencyKey}`);
       input.value = moneyInfo[currencyKey] || 0;
     }
 
-
     // Load spellAttack values
 
     document.getElementById("spellCastingAbilitySelect").value = spellAttackInfo.spellCastingAbilitySelect;
     document.getElementById("otherDcSpellBonus").value = spellAttackInfo.otherDcSpellBonus;
     document.getElementById("otherSpellAttackBonus").value = spellAttackInfo.otherSpellAttackBonus;
-    
-// load spell info
 
-function loadSpellLevelInfo(level, spellLevel) {
-  document.getElementById(`spellMax-${level}`).value = spellLevel.maximum;
-  document.getElementById(`spellActual-${level}`).value = spellLevel.actual;
-}
+    // load spell info
 
-function loadAllSpellLevelInfo(spellLevelInfo) {
-  Object.keys(spellLevelInfo).forEach(level => {
-    loadSpellLevelInfo(level, spellLevelInfo[level]);
-  });
-}
+    function loadSpellLevelInfo(level, spellLevel) {
+      document.getElementById(`spellMax-${level}`).value = spellLevel.maximum;
+      document.getElementById(`spellActual-${level}`).value = spellLevel.actual;
+    }
 
-function generateAllSpellSections(spellBookInfo) {
-  Object.entries(spellBookInfo).forEach(([level, spells]) => {
-    Object.keys(spells).forEach((spellUUID) => {
-      generateSpellSection(level, spellUUID);
-    });
-  });
-}
+    function loadAllSpellLevelInfo(spellLevelInfo) {
+      Object.keys(spellLevelInfo).forEach(level => {
+        loadSpellLevelInfo(level, spellLevelInfo[level]);
+      });
+    }
 
-function loadAllSpellBookInfo(spellBookInfo) {
-  Object.entries(spellBookInfo).forEach(([level, spells]) => {
-    Object.keys(spells).forEach((spellUUID) => {
-      const spell = spells[spellUUID];
-      
-      document.getElementById(`spellName-${spellUUID}`).value = spell.name;
-      document.getElementById(`spellNameVO-${spellUUID}`).value = spell.nameVO;
-      document.getElementById(`spellEcole-${spellUUID}`).value = spell.school;
-      document.getElementById(`spellIncantation-${spellUUID}`).value = spell.castTime;
-      document.getElementById(`spellConcentration-${spellUUID}`).checked = spell.concentration;
-      document.getElementById(`spellRituel-${spellUUID}`).checked = spell.ritual;
-      document.getElementById(`spellDescription-${spellUUID}`).value = spell.description;
-      document.getElementById(`spellSource-${spellUUID}`).value = spell.source;
-      document.getElementById(`spellURL-${spellUUID}`).value = spell.URL;
-      document.getElementById(`spellReady-${spellUUID}`).checked = spell.ready;
-      document.getElementById(`spellComposantesVerbales-${spellUUID}`).checked = spell.components.verbal;
-      document.getElementById(`spellComposantesSomatiques-${spellUUID}`).checked = spell.components.somatic;
-      document.getElementById(`spellComposantesMaterielles-${spellUUID}`).checked = spell.components.material;
-      document.getElementById(`spellDuree-${spellUUID}`).value = spell.duration;
-      document.getElementById(`spellPortee-${spellUUID}`).value = spell.range;
-      document.getElementById(`spellZoneEffet-${spellUUID}`).value = spell.areaOfEffect;
-      document.getElementById(`spellCible-${spellUUID}`).value = spell.target;
-      
-    });
-  });
-}
+    function generateAllSpellSections(spellBookInfo) {
+      Object.entries(spellBookInfo).forEach(([level, spells]) => {
+        Object.keys(spells).forEach((spellUUID) => {
+          generateSpellSection(level, spellUUID);
+        });
+      });
+    }
 
-  
-  resetMaxAndActual(); //ok tested
-  removeAllSpells(); //ok tested
-  loadAllSpellLevelInfo(characterData.spellLevelInfo); //ok tested
-  generateAllSpellSections(characterData.spellBookInfo); //ok tested
-  loadAllSpellBookInfo(characterData.spellBookInfo);
+    function loadAllSpellBookInfo(spellBookInfo) {
+      Object.entries(spellBookInfo).forEach(([level, spells]) => {
+        Object.keys(spells).forEach((spellUUID) => {
+          const spell = spells[spellUUID];
+
+          document.getElementById(`spellName-${spellUUID}`).value = spell.name;
+          document.getElementById(`spellNameVO-${spellUUID}`).value = spell.nameVO;
+          document.getElementById(`spellEcole-${spellUUID}`).value = spell.school;
+          document.getElementById(`spellIncantation-${spellUUID}`).value = spell.castTime;
+          document.getElementById(`spellConcentration-${spellUUID}`).checked = spell.concentration;
+          document.getElementById(`spellRituel-${spellUUID}`).checked = spell.ritual;
+          document.getElementById(`spellDescription-${spellUUID}`).value = spell.description;
+          document.getElementById(`spellSource-${spellUUID}`).value = spell.source;
+          document.getElementById(`spellURL-${spellUUID}`).value = spell.URL;
+          document.getElementById(`spellReady-${spellUUID}`).checked = spell.ready;
+          document.getElementById(`spellComposantesVerbales-${spellUUID}`).checked = spell.components.verbal;
+          document.getElementById(`spellComposantesSomatiques-${spellUUID}`).checked = spell.components.somatic;
+          document.getElementById(`spellComposantesMaterielles-${spellUUID}`).checked = spell.components.material;
+          document.getElementById(`spellDuree-${spellUUID}`).value = spell.duration;
+          document.getElementById(`spellPortee-${spellUUID}`).value = spell.range;
+          document.getElementById(`spellZoneEffet-${spellUUID}`).value = spell.areaOfEffect;
+          document.getElementById(`spellCible-${spellUUID}`).value = spell.target;
+
+        });
+      });
+    }
 
 
-  
+    resetMaxAndActual(); //ok tested
+    removeAllSpells(); //ok tested
+    loadAllSpellLevelInfo(characterData.spellLevelInfo); //ok tested
+    generateAllSpellSections(characterData.spellBookInfo); //ok tested
+    loadAllSpellBookInfo(characterData.spellBookInfo);
+
+
 
     // update and ajust all dependent fields
     updateDependentElements();
@@ -1100,7 +1070,7 @@ function confirmReset() {
     const selectElement = document.getElementById(`${ability}Score`);
     selectElement.value = 10;
   });
-  
+
 
   DESCRIPTION_INPUTS.forEach((inputId) => {
     const inputElement = document.getElementById(inputId);
@@ -1110,8 +1080,8 @@ function confirmReset() {
       inputElement.value = ' ';
     }
   });
-  
-  
+
+
 
   // Reset levelName to 1
   const levelNameElement = document.getElementById("levelName");
@@ -1144,9 +1114,7 @@ function confirmReset() {
 
   updateSpeedValues();
 
-
   //reset deathSaves here
-
 
   DEATHSAVE_INPUTS.forEach(inputId => {
     const inputElement = document.getElementById(inputId);
@@ -1162,7 +1130,6 @@ function confirmReset() {
 
   // Reset advantage state to Normal
   setAdvantage('normal');
-
 
   // Reset status checkboxes
   for (const status in statusIcons) {
@@ -1200,7 +1167,6 @@ function confirmReset() {
   removeAllMiscellaneous();
   removeAllFeats();
 
-
   // Reset money values
 
   for (const currencyKey of Object.keys(fondorCurrencies)) {
@@ -1214,15 +1180,14 @@ function confirmReset() {
   document.getElementById("otherDcSpellBonus").value = "0";
   document.getElementById("otherSpellAttackBonus").value = "0";
 
-  
-// reset spellbook info
+
+  // reset spellbook info
   resetMaxAndActual();
   removeAllSpells();
-  
 
 
   updateDependentElements();
-  
+
   closePopup();
 }
 
@@ -1331,7 +1296,6 @@ function adjustCheckboxes(checkboxes) {
   });
 };
 
-
 function updateDependentElements() {
   resetAllCustomList()
   updateCharacterClassAndLevel();
@@ -1348,9 +1312,8 @@ function updateDependentElements() {
   adjustAllAttacks();
   calculateTotal();
   updateDcForSpell();
-	updateSpellAttackBonus();
+  updateSpellAttackBonus();
   updateTotalWeight();
-
 
   const characterNameInput = document.getElementById('characterName');
   characterTitle.textContent = characterNameInput.value;
@@ -1380,7 +1343,6 @@ function populateHitDiceSelect() {
 // Call the function on page load
 document.addEventListener('DOMContentLoaded', populateHitDiceSelect);
 
-
 function populateAbilityAdjustmentSelect(abilityAdjustment) {
   const selectElement = document.getElementById(abilityAdjustment);
   const chooseOption = document.createElement('option');
@@ -1400,7 +1362,6 @@ window.addEventListener('DOMContentLoaded', () => {
   populateAbilityAdjustmentSelect('abilityAdjustment1');
   populateAbilityAdjustmentSelect('abilityAdjustment2');
 });
-
 
 function populateClassSelect() {
   const selectElement = document.getElementById('className');
@@ -1423,7 +1384,6 @@ function populateClassSelect() {
   customOption.textContent = 'Classe personnalisée';
   selectElement.appendChild(customOption);
 }
-
 
 window.addEventListener('DOMContentLoaded', populateClassSelect);
 
@@ -1453,7 +1413,6 @@ function populateReligionSelect() {
 // Event listener to run the function on page load
 window.addEventListener('DOMContentLoaded', populateReligionSelect);
 
-
 // Function to populate the background select element
 function populateBackgroundSelect() {
   const selectElement = document.getElementById('historique');
@@ -1479,7 +1438,6 @@ function populateBackgroundSelect() {
 
 // Event listener to run the function on page load
 window.addEventListener('DOMContentLoaded', populateBackgroundSelect);
-
 
 //----------- AVANTAGES -----------//
 
@@ -1511,10 +1469,7 @@ function getAdvantage() {
   return activeButtonId;
 }
 
-
-
 //----------- FONCTIONS COMMUNES AUX SELECT -----------//
-
 
 function selectChanged(selectElement, textboxID) {
   const textBoxInput = document.getElementById(textboxID);
@@ -1524,7 +1479,6 @@ function selectChanged(selectElement, textboxID) {
     textBoxInput.style.display = 'none';
   }
 }
-
 
 //----------- AFFICHE DU TOP-RIGHT INFO -----------//
 
@@ -1579,11 +1533,7 @@ function populateRaceDropdown() {
   raceSelect.add(lastOption);
 }
 
-
-
-
 //----------- BONUS DE MAITRISE -----------//
-
 
 const proficiency_bonus = document.getElementById('proficiencyBonusValue');
 
@@ -1602,7 +1552,6 @@ updateProficiencyBonus();
 
 //----------- INITIATIVE -----------//
 
-
 function adjustInitiative() {
   updateAbilityModifier("dexterity")
   const dexterityBonusScore = parseInt(document.getElementById("dexterityBonusScore").textContent);
@@ -1611,7 +1560,6 @@ function adjustInitiative() {
   const initiativeBonusValue = totalInitiativeBonus >= 0 ? `+${totalInitiativeBonus}` : totalInitiativeBonus.toString();
   document.getElementById("initiativeBonusValue").textContent = initiativeBonusValue;
 }
-
 
 // Add event listeners to update initiative bonus whenever the dexterity score or other initiative bonus changes
 document.getElementById("dexterityScore").addEventListener("input", adjustInitiative);
@@ -1651,8 +1599,6 @@ function rollInitiative(initiativeName, initiativeBonus) {
   showToast(toastMessage);
 }
 
-
-
 //----------- PERCEPTION PASSIVE -----------//
 
 function updatePassivePerception() {
@@ -1661,8 +1607,6 @@ function updatePassivePerception() {
   const passivePerceptionValue = baseValue + perceptionBonusValue;
   document.getElementById("passivePerceptionValue").textContent = passivePerceptionValue;
 }
-
-
 
 //----------- SAUVEGARDE CONTRE LA MORT -----------//
 
@@ -1705,7 +1649,6 @@ function animateD20() {
   camera.position.z = 20;
   d20Mesh.position.z = -10;
 
-
   // Animate the die by continuously rotating it
   function animateDie() {
     d20Mesh.rotation.x += 0.01;
@@ -1723,13 +1666,11 @@ function animateD20() {
   showD20Container();
 }
 
-
 function createNumberedTexture(number) {
   const canvas = document.createElement('canvas');
   canvas.width = 1024;
   canvas.height = 1024;
   canvas.className = 'dice-canvas';
-
 
   const ctx = canvas.getContext('2d');
   ctx.fillStyle = '#C0C0C0';
@@ -1815,7 +1756,6 @@ function hideD20Container() {
   }
   container.classList.add("hidden");
 }
-
 
 //--- fin de ANIMATE 3D D20 ----//
 
@@ -1943,7 +1883,7 @@ const characterTitle = document.getElementById('character-title');
 const characterNameInput = document.getElementById('characterName');
 
 characterNameInput.addEventListener('input', () => {
-  if (characterNameInput.value === "" || characterNameInput.value === " " || characterNameInput.value === null  ) {
+  if (characterNameInput.value === "" || characterNameInput.value === " " || characterNameInput.value === null) {
     characterTitle.textContent = "Val de Fondor";
   } else {
     characterTitle.textContent = characterNameInput.value;
@@ -1976,13 +1916,9 @@ function updateAbilityModifier(ability) {
 
   modifier_p.textContent = modifier >= 0 ? `+${modifier}` : modifier;
 
-
-
-
   // Display the modifier with a plus sign for positive values
   modifier_p.textContent = `${modifier >= 0 ? '+' : ''}${modifier}`;
 }
-
 
 function rollAbility(abilityName, abilityBonus) {
   const advantageState = getAdvantage();
@@ -2017,11 +1953,6 @@ function rollAbility(abilityName, abilityBonus) {
   showToast(toastMessage);
   //showToast(`talespire://dice/${command}`);
 }
-
-
-
-
-
 
 window.addEventListener('load', function () {
   generateSelectedDiceNumbers();
@@ -2088,7 +2019,6 @@ levelNameSelect.addEventListener('change', () => {
   adjustAllSkillBonuses();
 });
 
-
 function applySaveButtonColors() {
   const saveButtons = document.querySelectorAll('.save-modifier');
 
@@ -2122,9 +2052,7 @@ function applySaveButtonColors() {
   });
 }
 
-
 //----------- SAUVEGARDES -----------//
-
 
 // get all the .roundButton elements within the #savingThrows element
 const saveButtons = document.querySelectorAll('#savingThrows .roundButton');
@@ -2163,8 +2091,6 @@ function rollSave(saveName, saveBonus) {
   //showToast(`talespire://dice/${command}`);
 }
 
-
-
 // Update ability modifiers when score dropdowns are changed
 for (let i = 0; i < ABILITY_NAMES.length; i++) {
   const score_selector = document.getElementById(`${ABILITY_NAMES[i]}Score`);
@@ -2195,7 +2121,6 @@ function adjustSkillBonus(skillId) {
     newSkillBonus += proficiencyBonus;
   }
 
-
   // Get the corresponding ability bonus
   const skillNameElement = skillSubsection.querySelector('h4');
   const skillName = skillNameElement.textContent.trim();
@@ -2214,10 +2139,8 @@ function adjustSkillBonus(skillId) {
     newSkillBonus += parseInt(abilityBonus);
   }
 
-
   skillValueDisplay.textContent = newSkillBonus > 0 ? `+${newSkillBonus}` : (newSkillBonus === 0 ? "+0" : newSkillBonus);
 }
-
 
 const abilityBonusElements = document.querySelectorAll('.ability-bonus');
 abilityBonusElements.forEach(element => {
@@ -2252,7 +2175,6 @@ function addCharacteristicsToSkills() {
 }
 
 window.addEventListener('load', addCharacteristicsToSkills);
-
 
 function createSkillSection(skill) {
   const subsection = document.createElement('div');
@@ -2334,7 +2256,6 @@ function generateSkills() {
 // Add an event listener to call generateSkills when the page loads
 window.addEventListener('DOMContentLoaded', generateSkills);
 
-
 function rollSkill(skillName, skillBonus) {
   const advantageState = getAdvantage();
   let command = '';
@@ -2369,10 +2290,7 @@ function rollSkill(skillName, skillBonus) {
   //showToast(`talespire://dice/${command}`);
 }
 
-
-
 //----------- INSPIRATION -----------//
-
 
 function toggleInspiration() {
   const button = document.getElementById('inspirationValue');
@@ -2383,8 +2301,6 @@ function toggleInspiration() {
     button.value = 'non';
   }
 }
-
-
 
 //----------- Déplacement speed vitesse -----------//
 
@@ -2487,25 +2403,22 @@ function getFeatSectionHTML(featUUID) {
   return featSection;
 };
 
-
-
 function loadFeatData(featUUID) {
   const featNameSelect = document.getElementById(`featName-${featUUID}`);
   const selectedFeat = feats.find(feat => feat.nameFeats === featNameSelect.value);
-  
+
   if (selectedFeat) {
     document.getElementById(`featNameVO-${featUUID}`).value = selectedFeat.nameVoFeats;
     document.getElementById(`featPrerequisite-${featUUID}`).value = selectedFeat.prerequisiteFeats;
     document.getElementById(`featDescription-${featUUID}`).value = selectedFeat.descriptionFeats;
     document.getElementById(`featSource-${featUUID}`).value = selectedFeat.sourceFeats;
   } else {
-    document.getElementById(`featNameVO-${featUUID}`).value = " " ;
-    document.getElementById(`featPrerequisite-${featUUID}`).value = " "; 
-    document.getElementById(`featDescription-${featUUID}`).value = " " ;
-    document.getElementById(`featSource-${featUUID}`).value = " " ;
+    document.getElementById(`featNameVO-${featUUID}`).value = " ";
+    document.getElementById(`featPrerequisite-${featUUID}`).value = " ";
+    document.getElementById(`featDescription-${featUUID}`).value = " ";
+    document.getElementById(`featSource-${featUUID}`).value = " ";
   }
 }
-
 
 function removeFeat(featUUID) {
   const featSection = document.getElementById(`featSubsection-${featUUID}`);
@@ -2520,7 +2433,6 @@ function removeAllFeats() {
     removeFeat(uuid);
   });
 };
-
 
 //----------- SORTS spells -----------//
 
@@ -2561,38 +2473,38 @@ function populateSpellCasters() {
 
 function populateSpellSchools() {
   const selectElement = document.getElementById("spellSchool");
-  
+
   // Add the "Choisir" option as the first option
   const firstOptionElement = document.createElement("option");
   firstOptionElement.value = "";
   firstOptionElement.textContent = "Choisir";
   selectElement.appendChild(firstOptionElement);
-  
+
   for (const school in SCHOOLS_OF_MAGIC) {
     const optionElement = document.createElement("option");
     optionElement.value = SCHOOLS_OF_MAGIC[school];
     optionElement.textContent = SCHOOLS_OF_MAGIC[school];
     selectElement.appendChild(optionElement);
   }
-  
+
 }
 
 function populateSpellSources() {
   const selectElement = document.getElementById("spellSource");
-  
+
   // Add the "Choisir" option as the first option
   const firstOptionElement = document.createElement("option");
   firstOptionElement.value = "";
   firstOptionElement.textContent = "Choisir";
   selectElement.appendChild(firstOptionElement);
-  
+
   SPELL_SOURCES.forEach(source => {
     const optionElement = document.createElement("option");
     optionElement.value = source.name;
     optionElement.textContent = source.name;
     selectElement.appendChild(optionElement);
   });
-  
+
 
 }
 
@@ -2628,8 +2540,8 @@ function getProficiencyBonus() {
 
 function updateDcForSpell() {
   const ability = document.getElementById('spellCastingAbilitySelect').value;
-  const abilityBonus = getAbilityScoreBonus(ability); 
-  const proficiencyBonus = getProficiencyBonus(); 
+  const abilityBonus = getAbilityScoreBonus(ability);
+  const proficiencyBonus = getProficiencyBonus();
   const otherDcSpellBonus = parseInt(document.getElementById('otherDcSpellBonus').value);
 
   const dcForSpellValue = 8 + abilityBonus + proficiencyBonus + otherDcSpellBonus;
@@ -2638,12 +2550,12 @@ function updateDcForSpell() {
 
 function updateSpellAttackBonus() {
   const ability = document.getElementById('spellCastingAbilitySelect').value;
-  const abilityBonus = getAbilityScoreBonus(ability); 
-  const proficiencyBonus = getProficiencyBonus(); 
+  const abilityBonus = getAbilityScoreBonus(ability);
+  const proficiencyBonus = getProficiencyBonus();
   const otherSpellAttackBonus = parseInt(document.getElementById('otherSpellAttackBonus').value);
 
   const spellAttackBonusValue = abilityBonus + proficiencyBonus + otherSpellAttackBonus;
-  
+
   let displayValue = spellAttackBonusValue;
   if (spellAttackBonusValue > 0) {
     displayValue = "+" + spellAttackBonusValue;
@@ -2690,7 +2602,7 @@ function rollSpellAttack(attackBonus) {
     command = `${encodeURI(removeAccents('Attaque sort '))}:d20${attackBonus}`;
   } else {
     advantageText = advantageState === 'advantage' ? 'avantage' : 'désavantage';
-    command = `${encodeURI(removeAccents('Attaque sort '+ advantageText))}:d20${attackBonus}/d20${attackBonus}`;
+    command = `${encodeURI(removeAccents('Attaque sort ' + advantageText))}:d20${attackBonus}/d20${attackBonus}`;
   }
 
   const toastMessage = advantageState === 'normal'
@@ -2708,7 +2620,6 @@ function rollSpellAttack(attackBonus) {
 //------ générer les sorts custom-list  SPELLBOOK------//
 
 const spellBook = document.getElementById('spellBook');
-
 
 for (let i = 0; i <= 9; i++) {
   const levelDiv = document.createElement('div');
@@ -2751,7 +2662,7 @@ function generateSpellSection(level, optionalUUID, selectedSpell) {
   return spellUUID; // Return the spellUUID
 }
 
-  
+
 
 function addSpellFromPopup(level) {
   const spellSelect = document.getElementById('spellSelect');
@@ -2777,8 +2688,6 @@ function addSpellFromPopup(level) {
 
   closeSpellPopup();
 }
-
-
 
 function isCasterValid(spell, caster) {
   if (caster.trim() === "") {
@@ -2827,7 +2736,6 @@ function getSpellId(level) {
   document.body.appendChild(popup);
 }
 
-
 function closeSpellPopup() {
   const popup = document.getElementById('spell-popup');
   if (popup) {
@@ -2835,12 +2743,11 @@ function closeSpellPopup() {
   }
 }
 
-function getSpellSectionHTML(spellUUID,spellURL) {
-  
+function getSpellSectionHTML(spellUUID, spellURL) {
+
   const spellSection = `
 <div id="spellSubsection-${spellUUID}" class="subsection3">
   <button id="removeSpell" class="remove-button" onclick="removeSpell('${spellUUID}')"><span class="iconify" data-icon="mdi:trash-can-outline"></span></button>
-
 
   <div class="wrapper">
     <div class="container">
@@ -2972,7 +2879,7 @@ function getSpellSectionHTML(spellUUID,spellURL) {
 
 </div>
       `;
-      return spellSection;
+  return spellSection;
 };
 
 function openSpellURL(url) {
@@ -2983,96 +2890,96 @@ function openSpellURL(url) {
   }
 }
 
-  function toggleSpellDetails(spellUUID) {
-    const spellDetail = document.getElementById(`spellDetail-${spellUUID}`);
-    const spellDetailsCheckbox = document.getElementById(`spellDetails-${spellUUID}`);
-  
-    if (spellDetailsCheckbox.checked) {
-      spellDetail.style.display = 'block';
-    } else {
-      spellDetail.style.display = 'none';
-    }
-  }
-  
-  function loadSpellData(spellUUID,selectedSpell) {
-    if (!selectedSpell) {
-      const spellNameSelect = document.getElementById(`spellName-${spellUUID}`);
-      selectedSpell = spells.find(spell => spell.Sort === spellNameSelect.value);
-    }
+function toggleSpellDetails(spellUUID) {
+  const spellDetail = document.getElementById(`spellDetail-${spellUUID}`);
+  const spellDetailsCheckbox = document.getElementById(`spellDetails-${spellUUID}`);
 
-    if (selectedSpell) {
-      document.getElementById(`spellName-${spellUUID}`).value = selectedSpell.Sort; 
-      document.getElementById(`spellNameVO-${spellUUID}`).value = selectedSpell.VO;
-      document.getElementById(`spellEcole-${spellUUID}`).value = selectedSpell.Ecole;
-      document.getElementById(`spellIncantation-${spellUUID}`).value = selectedSpell.Incantation;
-      document.getElementById(`spellConcentration-${spellUUID}`).checked = selectedSpell.Concentration;
-      document.getElementById(`spellRituel-${spellUUID}`).checked = selectedSpell.Rituel;
-      document.getElementById(`spellDescription-${spellUUID}`).value = selectedSpell.Description;
-      document.getElementById(`spellSource-${spellUUID}`).value = selectedSpell.Source;
-      document.getElementById(`spellURL-${spellUUID}`).value = selectedSpell.URL;
-    } else {
-      document.getElementById(`spellNameVO-${spellUUID}`).value = " ";
-      document.getElementById(`spellEcole-${spellUUID}`).value = " ";
-      document.getElementById(`spellIncantation-${spellUUID}`).value = " ";
-      document.getElementById(`spellConcentration-${spellUUID}`).checked = false;
-      document.getElementById(`spellRituel-${spellUUID}`).checked = false;
-      document.getElementById(`spellDescription-${spellUUID}`).value = " ";
-      document.getElementById(`spellSource-${spellUUID}`).value = " ";
-      document.getElementById(`spellURL-${spellUUID}`).value = " ";
-    }
+  if (spellDetailsCheckbox.checked) {
+    spellDetail.style.display = 'block';
+  } else {
+    spellDetail.style.display = 'none';
   }
-  
+}
 
-  function removeSpell(spellUUID) {
-    const spellSection = document.getElementById(`spellSubsection-${spellUUID}`);
-    if (spellSection) {
-      spellSection.remove();
-      spellUUIDs = spellUUIDs.filter(spell => spell.uuid !== spellUUID);
-      console.log(spellUUIDs);
-    } else {
-      console.warn(`Element with id 'spellSubsection-${spellUUID}' not found`);
-    }
-  }
-  
-  
-  function removeAllSpells() {
-    const spellUUIDsCopy = [...spellUUIDs];
-    spellUUIDsCopy.forEach(spell => {
-      removeSpell(spell.uuid);
-    });
-  }
-  
-  
-
-  function resetMaxAndActual() {
-    for (let i = 0; i <= 9; i++) {
-      document.getElementById(`spellMax-${i}`).value = "0";
-      document.getElementById(`spellActual-${i}`).value = "0";
-    }
+function loadSpellData(spellUUID, selectedSpell) {
+  if (!selectedSpell) {
+    const spellNameSelect = document.getElementById(`spellName-${spellUUID}`);
+    selectedSpell = spells.find(spell => spell.Sort === spellNameSelect.value);
   }
 
-      function updateSpellCasterSelect() {
-        const classNameSelect = document.getElementById("className");
-        const spellCasterSelect = document.getElementById("spellCasterSelect");
-      
-        classNameSelect.addEventListener("change", () => {
-          const selectedClass = classNameSelect.value;
-          const spellCasterOptions = spellCasterSelect.options;
-      
-          for (let i = 0; i < spellCasterOptions.length; i++) {
-            if (spellCasterOptions[i].value.toLowerCase() === selectedClass.toLowerCase()) {
-              spellCasterSelect.value = spellCasterOptions[i].value;
-              break;
-            }
-          }
-        });
+  if (selectedSpell) {
+    document.getElementById(`spellName-${spellUUID}`).value = selectedSpell.Sort;
+    document.getElementById(`spellNameVO-${spellUUID}`).value = selectedSpell.VO;
+    document.getElementById(`spellEcole-${spellUUID}`).value = selectedSpell.Ecole;
+    document.getElementById(`spellIncantation-${spellUUID}`).value = selectedSpell.Incantation;
+    document.getElementById(`spellConcentration-${spellUUID}`).checked = selectedSpell.Concentration;
+    document.getElementById(`spellRituel-${spellUUID}`).checked = selectedSpell.Rituel;
+    document.getElementById(`spellDescription-${spellUUID}`).value = selectedSpell.Description;
+    document.getElementById(`spellSource-${spellUUID}`).value = selectedSpell.Source;
+    document.getElementById(`spellURL-${spellUUID}`).value = selectedSpell.URL;
+  } else {
+    document.getElementById(`spellNameVO-${spellUUID}`).value = " ";
+    document.getElementById(`spellEcole-${spellUUID}`).value = " ";
+    document.getElementById(`spellIncantation-${spellUUID}`).value = " ";
+    document.getElementById(`spellConcentration-${spellUUID}`).checked = false;
+    document.getElementById(`spellRituel-${spellUUID}`).checked = false;
+    document.getElementById(`spellDescription-${spellUUID}`).value = " ";
+    document.getElementById(`spellSource-${spellUUID}`).value = " ";
+    document.getElementById(`spellURL-${spellUUID}`).value = " ";
+  }
+}
+
+
+function removeSpell(spellUUID) {
+  const spellSection = document.getElementById(`spellSubsection-${spellUUID}`);
+  if (spellSection) {
+    spellSection.remove();
+    spellUUIDs = spellUUIDs.filter(spell => spell.uuid !== spellUUID);
+    console.log(spellUUIDs);
+  } else {
+    console.warn(`Element with id 'spellSubsection-${spellUUID}' not found`);
+  }
+}
+
+
+function removeAllSpells() {
+  const spellUUIDsCopy = [...spellUUIDs];
+  spellUUIDsCopy.forEach(spell => {
+    removeSpell(spell.uuid);
+  });
+}
+
+
+
+function resetMaxAndActual() {
+  for (let i = 0; i <= 9; i++) {
+    document.getElementById(`spellMax-${i}`).value = "0";
+    document.getElementById(`spellActual-${i}`).value = "0";
+  }
+}
+
+function updateSpellCasterSelect() {
+  const classNameSelect = document.getElementById("className");
+  const spellCasterSelect = document.getElementById("spellCasterSelect");
+
+  classNameSelect.addEventListener("change", () => {
+    const selectedClass = classNameSelect.value;
+    const spellCasterOptions = spellCasterSelect.options;
+
+    for (let i = 0; i < spellCasterOptions.length; i++) {
+      if (spellCasterOptions[i].value.toLowerCase() === selectedClass.toLowerCase()) {
+        spellCasterSelect.value = spellCasterOptions[i].value;
+        break;
       }
+    }
+  });
+}
 
-      document.addEventListener("DOMContentLoaded", () => {
-        updateSpellCasterSelect();
-      });
-      
-      
+document.addEventListener("DOMContentLoaded", () => {
+  updateSpellCasterSelect();
+});
+
+
 
 //----------- STATUS ÉTATS -----------//
 
@@ -3137,7 +3044,6 @@ function generateStatusCheckboxes() {
   return statusContainer;
 }
 
-
 function createToggleSwitch(parent, id, labelText, onChange) {
   const toggleContainer = document.createElement('div');
   toggleContainer.classList.add('toggle-container');
@@ -3169,8 +3075,6 @@ function createToggleSwitch(parent, id, labelText, onChange) {
   parent.appendChild(toggleContainer);
 }
 
-
-
 function adjustStatusBar() {
   const statusBar = document.getElementById("statusBar");
   statusBar.innerHTML = ""; // Clear the current content of the statusBar
@@ -3186,15 +3090,12 @@ function adjustStatusBar() {
       icon.style.marginRight = "8px"; // Add some space between the icons
       icon.title = characterStatus[statusKey].name_fr; // Set the French name as a tooltip on hover
 
-
       statusBar.appendChild(icon);
       icon.appendChild(document.createTextNode(statusValue.name_fr));
 
     }
   }
 }
-
-
 
 document.addEventListener("DOMContentLoaded", () => {
   const statusContainer = generateStatusCheckboxes();
@@ -3285,7 +3186,6 @@ function populateShieldAndAccessoriesOptions2() {
   shieldAndAccessoriesSelect.appendChild(customOption);
 }
 
-
 document.addEventListener("DOMContentLoaded", function () {
   populateArmorOptions();
   populateShieldAndAccessoriesOptions();
@@ -3371,7 +3271,6 @@ shieldActiveCheckbox2.addEventListener('change', adjustArmorClassValue);
 shieldAndAccessoriesSelection2.addEventListener('change', adjustArmorClassValue);
 customShieldClassValue2.addEventListener('change', adjustArmorClassValue);
 
-
 function toggleArmorClassDetails() {
   const armorClassDetail = document.getElementById('armorClassDetail');
   const armorClassShowDetails = document.getElementById('armorClassShowDetails');
@@ -3399,7 +3298,6 @@ let attackUUIDs = [];
 function generateAttackSection(optionalUUID) {
   const attackUUID = optionalUUID || generateUUID(); // Use the optionalUUID if provided, otherwise generate a new UUID
   attackUUIDs.push(attackUUID); // Add the new UUID to the attackUUIDs array
-
 
   const attackSection = document.createElement('div');
   attackSection.innerHTML = getAttackSectionHTML(attackUUID);
@@ -3430,7 +3328,6 @@ function getAttackSectionHTML(attackUUID) {
       <span id="arrowIconify-${attackUUID}" class="iconify arrow-icon-${attackUUID}" data-icon="mdi:chevron-down" data-inline="false"></span>
     </span>
     <button id="removeAttack" class="remove-button" onclick="removeAttack('${attackUUID}')"><span class="iconify" data-icon="mdi:trash-can-outline"></span></button>
-
 
     <div id="attackAndDamageBonusSubsection-${attackUUID}" class="attack-subsection subsection container5 hidden">
     <h4>Information supplémentaire</h4>
@@ -3698,7 +3595,6 @@ function rollAttack(attackName, attackBonus) {
   //showToast(`talespire://dice/${command}`);
 };
 
-
 function rollDamage(attackName, damageType, damage) {
   let commandBonus = '';
   let toastBonus = '';
@@ -3812,7 +3708,7 @@ function getResourceSectionHTML(resourceUUID) {
 </div>
 `;
 
-return resourceSection;
+  return resourceSection;
 };
 
 function removeResource(resourceUUID) {
@@ -3892,7 +3788,6 @@ function getFeatureSectionHTML(featureUUID) {
   return featureSection;
 };
 
-
 function toggleFeatureDetails(featureUUID) {
   const showDetailsCheckbox = document.getElementById(`showDetails-${featureUUID}`);
   const featureDescriptionTextarea = document.getElementById(`featureDescription-${featureUUID}`);
@@ -3903,7 +3798,6 @@ function toggleFeatureDetails(featureUUID) {
     featureDescriptionTextarea.style.display = 'none';
   }
 }
-
 
 function removeFeature(featureUUID) {
   const featureSection = document.getElementById(`featureSubsection-${featureUUID}`);
@@ -3938,9 +3832,9 @@ function generateEquipmentSection(optionalUUID) {
   const weightElement = document.getElementById(`equipmentWeight-${equipmentUUID}`);
   quantityElement.addEventListener('change', updateTotalWeight);
   weightElement.addEventListener('change', updateTotalWeight);
-  
-  
- 
+
+
+
 
 };
 
@@ -4015,7 +3909,6 @@ function updateTotalWeight() {
   totalWeightElement.value = totalWeight;
 }
 
-
 //----------- TRESORS -----------//
 
 let treasureUUIDs = [];
@@ -4087,8 +3980,6 @@ function removeAllTreasures() {
     removeTreasure(uuid);
   });
 };
-
-
 
 //----------- PIECE, CURRENCY ARGENT -----------//
 function generateMoneyInputs() {
@@ -4170,7 +4061,6 @@ function generateMoneyInputs() {
   moneyContainer.appendChild(row);
 }
 
-
 function updateTreasureTotal() {
   const treasureTotalInput = document.getElementById("TreasureTotal");
   let treasureTotal = 0;
@@ -4206,7 +4096,6 @@ for (const treasureUUID of treasureUUIDs) {
   valueInput.addEventListener("change", updateTreasureTotal);
 }
 
-
 // Calculate the total amount in gold pieces
 function calculateTotal() {
   const totalInput = document.getElementById("money-total");
@@ -4223,17 +4112,10 @@ function calculateTotal() {
   totalInput.value = total.toFixed(2);
 }
 
-
-
-
-
-
 // Generate the money inputs on load
 document.addEventListener('DOMContentLoaded', function () {
   generateMoneyInputs();
 });
-
-
 
 //----------- LANGUE -----------//
 
@@ -4297,7 +4179,6 @@ function getLanguageSectionHTML(languageUUID) {
   return languageSection;
 };
 
-
 function removeLanguage(languageUUID) {
   const languageSection = document.getElementById(`languageSubsection-${languageUUID}`);
   languageSection.remove();
@@ -4357,9 +4238,6 @@ function getMiscellaneousSectionHTML(miscellaneousUUID) {
   return miscellaneousSection;
 };
 
-
-
-
 function toggleMiscellaneousDetails(miscellaneousUUID) {
   const showDetailsCheckbox = document.getElementById(`showDetails-${miscellaneousUUID}`);
   const miscellaneousDescriptionTextarea = document.getElementById(`miscellaneousDescription-${miscellaneousUUID}`);
@@ -4370,7 +4248,6 @@ function toggleMiscellaneousDetails(miscellaneousUUID) {
     miscellaneousDescriptionTextarea.style.display = 'none';
   }
 }
-
 
 function removeMiscellaneous(miscellaneousUUID) {
   const miscellaneousSection = document.getElementById(`miscellaneousSubsection-${miscellaneousUUID}`);
@@ -4385,9 +4262,6 @@ function removeAllMiscellaneous() {
     removeMiscellaneous(uuid);
   });
 };
-
-
-
 
 //----------- EVENT LISTENER -----------//
 
