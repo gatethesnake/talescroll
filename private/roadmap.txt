@@ -1,17 +1,17 @@
 Fondor road map
 - v1.5
 	- arranger ga4
-	- ajouter Mait Exp aux Saves
-	- ajouter other Bonus aux Saves
+	
 
 - v2
 	- dnd5e
 		- multi-class
 		- Fatigue : niveau 1 à 10
-		- Equipment totalWeight= sum(qty*weight) + money (?)
 		- short or long rest Reset.
 		- 3e niveau aux skills
 		- StateMachine sur les états
+		- ajouter Mait Exp aux Saves)
+		- ajouter other Bonus aux Saves
     - ui-ux 
 		- refaire le générateur de dé. qty dés bonus libellé (pas de liste)
         - localStorge : on every change + multiple names
