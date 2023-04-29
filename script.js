@@ -1,14 +1,14 @@
 // fast dev settings
 
-//document.getElementById("sheetTabName").click();
+document.getElementById("sheetTabName").click();
 //document.getElementById("actionTabName").click()
 //document.getElementById("spellTabName").click();
 //document.getElementById("featTabName").click();
 //document.getElementById("equipmentTabName").click();
 //document.getElementById("descriptionTabName").click();
-document.getElementById("diceGeneratorTabName").click();
+//document.getElementById("diceGeneratorTabName").click();
 
-const splashLength = 0;
+const splashLength = 2500;
 
 //------------------------- OUVERTURE -------------------------//
 // Prévenir la cache du css
