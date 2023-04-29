@@ -1,13 +1,14 @@
 // fast dev settings
 
-document.getElementById("sheetTabName").click();
+//document.getElementById("sheetTabName").click();
 //document.getElementById("actionTabName").click()
 //document.getElementById("spellTabName").click();
 //document.getElementById("featTabName").click();
 //document.getElementById("equipmentTabName").click();
 //document.getElementById("descriptionTabName").click();
+document.getElementById("diceGeneratorTabName").click();
 
-const splashLength = 2500;
+const splashLength = 0;
 
 //------------------------- OUVERTURE -------------------------//
 // Prévenir la cache du css
@@ -303,55 +304,6 @@ function rollDice(command) {
   showToast(toastMessage);
   //showToast('Ça roule ' + 'talespire://dice/' + command + ' !');
 }
-
-//----------- SIDEBAR -----------//
-// set hauteur du sidebar
-
-function setSidebarHeight() {
-  var sidebar = document.getElementById("sidebar");
-  var mainContent = document.getElementById("main-content");
-  var arrows = document.getElementById("arrows");
-
-  sidebar.style.height = mainContent.offsetHeight + "px";
-}
-
-window.addEventListener('load', function () {
-  setSidebarHeight();
-  const sidebar = document.getElementById('sidebar');
-  const arrow = document.getElementById('arrow');
-});
-
-window.addEventListener('resize', setSidebarHeight);
-
-document.getElementById('diceGeneratorTab').addEventListener('click', setSidebarHeight);
-
-function toggleSidebar() {
-  const sidebar = document.getElementById('sidebar');
-  const arrow = document.getElementById('arrow');
-
-  if (sidebar.style.right === '-280px') {
-    sidebar.style.right = '0';
-    arrow.style.right = '280px';
-    arrow.innerHTML = '&#9654;';
-  } else {
-    sidebar.style.right = '-280px';
-    arrow.style.right = '0';
-    arrow.innerHTML = '&#9664;';
-  }
-}
-
-
-document.getElementById('arrow').addEventListener('click', toggleSidebar);
-
-// write label from suggested list
-function write_label(event) {
-  const label_textbox = document.getElementById('label_textbox');
-  label_textbox.value = event.target.textContent;
-}
-
-document.querySelectorAll('.name').forEach(name => {
-  name.addEventListener('click', write_label);
-});
 
 //------------------------- FEUILLE DE PERSONNAGE -------------------------//
 //----------- GESTION DE FICHIERS -----------//

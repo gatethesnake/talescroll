@@ -149,28 +149,11 @@ p {
   text-align: left;
 }
 
-#buttonContainer {
-  padding-top: 20px;
-  margin: 0 auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  flex-direction: column;
-}
-
 .dice-buttonContainer {
+  margin: 10px; /* Add this line to create vertical space between rows of buttons */
   flex: 1 0 auto;
 }
 
-.dice-buttons {
-  margin: 0 auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  flex-direction: row;
-}
 
 .button {
   display: block;
@@ -222,34 +205,8 @@ p {
   background-color: #0099cc;
 }
 
-#theOptions {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: nowrap;
-  flex-direction: row;
-}
-
 /* modifier styles */
-#modifier {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 20px;
-  margin-left: 20px;
-  flex-wrap: wrap;
-  flex-direction: column;
-}
 
-#numberOfDice {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 20px;
-  margin-right: 20px;
-  flex-wrap: wrap;
-  flex-direction: column;
-}
 
 #modifier select {
   font-size: 24px;
@@ -265,7 +222,6 @@ p {
 
 #reset_button {
   background-color: #c6995d;
-
 }
 
 #labelContainer {
@@ -275,29 +231,7 @@ p {
   margin-top: 20px;
 }
 
-#labelContainer h2 {
-  font-size: 24px;
-  margin-bottom: 10px;
-}
 
-#label_textbox {
-  font-size: 18px;
-  padding: 5px;
-  border: none;
-  border-radius: 5px;
-  box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
-  background-color: #fff;
-  width: 200px;
-  text-align: center;
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-}
-
-#label_textbox:focus {
-  outline: none;
-  box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
-}
 
 
 /* Style the tab buttons */
@@ -446,76 +380,6 @@ p {
 
 #main-content {
   flex: 1;
-}
-
-#arrows {
-  position: fixed;
-  top: 50%;
-  right: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  width: 30px;
-  height: 100%;
-  z-index: 1000;
-  transform: translateY(-50%);
-}
-
-#sidebar {
-  position: fixed;
-  top: 50%;
-  right: 0;
-  width: 280px;
-  height: 100%;
-  margin-right: 5px;
-  overflow-y: auto;
-  background-color: #f2f2f2;
-  box-shadow: 0 0 10px rgba(0, 0, 0, .2);
-  transition: right .3s ease-in-out;
-  border: 1px solid #ccc;
-  z-index: 999;
-  transform: translateY(-50%);
-}
-
-#sidebar.collapsed {
-  right: -280px;
-}
-
-#arrow {
-  position: fixed;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 36px;
-  cursor: pointer;
-  transition: right .3s ease-in-out;
-}
-
-
-.sidebar-content {
-  transition: all 0.3s ease;
-  height: 100%;
-}
-
-.title {
-  font-style: italic;
-  font-size: calc(1em + 1px);
-  color: #222;
-  /* charcoal color */
-  border-top: 1px solid gray;
-  border-bottom: 1px solid lightgray;
-}
-
-.name {
-  cursor: pointer;
-  color: #222;
-  margin-left: 15px;
-  line-height: 1.3;
-}
-
-.name:hover {
-  background-color: darkgray;
-  color: white;
 }
 
 .toast {

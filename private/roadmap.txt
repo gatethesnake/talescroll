@@ -1,7 +1,4 @@
 Fondor road map
-- v1.5
-	- arranger ga4
-	
 
 - v2
 	- dnd5e
@@ -20,4 +17,4 @@ Fondor road map
         - arrête un dé sur la bonne face
         - Option Roll  >talespire >on screen
 		- image pour icone "ios"
-	- Tale-GPT : remove reference to Val de Fondor, en anglais, new repo puplic
+	- Tale-GPT : remove reference to Val de Fondor, en anglais, new repo puplicû
