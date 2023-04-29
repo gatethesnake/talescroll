@@ -14,5 +14,5 @@ Fondor road map
         - 3D : d4 à d20, d2,d3, d100 !?
         - arrête un dé sur la bonne face
         - Option Roll  >talespire >on screen
-		- image pour icone "ios"
+		- STL viewer
 	- Tale-GPT : remove reference to Val de Fondor, en anglais, new repo puplic
