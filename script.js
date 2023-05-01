@@ -760,10 +760,21 @@ function openCharacter(loadFrom) {
     }
 
     function generateAllAttackSections(attackInfo) {
-      Object.keys(attackInfo).forEach((uuid) => {
+      // Create an array of the attacks' UUIDs and their names
+      const attackUUIDsAndNames = Object.entries(attackInfo).map(([uuid, attack]) => ({
+        uuid,
+        attackName: attack.attackName,
+      }));
+    
+      // Sort the array by attack name
+      attackUUIDsAndNames.sort((a, b) => a.attackName.localeCompare(b.attackName));
+    
+      // Generate the attack sections in the sorted order
+      attackUUIDsAndNames.forEach(({ uuid }) => {
         generateAttackSection(uuid);
       });
     }
+    
 
     function loadAllAttackInfo(attackInfo) {
       Object.keys(attackInfo).forEach((uuid) => {
