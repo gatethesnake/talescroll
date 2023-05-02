@@ -1072,7 +1072,7 @@ function generateAllMiscellaneousSections(miscellaneousInfo) {
         // Create an array of the spells' UUIDs and their names
         const spellUUIDsAndNames = Object.entries(spells).map(([spellUUID, spell]) => ({
           spellUUID,
-          spellName: spell.spellName,
+          spellName: spell.name, // Use the correct property name "name"
         }));
     
         // Sort the array by spell name
@@ -1085,11 +1085,12 @@ function generateAllMiscellaneousSections(miscellaneousInfo) {
       });
     }
     
-
     function loadAllSpellBookInfo(spellBookInfo) {
       Object.entries(spellBookInfo).forEach(([level, spells]) => {
         Object.keys(spells).forEach((spellUUID) => {
           const spell = spells[spellUUID];
+          spellUUIDs.push({ level: parseInt(level, 10), uuid: spellUUID });
+
 
           document.getElementById(`spellName-${spellUUID}`).value = spell.name;
           document.getElementById(`spellNameVO-${spellUUID}`).value = spell.nameVO;
@@ -1114,10 +1115,11 @@ function generateAllMiscellaneousSections(miscellaneousInfo) {
     }
 
 
-    resetMaxAndActual(); //ok tested
-    removeAllSpells(); //ok tested
-    loadAllSpellLevelInfo(characterData.spellLevelInfo); //ok tested
-    generateAllSpellSections(characterData.spellBookInfo); //ok tested
+    resetMaxAndActual(); 
+    removeAllSpells();
+    spellUUIDs = [];
+    loadAllSpellLevelInfo(characterData.spellLevelInfo); 
+    generateAllSpellSections(characterData.spellBookInfo);
     loadAllSpellBookInfo(characterData.spellBookInfo);
 
 
@@ -1927,12 +1929,8 @@ document.addEventListener('DOMContentLoaded', () => {
     updateCheckboxes(failedCheckboxes);
 
     if (successCheckboxes[2].checked) {
-      console.log('alive');
-      //alert('Votre état est stabilisé');
       document.getElementById("deadOrAlive").textContent = 'Votre état est stabilisé';
     } else if (failedCheckboxes[2].checked) {
-      //alert('Vous êtes mort');
-      console.log('dead');
       document.getElementById("deadOrAlive").textContent = 'Vous êtes mort';
     } else {
       document.getElementById("deadOrAlive").textContent = '';
@@ -2755,7 +2753,6 @@ function generateSpellSection(level, optionalUUID, selectedSpell) {
   const spellUUID = optionalUUID ? optionalUUID : generateUUID();
   const spellURL = selectedSpell ? selectedSpell.URL : 'https://aidedd.org';
   spellUUIDs.push({ uuid: spellUUID, level: level });
-  console.log(spellUUIDs);
   const spellSection = document.createElement('div');
   spellSection.innerHTML = getSpellSectionHTML(spellUUID, spellURL);
   const spellContainer = document.getElementById(`spellContainer${level}`);
@@ -3037,7 +3034,6 @@ function removeSpell(spellUUID) {
   if (spellSection) {
     spellSection.remove();
     spellUUIDs = spellUUIDs.filter(spell => spell.uuid !== spellUUID);
-    console.log(spellUUIDs);
   } else {
     console.warn(`Element with id 'spellSubsection-${spellUUID}' not found`);
   }
@@ -3720,7 +3716,6 @@ function rollDamage(attackName, damageType, damage) {
   // Show the toast
   showToast(toastMessage);
   //showToast(`talespire://dice/${command}`);
-  //console.log(`talespire://dice/${command}`)
 };
 
 function removeAttack(attackUUID) {
