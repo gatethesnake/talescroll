@@ -11325,3 +11325,22 @@ const spells = [
     "Rôdeur": false
   }
  ];
+
+ const colorPalette = [
+  '#F0E68C', // khaki
+  '#FFC0CB', // pink
+  '#ADFF2F', // greenyellow
+  '#FFA07A', // lightsalmon
+  '#00FFFF', // cyan
+  '#9370DB', // mediumpurple
+  '#FFD700', // gold
+  '#7FFFD4', // aquamarine
+  '#48D1CC', // mediumturquoise
+  '#F08080', // lightcoral
+  '#98FB98', // palegreen
+  '#FFB6C1', // lightpink
+  '#FF6347', // tomato
+  '#AFEEEE', // paleturquoise
+  '#DDA0DD', // plum
+  '#87CEFA', // lightskyblue
+];

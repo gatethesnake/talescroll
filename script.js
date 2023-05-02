@@ -413,6 +413,9 @@ function saveCharacter(saveTo) {
   // Save Attacks info 
 
   function getAttackInfoByUUID(uuid) {
+    const attackSubsection = document.getElementById(`attackAndDamageValuesSubsection-${uuid}`);
+    const backgroundColor = attackSubsection.style.backgroundColor || "";
+
     return {
       attackName: document.getElementById(`attackName-${uuid}`).value || " ",
       damageType: document.getElementById(`damageType-${uuid}`).value || " ",
@@ -423,7 +426,8 @@ function saveCharacter(saveTo) {
       damageDiceQuantity: document.getElementById(`damageDiceQuantity-${uuid}`).value || "0",
       damageHitDiceType: document.getElementById(`damageHitDiceType-${uuid}`).value || " ",
       damageAbilityAdjustment: document.getElementById(`damageAbilityAdjustment-${uuid}`).value || " ",
-      otherDamageAdjustmentValue: document.getElementById(`otherDamageAdjustmentValue-${uuid}`).value || "0"
+      otherDamageAdjustmentValue: document.getElementById(`otherDamageAdjustmentValue-${uuid}`).value || "0",
+      backgroundColor: backgroundColor, // Save background color
     };
   }
 
@@ -3410,8 +3414,11 @@ function getAttackSectionHTML(attackUUID) {
   <div id="attackAndDamageValuesSubsection-${attackUUID}" class="subsection">
   <div id="attackAndDamage"class="container4">
       <div class="wrapper attack-name-wrapper">
-          <label for="attackName-${attackUUID}" id="attackNameLabel">Nom</label>
-            <input type="text" id="attackName-${attackUUID}" name="attackName-${attackUUID}" value=" " class="input-text attack-name-input">
+          <label for="attackName-${attackUUID}" id="attackNameLabel">
+            Nom
+            <span class="iconify color-picker-icon" data-icon="tabler:color-picker" id="colorPickerIcon-${attackUUID}" onclick="showColorOptions('attackAndDamageValuesSubsection-${attackUUID}')"></span>
+          </label>
+          <input type="text" id="attackName-${attackUUID}" name="attackName-${attackUUID}" value=" " class="input-text attack-name-input">
         </div>
         <div class="wrapper ">
           <label for="attackValue-${attackUUID}" id="attackValueLabel">Attaque</label>
@@ -4387,3 +4394,55 @@ function removeAccents(str) {
     .normalize('NFD') // Normalize the string to decompose accentuated characters
     .replace(/[\u0300-\u036f]/g, ''); // Remove decomposed accentuated characters
 }
+
+//------ debut colorpicker ------//
+
+function showColorOptions(elementId) {
+  let paletteContainer = document.getElementById(`colorPalette-${elementId}`);
+  if (!paletteContainer) {
+    paletteContainer = createColorPalette(elementId);
+    paletteContainer.id = `colorPalette-${elementId}`;
+    document.body.appendChild(paletteContainer);
+  }
+  paletteContainer.style.display = 'block';
+  paletteContainer.style.left = `${event.pageX}px`;
+  paletteContainer.style.top = `${event.pageY}px`;
+}
+
+
+function createColorPalette(elementId) {
+  let paletteContainer = document.createElement('div');
+  paletteContainer.classList.add('color-container');
+  paletteContainer.style.display = 'flex';
+
+  for (let i = 0; i < 4; i++) {
+    for (let j = 0; j < 4; j++) {
+      let colorSquare = document.createElement('div');
+      colorSquare.classList.add('color-square');
+      colorSquare.style.backgroundColor = colorPalette[i * 4 + j];
+      colorSquare.onclick = (e) => {
+        paletteContainer.style.display = 'none';
+        changeBackgroundColor(elementId, e.target.style.backgroundColor);
+      };
+
+      paletteContainer.appendChild(colorSquare);
+    }
+  }
+
+  let transparentSquare = document.createElement('div');
+  transparentSquare.classList.add('transparent-square');
+  transparentSquare.onclick = (e) => {
+    paletteContainer.style.display = 'none';
+    changeBackgroundColor(elementId, null);
+  };
+
+  paletteContainer.appendChild(transparentSquare);
+
+  return paletteContainer;
+}
+
+
+function changeBackgroundColor(elementId, color) {
+  document.getElementById(elementId).style.backgroundColor = color;
+}
+//------ fin colorpicker ------//

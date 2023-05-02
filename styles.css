@@ -1660,4 +1660,37 @@ body {
   margin-top: 15px;
   padding:30px;
 }
+.color-container {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  padding: 1px;
+  border: 1px solid darkgray;
+  z-index: 1;
+  width: 128px;
+  flex-wrap: wrap;
+}
 
+.color-square {
+  width: 30px;
+  height: 30px;
+  display: inline-block;
+  border: 1x solid darkgray;
+  margin: 0 1px 1px 0;
+}
+
+.transparent-square {
+  width: 120px;
+  height: 30px;
+  display: inline-block;
+  border: 1px solid darkgray;
+  background-color: transparent;
+  margin-top: 1px;
+}
+
+.color-picker-icon {
+  font-size: 12px;
+  vertical-align: middle;
+  cursor: pointer;
+  margin-left: 10px;
+}
