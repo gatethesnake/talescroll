@@ -269,6 +269,11 @@ p {
   display: flex;
 }
 
+.side-border {
+  border-left: 3px solid #2e2e2e;
+  border-right: 3px solid #2e2e2e;
+}
+
 /* make tab button look like dice button */
 #dice-tab {
   background-color: #007bff;
@@ -335,6 +340,7 @@ p {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+  border-bottom: 3px solid #2e2e2e !important;
 }
 
 .tabCS button {
@@ -350,7 +356,7 @@ p {
 }
 
 .tabCS button.active {
-  background-color: #2196F3;
+  background-color: #E03616;
 }
 
 .tabCS button:not(.active) {
@@ -1654,3 +1660,4 @@ body {
   margin-top: 15px;
   padding:30px;
 }
+
