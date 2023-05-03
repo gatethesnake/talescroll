@@ -751,6 +751,8 @@ function openCharacter(loadFrom) {
     removeAllAttacks();
 
     function loadAttackInfo(attack, uuid) {
+
+
       document.getElementById(`attackName-${uuid}`).value = attack.attackName;
       document.getElementById(`damageType-${uuid}`).value = attack.damageType;
       document.getElementById(`attackNote-${uuid}`).value = attack.attackNote;
@@ -761,6 +763,11 @@ function openCharacter(loadFrom) {
       document.getElementById(`damageHitDiceType-${uuid}`).value = attack.damageHitDiceType;
       document.getElementById(`damageAbilityAdjustment-${uuid}`).value = attack.damageAbilityAdjustment;
       document.getElementById(`otherDamageAdjustmentValue-${uuid}`).value = attack.otherDamageAdjustmentValue;
+
+      // Load background color
+      if (attack.backgroundColor) {
+        document.getElementById(`attackAndDamageValuesSubsection-${uuid}`).style.backgroundColor = attack.backgroundColor;
+      }
     }
 
     function generateAllAttackSections(attackInfo) {
@@ -769,16 +776,16 @@ function openCharacter(loadFrom) {
         uuid,
         attackName: attack.attackName,
       }));
-    
+
       // Sort the array by attack name
       attackUUIDsAndNames.sort((a, b) => a.attackName.localeCompare(b.attackName));
-    
+
       // Generate the attack sections in the sorted order
       attackUUIDsAndNames.forEach(({ uuid }) => {
         generateAttackSection(uuid);
       });
     }
-    
+
 
     function loadAllAttackInfo(attackInfo) {
       Object.keys(attackInfo).forEach((uuid) => {
@@ -807,16 +814,16 @@ function openCharacter(loadFrom) {
         uuid,
         resourceName: resource.resourceName,
       }));
-    
+
       // Sort the array by resource name
       resourceUUIDsAndNames.sort((a, b) => a.resourceName.localeCompare(b.resourceName));
-    
+
       // Generate the resource sections in the sorted order
       resourceUUIDsAndNames.forEach(({ uuid }) => {
         generateResourceSection(uuid);
       });
     }
-    
+
 
     function loadAllResourceInfo(resourceInfo) {
       Object.keys(resourceInfo).forEach((uuid) => {
@@ -843,16 +850,16 @@ function openCharacter(loadFrom) {
         uuid,
         featureName: feature.featureName,
       }));
-    
+
       // Sort the array by feature name
       featureUUIDsAndNames.sort((a, b) => a.featureName.localeCompare(b.featureName));
-    
+
       // Generate the feature sections in the sorted order
       featureUUIDsAndNames.forEach(({ uuid }) => {
         generateFeatureSection(uuid);
       });
     }
-    
+
 
     function loadAllFeatureInfo(featureInfo) {
       Object.keys(featureInfo).forEach((uuid) => {
@@ -881,16 +888,16 @@ function openCharacter(loadFrom) {
         uuid,
         equipmentName: equipment.equipmentName,
       }));
-    
+
       // Sort the array by equipment name
       equipmentUUIDsAndNames.sort((a, b) => a.equipmentName.localeCompare(b.equipmentName));
-    
+
       // Generate the equipment sections in the sorted order
       equipmentUUIDsAndNames.forEach(({ uuid }) => {
         generateEquipmentSection(uuid);
       });
     }
-    
+
 
     function loadAllEquipmentInfo(equipmentInfo) {
       Object.keys(equipmentInfo).forEach((uuid) => {
@@ -917,16 +924,16 @@ function openCharacter(loadFrom) {
         uuid,
         treasureName: treasure.treasureName,
       }));
-    
+
       // Sort the array by treasure name
       treasureUUIDsAndNames.sort((a, b) => a.treasureName.localeCompare(b.treasureName));
-    
+
       // Generate the treasure sections in the sorted order
       treasureUUIDsAndNames.forEach(({ uuid }) => {
         generateTreasureSection(uuid);
       });
     }
-    
+
 
     function loadAllTreasureInfo(treasureInfo) {
       Object.keys(treasureInfo).forEach((uuid) => {
@@ -952,16 +959,16 @@ function openCharacter(loadFrom) {
         uuid,
         languageName: language.languageName,
       }));
-    
+
       // Sort the array by language name
       languageUUIDsAndNames.sort((a, b) => a.languageName.localeCompare(b.languageName));
-    
+
       // Generate the language sections in the sorted order
       languageUUIDsAndNames.forEach(({ uuid }) => {
         generateLanguageSection(uuid);
       });
     }
-    
+
 
     function loadAllLanguageInfo(languageInfo) {
       Object.keys(languageInfo).forEach((uuid) => {
@@ -980,21 +987,21 @@ function openCharacter(loadFrom) {
       document.getElementById(`miscellaneousName-${uuid}`).value = miscellaneous.miscellaneousName;
     }
 
-function generateAllMiscellaneousSections(miscellaneousInfo) {
-  // Create an array of the miscellaneous' UUIDs and their names
-  const miscellaneousUUIDsAndNames = Object.entries(miscellaneousInfo).map(([uuid, miscellaneous]) => ({
-    uuid,
-    miscellaneousName: miscellaneous.miscellaneousName,
-  }));
+    function generateAllMiscellaneousSections(miscellaneousInfo) {
+      // Create an array of the miscellaneous' UUIDs and their names
+      const miscellaneousUUIDsAndNames = Object.entries(miscellaneousInfo).map(([uuid, miscellaneous]) => ({
+        uuid,
+        miscellaneousName: miscellaneous.miscellaneousName,
+      }));
 
-  // Sort the array by miscellaneous name
-  miscellaneousUUIDsAndNames.sort((a, b) => a.miscellaneousName.localeCompare(b.miscellaneousName));
+      // Sort the array by miscellaneous name
+      miscellaneousUUIDsAndNames.sort((a, b) => a.miscellaneousName.localeCompare(b.miscellaneousName));
 
-  // Generate the miscellaneous sections in the sorted order
-  miscellaneousUUIDsAndNames.forEach(({ uuid }) => {
-    generateMiscellaneousSection(uuid);
-  });
-}
+      // Generate the miscellaneous sections in the sorted order
+      miscellaneousUUIDsAndNames.forEach(({ uuid }) => {
+        generateMiscellaneousSection(uuid);
+      });
+    }
 
 
     function loadAllMiscellaneousInfo(miscellaneousInfo) {
@@ -1016,21 +1023,21 @@ function generateAllMiscellaneousSections(miscellaneousInfo) {
       }
     }
 
-  function generateAllFeatSections(featsInfo) {
-  // Create an array of the feats' UUIDs and their names
-  const featUUIDsAndNames = Object.entries(featsInfo).map(([uuid, feat]) => ({
-    uuid,
-    featName: feat.featName,
-  }));
+    function generateAllFeatSections(featsInfo) {
+      // Create an array of the feats' UUIDs and their names
+      const featUUIDsAndNames = Object.entries(featsInfo).map(([uuid, feat]) => ({
+        uuid,
+        featName: feat.featName,
+      }));
 
-  // Sort the array by feat name
-  featUUIDsAndNames.sort((a, b) => a.featName.localeCompare(b.featName));
+      // Sort the array by feat name
+      featUUIDsAndNames.sort((a, b) => a.featName.localeCompare(b.featName));
 
-  // Generate the feat sections in the sorted order
-  featUUIDsAndNames.forEach(({ uuid }) => {
-    generateFeatSection(uuid);
-  });
-}
+      // Generate the feat sections in the sorted order
+      featUUIDsAndNames.forEach(({ uuid }) => {
+        generateFeatSection(uuid);
+      });
+    }
 
 
     function loadAllFeatInfo(featsInfo) {
@@ -1078,17 +1085,17 @@ function generateAllMiscellaneousSections(miscellaneousInfo) {
           spellUUID,
           spellName: spell.name, // Use the correct property name "name"
         }));
-    
+
         // Sort the array by spell name
         spellUUIDsAndNames.sort((a, b) => a.spellName.localeCompare(b.spellName));
-    
+
         // Generate the spell sections in the sorted order
         spellUUIDsAndNames.forEach(({ spellUUID }) => {
           generateSpellSection(level, spellUUID);
         });
       });
     }
-    
+
     function loadAllSpellBookInfo(spellBookInfo) {
       Object.entries(spellBookInfo).forEach(([level, spells]) => {
         Object.keys(spells).forEach((spellUUID) => {
@@ -1119,10 +1126,10 @@ function generateAllMiscellaneousSections(miscellaneousInfo) {
     }
 
 
-    resetMaxAndActual(); 
+    resetMaxAndActual();
     removeAllSpells();
     spellUUIDs = [];
-    loadAllSpellLevelInfo(characterData.spellLevelInfo); 
+    loadAllSpellLevelInfo(characterData.spellLevelInfo);
     generateAllSpellSections(characterData.spellBookInfo);
     loadAllSpellBookInfo(characterData.spellBookInfo);
 
@@ -3412,11 +3419,11 @@ function generateAttackSection(optionalUUID) {
 function getAttackSectionHTML(attackUUID) {
   const attackAndDamageSection = `
   <div id="attackAndDamageValuesSubsection-${attackUUID}" class="subsection">
+  <span class="iconify color-picker-icon" data-icon="material-symbols:palette-outline" id="colorPickerIcon-${attackUUID}" onclick="showColorOptions('attackAndDamageValuesSubsection-${attackUUID}')"></span>
   <div id="attackAndDamage"class="container4">
       <div class="wrapper attack-name-wrapper">
           <label for="attackName-${attackUUID}" id="attackNameLabel">
             Nom
-            <span class="iconify color-picker-icon" data-icon="tabler:color-picker" id="colorPickerIcon-${attackUUID}" onclick="showColorOptions('attackAndDamageValuesSubsection-${attackUUID}')"></span>
           </label>
           <input type="text" id="attackName-${attackUUID}" name="attackName-${attackUUID}" value=" " class="input-text attack-name-input">
         </div>

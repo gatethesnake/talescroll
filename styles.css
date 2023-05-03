@@ -1660,6 +1660,8 @@ body {
   margin-top: 15px;
   padding:30px;
 }
+
+
 .color-container {
   display: none;
   position: absolute;
@@ -1689,8 +1691,10 @@ body {
 }
 
 .color-picker-icon {
-  font-size: 12px;
-  vertical-align: middle;
+  font-size: 16px;
+  position: absolute;
+  top: 5px;
+  right: 5px;
   cursor: pointer;
-  margin-left: 10px;
 }
+
