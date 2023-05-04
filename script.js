@@ -413,8 +413,8 @@ function saveCharacter(saveTo) {
   // Save Attacks info 
 
   function getAttackInfoByUUID(uuid) {
-    const attackSubsection = document.getElementById(`attackAndDamageValuesSubsection-${uuid}`);
-    const backgroundColor = attackSubsection.style.backgroundColor || "";
+    const elementSubsection = document.getElementById(`attackAndDamageValuesSubsection-${uuid}`);
+    const backgroundColor = elementSubsection.style.backgroundColor || "";
 
     return {
       attackName: document.getElementById(`attackName-${uuid}`).value || " ",
@@ -437,6 +437,9 @@ function saveCharacter(saveTo) {
 
   /// Save resourceInfo 
   function getResourceInfoByUUID(uuid) {
+    const elementSubsection = document.getElementById(`resourceSubsection-${uuid}`);
+    const backgroundColor = elementSubsection.style.backgroundColor || "";
+
 
     return {
       resourceName: document.getElementById(`resourceName-${uuid}`).value || " ",
@@ -444,6 +447,7 @@ function saveCharacter(saveTo) {
       resourceActual: document.getElementById(`resourceActual-${uuid}`).value || "0",
       longRestSwitch: document.getElementById(`longRestSwitch-${uuid}`)?.checked || false,
       shortRestSwitch: document.getElementById(`shortRestSwitch-${uuid}`)?.checked || false,
+      backgroundColor: backgroundColor, // Save background color
     };
   }
 
@@ -453,12 +457,15 @@ function saveCharacter(saveTo) {
 
   /// Save featureInfo 
   function getFeatureInfoByUUID(uuid) {
+    const elementSubsection = document.getElementById(`featureSubsection-${uuid}`);
+    const backgroundColor = elementSubsection.style.backgroundColor || "";
+
     return {
       featureName: document.getElementById(`featureName-${uuid}`).value || " ",
       featureSource: document.getElementById(`featureSource-${uuid}`).value || " ",
       featureType: document.getElementById(`featureType-${uuid}`).value || " ",
-      featureDescription: document.getElementById(`featureDescription-${uuid}`).value || " "
-
+      featureDescription: document.getElementById(`featureDescription-${uuid}`).value || " ",
+      backgroundColor: backgroundColor, // Save background color
     };
   }
   featureUUIDs.forEach((uuid) => {
@@ -467,13 +474,16 @@ function saveCharacter(saveTo) {
 
   /// Save equipmentInfo 
   function getEquipmentInfoByUUID(uuid) {
+    const elementSubsection = document.getElementById(`equipmentSubsection-${uuid}`);
+    const backgroundColor = elementSubsection.style.backgroundColor || "";
+
     return {
       equipmentName: document.getElementById(`equipmentName-${uuid}`).value || " ",
       equipmentQuantity: document.getElementById(`equipmentQuantity-${uuid}`).value || "0",
       equipmentWeight: document.getElementById(`equipmentWeight-${uuid}`).value || "0",
       equipmentActive: document.getElementById(`equipmentActive-${uuid}`)?.checked || false,
       equipmentOrigin: document.getElementById(`equipmentOrigin-${uuid}`).value || " ",
-
+      backgroundColor: backgroundColor, // Save background color
     };
   }
   equipmentUUIDs.forEach((uuid) => {
@@ -482,11 +492,15 @@ function saveCharacter(saveTo) {
 
   /// Save treasureInfo 
   function getTreasureInfoByUUID(uuid) {
+    const elementSubsection = document.getElementById(`treasureSubsection-${uuid}`);
+    const backgroundColor = elementSubsection.style.backgroundColor || "";
+
     return {
       treasureName: document.getElementById(`treasureName-${uuid}`).value || " ",
       treasureQuantity: document.getElementById(`treasureQuantity-${uuid}`).value || "0",
       treasureValue: document.getElementById(`treasureValue-${uuid}`).value || "0",
-      treasureOrigin: document.getElementById(`treasureOrigin-${uuid}`).value || " "
+      treasureOrigin: document.getElementById(`treasureOrigin-${uuid}`).value || " ",
+      backgroundColor: backgroundColor, // Save background color
     };
   }
   treasureUUIDs.forEach((uuid) => {
@@ -495,11 +509,14 @@ function saveCharacter(saveTo) {
 
   /// Save languageInfo 
   function getLanguageInfoByUUID(uuid) {
+    const elementSubsection = document.getElementById(`languageSubsection-${uuid}`);
+    const backgroundColor = elementSubsection.style.backgroundColor || "";
 
     return {
       languageName: document.getElementById(`languageName-${uuid}`).value || " ",
       languageSpoken: document.getElementById(`languageSpoken-${uuid}`)?.checked || false,
-      languageWritten: document.getElementById(`languageWritten-${uuid}`)?.checked || false
+      languageWritten: document.getElementById(`languageWritten-${uuid}`)?.checked || false,
+      backgroundColor: backgroundColor, // Save background color
     };
   }
 
@@ -509,19 +526,30 @@ function saveCharacter(saveTo) {
 
   /// Save miscellaneousInfo 
   function getMiscellaneousInfoByUUID(uuid) {
+    const elementSubsection = document.getElementById(`miscellaneousSubsection-${uuid}`);
+    const backgroundColor = elementSubsection.style.backgroundColor || "";
+
     return {
       miscellaneousDescription: document.getElementById(`miscellaneousDescription-${uuid}`).value || " ",
-      miscellaneousName: document.getElementById(`miscellaneousName-${uuid}`).value || " "
+      miscellaneousName: document.getElementById(`miscellaneousName-${uuid}`).value || " ",
+      backgroundColor: backgroundColor, // Save background color
     };
   }
+
   miscellaneousUUIDs.forEach((uuid) => {
     characterData.miscellaneousInfo[uuid] = getMiscellaneousInfoByUUID(uuid);
+    
   });
 
   /// Save featInfo 
   function getFeatInfoByUUID(uuid) {
+    const elementSubsection = document.getElementById(`featSubsection-${uuid}`);
+    const backgroundColor = elementSubsection.style.backgroundColor || "";
+
     return {
-      featName: document.getElementById(`featName-${uuid}`).value || " "
+      featName: document.getElementById(`featName-${uuid}`).value || " ",
+      backgroundColor: backgroundColor, // Save background color
+
     };
   }
 
@@ -557,6 +585,9 @@ function saveCharacter(saveTo) {
 
     spellUUIDs.filter(spell => spell.level === i).forEach(spell => {
       const spellUUID = spell.uuid;
+      const elementSubsection = document.getElementById(`spellSubsection-${spellUUID}`);
+      const backgroundColor = elementSubsection.style.backgroundColor || "";
+
       characterData.spellBookInfo[i][spellUUID] = {
         name: document.getElementById(`spellName-${spellUUID}`).value || " ",
         nameVO: document.getElementById(`spellNameVO-${spellUUID}`).value || " ",
@@ -576,7 +607,8 @@ function saveCharacter(saveTo) {
         duration: document.getElementById(`spellDuree-${spellUUID}`).value || " ",
         range: document.getElementById(`spellPortee-${spellUUID}`).value || " ",
         areaOfEffect: document.getElementById(`spellZoneEffet-${spellUUID}`).value || " ",
-        target: document.getElementById(`spellCible-${spellUUID}`).value || " "
+        target: document.getElementById(`spellCible-${spellUUID}`).value || " ",
+        backgroundColor: backgroundColor, // Save background color
       };
     });
   }
@@ -806,6 +838,11 @@ function openCharacter(loadFrom) {
       document.getElementById(`resourceActual-${uuid}`).value = resource.resourceActual;
       document.getElementById(`longRestSwitch-${uuid}`).checked = resource.longRestSwitch;
       document.getElementById(`shortRestSwitch-${uuid}`).checked = resource.shortRestSwitch;
+
+      // Load background color
+      if (resource.backgroundColor) {
+      document.getElementById(`resourceSubsection-${uuid}`).style.backgroundColor = resource.backgroundColor;
+       }
     }
 
     function generateAllResourceSections(resourceInfo) {
@@ -842,6 +879,13 @@ function openCharacter(loadFrom) {
       document.getElementById(`featureSource-${uuid}`).value = feature.featureSource;
       document.getElementById(`featureType-${uuid}`).value = feature.featureType;
       document.getElementById(`featureDescription-${uuid}`).value = feature.featureDescription;
+      
+      // Load background color
+      if (feature.backgroundColor) {
+        document.getElementById(`featureSubsection-${uuid}`).style.backgroundColor = feature.backgroundColor;
+         }
+
+
     }
 
     function generateAllFeatureSections(featureInfo) {
@@ -880,6 +924,12 @@ function openCharacter(loadFrom) {
       document.getElementById(`equipmentWeight-${uuid}`).value = equipment.equipmentWeight;
       document.getElementById(`equipmentActive-${uuid}`).checked = equipment.equipmentActive;
       document.getElementById(`equipmentOrigin-${uuid}`).value = equipment.equipmentOrigin;
+
+      // Load background color
+      if (equipment.backgroundColor) {
+        document.getElementById(`equipmentSubsection-${uuid}`).style.backgroundColor = equipment.backgroundColor;
+          }
+      
     }
 
     function generateAllEquipmentSections(equipmentInfo) {
@@ -916,6 +966,12 @@ function openCharacter(loadFrom) {
       document.getElementById(`treasureQuantity-${uuid}`).value = treasure.treasureQuantity;
       document.getElementById(`treasureValue-${uuid}`).value = treasure.treasureValue;
       document.getElementById(`treasureOrigin-${uuid}`).value = treasure.treasureOrigin;
+
+      // Load background color
+      if (treasure.backgroundColor) {
+        document.getElementById(`treasureSubsection-${uuid}`).style.backgroundColor = treasure.backgroundColor;
+          }
+
     }
 
     function generateAllTreasureSections(treasureInfo) {
@@ -951,6 +1007,11 @@ function openCharacter(loadFrom) {
       document.getElementById(`languageName-${uuid}`).value = language.languageName;
       document.getElementById(`languageSpoken-${uuid}`).checked = language.languageSpoken;
       document.getElementById(`languageWritten-${uuid}`).checked = language.languageWritten;
+
+      // Load background color
+      if (language.backgroundColor) {
+        document.getElementById(`languageSubsection-${uuid}`).style.backgroundColor = language.backgroundColor;
+          }
     }
 
     function generateAllLanguageSections(languageInfo) {
@@ -985,6 +1046,11 @@ function openCharacter(loadFrom) {
     function loadMiscellaneousInfo(miscellaneous, uuid) {
       document.getElementById(`miscellaneousDescription-${uuid}`).value = miscellaneous.miscellaneousDescription;
       document.getElementById(`miscellaneousName-${uuid}`).value = miscellaneous.miscellaneousName;
+
+      // Load background color
+      if (miscellaneous.backgroundColor) {
+        document.getElementById(`miscellaneousSubsection-${uuid}`).style.backgroundColor = miscellaneous.backgroundColor;
+          }
     }
 
     function generateAllMiscellaneousSections(miscellaneousInfo) {
@@ -1020,6 +1086,10 @@ function openCharacter(loadFrom) {
       document.getElementById(`featName-${uuid}`).value = feat.featName;
       if (feat.featName.trim !== "") {
         loadFeatData(uuid);
+      }
+      // Load background color
+      if (feat.backgroundColor) {
+        document.getElementById(`featSubsection-${uuid}`).style.backgroundColor = feat.backgroundColor;
       }
     }
 
@@ -1120,6 +1190,12 @@ function openCharacter(loadFrom) {
           document.getElementById(`spellPortee-${spellUUID}`).value = spell.range;
           document.getElementById(`spellZoneEffet-${spellUUID}`).value = spell.areaOfEffect;
           document.getElementById(`spellCible-${spellUUID}`).value = spell.target;
+
+          // Load background color
+          if (spell.backgroundColor) {
+            document.getElementById(`spellSubsection-${spellUUID}`).style.backgroundColor = spell.backgroundColor;
+              }
+      
 
         });
       });
@@ -2470,6 +2546,10 @@ function getFeatSectionHTML(featUUID) {
   const featOptions = feats.map(feat => `<option value="${feat.nameFeats}">${feat.nameFeats}</option>`).join('');
   const featSection = `
 <div id="featSubsection-${featUUID}" class="subsection6">
+  <div class="color-picker-wrapper" id="colorPickerWrapper-${featUUID}">
+    <span class="iconify color-picker-icon" data-icon="material-symbols:palette-outline" id="colorPickerIcon-${featUUID}" onclick="showColorOptions('featSubsection-', '${featUUID}')"></span>
+  </div>
+  
   <button id="removeFeat" class="remove-button" onclick="removeFeat('${featUUID}')"><span class="iconify" data-icon="mdi:trash-can-outline"></span></button>
     
   <div class="wrapper">
@@ -2529,6 +2609,8 @@ function loadFeatData(featUUID) {
     document.getElementById(`featDescription-${featUUID}`).value = " ";
     document.getElementById(`featSource-${featUUID}`).value = " ";
   }
+
+
 }
 
 function removeFeat(featUUID) {
@@ -2857,6 +2939,9 @@ function getSpellSectionHTML(spellUUID, spellURL) {
 
   const spellSection = `
 <div id="spellSubsection-${spellUUID}" class="subsection3">
+  <div class="color-picker-wrapper" id="colorPickerWrapper-${spellUUID}">
+    <span class="iconify color-picker-icon" data-icon="material-symbols:palette-outline" id="colorPickerIcon-${spellUUID}" onclick="showColorOptions('spellSubsection-', '${spellUUID}')"></span>
+  </div>
   <button id="removeSpell" class="remove-button" onclick="removeSpell('${spellUUID}')"><span class="iconify" data-icon="mdi:trash-can-outline"></span></button>
 
   <div class="wrapper">
@@ -3419,7 +3504,9 @@ function generateAttackSection(optionalUUID) {
 function getAttackSectionHTML(attackUUID) {
   const attackAndDamageSection = `
   <div id="attackAndDamageValuesSubsection-${attackUUID}" class="subsection">
-  <span class="iconify color-picker-icon" data-icon="material-symbols:palette-outline" id="colorPickerIcon-${attackUUID}" onclick="showColorOptions('attackAndDamageValuesSubsection-${attackUUID}')"></span>
+  <div class="color-picker-wrapper" id="colorPickerWrapper-${attackUUID}">
+    <span class="iconify color-picker-icon" data-icon="material-symbols:palette-outline" id="colorPickerIcon-${attackUUID}" onclick="showColorOptions('attackAndDamageValuesSubsection-', '${attackUUID}')"></span>
+  </div>
   <div id="attackAndDamage"class="container4">
       <div class="wrapper attack-name-wrapper">
           <label for="attackName-${attackUUID}" id="attackNameLabel">
@@ -3784,6 +3871,9 @@ function generateResourceSection(optionalUUID) {
 function getResourceSectionHTML(resourceUUID) {
   const resourceSection = `
 <div id="resourceSubsection-${resourceUUID}" class="subsection">
+  <div class="color-picker-wrapper" id="colorPickerWrapper-${resourceUUID}">
+    <span class="iconify color-picker-icon" data-icon="material-symbols:palette-outline" id="colorPickerIcon-${resourceUUID}" onclick="showColorOptions('resourceSubsection-', '${resourceUUID}')"></span>
+  </div>
   <button id="removeResource" class="remove-button" onclick="removeResource('${resourceUUID}')"><span class="iconify" data-icon="mdi:trash-can-outline"></span></button>
   
   <div class="container4">
@@ -3858,6 +3948,9 @@ function generateFeatureSection(optionalUUID) {
 function getFeatureSectionHTML(featureUUID) {
   const featureSection = `
 <div id="featureSubsection-${featureUUID}" class="subsection3">
+  <div class="color-picker-wrapper" id="colorPickerWrapper-${featureUUID}">
+    <span class="iconify color-picker-icon" data-icon="material-symbols:palette-outline" id="colorPickerIcon-${featureUUID}" onclick="showColorOptions('featureSubsection-', '${featureUUID}')"></span>
+  </div>
   <button id="removeFeature" class="remove-button" onclick="removeFeature('${featureUUID}')"><span class="iconify" data-icon="mdi:trash-can-outline"></span></button>
   
   <div class="wrapper">
@@ -3952,6 +4045,9 @@ function generateEquipmentSection(optionalUUID) {
 function getEquipmentSectionHTML(equipmentUUID) {
   const equipmentSection = `
 <div id="equipmentSubsection-${equipmentUUID}" class="subsection">
+  <div class="color-picker-wrapper" id="colorPickerWrapper-${equipmentUUID}">
+    <span class="iconify color-picker-icon" data-icon="material-symbols:palette-outline" id="colorPickerIcon-${equipmentUUID}" onclick="showColorOptions('equipmentSubsection-', '${equipmentUUID}')"></span>
+  </div>
   <button id="removeEquipment" class="remove-button" onclick="removeEquipment('${equipmentUUID}')"><span class="iconify" data-icon="mdi:trash-can-outline"></span></button>
   
   <div class="container4">
@@ -4048,6 +4144,9 @@ function generateTreasureSection(optionalUUID) {
 function getTreasureSectionHTML(treasureUUID) {
   const treasureSection = `
 <div id="treasureSubsection-${treasureUUID}" class="subsection">
+  <div class="color-picker-wrapper" id="colorPickerWrapper-${treasureUUID}">
+    <span class="iconify color-picker-icon" data-icon="material-symbols:palette-outline" id="colorPickerIcon-${treasureUUID}" onclick="showColorOptions('treasureSubsection-', '${treasureUUID}')"></span>
+  </div>
   <button id="removeTreasure" class="remove-button" onclick="removeTreasure('${treasureUUID}')"><span class="iconify" data-icon="mdi:trash-can-outline"></span></button>
   
   <div class="container4">
@@ -4246,6 +4345,9 @@ function generateLanguageSection(optionalUUID) {
 function getLanguageSectionHTML(languageUUID) {
   const languageSection = `
 <div id="languageSubsection-${languageUUID}" class="subsection3">
+  <div class="color-picker-wrapper" id="colorPickerWrapper-${languageUUID}">
+    <span class="iconify color-picker-icon" data-icon="material-symbols:palette-outline" id="colorPickerIcon-${languageUUID}" onclick="showColorOptions('languageSubsection-', '${languageUUID}')"></span>
+  </div>
   <button id="removeLanguage" class="remove-button" onclick="removeLanguage('${languageUUID}')"><span class="iconify" data-icon="mdi:trash-can-outline"></span></button>
   
   <div class="container container3">
@@ -4322,6 +4424,9 @@ function generateMiscellaneousSection(optionalUUID) {
 function getMiscellaneousSectionHTML(miscellaneousUUID) {
   const miscellaneousSection = `
 <div id="miscellaneousSubsection-${miscellaneousUUID}" class="subsection3">
+  <div class="color-picker-wrapper" id="colorPickerWrapper-${miscellaneousUUID}">
+    <span class="iconify color-picker-icon" data-icon="material-symbols:palette-outline" id="colorPickerIcon-${miscellaneousUUID}" onclick="showColorOptions('miscellaneousSubsection-', '${miscellaneousUUID}')"></span>
+  </div>
   <button id="removeMiscellaneous" class="remove-button" onclick="removeMiscellaneous('${miscellaneousUUID}')"><span class="iconify" data-icon="mdi:trash-can-outline"></span></button>
   <div class="container container4">
     <div class="input-group">
@@ -4404,20 +4509,66 @@ function removeAccents(str) {
 
 //------ debut colorpicker ------//
 
-function showColorOptions(elementId) {
-  let paletteContainer = document.getElementById(`colorPalette-${elementId}`);
+function showColorOptions(elementName, elementUUID) {
+  let paletteContainer = document.getElementById(`colorPalette-${elementUUID}`);
+  elementId = elementName + elementUUID
   if (!paletteContainer) {
     paletteContainer = createColorPalette(elementId);
-    paletteContainer.id = `colorPalette-${elementId}`;
-    document.body.appendChild(paletteContainer);
+    paletteContainer.id = `colorPalette-${elementUUID}`;
+
+    const parentElement = document.getElementById(`colorPickerWrapper-${elementUUID}`);
+    parentElement.appendChild(paletteContainer);
   }
+
+  positionColorContainer(elementName,elementUUID, paletteContainer);
+
+  window.addEventListener('scroll', () => {
+    positionColorContainer(elementUUID, paletteContainer);
+  });
+}
+
+function positionColorContainer(elementName, elementUUID, paletteContainer) {
+  const icon = document.getElementById(`colorPickerIcon-${elementUUID}`);
+  const iconRect = icon.getBoundingClientRect();
+
+  const subsection = document.getElementById(`${elementName}${elementUUID}`);
+  const subsectionRect = subsection.getBoundingClientRect();
+
+  const windowHeight = window.innerHeight;
+  const windowWidth = window.innerWidth;
+
+  const space = {
+    top: iconRect.top - subsectionRect.top,
+    right: subsectionRect.right - iconRect.right,
+    bottom: windowHeight - (iconRect.bottom - subsectionRect.top),
+    left: iconRect.left - subsectionRect.left,
+  };
+
+  const horizontal = space.left >= space.right ? 'left' : 'right';
+  const vertical = space.top >= space.bottom ? 'top' : 'bottom';
+  let top, left;
+
+  if (vertical === 'top') {
+    top = space.top - paletteContainer.offsetHeight;
+  } else {
+    top = iconRect.bottom - subsectionRect.top;
+  }
+
+  if (horizontal === 'left') {
+    left = space.left - paletteContainer.offsetWidth;
+  } else {
+    left = iconRect.right - subsectionRect.left;
+  }
+
+  paletteContainer.style.left = `${left}px`;
+  paletteContainer.style.top = `${top}px`;
   paletteContainer.style.display = 'block';
-  paletteContainer.style.left = `${event.pageX}px`;
-  paletteContainer.style.top = `${event.pageY}px`;
 }
 
 
-function createColorPalette(elementId) {
+
+
+function createColorPalette(parentElementId) {
   let paletteContainer = document.createElement('div');
   paletteContainer.classList.add('color-container');
   paletteContainer.style.display = 'flex';
@@ -4429,7 +4580,7 @@ function createColorPalette(elementId) {
       colorSquare.style.backgroundColor = colorPalette[i * 4 + j];
       colorSquare.onclick = (e) => {
         paletteContainer.style.display = 'none';
-        changeBackgroundColor(elementId, e.target.style.backgroundColor);
+        changeBackgroundColor(parentElementId, e.target.style.backgroundColor);
       };
 
       paletteContainer.appendChild(colorSquare);
@@ -4440,7 +4591,7 @@ function createColorPalette(elementId) {
   transparentSquare.classList.add('transparent-square');
   transparentSquare.onclick = (e) => {
     paletteContainer.style.display = 'none';
-    changeBackgroundColor(elementId, null);
+    changeBackgroundColor(parentElementId, null);
   };
 
   paletteContainer.appendChild(transparentSquare);
@@ -4449,7 +4600,7 @@ function createColorPalette(elementId) {
 }
 
 
-function changeBackgroundColor(elementId, color) {
-  document.getElementById(elementId).style.backgroundColor = color;
+function changeBackgroundColor(parentElementId, color) {
+  document.getElementById(parentElementId).style.backgroundColor = color;
 }
 //------ fin colorpicker ------//

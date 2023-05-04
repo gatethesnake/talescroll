@@ -1,16 +1,4 @@
 Fondor road map
-- v1.6
-	- custom background-color for custom-list
-		1 Attaques
-		2 Ressources
-		3 Équipements
-		4 Trésors
-		5 Sorts (niv0 à niv9)
-		6 Attributs
-		7 Dons
-		8 Langues (typo)
-		9 Notes
-
 - v2
 	- dnd5e
 		- multi-class

@@ -1668,22 +1668,22 @@ body {
   background-color: #f1f1f1;
   padding: 1px;
   border: 1px solid darkgray;
-  z-index: 1;
+  z-index: 999;
   width: 128px;
   flex-wrap: wrap;
 }
 
 .color-square {
   width: 30px;
-  height: 30px;
+  height: 15px;
   display: inline-block;
   border: 1x solid darkgray;
   margin: 0 1px 1px 0;
 }
 
 .transparent-square {
-  width: 120px;
-  height: 30px;
+  width: 124px;
+  height: 15px;
   display: inline-block;
   border: 1px solid darkgray;
   background-color: transparent;
