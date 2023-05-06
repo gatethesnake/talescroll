@@ -1161,7 +1161,7 @@ function openCharacter(loadFrom) {
 
         // Generate the spell sections in the sorted order
         spellUUIDsAndNames.forEach(({ spellUUID }) => {
-          generateSpellSection(level, spellUUID);
+          generateSpellSection(level, spellUUID,spellBookInfo[level][spellUUID]);
         });
       });
     }
@@ -1176,12 +1176,12 @@ function openCharacter(loadFrom) {
           document.getElementById(`spellName-${spellUUID}`).value = spell.name;
           document.getElementById(`spellNameVO-${spellUUID}`).value = spell.nameVO;
           document.getElementById(`spellEcole-${spellUUID}`).value = spell.school;
-          document.getElementById(`spellIncantation-${spellUUID}`).value = spell.castTime;
+          document.getElementById(`spellIncantation-${spellUUID}`).value = spell.incantation;
           document.getElementById(`spellConcentration-${spellUUID}`).checked = spell.concentration;
           document.getElementById(`spellRituel-${spellUUID}`).checked = spell.ritual;
           document.getElementById(`spellDescription-${spellUUID}`).value = spell.description;
           document.getElementById(`spellSource-${spellUUID}`).value = spell.source;
-          document.getElementById(`spellURL-${spellUUID}`).value = spell.URL;
+          document.getElementById(`spellURL-${spellUUID}`).value = spell.url;
           document.getElementById(`spellReady-${spellUUID}`).checked = spell.ready;
           document.getElementById(`spellComposantesVerbales-${spellUUID}`).checked = spell.components.verbal;
           document.getElementById(`spellComposantesSomatiques-${spellUUID}`).checked = spell.components.somatic;
@@ -1195,7 +1195,7 @@ function openCharacter(loadFrom) {
           if (spell.backgroundColor) {
             document.getElementById(`spellSubsection-${spellUUID}`).style.backgroundColor = spell.backgroundColor;
               }
-      
+          //new code here 
 
         });
       });
@@ -2844,16 +2844,19 @@ let spellUUIDs = [];
 
 function generateSpellSection(level, optionalUUID, selectedSpell) {
   const spellUUID = optionalUUID ? optionalUUID : generateUUID();
-  const spellURL = selectedSpell ? selectedSpell.URL : 'https://aidedd.org';
+  const spellURL = selectedSpell && selectedSpell.url ? selectedSpell.url : 'https://aidedd.org';
   spellUUIDs.push({ uuid: spellUUID, level: level });
   const spellSection = document.createElement('div');
   spellSection.innerHTML = getSpellSectionHTML(spellUUID, spellURL);
   const spellContainer = document.getElementById(`spellContainer${level}`);
   spellContainer.appendChild(spellSection);
 
+  if (selectedSpell) {
+    document.getElementById(`spellURL-${spellUUID}`).value = selectedSpell.URL;
+  }
+
   return spellUUID; // Return the spellUUID
 }
-
 
 
 function addSpellFromPopup(level) {
@@ -3034,8 +3037,8 @@ function getSpellSectionHTML(spellUUID, spellURL) {
         </div>
         <div class="input-group">
           <label for="spellURL-${spellUUID}">Lien</label>
-          <button id="spellURL-${spellUUID}" class="url-button" onclick="openSpellURL('${spellURL}')">
-            <span class="iconify" data-icon="mdi:link-box-variant-outline"></span>
+          <button id="spellURL-${spellUUID}" class="url-button" onclick="openSpellURL('${spellURL}')" value="${spellURL}">
+          <span class="iconify" data-icon="mdi:link-box-variant-outline"></span>
           </button>
         </div>
 

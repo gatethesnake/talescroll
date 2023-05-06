@@ -21,7 +21,7 @@
   },
   "description": {
     "player": " ",
-    "characterName": " ",
+    "characterName": "<nom>",
     "className": " ",
     "customClass": " ",
     "levelName": "1",
