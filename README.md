@@ -1,7 +1,7 @@
 # fondor
 A DND5e french character sheet for Talespire 100% created using chat-GPT
 
-This project delivers a feature-rich, French DND5e character sheet specifically designed for Talespire, an immersive virtual tabletop role-playing game platform. Created with the invaluable assistance of chat-GPT, the character sheet boasts a user-friendly interface that simplifies the management of characters, their abilities, inventory, and other in-game information.
+This project delivers an experimental, feature-rich, French DND5e character sheet specifically designed for Talespire, an immersive virtual tabletop role-playing game platform. Developed with the assistance of chat-GPT, the character sheet is not intended to be a perfect, optimized project (yet), but rather serves as a demonstration of how far chat-GPT can help develop a project from scratch. Boasting a user-friendly interface, the character sheet simplifies the management of characters, their abilities, inventory, and other in-game information, while continually evolving and improving through ongoing refinements.
 
 Key features of the character sheet include:
 
