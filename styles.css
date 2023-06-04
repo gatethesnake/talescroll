@@ -1698,3 +1698,15 @@ body {
   cursor: pointer;
 }
 
+.imageContainer {
+  position: relative;
+}
+
+#save-button {
+  cursor: pointer;
+  padding: 15px;
+  font-size: 48px;
+  position: absolute;
+  right: -75px;
+  bottom: -25px;
+}

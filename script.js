@@ -86,48 +86,6 @@ window.addEventListener("DOMContentLoaded", () => {
   }, splashLength);
 });
 
-////////// countdown to local storage save /////////
-/*
-// Define the function that will be called every 10 seconds
-function saveToLocalStorage() {
-  saveCharacter('saveToLocalStorage'); // call your saveCharacter function
-}
-
-// Define the countdown timer function
-function countdownTimer() {
-  let seconds = 9;
-  let timer = setInterval(() => {
-    // Get the countdown div element
-    const countdownDiv = document.getElementById("compteARebourd");
-
-    // Update the text in the countdown div
-    if (seconds > 1) {
-      countdownDiv.innerText = `${seconds} s avant sauvegarde automatique`;
-    } else {
-      countdownDiv.innerText = `${seconds} s avant sauvegarde automatique`;
-    }
-
-    // Decrement the seconds counter
-    seconds--;
-
-    // If the timer reaches 0, reset seconds to 10 and restart the countdown
-    if (seconds < 0) {
-      clearInterval(timer);
-      countdownDiv.innerText = "Sauvegarde réussie";
-      seconds = 9;
-      countdownTimer();
-    }
-  }, 1000);
-}
-
-// Call the countdownTimer function
-countdownTimer();
-
-// Call the saveToLocalStorage function every 10 seconds
-setInterval(saveToLocalStorage, 10000);
-
-*/
-
 window.addEventListener('load', function () {
   populateRaceDropdown();
 
@@ -630,6 +588,12 @@ function saveCharacter(saveTo) {
     console.error('Invalid saveTo parameter.');
   }
 }
+
+function saveAll() {
+  saveCharacter('saveToDisk');
+  saveCharacter('saveToLocalStorage');
+}
+
 
 function openCharacter(loadFrom) {
   function loadCharacterData(characterData) {
