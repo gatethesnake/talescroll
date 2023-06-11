@@ -44,27 +44,31 @@
 					<div class="menu-item">
 						<span>Ouvrir</span>
 						<div class="submenu">
+							<select id="characterSelect" class="input-text" onchange="openCharacter('loadFromLocalStorage')"></select>
 							<div onclick="openCharacter('loadFromDisk')">
-								disque dur
-							</div>
-							<div onclick="openCharacter('loadFromLocalStorage')">
-								storage interne
-							</div>
+								À partir d'un fichier
+							</div>	
 						</div>
 					</div>
 					<div class="menu-item">
 						<span>Sauvegarder</span>
 						<div class="submenu">
-							<div onclick="saveCharacter('saveToDisk')">
-								disque dur
-							</div>
 							<div onclick="saveCharacter('saveToLocalStorage')">
-								storage interne
+								Interne
+							</div>
+							<div onclick="saveCharacter('saveToDisk')">
+								Vers fichier
 							</div>
 						</div>
 					</div>
 					<div class="menu-item" onclick="resetCharacter()">
 						<span>Réinitialiser</span>
+					</div>
+					<div class="menu-item">
+						<span>Suppriner</span>
+						<div class="submenu">
+							<select id="characterDeleteSelect" class="input-text" onchange="deleteCharacter()"></select>
+						</div>
 					</div>
 				</div>
 			</div>

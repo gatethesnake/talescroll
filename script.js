@@ -576,17 +576,37 @@ function saveCharacter(saveTo) {
   const jsonCharacterData = JSON.stringify(characterData, null, 2);
 
   // Check saveTo parameter and save data accordingly
-  if (saveTo === 'saveToDisk') {
-    const file = new Blob([jsonCharacterData], { type: "application/json" });
-    const downloadLink = document.createElement("a");
-    downloadLink.href = URL.createObjectURL(file);
-    downloadLink.download = "character.json";
-    downloadLink.click();
-  } else if (saveTo === 'saveToLocalStorage') {
-    localStorage.setItem('characterData', jsonCharacterData);
+  if (saveTo === 'saveToDisk' || saveTo.startsWith('saveToLocalStorage')) {
+    // Get the character name
+    const characterNameElement = document.getElementById('characterName');
+    let characterName = characterNameElement.value.trim();
+
+    // Check if characterName is not empty or does not equal '<nom>'
+    if (characterName !== '' && characterName.toLowerCase() !== '<nom>') {
+      // Replace illegal characters
+      characterName = characterName.replace(/[^\w.-]/gi, '');
+    } else {
+      // Default key if characterName is not valid
+      characterName = 'personnage';
+    }
+
+    if (saveTo === 'saveToDisk') {
+        const file = new Blob([jsonCharacterData], { type: "application/json" });
+        const downloadLink = document.createElement("a");
+        downloadLink.href = URL.createObjectURL(file);
+        downloadLink.download = `${characterName}.json`;
+        downloadLink.click();
+    } else {
+        // For local storage, add 'character:' prefix
+        characterName = 'character:' + characterName;
+        const storageKey = saveTo.split(':')[1] || characterName;
+        localStorage.setItem(storageKey, jsonCharacterData);
+        populateCharacterSelect(); // Add this line
+    }
   } else {
     console.error('Invalid saveTo parameter.');
   }
+
 }
 
 function saveAll() {
@@ -594,8 +614,8 @@ function saveAll() {
   saveCharacter('saveToLocalStorage');
 }
 
-
 function openCharacter(loadFrom) {
+
   function loadCharacterData(characterData) {
 
     const abilities = characterData["abilities"];
@@ -1195,7 +1215,7 @@ function openCharacter(loadFrom) {
           loadCharacterData(characterData);
         } catch (error) {
           console.log(error);
-          alert("uh-oh, J'ai un mauvais pressentiment");
+          alert(error);
         }
       };
 
@@ -1205,20 +1225,132 @@ function openCharacter(loadFrom) {
     input.click();
   } else if (loadFrom === "loadFromLocalStorage") {
     try {
-      const characterData = JSON.parse(localStorage.getItem("characterData"));
-      if (!characterData) {
-        throw new Error("No character data found in local storage");
+      const characterSelect = document.getElementById('characterSelect');
+      const characterKey = characterSelect.value;
+  
+      // If the characterKey is an empty string, exit the function
+      if (characterKey === '') {
+        return;
       }
+  
+      const characterData = JSON.parse(localStorage.getItem(characterKey));
+      if (!characterData) {
+        throw new Error("Aucun personnage trouvé avec " + characterKey);
+      }
+  
       loadCharacterData(characterData);
     } catch (error) {
       console.log(error);
-      alert("uh-oh, J'ai un mauvais pressentiment");
+      alert(error);
     }
-  } else {
-    console.error("Invalid loadFrom value provided");
-  }
+} else {
+    console.error("Valeur invalide");
+}
+
 
 }
+function populateCharacterSelect() {
+  const characterSelect = document.getElementById('characterSelect');
+  
+  characterSelect.addEventListener('click', function(event){
+    event.stopPropagation();
+  });
+
+  // Clear all existing options
+  while (characterSelect.firstChild) {
+    characterSelect.firstChild.remove();
+  }
+
+  // Create the default option
+  const defaultOption = document.createElement("option");
+  defaultOption.value = '';
+  defaultOption.text = "Choisir";
+  characterSelect.appendChild(defaultOption);
+
+  // Retrieve the keys for all stored characters
+  const characterKeys = Object.keys(localStorage).filter(key => key.startsWith('character:'));
+
+  if (characterKeys.length === 0) {
+    const option = document.createElement("option");
+    option.value = '';
+    option.text = "Aucun personnage trouvé";
+    characterSelect.appendChild(option);
+    return;
+  }
+
+  // Sort the keys in alphanumerical order
+  characterKeys.sort();
+
+  // Create options for each character key
+  characterKeys.forEach(key => {
+    const option = document.createElement("option");
+    option.value = key;
+    option.text = key.replace('character:', '');
+    characterSelect.appendChild(option);
+  });
+}
+
+window.addEventListener('load', populateCharacterSelect);
+
+
+function populateCharacterDeleteSelect() {
+  const characterDeleteSelect = document.getElementById('characterDeleteSelect');
+
+  characterDeleteSelect.addEventListener('click', function(event){
+    event.stopPropagation();
+  });
+
+  // Clear all existing options
+  while (characterDeleteSelect.firstChild) {
+    characterDeleteSelect.firstChild.remove();
+  }
+
+  // Create the default option
+  const defaultOption = document.createElement("option");
+  defaultOption.value = '';
+  defaultOption.text = "Choisir";
+  characterDeleteSelect.appendChild(defaultOption);
+
+  // Retrieve the keys for all stored characters
+  const characterKeys = Object.keys(localStorage).filter(key => key.startsWith('character:'));
+
+  if (characterKeys.length === 0) {
+    const option = document.createElement("option");
+    option.value = '';
+    option.text = "Aucun personnage trouvé";
+    characterDeleteSelect.appendChild(option);
+    return;
+  }
+
+  // Create options for each character key
+  characterKeys.forEach(key => {
+    const option = document.createElement("option");
+    option.value = key;
+    option.text = key.replace('character:', '');
+    characterDeleteSelect.appendChild(option);
+  });
+}
+
+
+
+
+window.addEventListener('load', populateCharacterDeleteSelect);
+
+function deleteCharacter() {
+  const characterDeleteSelect = document.getElementById('characterDeleteSelect');
+  const characterKey = characterDeleteSelect.value;
+
+  // Check if a character has been selected
+  if (characterKey !== '') {
+    localStorage.removeItem(characterKey);
+    alert('Personnage effacé.');
+    populateCharacterSelect(); // Update the dropdown
+    populateCharacterDeleteSelect(); // Update the delete dropdown
+  } else {
+    alert('Veuillez choisir un personnage à effacer.');
+  }
+}
+
 
 function confirmReset() {
   ABILITY_NAMES.forEach((ability) => {
