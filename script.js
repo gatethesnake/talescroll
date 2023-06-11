@@ -601,7 +601,9 @@ function saveCharacter(saveTo) {
         characterName = 'character:' + characterName;
         const storageKey = saveTo.split(':')[1] || characterName;
         localStorage.setItem(storageKey, jsonCharacterData);
-        populateCharacterSelect(); // Add this line
+        populateCharacterSelect(); 
+        populateCharacterDeleteSelect();
+        
     }
   } else {
     console.error('Invalid saveTo parameter.');
@@ -1322,6 +1324,9 @@ function populateCharacterDeleteSelect() {
     return;
   }
 
+  // Sort the keys in alphanumerical order
+  characterKeys.sort();
+
   // Create options for each character key
   characterKeys.forEach(key => {
     const option = document.createElement("option");
@@ -1330,9 +1335,6 @@ function populateCharacterDeleteSelect() {
     characterDeleteSelect.appendChild(option);
   });
 }
-
-
-
 
 window.addEventListener('load', populateCharacterDeleteSelect);
 
