@@ -3135,7 +3135,7 @@ function getSpellSectionHTML(spellUUID, spellURL) {
         </div>
         <div class="input-group">
           <label for="spellURL-${spellUUID}">Lien</label>
-          <button id="spellURL-${spellUUID}" class="url-button" onclick="openSpellURL('${spellURL}')" value="${spellURL}">
+          <button id="spellURL-${spellUUID}" class="url-button" onclick="openSpellURL(this)" value="${spellURL}">
           <span class="iconify" data-icon="mdi:link-box-variant-outline"></span>
           </button>
         </div>
@@ -3178,11 +3178,12 @@ function getSpellSectionHTML(spellUUID, spellURL) {
   return spellSection;
 };
 
-function openSpellURL(url) {
-  if (url && url !== 'undefined') {
-    window.open(url, '_blank');
+function openSpellURL(button) {
+  const spellURL = button.value;
+  if (spellURL && spellURL !== 'undefined') {
+    window.open(spellURL, '_blank');
   } else {
-    window.open("https://aidedd.org", '_blank');
+    window.open("https://galasoft.ca", '_blank');
   }
 }
 
