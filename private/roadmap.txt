@@ -8,7 +8,6 @@ Fondor road map
 		- ajouter Mait Exp aux Saves)
 		- ajouter other Bonus aux Saves
     - ui-ux 
-		- localStorage : on every change + multiple names
         - image S O R, resize 128X128 png ou jpg base64
         - 3D : d4 à d20, d2,d3, d100 !?
         - arrête un dé sur la bonne face
