@@ -1,0 +1,581 @@
+{
+  "abilities": {
+    "strength": {
+      "Score": "14"
+    },
+    "dexterity": {
+      "Score": "10"
+    },
+    "constitution": {
+      "Score": "12"
+    },
+    "intelligence": {
+      "Score": "12"
+    },
+    "wisdom": {
+      "Score": "16"
+    },
+    "charisma": {
+      "Score": "9"
+    }
+  },
+  "description": {
+    "player": " NPC",
+    "characterName": "Beatrice Escoffier",
+    "className": "Clerc",
+    "customClass": " ",
+    "levelName": "5",
+    "race": "Gitans",
+    "customRace": " ",
+    "religion": "Satyre",
+    "customReligion": " ",
+    "historique": " ",
+    "customHistorique": " "
+  },
+  "apparence": {
+    "age": " 18",
+    "taille": "5",
+    "poids": "70",
+    "yeux": "brun",
+    "peau": "pâle",
+    "cheveux": "bruns"
+  },
+  "skills": {
+    "acrobatics": {
+      "proficient": false,
+      "expert": false
+    },
+    "animalHandling": {
+      "proficient": false,
+      "expert": false
+    },
+    "arcana": {
+      "proficient": false,
+      "expert": false
+    },
+    "athletics": {
+      "proficient": false,
+      "expert": false
+    },
+    "deception": {
+      "proficient": false,
+      "expert": false
+    },
+    "history": {
+      "proficient": false,
+      "expert": false
+    },
+    "insight": {
+      "proficient": false,
+      "expert": false
+    },
+    "intimidation": {
+      "proficient": false,
+      "expert": false
+    },
+    "investigation": {
+      "proficient": false,
+      "expert": false
+    },
+    "medicine": {
+      "proficient": true,
+      "expert": false
+    },
+    "nature": {
+      "proficient": false,
+      "expert": false
+    },
+    "perception": {
+      "proficient": false,
+      "expert": false
+    },
+    "performance": {
+      "proficient": false,
+      "expert": false
+    },
+    "persuasion": {
+      "proficient": false,
+      "expert": false
+    },
+    "religion": {
+      "proficient": true,
+      "expert": false
+    },
+    "sleightOfHand": {
+      "proficient": false,
+      "expert": false
+    },
+    "stealth": {
+      "proficient": true,
+      "expert": false
+    },
+    "survival": {
+      "proficient": false,
+      "expert": false
+    }
+  },
+  "information": {
+    "otherInitiativeBonus": "0",
+    "actualHitPoints": "29",
+    "maxHitPoints": "29",
+    "tempHitPoints": "0",
+    "inspirationValue": "on",
+    "speedValue": "6",
+    "generalBonusValue": "0",
+    "avantage": "normal"
+  },
+  "deathSaves": {
+    "success": [
+      false,
+      false,
+      false
+    ],
+    "failed": [
+      false,
+      false,
+      false
+    ]
+  },
+  "status": {
+    "HASTED": false,
+    "EXHAUSTED": false,
+    "CONCENTRATED": false,
+    "UNCONSCIOUS": false,
+    "STUNNED": false,
+    "POISONED": false,
+    "CHARMED": false,
+    "FRIGHTENED": false,
+    "PARALYZED": false,
+    "PETRIFIED": false,
+    "BLINDED": false,
+    "INVISIBLE": false,
+    "ENVELOPED_IN_MAGICAL_DARKNESS": false,
+    "DEAFENED": false,
+    "RESTRAINED": false,
+    "ELECTRIFIED": false,
+    "DROWNING": false,
+    "GRAPPLED": false,
+    "INCAPACITATED": false,
+    "PRONE": false,
+    "RESTING": false,
+    "SHOCKED": false,
+    "SILENCED": false,
+    "UNABLE_TO_BREATHE": false,
+    "UNABLE_TO_SEE": false,
+    "UNABLE_TO_HEAR": false,
+    "UNABLE_TO_SMELL": false,
+    "UNABLE_TO_TASTE": false,
+    "UNABLE_TO_TOUCH": false,
+    "BLOODIED": false
+  },
+  "armorClassInfo": {
+    "ability1": "dexterity",
+    "ability2": " ",
+    "otherAdjustmentName": " ",
+    "otherAdjustmentValue": "0",
+    "armorActive": true,
+    "armorSelection": "breastplate",
+    "customArmorName": " ",
+    "customArmorValue": "0",
+    "shieldActive1": true,
+    "shieldSelection1": "shield",
+    "customShieldName1": " ",
+    "customShieldValue1": "0",
+    "shieldActive2": false,
+    "shieldSelection2": " ",
+    "customShieldName2": " ",
+    "customShieldValue2": "0"
+  },
+  "attackInfo": {
+    "6a5b9904145470-dc24d7b4-4dd4f22-a14ca44-119fa1130ceabb1c8e9ff41": {
+      "attackName": " Blessure",
+      "damageType": "necrotic",
+      "attackNote": " ",
+      "attackAbilityAdjustment": "wisdom",
+      "otherAttackAdjustmentValue": "0",
+      "attackProficientCheckBox": false,
+      "damageDiceQuantity": "3",
+      "damageHitDiceType": "d10",
+      "damageAbilityAdjustment": " ",
+      "otherDamageAdjustmentValue": "0",
+      "backgroundColor": ""
+    },
+    "458158b386cd40e2-9cf14e37-48c743-bc315db-78534b5867b5b7fc9f085c": {
+      "attackName": " Éclair Traçant",
+      "damageType": "radiant",
+      "attackNote": "(prochaine att. vs. la cible = avantage)",
+      "attackAbilityAdjustment": "wisdom",
+      "otherAttackAdjustmentValue": "0",
+      "attackProficientCheckBox": false,
+      "damageDiceQuantity": "4",
+      "damageHitDiceType": "d6",
+      "damageAbilityAdjustment": " ",
+      "otherDamageAdjustmentValue": "0",
+      "backgroundColor": ""
+    },
+    "f1d15463cf85b6-98d23885-488264e-8f4a837-4eb6aea2cb78e3e93435fb": {
+      "attackName": " Flamme sacrée ",
+      "damageType": "radiant",
+      "attackNote": "(JdS DEX - DD14)",
+      "attackAbilityAdjustment": "wisdom",
+      "otherAttackAdjustmentValue": "0",
+      "attackProficientCheckBox": false,
+      "damageDiceQuantity": "2",
+      "damageHitDiceType": "d8",
+      "damageAbilityAdjustment": " ",
+      "otherDamageAdjustmentValue": "0",
+      "backgroundColor": ""
+    },
+    "a56f89d5bcc6df29-69f1dfd7-4d94228-8cb2d23-c4a7b0f330e3dd4064348da2": {
+      "attackName": " Masse d'arme",
+      "damageType": "bludgeoning",
+      "attackNote": " ",
+      "attackAbilityAdjustment": "strength",
+      "otherAttackAdjustmentValue": "0",
+      "attackProficientCheckBox": true,
+      "damageDiceQuantity": "1",
+      "damageHitDiceType": "d6",
+      "damageAbilityAdjustment": "strength",
+      "otherDamageAdjustmentValue": "0",
+      "backgroundColor": ""
+    },
+    "bd5ad9cba8c48b6a-668869ea-4f3b43c-843cc95-606b3ccc4578a17feef031a5": {
+      "attackName": "Moquerie Cruelle",
+      "damageType": " ",
+      "attackNote": "(JdS SAG - DD14 - Cible a dés. à sa prochaine attaque)",
+      "attackAbilityAdjustment": "wisdom",
+      "otherAttackAdjustmentValue": "0",
+      "attackProficientCheckBox": false,
+      "damageDiceQuantity": "2",
+      "damageHitDiceType": "d4",
+      "damageAbilityAdjustment": " ",
+      "otherDamageAdjustmentValue": "0",
+      "backgroundColor": ""
+    }
+  },
+  "resourceInfo": {
+    "f1328f185d362420-1934f71b-46e4971-83a36b6-4c92ea275e488130c6816053": {
+      "resourceName": "Dés de vie ",
+      "resourceMax": "2",
+      "resourceActual": "2",
+      "longRestSwitch": true,
+      "shortRestSwitch": false,
+      "backgroundColor": ""
+    },
+    "4c554bff99c6ce31-2ecfc779-4b0d580-9d8f1f0-2949b2a7f94b8ab448427": {
+      "resourceName": "Herbes gitanes",
+      "resourceMax": "1",
+      "resourceActual": "1",
+      "longRestSwitch": false,
+      "shortRestSwitch": true,
+      "backgroundColor": ""
+    }
+  },
+  "featureInfo": {
+    "954a945a7e8ca4-79b8842-4a4bd4d-9234368-bf3bbaae3638289f5b6f18": {
+      "featureName": "Herbes gitanes",
+      "featureSource": "Classe",
+      "featureType": " ",
+      "featureDescription": "Guérit 1 créature 2d6+5 PV (1/court repos)",
+      "backgroundColor": ""
+    }
+  },
+  "equipmentInfo": {},
+  "treasureInfo": {
+    "7b0108ee58923-d2ecea84-46bfd9b-b9254a-7d3a16775c1da69d218dfd6": {
+      "treasureName": "Miroir en argent (bien décoré) ",
+      "treasureQuantity": "1",
+      "treasureValue": "15",
+      "treasureOrigin": " ",
+      "backgroundColor": ""
+    }
+  },
+  "languageInfo": {
+    "8757b5ba299e8cf0-d04dd48e-49bbae-a309129-2c084451799a639f98aa32": {
+      "languageName": "elanais",
+      "languageSpoken": true,
+      "languageWritten": true,
+      "backgroundColor": ""
+    }
+  },
+  "miscellaneousInfo": {
+    "57e14b1e9e14ee4d-a66878ca-49ee169-81a8f61-82a9eaa8352d3bd326fd944b": {
+      "miscellaneousDescription": " ",
+      "miscellaneousName": " ",
+      "backgroundColor": ""
+    }
+  },
+  "moneyInfo": {
+    "cp": 0,
+    "sp": 50,
+    "ep": 0,
+    "gp": 0,
+    "pp": 0
+  },
+  "featInfo": {
+    "2d5b643d87b337ec-533352bf-4237cd2-acaaa50-c5d7bca6c8fd4497bdc5464": {
+      "featName": "Chanceux",
+      "backgroundColor": ""
+    }
+  },
+  "spellAttackInfo": {
+    "spellCastingAbilitySelect": "wisdom",
+    "otherDcSpellBonus": "0",
+    "otherSpellAttackBonus": "0"
+  },
+  "spellLevelInfo": {
+    "0": {
+      "maximum": "3",
+      "actual": "3"
+    },
+    "1": {
+      "maximum": "4",
+      "actual": "4"
+    },
+    "2": {
+      "maximum": "2",
+      "actual": "2"
+    },
+    "3": {
+      "maximum": "0",
+      "actual": "0"
+    },
+    "4": {
+      "maximum": "0",
+      "actual": "0"
+    },
+    "5": {
+      "maximum": "0",
+      "actual": "0"
+    },
+    "6": {
+      "maximum": "0",
+      "actual": "0"
+    },
+    "7": {
+      "maximum": "0",
+      "actual": "0"
+    },
+    "8": {
+      "maximum": "0",
+      "actual": "0"
+    },
+    "9": {
+      "maximum": "0",
+      "actual": "0"
+    }
+  },
+  "spellBookInfo": {
+    "0": {
+      "474cd019ab7f5cea-f3761e44-451a67e-a49c77f-d2b8f2cfb89339bce8829ba": {
+        "name": "Assistance",
+        "nameVO": "Guidance",
+        "school": "divination",
+        "incantation": "1 action",
+        "concentration": true,
+        "ritual": false,
+        "description": "La cible peut ajouter 1d4 à un jet de caractéristique de son choix.",
+        "source": "Player´s Handbook",
+        "url": "https://www.aidedd.org/dnd/sorts.php?vf=assistance",
+        "ready": true,
+        "components": {
+          "verbal": true,
+          "somatic": true,
+          "material": false
+        },
+        "duration": " 1 min",
+        "range": "0",
+        "areaOfEffect": " ",
+        "target": " ",
+        "backgroundColor": ""
+      },
+      "164731fcefc590db-f8acd1d4-45126b6-8e2cb83-94d57c6bc937557338cf29c": {
+        "name": "Moquerie cruelle",
+        "nameVO": "Vicious Mockery",
+        "school": "enchantement",
+        "incantation": "1 action",
+        "concentration": false,
+        "ritual": false,
+        "description": "La cible doit réussir un JdS de Sag. ou subir 1d4 dégâts psychiques et avoir un désavantage à sa prochaine attaque (dégâts/niv).",
+        "source": "Player´s Handbook",
+        "url": "https://www.aidedd.org/dnd/sorts.php?vf=moquerie-cruelle",
+        "ready": true,
+        "components": {
+          "verbal": false,
+          "somatic": false,
+          "material": false
+        },
+        "duration": " ",
+        "range": " ",
+        "areaOfEffect": " ",
+        "target": " ",
+        "backgroundColor": ""
+      },
+      "6271c5c39e52b293-43bbbeaf-49a5828-9a76bde-fe12a6165f9cd0f493fa8c": {
+        "name": "Flamme sacrée",
+        "nameVO": "Sacred Flame",
+        "school": "évocation",
+        "incantation": "1 action",
+        "concentration": false,
+        "ritual": false,
+        "description": "La cible doit réussir un JdS de Dex. ou subir 1d8 dégâts radiant (dégâts/niv).",
+        "source": "Player´s Handbook",
+        "url": "https://www.aidedd.org/dnd/sorts.php?vf=flamme-sacree",
+        "ready": true,
+        "components": {
+          "verbal": false,
+          "somatic": false,
+          "material": false
+        },
+        "duration": " ",
+        "range": " ",
+        "areaOfEffect": " ",
+        "target": " ",
+        "backgroundColor": ""
+      }
+    },
+    "1": {
+      "c19f791d31e68fd4-7b8ddf7a-4c87a-bcbe19e-64264637c176a8a295e84dab": {
+        "name": "Soins",
+        "nameVO": "Cure Wounds",
+        "school": "évocation",
+        "incantation": "1 action",
+        "concentration": false,
+        "ritual": false,
+        "description": "1 créature récupère 1d8+Mod.Carac pv (+1d8 pv/niv).",
+        "source": "Player´s Handbook",
+        "url": "https://www.aidedd.org/dnd/sorts.php?vf=soins",
+        "ready": true,
+        "components": {
+          "verbal": false,
+          "somatic": false,
+          "material": false
+        },
+        "duration": " ",
+        "range": " ",
+        "areaOfEffect": " ",
+        "target": " ",
+        "backgroundColor": ""
+      },
+      "40dfe3ccc81a5e-2e961115-43d17a6-8d8e249-455448a4f9a6fdaa196a7c57": {
+        "name": "Bénédiction",
+        "nameVO": "Bless",
+        "school": "enchantement",
+        "incantation": "1 action",
+        "concentration": true,
+        "ritual": false,
+        "description": "Jusqu à 3 cibles peuvent ajouter 1d4 à leur jet d attaque ou de sauvegarde (+1 créature/niv).",
+        "source": "Player´s Handbook",
+        "url": "https://www.aidedd.org/dnd/sorts.php?vf=benediction",
+        "ready": true,
+        "components": {
+          "verbal": false,
+          "somatic": false,
+          "material": false
+        },
+        "duration": " ",
+        "range": " ",
+        "areaOfEffect": " ",
+        "target": " ",
+        "backgroundColor": ""
+      },
+      "cbb67b8f5b509851-c87a6de6-4a175a7-a93f92-87e62e3181cf8ac8e7491bcb": {
+        "name": "Éclair traçant",
+        "nameVO": "Guiding Bolt",
+        "school": "évocation",
+        "incantation": "1 action",
+        "concentration": false,
+        "ritual": false,
+        "description": "Si l attaque avec un sort touche, inflige 4d6 dégâts radiants (dégâts/niv) et le prochain jet d attaque aura l avantage.",
+        "source": "Player´s Handbook",
+        "url": "https://www.aidedd.org/dnd/sorts.php?vf=eclair-tracant",
+        "ready": true,
+        "components": {
+          "verbal": false,
+          "somatic": false,
+          "material": false
+        },
+        "duration": " ",
+        "range": " ",
+        "areaOfEffect": " ",
+        "target": " ",
+        "backgroundColor": ""
+      },
+      "4f60d0c6fd54bf-c99f132f-47368c-b184e52-f349f64cf88b8d652c8c1479": {
+        "name": "Blessure",
+        "nameVO": "Inflict Wounds",
+        "school": "nécromancie",
+        "incantation": "1 action",
+        "concentration": false,
+        "ritual": false,
+        "description": "Si l attaque touche, inflige subit 3d10 dégâts nécrotiques (dégâts/niv).",
+        "source": "Player´s Handbook",
+        "url": "https://www.aidedd.org/dnd/sorts.php?vf=blessure",
+        "ready": true,
+        "components": {
+          "verbal": false,
+          "somatic": false,
+          "material": false
+        },
+        "duration": " ",
+        "range": " ",
+        "areaOfEffect": " ",
+        "target": " ",
+        "backgroundColor": ""
+      }
+    },
+    "2": {
+      "eb13eb53c14c5ae1-4a7e90fc-4d63c49-916b1ec-389b1274e1b757877ef2ef78": {
+        "name": "Prière de guérison",
+        "nameVO": "Prayer of Healing",
+        "school": "évocation",
+        "incantation": "10 minutes",
+        "concentration": false,
+        "ritual": false,
+        "description": "Jusqu à 6 créatures récupèrent 2d8+Mod.Carac pv (+1d8 pv/niv).",
+        "source": "Player´s Handbook",
+        "url": "https://www.aidedd.org/dnd/sorts.php?vf=priere-de-guerison",
+        "ready": true,
+        "components": {
+          "verbal": false,
+          "somatic": false,
+          "material": false
+        },
+        "duration": " ",
+        "range": " ",
+        "areaOfEffect": " ",
+        "target": " ",
+        "backgroundColor": ""
+      },
+      "d548a8bf2e8cd9f-62e061ba-475e8e6-b6bb4cc-7a556979f7e8e899e467fece": {
+        "name": "Restauration partielle",
+        "nameVO": "Lesser Restoration",
+        "school": "abjuration",
+        "incantation": "1 action",
+        "concentration": false,
+        "ritual": false,
+        "description": "Met fin à une maladie ou à un état (aveuglé, assourdi, paralysé ou empoisonné) sur 1 créature.",
+        "source": "Player´s Handbook",
+        "url": "https://www.aidedd.org/dnd/sorts.php?vf=restauration-partielle",
+        "ready": true,
+        "components": {
+          "verbal": false,
+          "somatic": false,
+          "material": false
+        },
+        "duration": " ",
+        "range": " ",
+        "areaOfEffect": " ",
+        "target": " ",
+        "backgroundColor": ""
+      }
+    },
+    "3": {},
+    "4": {},
+    "5": {},
+    "6": {},
+    "7": {},
+    "8": {},
+    "9": {}
+  }
+}

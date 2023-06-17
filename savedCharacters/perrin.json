@@ -116,12 +116,12 @@
   },
   "information": {
     "otherInitiativeBonus": "0",
-    "actualHitPoints": "10",
+    "actualHitPoints": "40",
     "maxHitPoints": "40",
     "tempHitPoints": "0",
     "inspirationValue": "on",
     "speedValue": "11",
-    "generalBonusValue": "-1",
+    "generalBonusValue": "0",
     "avantage": "normal"
   },
   "deathSaves": {
@@ -138,7 +138,7 @@
   },
   "status": {
     "HASTED": false,
-    "EXHAUSTED": true,
+    "EXHAUSTED": false,
     "CONCENTRATED": false,
     "UNCONSCIOUS": false,
     "STUNNED": false,
@@ -257,7 +257,7 @@
     "a9ddcac22d82b182-e2dfcfcf-434915a-81aa87a-169e2a32543c1abea15b23ad": {
       "resourceName": "000 Ki",
       "resourceMax": "5",
-      "resourceActual": "0",
+      "resourceActual": "5",
       "longRestSwitch": false,
       "shortRestSwitch": true,
       "backgroundColor": "rgb(240, 230, 140)"
@@ -273,7 +273,7 @@
     "7fffe276715868-407b3711-49e1fc-bc35c78-b7164d5963d95f53849095f5": {
       "resourceName": "002 Rayon céleste",
       "resourceMax": "3",
-      "resourceActual": "2",
+      "resourceActual": "3",
       "longRestSwitch": true,
       "shortRestSwitch": false,
       "backgroundColor": "rgb(240, 230, 140)"
@@ -289,7 +289,7 @@
     "24283c8ed5b2a5e-6d4ec4bc-4437c6-85ccb31-e9da342af21cdae61c225cba": {
       "resourceName": "004 Foulée brumeuse",
       "resourceMax": "1",
-      "resourceActual": "0",
+      "resourceActual": "1",
       "longRestSwitch": true,
       "shortRestSwitch": false,
       "backgroundColor": "rgb(255, 192, 203)"
@@ -669,11 +669,6 @@
     }
   },
   "miscellaneousInfo": {
-    "b5f0e5afad53d452-3e481462-4c71133-9451516-4387dec7f811875f1e1907": {
-      "miscellaneousDescription": "Malade (rat) 1 état de fatigue -1 sur jet.\n\n\n",
-      "miscellaneousName": "__Malade",
-      "backgroundColor": "rgb(147, 112, 219)"
-    },
     "a89b1e266f3d56-c1fdfd83-4893226-b95e414-c1f2186b0a960bf1030f1ec": {
       "miscellaneousDescription": "pour plus tard:\nau niveau 8\nprochain feat: Telekinetic\nSource: Tasha's Cauldron of Everything\n\nYou learn to move things with your mind, granting you the following benefits:\n\nIncrease your Intelligence, Wisdom, or Charisma score by 1, to a maximum of 20.\nYou learn the Mage Hand cantrip. You can cast it without verbal or somatic components, and you can make the spectral hand invisible. If you already know this spell, its range increases by 30 feet when you cast it. Its spellcasting ability is the ability increased by this feat.\nAs a bonus action, you can try to telekinetically shove one creature you can see within 30 feet of you. When you do so, the target must succeed on a Strength saving throw (DC 8 + your proficiency bonus + the ability modifier of the score increased by this feat) or be moved 5 feet toward or away from you. A creature can willingly fail this save.",
       "miscellaneousName": "_Feat pour niveau 8",
@@ -706,7 +701,7 @@
     }
   },
   "moneyInfo": {
-    "cp": 20,
+    "cp": 12,
     "sp": 9,
     "ep": 0,
     "gp": 15,
