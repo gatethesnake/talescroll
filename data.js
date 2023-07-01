@@ -100,6 +100,9 @@ const classSavingThrows = [
   { className: 'Paladin', proficientSaves: ['Sagesse', 'Charisme'] },
   { className: 'Rôdeur', proficientSaves: ['Force', 'Dextérité'] },
   { className: 'Roublard', proficientSaves: ['Dextérité', 'Intelligence'] },
+  { className: 'Compagnon d\'armes', proficientSaves: [] },
+  { className: 'Expert', proficientSaves: [] },
+  { className: 'Incantateur', proficientSaves: [] },
 ];
 
 const classOptions = [
@@ -115,6 +118,9 @@ const classOptions = [
   { value: 'Paladin', text: 'Paladin' },
   { value: 'Rôdeur', text: 'Rôdeur' },
   { value: 'Roublard', text: 'Roublard' },
+  { value: 'Compagnon d\'armes', text: 'Compagnon d\'armes' },
+  { value: 'Expert', text: 'Expert' },
+  { value: 'Incantateur', text: 'Incantateur' },
 ];
 
 
@@ -192,7 +198,6 @@ const worldLanguage = [
   { id: "element", nom: "Élément" }
 ];
 
-
 const classesHitDice = [
   { name: 'Barbare', hitDice: 'd12' },
   { name: 'Barde', hitDice: 'd8' },
@@ -206,6 +211,9 @@ const classesHitDice = [
   { name: 'Paladin', hitDice: 'd10' },
   { name: 'Rôdeur', hitDice: 'd10' },
   { name: 'Roublard', hitDice: 'd8' },
+  { name: 'Compagnon d\'armes', hitDice: 'd8' },
+  { name: 'Expert', hitDice: 'd8' },
+  { name: 'IncantateurK', hitDice: 'd8' },
 ];
 
 const spellCasters = [
@@ -218,7 +226,6 @@ const spellCasters = [
   { name: 'Paladin' },
   { name: 'Rôdeur' },
 ];
-
 
 const skillsName = [
   { id: 'acrobatics', name: 'Acrobatie' },
@@ -241,7 +248,6 @@ const skillsName = [
   { id: 'survival', name: 'Survie' }
 ];
 
-
 const classesSkills = [
   { id: 'acrobatics', nom: "Acrobaties", maitrise: ["Barde", "Moine", "Roublard"] },
   { id: 'animalHandling', nom: "Dressage", maitrise: ["Barbare", "Druide", "Rôdeur"] },
@@ -262,8 +268,6 @@ const classesSkills = [
   { id: 'stealth', nom: "Discrétion", maitrise: ["Roublard"] },
   { id: 'survival', nom: "Survie", maitrise: ["Barbare", "Druide", "Moine", "Occultiste", "Rôdeur"] }
 ];
-
-
 
 const characterStatus = {
   HASTED: {
@@ -584,9 +588,6 @@ const SPELL_SOURCES = [
   { name: 'Tasha´s Cauldron of Everything' },
   { name: 'Xanathar´s Guide to Everything' }
 ]
-
-
-
 
 const feats = [
   {
