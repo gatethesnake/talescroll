@@ -1,5 +1,4 @@
 Fondor road map
-- v1.9 - sidekick: proficiency bonus diff lvl, maitrise & expert chck boxes saving throws
 - v2
 	- dnd5e
 		- multi-class
