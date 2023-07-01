@@ -40,6 +40,32 @@
     "peau": "basané, tatouages",
     "cheveux": "chauve"
   },
+  "savingThrows": {
+    "strength": {
+      "proficient": true,
+      "expert": false
+    },
+    "dexterity": {
+      "proficient": true,
+      "expert": false
+    },
+    "constitution": {
+      "proficient": false,
+      "expert": false
+    },
+    "intelligence": {
+      "proficient": false,
+      "expert": false
+    },
+    "wisdom": {
+      "proficient": false,
+      "expert": false
+    },
+    "charisma": {
+      "proficient": false,
+      "expert": false
+    }
+  },
   "skills": {
     "acrobatics": {
       "proficient": true,
@@ -116,7 +142,7 @@
   },
   "information": {
     "otherInitiativeBonus": "0",
-    "actualHitPoints": "40",
+    "actualHitPoints": "35",
     "maxHitPoints": "40",
     "tempHitPoints": "0",
     "inspirationValue": "on",
@@ -265,7 +291,7 @@
     "a71e35ccf24f2686-246f7344-49297c2-a3b4e75-d99d952928374e937ad1f21": {
       "resourceName": "001 Gieztlë",
       "resourceMax": "1",
-      "resourceActual": "1",
+      "resourceActual": "0",
       "longRestSwitch": true,
       "shortRestSwitch": false,
       "backgroundColor": "rgb(240, 230, 140)"
@@ -289,7 +315,7 @@
     "24283c8ed5b2a5e-6d4ec4bc-4437c6-85ccb31-e9da342af21cdae61c225cba": {
       "resourceName": "004 Foulée brumeuse",
       "resourceMax": "1",
-      "resourceActual": "1",
+      "resourceActual": "0",
       "longRestSwitch": true,
       "shortRestSwitch": false,
       "backgroundColor": "rgb(255, 192, 203)"
@@ -297,7 +323,7 @@
     "8a472eaf2a9fb920-a77cf14-43fdb16-9fda644-da7528172afcfb9f53c65f7": {
       "resourceName": "005 Récupération (d8+2) ",
       "resourceMax": "5",
-      "resourceActual": "5",
+      "resourceActual": "2",
       "longRestSwitch": true,
       "shortRestSwitch": false,
       "backgroundColor": "rgb(173, 255, 47)"
@@ -381,7 +407,7 @@
       "featureName": "008 Gieztlë",
       "featureSource": "Javelin de foudre +1",
       "featureType": " Arme",
-      "featureDescription": "Javelin de foudre +1\n\nCette javeline est une arme magique +1. \n\nQuand vous la lancez et prononcez son mot de commande \\\"Gieztlë\\\", elle se transforme en un éclair formant une ligne de 5' de large qui s'étend de vous jusqu'à une cible éloignée de 120' au maximum. \n\nChaque créature sur la ligne à l'exception de vous et de la cible subit 4d6 dégâts de foudre. Un jet de sauvegarde de Dextérité DD 13 réussit permet de réduire ces dégâts de moitié. \n\nL'éclair se retransforme en javeline une fois qu'il atteint sa cible. \n\nFaites une attaque à distance contre la cible. Si vous la touchez, elle subit les dégâts de la javeline plus 4d6 dégâts de foudre. \n\nCette propriété de la javeline ne peut plus être utilisée de nouveau avant la prochaine aube. \n\nEntre temps, la javeline peut toujours être utilisée comme une arme magique.\n\nhttps://www.aidedd.org/dnd/images-om/javelin-of-lightning.jpg\"",
+      "featureDescription": "Javelin de foudre +1\n\nCette javeline est une arme magique +1. \n\nQuand vous la lancez et prononcez son mot de commande \\\"Gieztlë\\\", elle se transforme en un éclair formant une ligne de 5' de large qui s'étend de vous jusqu'à une cible éloignée de 120' au maximum. \n\nChaque créature sur la ligne à l'exception de vous et de la cible subit 4d6 dégâts de foudre. Un jet de sauvegarde de Dextérité DD 13 réussit permet de réduire ces dégâts de moitié. \n\nL'éclair se retransforme en javeline une fois qu'il atteint sa cible. \n\nFaites une attaque à distance contre la cible. Si vous la touchez, elle subit les dégâts de la javeline plus 4d6 dégâts de foudre. (différent jet de foudre)\n\nCette propriété de la javeline ne peut plus être utilisée de nouveau avant la prochaine aube. \n\nEntre temps, la javeline peut toujours être utilisée comme une arme magique.\n\nhttps://www.aidedd.org/dnd/images-om/javelin-of-lightning.jpg\"",
       "backgroundColor": "rgb(255, 192, 203)"
     },
     "c1bca7daf93fd539-eb6fd625-4b2db2-a4b8fa2-aa4f959c164c8a2e52245418": {
@@ -395,7 +421,7 @@
       "featureName": "010 Inspiration Bardique Ocarina",
       "featureSource": "Compétence acquise par études",
       "featureType": " Spécial",
-      "featureDescription": "pour savoir si ça marche: jet de représentation 2X bonus\ndd10 1d4\ndd15 1d6\ndd20 1d8",
+      "featureDescription": "pour savoir si ça marche: jet de représentation (performance) 2X bonus\ndd10 1d4\ndd15 1d6\ndd20 1d8\n\nVous pouvez inspirer les autres en maniant les mots ou la musique. Pour ce faire, utilisez une action bonus à votre tour pour choisir une créature autre que vous-même dans un rayon de 18 mètres autour de vous et qui peut vous entendre. Cette créature gagne un dé d'Inspiration bardique. Une fois dans les 10 minutes suivantes, la créature peut lancer le dé et ajouter le nombre obtenu à un jet de caractéristique, d'attaque ou de sauvegarde qu'elle vient de faire. La créature peut attendre de voir le résultat de jet de caractéristique, d'attaque ou de sauvegarde avant de décider d'appliquer le dé d'Inspiration bardique, mais elle doit se décider avant que le MD ne dise si le jet est un succès ou un échec. Une fois le dé d'Inspiration bardique lancé, il est consommé. Une créature ne peut avoir qu'un seul dé d'Inspiration bardique à la fois.",
       "backgroundColor": "rgb(255, 192, 203)"
     },
     "d519c8d5b0976c-95a77bec-4b12b8c-84d2ffe-726534a348e64d3f89fa147": {
@@ -610,7 +636,7 @@
     },
     "c330efe19950eeeb-06c8a32-4eda1e7-b849bb2-fbf0daa750ee85042c19b22": {
       "equipmentName": "3.4 trousse de médecine",
-      "equipmentQuantity": "4",
+      "equipmentQuantity": "10",
       "equipmentWeight": "1",
       "equipmentActive": false,
       "equipmentOrigin": " ",

@@ -263,6 +263,7 @@ function saveCharacter(saveTo) {
     abilities: {},
     description: {},
     apparence: {},
+    savingThrows : {},
     skills: {},
     information: {},
     deathSaves: {
@@ -305,6 +306,7 @@ function saveCharacter(saveTo) {
     characterData.apparence[inputId] = inputElement.value;
   }
 
+
   for (const skill of skillsName) {
     const skillSection = document.getElementById(`${skill.id}Skill`);
     const proficientInput = skillSection.querySelector(`#${skill.id}ProficientBonus`);
@@ -315,6 +317,23 @@ function saveCharacter(saveTo) {
       expert: expertInput.checked || false
     };
   }
+
+
+// Save Saving Throws
+// Save Saving Throws
+for (const saveName of Object.values(ABILITY_NAMES)) {
+  const proficientInput = document.getElementById(`${saveName}ProficientBonus`);
+  const expertInput = document.getElementById(`${saveName}ExpertBonus`);
+
+  if(proficientInput && expertInput){
+    characterData.savingThrows[saveName] = {
+      proficient: proficientInput.checked || false,
+      expert: expertInput.checked || false
+    };
+  }
+}
+
+
 
   for (const inputId of INFORMATION_INPUTS) {
     const inputElement = document.getElementById(inputId);
@@ -616,6 +635,8 @@ function saveAll() {
   saveCharacter('saveToLocalStorage');
 }
 
+let loadedSavingThrows  = null;  // Declare it globally
+
 function openCharacter(loadFrom) {
 
   function loadCharacterData(characterData) {
@@ -623,6 +644,8 @@ function openCharacter(loadFrom) {
     const abilities = characterData["abilities"];
     const description = characterData["description"];
     const apparence = characterData["apparence"];
+    const skills = characterData["skills"];
+    const savingThrows = characterData["savingThrows"];
     const armorClassInfo = characterData.armorClassInfo;
     const attackInfo = characterData.attackInfo;
     const resourceInfo = characterData.resourceInfo;
@@ -647,6 +670,7 @@ function openCharacter(loadFrom) {
       }
     }
 
+    
     // Load description
     for (const inputId of DESCRIPTION_INPUTS) {
       const inputElement = document.getElementById(inputId);
@@ -677,7 +701,6 @@ function openCharacter(loadFrom) {
     }
 
     // Load skills
-    const skills = characterData["skills"];
     for (const skill of skillsName) {
       const skillSection = document.getElementById(`${skill.id}Skill`);
       const proficientInput = skillSection.querySelector(`#${skill.id}ProficientBonus`);
@@ -688,6 +711,21 @@ function openCharacter(loadFrom) {
         expertInput.checked = skills[skill.id].expert || false;
       }
     }
+
+
+    loadedSavingThrows = characterData["savingThrows"]; 
+    // Load saving throws
+    for (const saveName of Object.values(ABILITY_NAMES)) {
+      const proficientInput = document.getElementById(`${saveName}ProficientBonus`);
+      const expertInput = document.getElementById(`${saveName}ExpertBonus`);
+
+      if(savingThrows.hasOwnProperty(saveName)){
+        proficientInput.checked = savingThrows[saveName].proficient || false;
+        expertInput.checked = savingThrows[saveName].expert || false;
+      }
+    }
+
+
 
     // Load information
     if (characterData.hasOwnProperty('information')) {
@@ -1251,6 +1289,9 @@ function openCharacter(loadFrom) {
 
 
 }
+
+
+
 function populateCharacterSelect() {
   const characterSelect = document.getElementById('characterSelect');
   
@@ -1474,7 +1515,7 @@ function confirmReset() {
   resetMaxAndActual();
   removeAllSpells();
 
-
+  loadedSavingThrows = null
   updateDependentElements();
 
   closePopup();
@@ -1590,8 +1631,8 @@ function updateDependentElements() {
   updateCharacterClassAndLevel();
   updateProficiencyBonus();
   updateAllAbilityModifiers();
-  adjustSavingThrows();
   adjustAllSkillBonuses();
+  adjustSavingThrows('loadCharacter', loadedSavingThrows);
   adjustInitiative();
   adjustCheckboxes(successCheckboxes);
   adjustCheckboxes(failedCheckboxes);
@@ -1603,10 +1644,18 @@ function updateDependentElements() {
   updateDcForSpell();
   updateSpellAttackBonus();
   updateTotalWeight();
+  updateCharacterName();
 
+}
+
+function updateCharacterName() {
   const characterNameInput = document.getElementById('characterName');
   characterTitle.textContent = characterNameInput.value;
-
+  let title = "Val de Fondor";
+  if (characterNameInput.value && characterNameInput.value.trim() !== "") {
+    title = `${characterNameInput.value} - ${title}`;
+  }
+  document.title = title;
 }
 
 //---------------------- informations----------------------//
@@ -2175,6 +2224,16 @@ characterNameInput.addEventListener('input', () => {
   }
 });
 
+characterNameInput.addEventListener('input', function() {
+  if (this.value && this.value.trim() !== '') {
+    document.title = `${this.value} - Val de Fondor`;
+  } else {
+    document.title = 'Val de Fondor';
+  }
+});
+
+
+
 // Populate score dropdowns with values from 1 to 20
 for (let i = 1; i <= 20; i++) {
   for (let j = 0; j < ABILITY_NAMES.length; j++) {
@@ -2243,7 +2302,7 @@ window.addEventListener('load', function () {
   generateSelectedDiceNumbers();
 });
 
-function adjustSavingThrows() {
+function adjustSavingThrows(context, loadedData = null) {
   const proficiencyBonusElem = document.getElementById('proficiencyBonusValue').textContent;
   const proficiencyBonusValue = parseInt(proficiencyBonusElem, 10);
   const selectedClass = document.getElementById('className').value;
@@ -2255,7 +2314,6 @@ function adjustSavingThrows() {
     const saveName = el.querySelector('h4').textContent;
     const isProficient = selectedSaves.includes(saveName);
 
-    // Get the corresponding ability bonus
     const englishSaveName = {
       'Force': 'strength',
       'Dextérité': 'dexterity',
@@ -2264,42 +2322,106 @@ function adjustSavingThrows() {
       'Sagesse': 'wisdom',
       'Charisme': 'charisma'
     }[saveName];
+
     const abilityBonus = document.getElementById(englishSaveName + 'BonusScore').textContent;
     const abilityBonusValue = parseInt(abilityBonus, 10);
 
     const saveButton = document.createElement('p');
     saveButton.classList.add('roundButton', 'save-modifier');
-    const totalSaveBonus = isProficient ? proficiencyBonusValue + abilityBonusValue : abilityBonusValue;
-    saveButton.textContent = (totalSaveBonus >= 0 ? '+' : '') + totalSaveBonus;
-
-    // Add the id attribute to the new save button element
+    
     const saveId = englishSaveName + "SaveValue";
     saveButton.setAttribute('id', saveId);
 
-    // Copy the onclick attribute from the original element to the new one
-    const originalSaveButton = el.querySelector('p');
-    saveButton.setAttribute('onclick', originalSaveButton.getAttribute('onclick'));
+    const checkboxesDiv = document.createElement('div');
+    checkboxesDiv.classList.add('skillCheckBoxes');
+
+    const proficientInput = document.createElement('input');
+    proficientInput.type = 'checkbox';
+    proficientInput.id = `${englishSaveName}ProficientBonus`;
+    proficientInput.className = 'proficientBonus';
+    proficientInput.name = `${englishSaveName}ProficientBonus`;
+    proficientInput.addEventListener('change', () => {
+      calculateSavingThrowBonus(saveId, proficientInput, expertInput, proficiencyBonusValue, abilityBonusValue);
+    });
+
+    const expertInput = document.createElement('input');
+    expertInput.type = 'checkbox';
+    expertInput.id = `${englishSaveName}ExpertBonus`;
+    expertInput.className = 'expertBonus';
+    expertInput.name = `${englishSaveName}ExpertBonus`;
+    expertInput.addEventListener('change', () => {
+      calculateSavingThrowBonus(saveId, proficientInput, expertInput, proficiencyBonusValue, abilityBonusValue);
+    });
+
+    // Fetch existing checkbox state or set according to class/level
+    if (context === 'classChange') {
+      proficientInput.checked = isProficient;
+      expertInput.checked = false;
+    } else if (context === 'abilityChange') {
+      const existingProficientCheckbox = el.querySelector(`#${englishSaveName}ProficientBonus`);
+      const existingExpertCheckbox = el.querySelector(`#${englishSaveName}ExpertBonus`);
+      proficientInput.checked = existingProficientCheckbox ? existingProficientCheckbox.checked : false;
+      expertInput.checked = existingExpertCheckbox ? existingExpertCheckbox.checked : false;
+    } else if (context === 'loadCharacter' && loadedSavingThrows) {
+      proficientInput.checked = loadedSavingThrows[englishSaveName].proficient || false;
+      expertInput.checked = loadedSavingThrows[englishSaveName].expert || false;
+    } else {
+      // Default case
+      proficientInput.checked = false;
+      expertInput.checked = false;
+    }
+
+
+    checkboxesDiv.appendChild(proficientInput);
+    checkboxesDiv.appendChild(document.createTextNode('Maitrise'));
+    checkboxesDiv.appendChild(expertInput);
+    checkboxesDiv.appendChild(document.createTextNode('Expert'));
 
     el.innerHTML = '';
     el.appendChild(document.createElement('h4')).textContent = saveName;
     el.appendChild(saveButton);
+    el.appendChild(checkboxesDiv);
 
-    // Call the applySaveButtonColors() function
+    calculateSavingThrowBonus(saveId, proficientInput, expertInput, proficiencyBonusValue, abilityBonusValue);
+    
     applySaveButtonColors();
   });
 }
 
+
+function calculateSavingThrowBonus(saveId, proficientInput, expertInput, proficiencyBonusValue, abilityBonusValue) {
+  let totalSaveBonus;
+
+  if (expertInput.checked) {
+    totalSaveBonus = abilityBonusValue + 2 * proficiencyBonusValue;
+    proficientInput.checked = true;
+  } else if (proficientInput.checked) {
+    totalSaveBonus = abilityBonusValue + proficiencyBonusValue;
+  } else {
+    totalSaveBonus = abilityBonusValue;
+  }
+
+  // Update the displayed saving throw bonus
+  const saveButton = document.getElementById(saveId);
+  saveButton.textContent = (totalSaveBonus >= 0 ? '+' : '') + totalSaveBonus;
+}
+
+
+document.addEventListener('DOMContentLoaded', adjustSavingThrows('loadCharacter'));
+
+
+
 // add event listener to the className select element
 const classNameSelect = document.getElementById('className');
 classNameSelect.addEventListener('change', () => {
-  adjustSavingThrows();
+  adjustSavingThrows('classChange');
   applySaveButtonColors();
 });
 
 // add event listener to the levelName select element
 const levelNameSelect = document.getElementById('levelName');
 levelNameSelect.addEventListener('change', () => {
-  adjustSavingThrows();
+  adjustSavingThrows('classChange');
   applySaveButtonColors();
   adjustAllSkillBonuses();
 });
@@ -2382,9 +2504,14 @@ for (let i = 0; i < ABILITY_NAMES.length; i++) {
   score_selector.addEventListener('change', () => {
     updateAbilityModifier(ABILITY_NAMES[i]);
     adjustAllSkillBonuses();
-    adjustSavingThrows(); // Add the parentheses to call the function
+    adjustSavingThrows('abilityChange');
   });
 }
+
+
+
+
+
 
 //----------- SKILLS -----------//
 
@@ -4706,3 +4833,4 @@ function changeBackgroundColor(parentElementId, color) {
   document.getElementById(parentElementId).style.backgroundColor = color;
 }
 //------ fin colorpicker ------//
+

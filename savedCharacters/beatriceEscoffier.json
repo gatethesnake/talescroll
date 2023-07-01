@@ -40,6 +40,32 @@
     "peau": "pâle",
     "cheveux": "bruns"
   },
+  "savingThrows": {
+    "strength": {
+      "proficient": false,
+      "expert": false
+    },
+    "dexterity": {
+      "proficient": false,
+      "expert": false
+    },
+    "constitution": {
+      "proficient": false,
+      "expert": false
+    },
+    "intelligence": {
+      "proficient": true,
+      "expert": false
+    },
+    "wisdom": {
+      "proficient": true,
+      "expert": false
+    },
+    "charisma": {
+      "proficient": false,
+      "expert": false
+    }
+  },
   "skills": {
     "acrobatics": {
       "proficient": false,
@@ -116,7 +142,7 @@
   },
   "information": {
     "otherInitiativeBonus": "0",
-    "actualHitPoints": "29",
+    "actualHitPoints": "25",
     "maxHitPoints": "29",
     "tempHitPoints": "0",
     "inspirationValue": "on",
@@ -255,8 +281,8 @@
   },
   "resourceInfo": {
     "f1328f185d362420-1934f71b-46e4971-83a36b6-4c92ea275e488130c6816053": {
-      "resourceName": "Dés de vie ",
-      "resourceMax": "2",
+      "resourceName": "Dés de vie (d8+1)",
+      "resourceMax": "5",
       "resourceActual": "2",
       "longRestSwitch": true,
       "shortRestSwitch": false,
@@ -330,11 +356,11 @@
     },
     "1": {
       "maximum": "4",
-      "actual": "4"
+      "actual": "2"
     },
     "2": {
       "maximum": "2",
-      "actual": "2"
+      "actual": "1"
     },
     "3": {
       "maximum": "0",
@@ -374,7 +400,7 @@
         "incantation": "1 action",
         "concentration": true,
         "ritual": false,
-        "description": "La cible peut ajouter 1d4 à un jet de caractéristique de son choix.",
+        "description": "Vous touchez une créature consentante. Une fois avant la fin du sort, la cible peut lancer un d4 et ajouter le résultat du dé à un jet de caractéristique de son choix. Elle peut lancer le dé avant ou après avoir effectué son jet de caractéristique. Le sort prend alors fin.",
         "source": "Player´s Handbook",
         "url": "https://www.aidedd.org/dnd/sorts.php?vf=assistance",
         "ready": true,
@@ -384,10 +410,10 @@
           "material": false
         },
         "duration": " 1 min",
-        "range": "0",
+        "range": "contact",
         "areaOfEffect": " ",
         "target": " ",
-        "backgroundColor": ""
+        "backgroundColor": "rgb(240, 230, 140)"
       },
       "164731fcefc590db-f8acd1d4-45126b6-8e2cb83-94d57c6bc937557338cf29c": {
         "name": "Moquerie cruelle",
@@ -396,20 +422,20 @@
         "incantation": "1 action",
         "concentration": false,
         "ritual": false,
-        "description": "La cible doit réussir un JdS de Sag. ou subir 1d4 dégâts psychiques et avoir un désavantage à sa prochaine attaque (dégâts/niv).",
+        "description": "Vous vomissez un flot d'insultes entremêlées de subtils enchantements sur une créature à portée et que vous pouvez voir. Si la cible peut vous entendre (il n'est pas nécessaire qu'elle comprenne mais juste qu'elle devine votre intention), elle doit réussir un jet de sauvegarde de Sagesse ou subir 1d4 dégâts psychiques et avoir un désavantage au prochain jet d'attaque qu'elle fera avant la fin de son prochain tour.\nLes dégâts de ce sort augmentent de 1d4 lorsque vous atteignez le niveau 5 (2d4), le niveau 11 (3d4) et le niveau 17 (4d4).",
         "source": "Player´s Handbook",
         "url": "https://www.aidedd.org/dnd/sorts.php?vf=moquerie-cruelle",
         "ready": true,
         "components": {
-          "verbal": false,
+          "verbal": true,
           "somatic": false,
           "material": false
         },
-        "duration": " ",
-        "range": " ",
+        "duration": "instantanée",
+        "range": " 18 mètres",
         "areaOfEffect": " ",
         "target": " ",
-        "backgroundColor": ""
+        "backgroundColor": "rgb(173, 255, 47)"
       },
       "6271c5c39e52b293-43bbbeaf-49a5828-9a76bde-fe12a6165f9cd0f493fa8c": {
         "name": "Flamme sacrée",
@@ -418,20 +444,20 @@
         "incantation": "1 action",
         "concentration": false,
         "ritual": false,
-        "description": "La cible doit réussir un JdS de Dex. ou subir 1d8 dégâts radiant (dégâts/niv).",
+        "description": "Un rayonnement semblable à des flammes descend sur une créature que vous pouvez voir dans la portée du sort. La cible doit réussir un jet de sauvegarde de Dextérité ou subir 1d8 dégâts radiants. La cible ne gagne aucun bénéfice d'abri pour ce jet de sauvegarde.\nLes dégâts du sort augmentent de 1d8 lorsque vous atteignez le niveau 5 (2d8), le niveau 11 (3d8), et le niveau 17 (4d8).",
         "source": "Player´s Handbook",
         "url": "https://www.aidedd.org/dnd/sorts.php?vf=flamme-sacree",
         "ready": true,
         "components": {
-          "verbal": false,
-          "somatic": false,
+          "verbal": true,
+          "somatic": true,
           "material": false
         },
-        "duration": " ",
-        "range": " ",
+        "duration": "instantannée",
+        "range": " 18 mètres",
         "areaOfEffect": " ",
         "target": " ",
-        "backgroundColor": ""
+        "backgroundColor": "rgb(255, 192, 203)"
       }
     },
     "1": {
@@ -442,20 +468,20 @@
         "incantation": "1 action",
         "concentration": false,
         "ritual": false,
-        "description": "1 créature récupère 1d8+Mod.Carac pv (+1d8 pv/niv).",
+        "description": "Une créature que vous touchez récupère un nombre de points de vie égal à 1d8 + le modificateur de votre caractéristique d'incantation. Ce sort n'a pas d'effet sur les morts-vivants et les artificiels.\nAux niveaux supérieurs. Lorsque vous lancez ce sort en utilisant un emplacement de sort de niveau 2 ou supérieur, la quantité de points de vie récupérés est augmentée de 1d8 pour chaque niveau d'emplacement au-delà du niveau 1.",
         "source": "Player´s Handbook",
         "url": "https://www.aidedd.org/dnd/sorts.php?vf=soins",
         "ready": true,
         "components": {
-          "verbal": false,
-          "somatic": false,
+          "verbal": true,
+          "somatic": true,
           "material": false
         },
-        "duration": " ",
-        "range": " ",
+        "duration": "instantanée",
+        "range": " contact",
         "areaOfEffect": " ",
-        "target": " ",
-        "backgroundColor": ""
+        "target": " 1 créature",
+        "backgroundColor": "rgb(255, 215, 0)"
       },
       "40dfe3ccc81a5e-2e961115-43d17a6-8d8e249-455448a4f9a6fdaa196a7c57": {
         "name": "Bénédiction",
@@ -464,20 +490,20 @@
         "incantation": "1 action",
         "concentration": true,
         "ritual": false,
-        "description": "Jusqu à 3 cibles peuvent ajouter 1d4 à leur jet d attaque ou de sauvegarde (+1 créature/niv).",
+        "description": "Matériel : aspersion d'eau bénite\nVous bénissez jusqu'à trois créatures de votre choix, dans la portée du sort. À chaque fois qu'une cible fait un jet d'attaque ou de sauvegarde avant la fin du sort, la cible peut lancer un d4 et ajouter le résultat au jet d'attaque ou de sauvegarde.\nAux niveaux supérieurs. Lorsque vous lancez ce sort en utilisant un emplacement de sort de niveau 2 ou supérieur, vous pouvez cibler une créature supplémentaire pour chaque niveau d'emplacement au-delà du niveau 1.",
         "source": "Player´s Handbook",
         "url": "https://www.aidedd.org/dnd/sorts.php?vf=benediction",
         "ready": true,
         "components": {
-          "verbal": false,
-          "somatic": false,
-          "material": false
+          "verbal": true,
+          "somatic": true,
+          "material": true
         },
-        "duration": " ",
-        "range": " ",
+        "duration": "jusqu'à 1 minute",
+        "range": "9 mètres ",
         "areaOfEffect": " ",
-        "target": " ",
-        "backgroundColor": ""
+        "target": "3 créatures",
+        "backgroundColor": "rgb(255, 160, 122)"
       },
       "cbb67b8f5b509851-c87a6de6-4a175a7-a93f92-87e62e3181cf8ac8e7491bcb": {
         "name": "Éclair traçant",
@@ -486,20 +512,20 @@
         "incantation": "1 action",
         "concentration": false,
         "ritual": false,
-        "description": "Si l attaque avec un sort touche, inflige 4d6 dégâts radiants (dégâts/niv) et le prochain jet d attaque aura l avantage.",
+        "description": "Un éclair silencieux fonce sur une créature de votre choix dans la portée du sort. Faites une attaque à distance avec un sort contre la cible. Si elle réussit, la cible subit 4d6 dégâts radiants et le prochain jet d'attaque effectué contre cette cible avant la fin du votre prochain tour bénéficie d'un avantage grâce à la lumière faible mystique qui illumine alors la cible.\nAux niveaux supérieurs. Lorsque vous lancez ce sort en utilisant un emplacement de sort de niveau 2 ou supérieur, les dégâts infligés augmentent de 1d6 pour chaque niveau d'emplacement au-delà du niveau 1.",
         "source": "Player´s Handbook",
         "url": "https://www.aidedd.org/dnd/sorts.php?vf=eclair-tracant",
         "ready": true,
         "components": {
-          "verbal": false,
-          "somatic": false,
+          "verbal": true,
+          "somatic": true,
           "material": false
         },
-        "duration": " ",
-        "range": " ",
+        "duration": " 1 tour",
+        "range": "36 mètres",
         "areaOfEffect": " ",
         "target": " ",
-        "backgroundColor": ""
+        "backgroundColor": "rgb(147, 112, 219)"
       },
       "4f60d0c6fd54bf-c99f132f-47368c-b184e52-f349f64cf88b8d652c8c1479": {
         "name": "Blessure",
@@ -508,20 +534,20 @@
         "incantation": "1 action",
         "concentration": false,
         "ritual": false,
-        "description": "Si l attaque touche, inflige subit 3d10 dégâts nécrotiques (dégâts/niv).",
+        "description": "Faites une attaque au corps à corps avec un sort contre une créature que vous pouvez toucher. En cas de réussite, la cible prend 3d10 dégâts nécrotiques.\nAux niveaux supérieurs. Lorsque vous lancez ce sort en utilisant un emplacement de sort de niveau 2 ou supérieur, les dégâts augmentent de 1d10 chaque niveau d'emplacement au-delà du niveau 1.",
         "source": "Player´s Handbook",
         "url": "https://www.aidedd.org/dnd/sorts.php?vf=blessure",
         "ready": true,
         "components": {
-          "verbal": false,
-          "somatic": false,
+          "verbal": true,
+          "somatic": true,
           "material": false
         },
-        "duration": " ",
-        "range": " ",
+        "duration": "instantanée",
+        "range": " contact",
         "areaOfEffect": " ",
-        "target": " ",
-        "backgroundColor": ""
+        "target": "1 créature",
+        "backgroundColor": "rgb(0, 255, 255)"
       }
     },
     "2": {
@@ -532,20 +558,20 @@
         "incantation": "10 minutes",
         "concentration": false,
         "ritual": false,
-        "description": "Jusqu à 6 créatures récupèrent 2d8+Mod.Carac pv (+1d8 pv/niv).",
+        "description": "Jusqu'à six créatures de votre choix visibles dans la portée du sort récupèrent chacune des points de vie équivalant à 2d8 + le modificateur de votre caractéristique d'incantation. Ce sort n'a pas d'effet sur les morts-vivants et les artificiels.\nAux niveaux supérieurs. Lorsque vous lancez ce sort en utilisant un emplacement de sort de niveau 3 ou supérieur, les points de vie récupérés augmentent de 1d8 pour chaque niveau d'emplacement au-delà du niveau 2.",
         "source": "Player´s Handbook",
         "url": "https://www.aidedd.org/dnd/sorts.php?vf=priere-de-guerison",
         "ready": true,
         "components": {
-          "verbal": false,
+          "verbal": true,
           "somatic": false,
           "material": false
         },
-        "duration": " ",
-        "range": " ",
+        "duration": "instantanée",
+        "range": "9 mètres",
         "areaOfEffect": " ",
         "target": " ",
-        "backgroundColor": ""
+        "backgroundColor": "rgb(127, 255, 212)"
       },
       "d548a8bf2e8cd9f-62e061ba-475e8e6-b6bb4cc-7a556979f7e8e899e467fece": {
         "name": "Restauration partielle",
@@ -554,20 +580,20 @@
         "incantation": "1 action",
         "concentration": false,
         "ritual": false,
-        "description": "Met fin à une maladie ou à un état (aveuglé, assourdi, paralysé ou empoisonné) sur 1 créature.",
+        "description": "Vous touchez une créature et vous pouvez mettre fin à une maladie ou à un état l'affligeant. L'état peut être aveuglé, assourdi, paralysé ou empoisonné.",
         "source": "Player´s Handbook",
         "url": "https://www.aidedd.org/dnd/sorts.php?vf=restauration-partielle",
         "ready": true,
         "components": {
-          "verbal": false,
-          "somatic": false,
+          "verbal": true,
+          "somatic": true,
           "material": false
         },
-        "duration": " ",
-        "range": " ",
+        "duration": "instantanée ",
+        "range": "contact",
         "areaOfEffect": " ",
         "target": " ",
-        "backgroundColor": ""
+        "backgroundColor": "rgb(72, 209, 204)"
       }
     },
     "3": {},

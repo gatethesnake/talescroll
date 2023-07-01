@@ -40,6 +40,32 @@
     "peau": " ",
     "cheveux": " "
   },
+  "savingThrows": {
+    "strength": {
+      "proficient": false,
+      "expert": false
+    },
+    "dexterity": {
+      "proficient": false,
+      "expert": false
+    },
+    "constitution": {
+      "proficient": false,
+      "expert": false
+    },
+    "intelligence": {
+      "proficient": false,
+      "expert": false
+    },
+    "wisdom": {
+      "proficient": false,
+      "expert": false
+    },
+    "charisma": {
+      "proficient": false,
+      "expert": false
+    }
+  },
   "skills": {
     "acrobatics": {
       "proficient": false,
