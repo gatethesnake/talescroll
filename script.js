@@ -283,7 +283,8 @@ function saveCharacter(saveTo) {
     featInfo: {},
     spellAttackInfo: {},
     spellLevelInfo: {},
-    spellBookInfo: {}
+    spellBookInfo: {},
+    characterImage: ""
   };
 
   for (const abilityId of ABILITY_NAMES) {
@@ -589,6 +590,13 @@ for (const saveName of Object.values(ABILITY_NAMES)) {
       };
     });
   }
+
+//Save characterImage
+
+  const imgElement = document.getElementById('preview');
+  
+  // Save the src data of the image element to characterData
+  characterData.characterImage = imgElement.src;
 
   // Saving to file or to localstorage
 
@@ -1233,6 +1241,14 @@ function openCharacter(loadFrom) {
     generateAllSpellSections(characterData.spellBookInfo);
     loadAllSpellBookInfo(characterData.spellBookInfo);
 
+        // Load the character image
+    const imgElement = document.getElementById('preview');
+    imgElement.onerror = function() {
+      // In case of an error, load the default image
+      loadDefaultImage();
+    }
+    imgElement.src = characterData.characterImage;
+
 
 
     // update and ajust all dependent fields
@@ -1514,6 +1530,9 @@ function confirmReset() {
   // reset spellbook info
   resetMaxAndActual();
   removeAllSpells();
+
+  // reset characterImage
+  loadDefaultImage();
 
   loadedSavingThrows = null
   updateDependentElements();
@@ -4834,3 +4853,48 @@ function changeBackgroundColor(parentElementId, color) {
 }
 //------ fin colorpicker ------//
 
+//------ loadDefaultImage ------//
+window.onload = function() {
+  let fileInput = document.getElementById('fileInput');
+  let preview = document.getElementById('preview');
+
+  // Bind click event to preview image
+  preview.addEventListener('click', function(e) {
+    fileInput.click();
+  });
+
+  fileInput.onchange = function(e) {
+    let img = new Image();
+    let reader = new FileReader();
+
+    reader.onload = function(event) {
+      img.onload = function() {
+        let canvas = document.createElement('canvas');
+        let ctx = canvas.getContext('2d');
+
+        if(img.height > img.width) {
+          canvas.width = 128 * (img.width / img.height);
+          canvas.height = 128;
+        } else {
+          canvas.height = 128 * (img.height / img.width);
+          canvas.width = 128;
+        }
+
+        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+
+        preview.src = canvas.toDataURL();
+      }
+      img.src = event.target.result;
+    }
+
+    reader.readAsDataURL(e.target.files[0]);
+  }
+  
+  // Load default image
+  loadDefaultImage();
+}
+
+function loadDefaultImage() {
+  const imgElement = document.getElementById('preview');
+  imgElement.src = base64DefaultCharacterPicture;
+}

@@ -1710,3 +1710,26 @@ body {
   right: -75px;
   bottom: -25px;
 }
+
+
+/* character picture */
+
+#img-container {
+  width: 128px;
+  height: 128px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 5px solid gray;
+  border-radius: 50%; /* this makes the container round */
+}
+
+#preview {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* this scales and crops the image to fill its container */
+  border-radius: 50%; /* this makes the image round */
+}
