@@ -5,7 +5,6 @@ Fondor road map
 		- short or long rest Reset.
 		- 3e niveau aux skills
 		- StateMachine sur les états
-		- ajouter Mait Exp aux Saves)
 		- ajouter other Bonus aux Saves
     - ui-ux 
         - image S O R, resize 128X128 png ou jpg base64

@@ -1,0 +1,375 @@
+{
+  "abilities": {
+    "strength": {
+      "Score": "17"
+    },
+    "dexterity": {
+      "Score": "13"
+    },
+    "constitution": {
+      "Score": "14"
+    },
+    "intelligence": {
+      "Score": "10"
+    },
+    "wisdom": {
+      "Score": "8"
+    },
+    "charisma": {
+      "Score": "12"
+    }
+  },
+  "description": {
+    "player": " NPC",
+    "characterName": "Gamelinde fille de Theomod",
+    "className": "Compagnon d'armes",
+    "customClass": " ",
+    "levelName": "5",
+    "race": "Thorviks",
+    "customRace": " ",
+    "religion": " ",
+    "customReligion": " ",
+    "historique": " ",
+    "customHistorique": " "
+  },
+  "apparence": {
+    "age": " 25",
+    "taille": " 68 pouces",
+    "poids": "160 livres",
+    "yeux": "Bleus",
+    "peau": "Blanche",
+    "cheveux": "Blonde"
+  },
+  "savingThrows": {
+    "strength": {
+      "proficient": true,
+      "expert": false
+    },
+    "dexterity": {
+      "proficient": false,
+      "expert": false
+    },
+    "constitution": {
+      "proficient": false,
+      "expert": false
+    },
+    "intelligence": {
+      "proficient": false,
+      "expert": false
+    },
+    "wisdom": {
+      "proficient": false,
+      "expert": false
+    },
+    "charisma": {
+      "proficient": false,
+      "expert": false
+    }
+  },
+  "skills": {
+    "acrobatics": {
+      "proficient": false,
+      "expert": false
+    },
+    "animalHandling": {
+      "proficient": false,
+      "expert": false
+    },
+    "arcana": {
+      "proficient": false,
+      "expert": false
+    },
+    "athletics": {
+      "proficient": true,
+      "expert": false
+    },
+    "deception": {
+      "proficient": false,
+      "expert": false
+    },
+    "history": {
+      "proficient": false,
+      "expert": false
+    },
+    "insight": {
+      "proficient": false,
+      "expert": false
+    },
+    "intimidation": {
+      "proficient": false,
+      "expert": false
+    },
+    "investigation": {
+      "proficient": false,
+      "expert": false
+    },
+    "medicine": {
+      "proficient": false,
+      "expert": false
+    },
+    "nature": {
+      "proficient": false,
+      "expert": false
+    },
+    "perception": {
+      "proficient": false,
+      "expert": false
+    },
+    "performance": {
+      "proficient": false,
+      "expert": false
+    },
+    "persuasion": {
+      "proficient": false,
+      "expert": false
+    },
+    "religion": {
+      "proficient": false,
+      "expert": false
+    },
+    "sleightOfHand": {
+      "proficient": false,
+      "expert": false
+    },
+    "stealth": {
+      "proficient": false,
+      "expert": false
+    },
+    "survival": {
+      "proficient": true,
+      "expert": false
+    }
+  },
+  "information": {
+    "otherInitiativeBonus": "0",
+    "actualHitPoints": "31",
+    "maxHitPoints": "31",
+    "tempHitPoints": "0",
+    "inspirationValue": "on",
+    "speedValue": "6",
+    "generalBonusValue": "0",
+    "avantage": "normal"
+  },
+  "deathSaves": {
+    "success": [
+      false,
+      false,
+      false
+    ],
+    "failed": [
+      false,
+      false,
+      false
+    ]
+  },
+  "status": {
+    "HASTED": false,
+    "EXHAUSTED": false,
+    "CONCENTRATED": false,
+    "UNCONSCIOUS": false,
+    "STUNNED": false,
+    "POISONED": false,
+    "CHARMED": false,
+    "FRIGHTENED": false,
+    "PARALYZED": false,
+    "PETRIFIED": false,
+    "BLINDED": false,
+    "INVISIBLE": false,
+    "ENVELOPED_IN_MAGICAL_DARKNESS": false,
+    "DEAFENED": false,
+    "RESTRAINED": false,
+    "ELECTRIFIED": false,
+    "DROWNING": false,
+    "GRAPPLED": false,
+    "INCAPACITATED": false,
+    "PRONE": false,
+    "RESTING": false,
+    "SHOCKED": false,
+    "SILENCED": false,
+    "UNABLE_TO_BREATHE": false,
+    "UNABLE_TO_SEE": false,
+    "UNABLE_TO_HEAR": false,
+    "UNABLE_TO_SMELL": false,
+    "UNABLE_TO_TASTE": false,
+    "UNABLE_TO_TOUCH": false,
+    "BLOODIED": false
+  },
+  "armorClassInfo": {
+    "ability1": " ",
+    "ability2": " ",
+    "otherAdjustmentName": " ",
+    "otherAdjustmentValue": "0",
+    "armorActive": true,
+    "armorSelection": "splintArmor",
+    "customArmorName": " ",
+    "customArmorValue": "0",
+    "shieldActive1": true,
+    "shieldSelection1": "shield",
+    "customShieldName1": " ",
+    "customShieldValue1": "0",
+    "shieldActive2": false,
+    "shieldSelection2": " ",
+    "customShieldName2": " ",
+    "customShieldValue2": "0"
+  },
+  "attackInfo": {
+    "a72167588469cc-9cd6a9f-4c2c64e-b4b12a0-1c7195b557ed6f2f575a69": {
+      "attackName": " Hache d'armes",
+      "damageType": "slashing",
+      "attackNote": " ",
+      "attackAbilityAdjustment": "strength",
+      "otherAttackAdjustmentValue": "0",
+      "attackProficientCheckBox": true,
+      "damageDiceQuantity": "1",
+      "damageHitDiceType": "d8",
+      "damageAbilityAdjustment": "strength",
+      "otherDamageAdjustmentValue": "0",
+      "backgroundColor": ""
+    },
+    "da46a59d8bec144-ee8eea7d-4ae3b6d-96a7cc0-50151e16c95ed0ae6af52b2d": {
+      "attackName": " Hache d'armes (2 mains)",
+      "damageType": "slashing",
+      "attackNote": " ",
+      "attackAbilityAdjustment": "strength",
+      "otherAttackAdjustmentValue": "0",
+      "attackProficientCheckBox": true,
+      "damageDiceQuantity": "1",
+      "damageHitDiceType": "d10",
+      "damageAbilityAdjustment": "strength",
+      "otherDamageAdjustmentValue": "0",
+      "backgroundColor": ""
+    },
+    "bd72a79ea26b41f-67c97d46-42ff5e4-a6dbe78-c17e3acdee33d783c2d812": {
+      "attackName": " Javelot",
+      "damageType": "piercing",
+      "attackNote": "Portée 9m/36m",
+      "attackAbilityAdjustment": "strength",
+      "otherAttackAdjustmentValue": "0",
+      "attackProficientCheckBox": true,
+      "damageDiceQuantity": "1",
+      "damageHitDiceType": "d6",
+      "damageAbilityAdjustment": "strength",
+      "otherDamageAdjustmentValue": "0",
+      "backgroundColor": ""
+    }
+  },
+  "resourceInfo": {
+    "869a71d54572e96-d8a4e69-41ba4f2-a652697-ff64f2b3f538ee5ee4cb2f12": {
+      "resourceName": "Récupération (d8+2) ",
+      "resourceMax": "5",
+      "resourceActual": "5",
+      "longRestSwitch": true,
+      "shortRestSwitch": false,
+      "backgroundColor": ""
+    },
+    "13f6e7af2d61fc2d-f52dd5fd-4c6fb57-94de235-4acacc418d6da96cd3e3644": {
+      "resourceName": "Second souffle",
+      "resourceMax": "1",
+      "resourceActual": "1",
+      "longRestSwitch": false,
+      "shortRestSwitch": true,
+      "backgroundColor": ""
+    }
+  },
+  "featureInfo": {
+    "3c2aa6b5bb532fdd-b9246329-4669b76-83ab17b-1decff55f22afc6cbaf2888d": {
+      "featureName": "Protection",
+      "featureSource": " ",
+      "featureType": "Classe",
+      "featureDescription": "Gamelinde impose un désavantage au jet d'attaque d'une créature située à 1,50 m ou moins de elle et qui ne la cible pas. Gamelinde doit pouvoir voir l'attaquant. en Réaction",
+      "backgroundColor": ""
+    },
+    "dc8318f1331e1a59-3dd5c8c6-4638fd8-b60682d-826941ee4dd3bb64bcd8ecf": {
+      "featureName": "Second souffle",
+      "featureSource": " ",
+      "featureType": "Classe",
+      "featureDescription": "Regagne PV = 1d10 + 5 (i.e., 1d10 + son niveau). 1/court repos.",
+      "backgroundColor": ""
+    },
+    "4d9ed2869f4d27cf-e9d71175-447f074-98d3d22-2fa159556875db5f907b5720": {
+      "featureName": "Attaque sauvage",
+      "featureSource": " ",
+      "featureType": "Race",
+      "featureDescription": "1 dé de dégâts supplémentaire sur un coup critique avec une arme en mêlée. (Thorvik)",
+      "backgroundColor": ""
+    }
+  },
+  "equipmentInfo": {},
+  "treasureInfo": {},
+  "languageInfo": {
+    "5d905032fcf0ea55-b2443e9-48b4ed-af2546a-1d6ff29cc78b4227582d1ab6": {
+      "languageName": "elanais",
+      "languageSpoken": true,
+      "languageWritten": true,
+      "backgroundColor": ""
+    }
+  },
+  "miscellaneousInfo": {},
+  "moneyInfo": {
+    "cp": 0,
+    "sp": 0,
+    "ep": 0,
+    "gp": 45,
+    "pp": 0
+  },
+  "featInfo": {},
+  "spellAttackInfo": {
+    "spellCastingAbilitySelect": " ",
+    "otherDcSpellBonus": "0",
+    "otherSpellAttackBonus": "0"
+  },
+  "spellLevelInfo": {
+    "0": {
+      "maximum": "0",
+      "actual": "0"
+    },
+    "1": {
+      "maximum": "0",
+      "actual": "0"
+    },
+    "2": {
+      "maximum": "0",
+      "actual": "0"
+    },
+    "3": {
+      "maximum": "0",
+      "actual": "0"
+    },
+    "4": {
+      "maximum": "0",
+      "actual": "0"
+    },
+    "5": {
+      "maximum": "0",
+      "actual": "0"
+    },
+    "6": {
+      "maximum": "0",
+      "actual": "0"
+    },
+    "7": {
+      "maximum": "0",
+      "actual": "0"
+    },
+    "8": {
+      "maximum": "0",
+      "actual": "0"
+    },
+    "9": {
+      "maximum": "0",
+      "actual": "0"
+    }
+  },
+  "spellBookInfo": {
+    "0": {},
+    "1": {},
+    "2": {},
+    "3": {},
+    "4": {},
+    "5": {},
+    "6": {},
+    "7": {},
+    "8": {},
+    "9": {}
+  }
+}

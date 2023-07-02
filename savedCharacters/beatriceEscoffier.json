@@ -7,7 +7,7 @@
       "Score": "10"
     },
     "constitution": {
-      "Score": "12"
+      "Score": "10"
     },
     "intelligence": {
       "Score": "12"
@@ -22,7 +22,7 @@
   "description": {
     "player": " NPC",
     "characterName": "Beatrice Escoffier",
-    "className": "Clerc",
+    "className": "Incantateur",
     "customClass": " ",
     "levelName": "5",
     "race": "Gitans",
@@ -319,6 +319,12 @@
   "languageInfo": {
     "8757b5ba299e8cf0-d04dd48e-49bbae-a309129-2c084451799a639f98aa32": {
       "languageName": "elanais",
+      "languageSpoken": true,
+      "languageWritten": true,
+      "backgroundColor": ""
+    },
+    "11b16c6361d1a8b-b025f5-421ee14-ac8f527-e66388725522c2b25ba73a7": {
+      "languageName": "anaureen",
       "languageSpoken": true,
       "languageWritten": true,
       "backgroundColor": ""
