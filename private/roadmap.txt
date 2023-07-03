@@ -2,14 +2,14 @@ Fondor road map
 - v2
 	- dnd5e
 		- multi-class
+		- skill personnalisables
 		- short or long rest Reset.
 		- 3e niveau aux skills
 		- StateMachine sur les états
 		- ajouter other Bonus aux Saves
+		- table des armes
     - ui-ux 
-        - image S O R, resize 128X128 png ou jpg base64
         - 3D : d4 à d20, d2,d3, d100 !?
         - arrête un dé sur la bonne face
         - Option Roll  >talespire >on screen
-		- STL viewer
 	- Tale-GPT : remove reference to Val de Fondor, en anglais, new repo puplic
