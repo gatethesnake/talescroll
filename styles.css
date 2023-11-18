@@ -692,109 +692,109 @@ p {
 /* skill buttons colors */
 
 #acrobaticsBonusValue.roundButton {
-  background-color: #F44336;
+  background-color: #E91E63;
   /* red */
   color: white;
 }
 
 #animalHandlingBonusValue.roundButton {
-  background-color: #673AB7;
+  background-color: #9C27B0;
   /* deep purple */
   color: white;
 }
 
 #arcanaBonusValue.roundButton {
-  background-color: #3F51B5;
+  background-color: #2196F3;
   /* indigo */
   color: white;
 }
 
 #athleticsBonusValue.roundButton {
-  background-color: #009688;
+  background-color: #FFC107;
   /* teal */
   color: white;
 }
 
 #deceptionBonusValue.roundButton {
-  background-color: #FF5722;
+  background-color: #f436cb;
   /* deep orange */
   color: white;
 }
 
 #historyBonusValue.roundButton {
-  background-color: #4CAF50;
+  background-color: #2196F3;
   /* green */
   color: white;
 }
 
 #insightBonusValue.roundButton {
-  background-color: #CDDC39;
+  background-color: #9C27B0;
   /* lime */
-  color: black;
+  color: white;
 }
 
 #intimidationBonusValue.roundButton {
-  background-color: #E91E63;
+  background-color: #f436cb;
   /* pink */
   color: white;
 }
 
 #investigationBonusValue.roundButton {
-  background-color: #9C27B0;
+  background-color: #2196F3;
   /* purple */
   color: white;
 }
 
 #medicineBonusValue.roundButton {
-  background-color: #00BCD4;
+  background-color: #9C27B0;
   /* cyan */
   color: white;
 }
 
 #natureBonusValue.roundButton {
-  background-color: #8BC34A;
+  background-color: #2196F3;
   /* light green */
-  color: black;
+  color: white;
 }
 
 #perceptionBonusValue.roundButton {
-  background-color: #FFEB3B;
+  background-color: #9C27B0;
   /* yellow */
-  color: black;
+  color: white;
 }
 
 #performanceBonusValue.roundButton {
-  background-color: #FFC107;
+  background-color: #f436cb;
   /* amber */
-  color: black;
+  color: white;
 }
 
 #persuasionBonusValue.roundButton {
-  background-color: #FF9800;
+  background-color: #f436cb;
   /* orange */
   color: white;
 }
 
 #religionBonusValue.roundButton {
-  background-color: #795548;
+  background-color: #2196F3;
   /* brown */
   color: white;
 }
 
 #sleightOfHandBonusValue.roundButton {
-  background-color: #607D8B;
+  background-color: #E91E63;
   /* blue grey */
   color: white;
 }
 
 #stealthBonusValue.roundButton {
-  background-color: #607D8B;
+  background-color: #E91E63;
   /* blue grey */
   color: white;
 }
 
 #survivalBonusValue.roundButton {
-  background-color: #4CAF50;
+  background-color: #9C27B0;
   /* green */
   color: white;
 }
