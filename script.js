@@ -1849,21 +1849,15 @@ const hitDiceTypeInput = document.getElementById('hitDiceType');
 function updateCharacterClassAndLevel() {
   const className = characterClassInput.value;
   const level = characterLevelInput.value;
-  const className2 = characterClassInput2.value;
-  const level2 = characterLevelInput2.value;
-
+  
   let classLevelText = `${className}`;
 
   if (className !== " " && className !== "" && className !== null) {
     classLevelText += ` niveau ${level}`;    
   }
   const classHitDice = classesHitDice.find(c => c.name === className);
-  const classHitDice2 = classesHitDice.find(c => c.name === className2);
-
-  // Check if className2 and level2 are not empty or null
-  if (className2 !== " " && className2 !== "" && className2 !== null) {
-    classLevelText += `, ${className2} niveau ${level2}`;
-  }
+  
+  
   // affiche le texte
   characterClassLevel.textContent = classLevelText;
 
@@ -1875,14 +1869,7 @@ function updateCharacterClassAndLevel() {
     numberHitDiceInput.value = '0';
   }
 
-  if (classHitDice2) {
-    hitDiceTypeInput2.value = classHitDice2.hitDice;
-    numberHitDiceInput2.value = level2;
-  } else {
-    hitDiceTypeInput2.value = 'd8';
-    numberHitDiceInput2.value = '0';
-  }
-
+  
 }
 
 characterClassInput.addEventListener('change', updateCharacterClassAndLevel);
