@@ -33,7 +33,10 @@ const DESCRIPTION_INPUTS = [
   "characterName",
   "className",
   "customClass",
+  "className2",
+  "customClass2",
   "levelName",
+  "levelName2",
   "race",
   "customRace",
   "religion",
@@ -79,7 +82,9 @@ const INFORMATION_INPUTS = [
   'tempHitPoints',
   'inspirationValue',
   'speedValue',
-  'generalBonusValue'
+  'generalBonusValue',
+  'perceptionOtherBonusValue',
+  'versatileValue'
 ];
 
 const DEATHSAVE_INPUTS = [

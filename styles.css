@@ -99,7 +99,7 @@ footer {
   position: fixed;
   top: 15px;
   right: 0;
-  width: 300px;
+  width: 400px;
   /* border: 2px solid red; */
   max-width: 100%;
   text-align: right;
@@ -1732,4 +1732,11 @@ body {
   height: 100%;
   object-fit: cover; /* this scales and crops the image to fill its container */
   border-radius: 50%; /* this makes the image round */
+}
+
+.spellAbilityA {
+    background-color: #F0E68C; /* khaki */
+}
+.spellAbilityB {
+  background-color: #9370DB; /* mediumpurple */
 }

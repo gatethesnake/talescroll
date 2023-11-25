@@ -81,8 +81,8 @@
 				</div>
 			</div>
 			<div id="perso">
-				<h3 id="characterClassClassAndLevel">
-				</h3>
+				<h4 id="characterClassClassAndLevel">
+				</h4>
 			</div>
 		</div>
 		<div id="groupTabModule" class="tabCS">
@@ -127,8 +127,21 @@
 							value=" ">
 					</div>
 					<div id="levelContainer" class="subsection">
-						<label for="levelName">Niveau </label>
+						<label for="levelName">Niveau</label>
 						<select id="levelName" class="input-text" name="levelName"></select>
+					</div>
+					<div id="classNameContainer2" class="subsection">
+						<label for="className2">Classe B</label>
+						<select id="className2" class="input-text" name="className2"
+							onchange="selectChangedContainer(this,'customClass')" data-custom-input="customClass2">
+						</select>
+						<input type="text" id="customClass2" class="input-text" name="customClass" style="display:none;"
+							value=" ">
+					</div>
+					
+					<div id="levelContainer2" class="subsection">
+						<label for="levelName2">Niveau B</label>
+						<select id="levelName2" class="input-text" name="levelName2"></select>
 					</div>
 					<div id="raceContainer" class="subsection">
 						<label for="race">Race</label>
@@ -154,6 +167,14 @@
 						</select>
 						<input type="text" id="customHistorique" class="input-text" name="customHistorique"
 							style="display:none;" value=" ">
+					</div>
+					<div class="subsection">	
+						<label for="versatileValue">Touche à tout</label>
+						<div class="toggle">
+							<input type="checkbox" id="versatileValue" class="toggle-checkbox"
+								onchange="toggleVersatile()">
+							<label for="versatileValue" class="toggle-switch"></label>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -275,6 +296,7 @@
 			<div id="skills" class="section">
 				<h2>Compétences</h2>
 			</div>
+
 		</div>
 		<div id="actionTab" class="meta-section tabContentCS">
 			<div id="information" class="section ">
@@ -300,11 +322,19 @@
 							</div>
 						</div>
 						<div class="container">
-							<label for="numberHitDice">Dés</label>
+							<label for="numberHitDice">Dés A</label>
 							<input type="number" id="numberHitDice" name="numberHitDice" value="0"
 								class="input-text input-numberHitDice">
-							<label for="hitDiceType">Type</label>
+							<label for="hitDiceType">Type A</label>
 							<select id="hitDiceType" name="hitDiceType" class="input-text input-hitDiceType">
+							</select>
+						</div>
+						<div class="container">
+							<label for="numberHitDice2">Dés B</label>
+							<input type="number" id="numberHitDice2" name="numberHitDice2" value="0"
+								class="input-text input-numberHitDice">
+							<label for="hitDiceType2">Type B</label>
+							<select id="hitDiceType2" name="hitDiceType2" class="input-text input-hitDiceType">
 							</select>
 						</div>
 					</div>
@@ -454,6 +484,8 @@
 							<h4>Perception passive</h4>
 							<p id="passivePerceptionValue" class="roundButton">10
 							<p>
+							<input type="number" id="perceptionOtherBonusValue" value="0" min="-10" max="10"
+							class="input-text  name=" perceptionOtherBonusValue">
 						</div>
 					</div>
 					<div id="save-against-death" class="subsection">
@@ -576,29 +608,53 @@
 		</div>
 		<div id="spellTab" class="meta-section-no-wrap tabContentCS">
 			<div class="spell-content section-20">
-				<div id="spellCaster">
+				<div id="spellCaster A">
 					<h2>Lanceur de sorts</h2>
-					<div class="flex-start-behavior spell-border">
+					<div class="flex-start-behavior spell-border  spellAbilityA">
 						<div id="spellCasterAbility" class="subsection">
-							<h4>Habilité de sort</h4>
+							<h4>Habilité de sort A</h4>
 							<select id="spellCastingAbilitySelect" class="input-text">
 								<option value=" ">Choisir</option>
 							</select>
 						</div>
-						<div id="difficultyClass" class="subsection">
-							<h4>Degré de difficulté</h4>
+						<div id="difficultyClass" class="subsection ">
+							<h4>Degré de difficulté A</h4>
 							<div class="roundButton" id="dcForSpell">8</div>
 							<label for="otherDcSpellBonus">Autre bonus</label>
 							<input id="otherDcSpellBonus" type="number" class="input-text" value="0" min="-10" max="10">
 						</div>
 						<div id="spellAttack" class="subsection">
-							<h4>Attaque de sort</h4>
+							<h4>Attaque de sort A</h4>
 							<div class="roundButton" id="spellAttackBonus" onclick="rollSpellAttack(this.textContent)">
 								+0</div>
 							<label for="otherSpellAttackBonus">Autre bonus</label>
 							<input id="otherSpellAttackBonus" type="number" class="input-text" value="0" min="-10"
 								max="10">
 						</div>
+					</div>
+					<div class="flex-start-behavior spell-border  spellAbilityB">
+						<div id="spellCasterAbility2" class="subsection">
+							<h4>Habilité de sort B</h4>
+							<select id="spellCastingAbilitySelect2" class="input-text">
+								<option value=" ">Choisir</option>
+							</select>
+						</div>
+						<div id="difficultyClass2" class="subsection">
+							<h4>Degré de difficulté B</h4>
+							<div class="roundButton" id="dcForSpell2">8</div>
+							<label for="otherDcSpellBonus2">Autre bonus</label>
+							<input id="otherDcSpellBonus2" type="number" class="input-text" value="0" min="-10" max="10">
+						</div>
+						<div id="spellAttack2" class="subsection">
+							<h4>Attaque de sort B</h4>
+							<div class="roundButton" id="spellAttackBonus2" onclick="rollSpellAttack(this.textContent)">
+								+0</div>
+							<label for="otherSpellAttackBonus2">Autre bonus</label>
+							<input id="otherSpellAttackBonus2" type="number" class="input-text" value="0" min="-10"
+								max="10">
+						</div>
+					</div>
+					<div class="flex-start-behavior spell-border"> 
 						<div id="spellFiltres" class="subsection">
 							<h4>Filtres</h4>
 							<label for="spellCasterSelect">Lanceur de sorts</label>

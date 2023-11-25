@@ -8,7 +8,7 @@ document.getElementById("sheetTabName").click();
 //document.getElementById("descriptionTabName").click();
 //document.getElementById("diceGeneratorTabName").click();
 
-const splashLength = 2500;
+const splashLength = 0;
 
 //------------------------- OUVERTURE -------------------------//
 // Prévenir la cache du css
@@ -166,9 +166,19 @@ for (let i = 1; i <= 20; i++) {
   level_selector.appendChild(option);
 }
 
+// Populate modifier dropdown with values from 1 to 20
+const level_selector2 = document.getElementById('levelName2');
+for (let i = 1; i <= 20; i++) {
+  const option = document.createElement('option');
+  option.value = i;
+  option.text = i;
+  level_selector2.appendChild(option);
+}
+
 // Set default value of select to 0 or 1
 modifier.value = 0;
 level_selector.value = 1;
+level_selector2.value = 1;
 
 // Function to generate options for select boxes
 function generateSelectedDiceNumbers() {
@@ -282,6 +292,7 @@ function saveCharacter(saveTo) {
     moneyInfo: {},
     featInfo: {},
     spellAttackInfo: {},
+    spellAttackInfo2: {},
     spellLevelInfo: {},
     spellBookInfo: {},
     characterImage: ""
@@ -319,22 +330,20 @@ function saveCharacter(saveTo) {
     };
   }
 
-
-// Save Saving Throws
 // Save Saving Throws
 for (const saveName of Object.values(ABILITY_NAMES)) {
   const proficientInput = document.getElementById(`${saveName}ProficientBonus`);
   const expertInput = document.getElementById(`${saveName}ExpertBonus`);
+  const otherSavingThrowBonusInput = document.getElementById(`${saveName}OtherSavingThrowBonusValue`) || 0;
 
   if(proficientInput && expertInput){
     characterData.savingThrows[saveName] = {
       proficient: proficientInput.checked || false,
-      expert: expertInput.checked || false
+      expert: expertInput.checked || false,
+      otherSavingThrowBonus: otherSavingThrowBonusInput.value
     };
-  }
+  } 
 }
-
-
 
   for (const inputId of INFORMATION_INPUTS) {
     const inputElement = document.getElementById(inputId);
@@ -550,7 +559,6 @@ for (const saveName of Object.values(ABILITY_NAMES)) {
     otherDcSpellBonus: document.getElementById("otherDcSpellBonus").value || "0",
     otherSpellAttackBonus: document.getElementById("otherSpellAttackBonus").value || "0"
   };
-  
 
   // save spellbook info
 
@@ -666,6 +674,7 @@ function openCharacter(loadFrom) {
     const moneyInfo = characterData.moneyInfo;
     const featInfo = characterData.featInfo;
     const spellAttackInfo = characterData.spellAttackInfo;
+    const spellAttackInfo2 = characterData.spellAttackInfo2;
     const spellLevelInfo = characterData.spellLevelInfo;
     const spellBookInfo = characterData.spellBookInfo;
 
@@ -727,11 +736,14 @@ function openCharacter(loadFrom) {
     for (const saveName of Object.values(ABILITY_NAMES)) {
       const proficientInput = document.getElementById(`${saveName}ProficientBonus`);
       const expertInput = document.getElementById(`${saveName}ExpertBonus`);
+      const otherSavingThrowBonusInput = document.getElementById(`${saveName}OtherSavingThrowBonusValue`);
 
-      if(savingThrows.hasOwnProperty(saveName)){
+      if(loadedSavingThrows.hasOwnProperty(saveName)){
         proficientInput.checked = savingThrows[saveName].proficient || false;
         expertInput.checked = savingThrows[saveName].expert || false;
+        otherSavingThrowBonusInput.value = loadedSavingThrows[saveName].otherSavingThrowBonus;
       }
+      
     }
 
 
@@ -740,11 +752,12 @@ function openCharacter(loadFrom) {
     if (characterData.hasOwnProperty('information')) {
       for (const inputId of INFORMATION_INPUTS) {
         const inputElement = document.getElementById(inputId);
-        if (characterData.information.hasOwnProperty(inputId)) {
-          if (inputId === "inspirationValue") {
-            inputElement.checked = characterData.information[inputId] === "oui";
+          if (characterData.information.hasOwnProperty(inputId)) {
+            if (inputId === "inspirationValue" || inputId === "versatileValue") {
+              inputElement.checked = characterData.information[inputId] === "oui";
           } else {
-            inputElement.value = characterData.information[inputId];
+              // Default case for other inputId values
+              inputElement.value = characterData.information[inputId];
           }
         }
       }
@@ -1167,6 +1180,12 @@ function openCharacter(loadFrom) {
     document.getElementById("otherDcSpellBonus").value = spellAttackInfo.otherDcSpellBonus;
     document.getElementById("otherSpellAttackBonus").value = spellAttackInfo.otherSpellAttackBonus;
 
+    if (spellAttackInfo2)  {
+      document.getElementById("spellCastingAbilitySelect2").value = spellAttackInfo2.spellCastingAbilitySelect2;
+      document.getElementById("otherDcSpellBonus2").value = spellAttackInfo2.otherDcSpellBonus2;
+      document.getElementById("otherSpellAttackBonus2").value = spellAttackInfo2.otherSpellAttackBonus2;
+    };
+
     // load spell info
 
     function loadSpellLevelInfo(level, spellLevel) {
@@ -1434,6 +1453,9 @@ function confirmReset() {
   const levelNameElement = document.getElementById("levelName");
   levelNameElement.value = 1;
 
+  const levelNameElement2 = document.getElementById("levelName2");
+  levelNameElement2.value = 1;
+
   APPARENCE_INPUTS.forEach((inputId) => {
     const inputElement = document.getElementById(inputId);
     inputElement.value = ' ';
@@ -1452,7 +1474,7 @@ function confirmReset() {
   // Reset information
   for (const inputId of INFORMATION_INPUTS) {
     const inputElement = document.getElementById(inputId);
-    if (inputId === "inspirationValue") {
+    if (inputId === "inspirationValue" || inputId === "versatileValue") {
       inputElement.checked = false;
     } else {
       inputElement.value = 0;
@@ -1526,6 +1548,10 @@ function confirmReset() {
   document.getElementById("spellCastingAbilitySelect").value = " ";
   document.getElementById("otherDcSpellBonus").value = "0";
   document.getElementById("otherSpellAttackBonus").value = "0";
+
+  document.getElementById("spellCastingAbilitySelect2").value = " ";
+  document.getElementById("otherDcSpellBonus2").value = "0";
+  document.getElementById("otherSpellAttackBonus2").value = "0";
 
 
   // reset spellbook info
@@ -1646,6 +1672,23 @@ function adjustCheckboxes(checkboxes) {
   });
 };
 
+function versatileBonus() {
+  let versatileBonus;
+
+  const versatileStatus = document.getElementById('versatileValue');
+
+  if (versatileStatus.checked) {
+    versatileBonus = 1;
+  } else {
+    versatileBonus = 0;
+  }
+  return versatileBonus;
+}
+
+
+
+
+
 function updateDependentElements() {
   resetAllCustomList()
   updateCharacterClassAndLevel();
@@ -1663,9 +1706,11 @@ function updateDependentElements() {
   calculateTotal();
   updateDcForSpell();
   updateSpellAttackBonus();
+  updateDcForSpell2();
+  updateSpellAttackBonus2();
   updateTotalWeight();
   updateCharacterName();
-
+  updatePassivePerception();
 }
 
 function updateCharacterName() {
@@ -1698,8 +1743,26 @@ function populateHitDiceSelect() {
   });
 }
 
+function populateHitDiceSelect2() {
+  const select = document.getElementById('hitDiceType2');
+
+  hitDiceTypes.forEach((hitDiceType2) => {
+    const option = document.createElement('option');
+    option.value = hitDiceType2.value;
+    option.textContent = hitDiceType2.text;
+
+    if (hitDiceType2.selected) {
+      option.selected = true;
+      option.className = 'input-hitDiceType';
+    }
+
+    select.appendChild(option);
+  });
+}
+
 // Call the function on page load
 document.addEventListener('DOMContentLoaded', populateHitDiceSelect);
+document.addEventListener('DOMContentLoaded', populateHitDiceSelect2);
 
 function populateAbilityAdjustmentSelect(abilityAdjustment) {
   const selectElement = document.getElementById(abilityAdjustment);
@@ -1743,7 +1806,30 @@ function populateClassSelect() {
   selectElement.appendChild(customOption);
 }
 
+function populateClassSelect2() {
+  const selectElement = document.getElementById('className2');
+
+  const chooseOption = document.createElement('option');
+  chooseOption.value = ' ';
+  chooseOption.textContent = 'Choisir';
+  selectElement.appendChild(chooseOption);
+
+  classOptions.forEach(option => {
+    const optionElement = document.createElement('option');
+    optionElement.value = option.value;
+    optionElement.textContent = option.text;
+    selectElement.appendChild(optionElement);
+  });
+
+  // Add custom option directly in the function
+  const customOption = document.createElement('option');
+  customOption.value = 'custom';
+  customOption.textContent = 'Classe personnalisée';
+  selectElement.appendChild(customOption);
+}
+
 window.addEventListener('DOMContentLoaded', populateClassSelect);
+window.addEventListener('DOMContentLoaded', populateClassSelect2);
 
 // Function to populate the religion select element
 function populateReligionSelect() {
@@ -1809,7 +1895,8 @@ function setAdvantage(buttonId) {
     } else {
       button.classList.remove('activated-button');
     }
-  }
+  };
+  updatePassivePerception();
 }
 
 function getAdvantage() {
@@ -1843,23 +1930,20 @@ function selectChanged(selectElement, textboxID) {
 const characterClassLevel = document.getElementById('characterClassClassAndLevel');
 const characterClassInput = document.getElementById('className');
 const characterLevelInput = document.getElementById('levelName');
+const characterClassInput2 = document.getElementById('className2');
+const characterLevelInput2 = document.getElementById('levelName2');
 const numberHitDiceInput = document.getElementById('numberHitDice');
+const numberHitDiceInput2 = document.getElementById('numberHitDice2');
 const hitDiceTypeInput = document.getElementById('hitDiceType');
+const hitDiceTypeInput2 = document.getElementById('hitDiceType2');
+
 
 function updateCharacterClassAndLevel() {
   const className = characterClassInput.value;
   const level = characterLevelInput.value;
-  
-  let classLevelText = `${className}`;
+  characterClassLevel.textContent = `${className} niveau ${level}`;
 
-  if (className !== " " && className !== "" && className !== null) {
-    classLevelText += ` niveau ${level}`;    
-  }
   const classHitDice = classesHitDice.find(c => c.name === className);
-  
-  
-  // affiche le texte
-  characterClassLevel.textContent = classLevelText;
 
   if (classHitDice) {
     hitDiceTypeInput.value = classHitDice.hitDice;
@@ -1868,13 +1952,16 @@ function updateCharacterClassAndLevel() {
     hitDiceTypeInput.value = 'd8';
     numberHitDiceInput.value = '0';
   }
-
-  
 }
 
+}
 characterClassInput.addEventListener('change', updateCharacterClassAndLevel);
 characterLevelInput.addEventListener('change', updateCharacterClassAndLevel);
 characterLevelInput.addEventListener('change', adjustAllSkillBonuses);
+
+characterClassInput2.addEventListener('change', updateCharacterClassAndLevel);
+characterLevelInput2.addEventListener('change', updateCharacterClassAndLevel);
+characterLevelInput2.addEventListener('change', adjustAllSkillBonuses);
 
 //------------  DESCRIPTIONS --------------//
 function populateRaceDropdown() {
@@ -1907,13 +1994,15 @@ const proficiency_bonus = document.getElementById('proficiencyBonusValue');
 
 // Function to update proficiency bonus value based on selected level
 function updateProficiencyBonus() {
-  const level = parseInt(level_selector.value);
-  const bonus = Math.ceil(level / 4) + 1;
+  const levels = parseInt(level_selector.value) + parseInt(level_selector2.value); ;
+  const bonus = Math.ceil(levels / 4) + 1;
   proficiency_bonus.textContent = '+' + bonus;
 }
 
 level_selector.addEventListener('change', updateProficiencyBonus);
 level_selector.addEventListener('change', adjustAllSkillBonuses);
+level_selector2.addEventListener('change', updateProficiencyBonus);
+level_selector2.addEventListener('change', adjustAllSkillBonuses);
 
 // Call update function initially to set default value
 updateProficiencyBonus();
@@ -1968,13 +2057,39 @@ function rollInitiative(initiativeName, initiativeBonus) {
 }
 
 //----------- PERCEPTION PASSIVE -----------//
-
 function updatePassivePerception() {
-  const baseValue = 10;
-  const perceptionBonusValue = parseInt(document.getElementById("perceptionBonusValue").textContent, 10);
-  const passivePerceptionValue = baseValue + perceptionBonusValue;
-  document.getElementById("passivePerceptionValue").textContent = passivePerceptionValue;
+  let baseValue = 10;
+  let perceptionBonus = baseValue;
+  const advantageState = getAdvantage();
+
+  if (advantageState === 'advantage') {
+    perceptionBonus += 5;
+  } else if (advantageState === 'disadvantage') {
+    perceptionBonus -= 5;
+  }
+
+  const perceptionOtherBonusValue = parseInt(document.getElementById("perceptionOtherBonusValue").value) || 0;
+  perceptionBonus += perceptionOtherBonusValue;
+
+  
+  const wisdomBonusScoreText = document.getElementById("wisdomBonusScore").textContent;
+  const wisdomBonusScore = parseInt(wisdomBonusScoreText) || 0;
+  
+  const proficiencyBonus = getProficiencyBonus();
+  const proficientInput = document.getElementById(`perceptionProficientBonus`);
+  const expertInput = document.getElementById(`perceptionExpertBonus`);
+
+  if (expertInput.checked) {
+    perceptionBonus += proficiencyBonus * 2;
+  } else if (proficientInput.checked) {
+    perceptionBonus += proficiencyBonus;
+  }
+
+  perceptionBonus += wisdomBonusScore
+
+  document.getElementById("passivePerceptionValue").textContent = perceptionBonus.toString();
 }
+
 
 //----------- SAUVEGARDE CONTRE LA MORT -----------//
 
@@ -2362,6 +2477,9 @@ function adjustSavingThrows(context, loadedData = null) {
     const saveId = englishSaveName + "SaveValue";
     saveButton.setAttribute('id', saveId);
 
+    const originalSaveButton = el.querySelector('p');
+    saveButton.setAttribute('onclick', originalSaveButton.getAttribute('onclick'));
+    
     const checkboxesDiv = document.createElement('div');
     checkboxesDiv.classList.add('skillCheckBoxes');
 
@@ -2370,23 +2488,48 @@ function adjustSavingThrows(context, loadedData = null) {
     proficientInput.id = `${englishSaveName}ProficientBonus`;
     proficientInput.className = 'proficientBonus';
     proficientInput.name = `${englishSaveName}ProficientBonus`;
-    proficientInput.addEventListener('change', () => {
-      calculateSavingThrowBonus(saveId, proficientInput, expertInput, proficiencyBonusValue, abilityBonusValue);
-    });
-
+   
     const expertInput = document.createElement('input');
     expertInput.type = 'checkbox';
     expertInput.id = `${englishSaveName}ExpertBonus`;
-    expertInput.className = 'expertBonus';
+    expertInput.className = 'expertBonusST';
+    // to prevent the checkbox to appear, it seams it's not a dnd5e rules for saving throws!
+    expertInput.style.display = 'none';
     expertInput.name = `${englishSaveName}ExpertBonus`;
-    expertInput.addEventListener('change', () => {
-      calculateSavingThrowBonus(saveId, proficientInput, expertInput, proficiencyBonusValue, abilityBonusValue);
+
+    const otherBonusInput = document.createElement('input');
+    otherBonusInput.type = 'number';
+    otherBonusInput.id = `${englishSaveName}OtherSavingThrowBonusValue`;
+    otherBonusInput.className = 'input-text';
+    otherBonusInput.setAttribute('name', `${englishSaveName}OtherSavingThrowBonusValue`);
+    otherBonusInput.setAttribute('value', '0');
+    otherBonusInput.setAttribute('min', '-10');
+    otherBonusInput.setAttribute('max', '10');
+    otherBonusInput.style.cssText = 'margin-left: 10px; font-size: 0.8em; width: 50px; height: 20px;';
+
+    proficientInput.addEventListener('change', () => {
+      calculateSavingThrowBonus(saveId, proficientInput, expertInput, proficiencyBonusValue, abilityBonusValue, parseInt(otherBonusInput.value) || 0);
     });
+
+    expertInput.addEventListener('change', () => {
+      calculateSavingThrowBonus(saveId, proficientInput, expertInput, proficiencyBonusValue, abilityBonusValue, parseInt(otherBonusInput.value) || 0);
+    });
+
+    otherBonusInput.addEventListener('input', () => {
+      calculateSavingThrowBonus(saveId, proficientInput, expertInput, proficiencyBonusValue, abilityBonusValue, parseInt(otherBonusInput.value) || 0);
+    });
+
+    // Find the label for the expert bonus to insert the new input after it
+    const expertLabel = el.querySelector(`label[for='${englishSaveName}ExpertBonus']`);
+    if (expertLabel) {
+        expertLabel.insertAdjacentElement('afterend', otherBonusInput);
+    }
 
     // Fetch existing checkbox state or set according to class/level
     if (context === 'classChange') {
       proficientInput.checked = isProficient;
       expertInput.checked = false;
+      otherBonusInput.value = 0; // Set default value
     } else if (context === 'abilityChange') {
       const existingProficientCheckbox = el.querySelector(`#${englishSaveName}ProficientBonus`);
       const existingExpertCheckbox = el.querySelector(`#${englishSaveName}ExpertBonus`);
@@ -2395,31 +2538,38 @@ function adjustSavingThrows(context, loadedData = null) {
     } else if (context === 'loadCharacter' && loadedSavingThrows) {
       proficientInput.checked = loadedSavingThrows[englishSaveName].proficient || false;
       expertInput.checked = loadedSavingThrows[englishSaveName].expert || false;
-    } else {
+      otherBonusInput.value = loadedSavingThrows[englishSaveName].otherSavingThrowBonus || 0; // Use loaded value
+    } else { 
       // Default case
       proficientInput.checked = false;
       expertInput.checked = false;
+      otherBonusInput.value = 0; // Set default value
+
     }
-
-
+    
     checkboxesDiv.appendChild(proficientInput);
     checkboxesDiv.appendChild(document.createTextNode('Maitrise'));
     checkboxesDiv.appendChild(expertInput);
-    checkboxesDiv.appendChild(document.createTextNode('Expert'));
+    // to prevent the label to appear
+    //checkboxesDiv.appendChild(document.createTextNode('Expert'));
+    checkboxesDiv.appendChild(otherBonusInput);
 
     el.innerHTML = '';
     el.appendChild(document.createElement('h4')).textContent = saveName;
     el.appendChild(saveButton);
     el.appendChild(checkboxesDiv);
 
-    calculateSavingThrowBonus(saveId, proficientInput, expertInput, proficiencyBonusValue, abilityBonusValue);
-    
+    calculateSavingThrowBonus(saveId, proficientInput, expertInput, proficiencyBonusValue, abilityBonusValue, parseInt(otherBonusInput.value) || 0);
+
     applySaveButtonColors();
+
   });
-}
+
+};
 
 
-function calculateSavingThrowBonus(saveId, proficientInput, expertInput, proficiencyBonusValue, abilityBonusValue) {
+
+function calculateSavingThrowBonus(saveId, proficientInput, expertInput, proficiencyBonusValue, abilityBonusValue, otherBonusValue) {
   let totalSaveBonus;
 
   if (expertInput.checked) {
@@ -2430,6 +2580,8 @@ function calculateSavingThrowBonus(saveId, proficientInput, expertInput, profici
   } else {
     totalSaveBonus = abilityBonusValue;
   }
+
+  totalSaveBonus += otherBonusValue;
 
   // Update the displayed saving throw bonus
   const saveButton = document.getElementById(saveId);
@@ -2538,11 +2690,6 @@ for (let i = 0; i < ABILITY_NAMES.length; i++) {
   });
 }
 
-
-
-
-
-
 //----------- SKILLS -----------//
 
 function adjustSkillBonus(skillId) {
@@ -2613,7 +2760,8 @@ function addCharacteristicsToSkills() {
   document.getElementById("perceptionExpertBonus").addEventListener("change", updatePassivePerception);
   document.getElementById("wisdomScore").addEventListener("change", updatePassivePerception);
   document.getElementById("levelName").addEventListener("change", updatePassivePerception);
-
+  document.getElementById("perceptionOtherBonusValue").addEventListener("change", updatePassivePerception);
+  
 }
 
 window.addEventListener('load', addCharacteristicsToSkills);
@@ -2743,6 +2891,22 @@ function toggleInspiration() {
     button.value = 'non';
   }
 }
+
+function toggleVersatile() {
+  const button = document.getElementById('versatileValue');
+
+  if (versatileValue.checked) {
+    button.value = 'oui';
+  } else {
+    button.value = 'non';
+  };
+  alert(button.value);
+
+  let result = versatileBonus();
+
+  alert(result);
+  
+};
 
 //----------- Déplacement speed vitesse -----------//
 
@@ -2896,8 +3060,20 @@ function populateSpellCastingAbilities() {
   });
 }
 
+function populateSpellCastingAbilities2() {
+  const spellCastingAbilitySelect2 = document.getElementById('spellCastingAbilitySelect2');
+  abilityOptions.forEach((option) => {
+    const opt = document.createElement('option');
+    opt.value = option.value;
+    opt.innerHTML = option.text;
+    spellCastingAbilitySelect2.appendChild(opt);
+  });
+}
+
 window.addEventListener('load', () => {
   populateSpellCastingAbilities();
+  populateSpellCastingAbilities2();
+
 });
 
 function populateSpellCasters() {
@@ -2996,6 +3172,19 @@ function updateDcForSpell() {
   document.getElementById('dcForSpell').innerHTML = dcForSpellValue;
 }
 
+
+function updateDcForSpell2() {
+  const ability = document.getElementById('spellCastingAbilitySelect2').value;
+  const abilityBonus = getAbilityScoreBonus(ability);
+  const proficiencyBonus = getProficiencyBonus();
+  const otherDcSpellBonus2 = parseInt(document.getElementById('otherDcSpellBonus2').value);
+
+  const dcForSpellValue = 8 + abilityBonus + proficiencyBonus + otherDcSpellBonus2;
+  document.getElementById('dcForSpell2').innerHTML = dcForSpellValue;
+}
+
+
+
 function updateSpellAttackBonus() {
   const ability = document.getElementById('spellCastingAbilitySelect').value;
   const abilityBonus = getAbilityScoreBonus(ability);
@@ -3012,22 +3201,54 @@ function updateSpellAttackBonus() {
   document.getElementById('spellAttackBonus').innerHTML = displayValue;
 }
 
+function updateSpellAttackBonus2() {
+  const ability = document.getElementById('spellCastingAbilitySelect2').value;
+  const abilityBonus = getAbilityScoreBonus(ability);
+  const proficiencyBonus = getProficiencyBonus();
+  const otherSpellAttackBonus2 = parseInt(document.getElementById('otherSpellAttackBonus2').value);
+
+  const spellAttackBonusValue2 = abilityBonus + proficiencyBonus + otherSpellAttackBonus2;
+
+  let displayValue = spellAttackBonusValue2;
+  if (spellAttackBonusValue2 > 0) {
+    displayValue = "+" + spellAttackBonusValue2;
+  }
+
+  document.getElementById('spellAttackBonus2').innerHTML = displayValue;
+}
+
 document.getElementById('spellCastingAbilitySelect').addEventListener('change', () => {
   updateDcForSpell();
   updateSpellAttackBonus();
 });
+
+document.getElementById('spellCastingAbilitySelect2').addEventListener('change', () => {
+  updateDcForSpell2();
+  updateSpellAttackBonus2();
+});
+
 document.getElementById('otherDcSpellBonus').addEventListener('change', updateDcForSpell);
 document.getElementById('otherSpellAttackBonus').addEventListener('change', updateSpellAttackBonus);
+
+document.getElementById('otherDcSpellBonus2').addEventListener('change', updateDcForSpell2);
+document.getElementById('otherSpellAttackBonus2').addEventListener('change', updateSpellAttackBonus2);
 
 document.getElementById('levelName').addEventListener('change', () => {
   updateDcForSpell();
   updateSpellAttackBonus();
 });
 
+document.getElementById('levelName2').addEventListener('change', () => {
+  updateDcForSpell2();
+  updateSpellAttackBonus2();
+});
+
 abilityOptions.forEach((abilityOption) => {
   document.getElementById(`${abilityOption.value}Score`).addEventListener('change', () => {
     updateDcForSpell();
     updateSpellAttackBonus();
+    updateDcForSpell2();
+    updateSpellAttackBonus2();
   });
 });
 
@@ -3214,16 +3435,44 @@ function getSpellSectionHTML(spellUUID, spellURL) {
           <input type="checkbox" id="spellReady-${spellUUID}" class="toggle-checkbox">
             <span class="toggle-switch"></span>
         </label>
-        </div>
       </div>
-    </div>
-    <div class="container">
-      <div class="input-group">
+      <div class="wrapper">
         <label>Détails</label>
         <label class="toggle">
           <input type="checkbox" id="spellDetails-${spellUUID}" class="toggle-checkbox" onchange="toggleSpellDetails('${spellUUID}')">
             <span class="toggle-switch"></span>
         </label>
+      </div>
+
+    </div>
+    
+    </div>
+    <div class="container">
+      <div class="input-group">
+        <div class="wrapper">
+          <label for="spellConcentration-${spellUUID}">Concentration</label>
+          <label class="toggle">
+            <input type="checkbox" id="spellConcentration-${spellUUID}" class="toggle-checkbox">
+              <span class="toggle-switch"></span>
+          </label>
+        </div>
+      </div>
+      <div class="input-group">
+        <div class="wrapper">
+          <label for="spellRituel-${spellUUID}">Rituel</label>
+          <label class="toggle">
+            <input type="checkbox" id="spellRituel-${spellUUID}" class="toggle-checkbox">
+              <span class="toggle-switch"></span>
+          </label>
+        </div>
+      </div>
+      <div class="container">
+        <div class="input-group">
+          <label for="spellURL-${spellUUID}">Lien</label>
+          <button id="spellURL-${spellUUID}" class="url-button" onclick="openSpellURL(this)" value="${spellURL}">
+          <span class="iconify" data-icon="mdi:link-box-variant-outline"></span>
+          </button>
+        </div>
       </div>
     </div>
     <div id="spellDetail-${spellUUID}" class="hidden">
@@ -3270,33 +3519,6 @@ function getSpellSectionHTML(spellUUID, spellURL) {
           <label for="spellCible-${spellUUID}">Cible</label>
           <input type="text" id="spellCible-${spellUUID}" class="input-text" value=" ">
         </div>
-      </div>
-      <div class="container">
-        <div class="input-group">
-          <div class="wrapper">
-            <label for="spellConcentration-${spellUUID}">Concentration</label>
-            <label class="toggle">
-              <input type="checkbox" id="spellConcentration-${spellUUID}" class="toggle-checkbox">
-                <span class="toggle-switch"></span>
-            </label>
-          </div>
-        </div>
-        <div class="input-group">
-          <div class="wrapper">
-            <label for="spellRituel-${spellUUID}">Rituel</label>
-            <label class="toggle">
-              <input type="checkbox" id="spellRituel-${spellUUID}" class="toggle-checkbox">
-                <span class="toggle-switch"></span>
-            </label>
-          </div>
-        </div>
-        <div class="input-group">
-          <label for="spellURL-${spellUUID}">Lien</label>
-          <button id="spellURL-${spellUUID}" class="url-button" onclick="openSpellURL(this)" value="${spellURL}">
-          <span class="iconify" data-icon="mdi:link-box-variant-outline"></span>
-          </button>
-        </div>
-
       </div>
       <div class="container">
         <div class="input-group">
