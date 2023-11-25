@@ -1954,7 +1954,6 @@ function updateCharacterClassAndLevel() {
   }
 }
 
-
 characterClassInput.addEventListener('change', updateCharacterClassAndLevel);
 characterLevelInput.addEventListener('change', updateCharacterClassAndLevel);
 characterLevelInput.addEventListener('change', adjustAllSkillBonuses);
@@ -2013,7 +2012,9 @@ function adjustInitiative() {
   updateAbilityModifier("dexterity")
   const dexterityBonusScore = parseInt(document.getElementById("dexterityBonusScore").textContent);
   const otherInitiativeBonus = parseInt(document.getElementById("otherInitiativeBonus").value) || 0;
-  const totalInitiativeBonus = dexterityBonusScore + otherInitiativeBonus;
+  const versatileBonusValue  = versatileBonus();
+  const totalInitiativeBonus = dexterityBonusScore + otherInitiativeBonus + versatileBonusValue;
+  
   const initiativeBonusValue = totalInitiativeBonus >= 0 ? `+${totalInitiativeBonus}` : totalInitiativeBonus.toString();
   document.getElementById("initiativeBonusValue").textContent = initiativeBonusValue;
 }
@@ -2071,6 +2072,8 @@ function updatePassivePerception() {
   const perceptionOtherBonusValue = parseInt(document.getElementById("perceptionOtherBonusValue").value) || 0;
   perceptionBonus += perceptionOtherBonusValue;
 
+  const versatileBonusValue  = versatileBonus();
+  perceptionBonus += versatileBonusValue
   
   const wisdomBonusScoreText = document.getElementById("wisdomBonusScore").textContent;
   const wisdomBonusScore = parseInt(wisdomBonusScoreText) || 0;
@@ -2701,6 +2704,8 @@ function adjustSkillBonus(skillId) {
   const expertInput = skillSubsection.querySelector(`#${skillId}ExpertBonus`);
   const skillValueDisplay = skillSubsection.querySelector('.roundButton');
 
+  const versatileBonusValue  = versatileBonus();
+
   let newSkillBonus = 0;
 
   if (expertInput.checked) {
@@ -2708,6 +2713,9 @@ function adjustSkillBonus(skillId) {
     proficientInput.checked = true;
   } else if (proficientInput.checked) {
     newSkillBonus += proficiencyBonus;
+  } else {
+    // Add versatileBonusValue only if not proficient
+    newSkillBonus += versatileBonusValue;
   }
 
   // Get the corresponding ability bonus
@@ -2728,7 +2736,8 @@ function adjustSkillBonus(skillId) {
     newSkillBonus += parseInt(abilityBonus);
   }
 
-  skillValueDisplay.textContent = newSkillBonus > 0 ? `+${newSkillBonus}` : (newSkillBonus === 0 ? "+0" : newSkillBonus);
+
+  skillValueDisplay.textContent = newSkillBonus > 0 ? `+${newSkillBonus}` : (newSkillBonus === 0 ? "+0" : newSkillBonus );
 }
 
 const abilityBonusElements = document.querySelectorAll('.ability-bonus');
@@ -2899,14 +2908,19 @@ function toggleVersatile() {
     button.value = 'oui';
   } else {
     button.value = 'non';
-  };
-  alert(button.value);
-
-  let result = versatileBonus();
-
-  alert(result);
-  
+  };  
 };
+
+let versatileInputElement = document.getElementById('versatileValue');
+
+if (versatileInputElement) {
+    versatileInputElement.addEventListener('change', function() {
+
+      adjustAllSkillBonuses();            
+      adjustInitiative();
+      updatePassivePerception();
+    });
+} 
 
 //----------- Déplacement speed vitesse -----------//
 
