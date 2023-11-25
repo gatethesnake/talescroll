@@ -1954,7 +1954,7 @@ function updateCharacterClassAndLevel() {
   }
 }
 
-}
+
 characterClassInput.addEventListener('change', updateCharacterClassAndLevel);
 characterLevelInput.addEventListener('change', updateCharacterClassAndLevel);
 characterLevelInput.addEventListener('change', adjustAllSkillBonuses);
