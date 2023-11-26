@@ -8,7 +8,7 @@ document.getElementById("sheetTabName").click();
 //document.getElementById("descriptionTabName").click();
 //document.getElementById("diceGeneratorTabName").click();
 
-const splashLength = 2500;
+const splashLength = 25;
 
 //------------------------- OUVERTURE -------------------------//
 // Prévenir la cache du css
@@ -547,7 +547,7 @@ for (const saveName of Object.values(ABILITY_NAMES)) {
 
 
   // Save money values
-  for (const currencyKey of Object.keys(fondorCurrencies)) {
+  for (const currencyKey of Object.keys(Currencies)) {
     const input = document.getElementById(`money-${currencyKey}`);
     characterData.moneyInfo[currencyKey] = parseInt(input.value, 10);
   }
@@ -1169,7 +1169,7 @@ function openCharacter(loadFrom) {
 
 
     // Load money values
-    for (const currencyKey of Object.keys(fondorCurrencies)) {
+    for (const currencyKey of Object.keys(Currencies)) {
       const input = document.getElementById(`money-${currencyKey}`);
       input.value = moneyInfo[currencyKey] || 0;
     }
@@ -1538,7 +1538,7 @@ function confirmReset() {
 
   // Reset money values
 
-  for (const currencyKey of Object.keys(fondorCurrencies)) {
+  for (const currencyKey of Object.keys(Currencies)) {
     const input = document.getElementById(`money-${currencyKey}`);
     input.value = 0;
   }
@@ -1989,14 +1989,18 @@ characterLevelInput2.addEventListener('change', adjustAllSkillBonuses);
 function populateRaceDropdown() {
   const raceSelect = document.getElementById("race");
 
+  raceSelect.innerHTML = '';
+
+
   // Add "Choisir une race" at the beginning
   const firstOption = document.createElement("option");
   firstOption.value = " ";
   firstOption.text = "Choisir";
   raceSelect.add(firstOption);
 
-  // Add other race options from the constant array
-  raceOptions.forEach((optionValue) => {
+  const optionsToAdd = dnd5eRulesBackground.checked ? dnd5eRaceOptions : raceOptions;
+
+  optionsToAdd.forEach(optionValue => {
     const option = document.createElement("option");
     option.value = optionValue;
     option.text = optionValue;
@@ -2944,6 +2948,18 @@ if (versatileInputElement) {
       updatePassivePerception();
     });
 } 
+
+
+function toggleDnd5eRulesBackground() {
+  
+  populateRaceDropdown();
+
+    
+};
+
+
+
+
 
 //----------- Déplacement speed vitesse -----------//
 
@@ -4719,7 +4735,7 @@ function generateMoneyInputs() {
   const moneyInputsContainer = document.createElement("div");
   moneyInputsContainer.className = "container money-inputs-container";
 
-  for (const [currencyKey, currency] of Object.entries(fondorCurrencies)) {
+  for (const [currencyKey, currency] of Object.entries(Currencies)) {
     const moneyInputWrapper = document.createElement("div");
     moneyInputWrapper.className = "wrapper  money-input-wrapper";
 
@@ -4830,7 +4846,7 @@ function calculateTotal() {
   const treasureTotalInput = document.getElementById("TreasureTotal");
   let total = 0;
 
-  for (const [currencyKey, currency] of Object.entries(fondorCurrencies)) {
+  for (const [currencyKey, currency] of Object.entries(Currencies)) {
     const input = document.getElementById(`money-${currencyKey}`);
     const value = parseInt(input.value) || 0;
     total += value * currency.conversion_rate;

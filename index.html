@@ -31,13 +31,13 @@
 	</div>
 	<div id="site-top">
 		<div id="header">
-				<div class="imageContainer">
-					<img src="img/talescroll.png" alt="TaleScroll logo" id="logo" onclick="saveAll()">
-					<div class="circle">
-					</div>
-					<div id="save-button" class="iconify" data-icon="fluent:save-16-regular" onclick="saveAll()">
-					</div>
+			<div class="imageContainer">
+				<img src="img/talescroll.png" alt="TaleScroll logo" id="logo" onclick="saveAll()">
+				<div class="circle">
 				</div>
+				<div id="save-button" class="iconify" data-icon="fluent:save-16-regular" onclick="saveAll()">
+				</div>
+			</div>
 			<div id="menu">
 				<span class="iconify" data-icon="game-icons:hamburger-menu"></span>
 				<div id="menu-content" class="menu-content">
@@ -72,7 +72,6 @@
 					</div>
 				</div>
 			</div>
-			
 			<div id="titre">
 				<h1 id="character-title">
 					TaleScroll
@@ -83,6 +82,12 @@
 			<div id="perso">
 				<h4 id="characterClassClassAndLevel">
 				</h4>
+				<label for="dnd5eRulesBackground">Arrière-plan dnd5e</label>
+				<div class="toggle">
+					<input type="checkbox" id="dnd5eRulesBackground" class="toggle-checkbox"
+						onchange="toggleDnd5eRulesBackground()">
+					<label for="dnd5eRulesBackground" class="toggle-switch"></label>
+				</div>
 			</div>
 		</div>
 		<div id="groupTabModule" class="tabCS">
@@ -172,12 +177,19 @@
 						<input type="text" id="customHistorique" class="input-text" name="customHistorique"
 							style="display:none;" value=" ">
 					</div>
-					<div class="subsection">	
-						<label for="versatileValue">Touche à tout</label>
-						<div class="toggle">
-							<input type="checkbox" id="versatileValue" class="toggle-checkbox"
-								onchange="toggleVersatile()">
-							<label for="versatileValue" class="toggle-switch"></label>
+					<div class="subsection">
+						<div class="container">	
+							<div class="wrapper">
+								<label for="versatileValue">Touche à tout</label>
+								<div class="toggle">
+									<input type="checkbox" id="versatileValue" class="toggle-checkbox"
+										onchange="toggleVersatile()">
+									<label for="versatileValue" class="toggle-switch"></label>
+								</div>
+							</div>
+							<div class="wrapper">
+								
+							</div>
 						</div>
 					</div>
 				</div>

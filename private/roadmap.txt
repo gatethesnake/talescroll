@@ -1,8 +1,8 @@
 TaleScroll road map
 
 - v2.2
-	- TaleScroll : make a switch "dnd5e / Fondor
-		-  race, langague, currency
+	- TaleScroll : make a switch "dnd5e 
+		-  langague, currency
 		
 	- dnd5e
 		- table des armes
