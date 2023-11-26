@@ -8,7 +8,7 @@ document.getElementById("sheetTabName").click();
 //document.getElementById("descriptionTabName").click();
 //document.getElementById("diceGeneratorTabName").click();
 
-const splashLength = 0;
+const splashLength = 2500;
 
 //------------------------- OUVERTURE -------------------------//
 // Prévenir la cache du css
