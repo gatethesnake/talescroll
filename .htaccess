@@ -44,6 +44,6 @@ Options -Indexes
 <IfModule mod_rewrite.c>
     RewriteEngine On
     RewriteCond %{HTTP_REFERER} !^$
-    RewriteCond %{HTTP_REFERER} !^https?://fondor\.galasoft\.ca/.*$ [NC]
+    RewriteCond %{HTTP_REFERER} !^https?://talescroll\.galasoft\.ca/.*$ [NC]
     RewriteRule \.(jpg|jpeg|png|gif)$ - [NC,F,L]
 </IfModule>
