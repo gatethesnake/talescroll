@@ -1716,7 +1716,7 @@ function updateDependentElements() {
 function updateCharacterName() {
   const characterNameInput = document.getElementById('characterName');
   characterTitle.textContent = characterNameInput.value;
-  let title = "Val de Fondor";
+  let title = "TaleScroll";
   if (characterNameInput.value && characterNameInput.value.trim() !== "") {
     title = `${characterNameInput.value} - ${title}`;
   }
@@ -2366,7 +2366,7 @@ const characterNameInput = document.getElementById('characterName');
 
 characterNameInput.addEventListener('input', () => {
   if (characterNameInput.value === "" || characterNameInput.value === " " || characterNameInput.value === null) {
-    characterTitle.textContent = "Val de Fondor";
+    characterTitle.textContent = "TaleScroll";
   } else {
     characterTitle.textContent = characterNameInput.value;
   }
@@ -2374,9 +2374,9 @@ characterNameInput.addEventListener('input', () => {
 
 characterNameInput.addEventListener('input', function() {
   if (this.value && this.value.trim() !== '') {
-    document.title = `${this.value} - Val de Fondor`;
+    document.title = `${this.value} - TaleScroll`;
   } else {
-    document.title = 'Val de Fondor';
+    document.title = 'TaleScroll';
   }
 });
 

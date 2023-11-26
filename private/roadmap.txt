@@ -1,9 +1,13 @@
-Fondor road map
+TaleScroll road map
 
 - v2.2
+	- TaleScroll : make a switch "dnd5e / Fondor
+		- religion, alignement, race, langague, currency
+		
 	- dnd5e
-		- short or long rest Reset.
 		- table des armes
+		- short or long rest Reset.
+		- spell slot calculator
 		- objets magiques
 				 https://www.aidedd.org/dnd-filters/objets-magiques.php
 		- skill personnalisables
@@ -13,4 +17,4 @@ Fondor road map
         - 3D : d4 à d20, d2,d3, d100 !?
         - arrête un dé sur la bonne face
         - Option Roll  >talespire >on screen
-	- Tale-GPT : remove reference to Val de Fondor, en anglais, new repo public
+	
