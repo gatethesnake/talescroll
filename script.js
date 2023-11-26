@@ -1857,6 +1857,29 @@ function populateReligionSelect() {
 // Event listener to run the function on page load
 window.addEventListener('DOMContentLoaded', populateReligionSelect);
 
+// Function to populate the alignement select element
+function populateAlignementSelect() {
+  const selectElement = document.getElementById('alignement');
+
+  alignmentOptions.forEach(option => {
+    const optionElement = document.createElement('option');
+    optionElement.value = option.value;
+    optionElement.textContent = option.text;
+
+    // Set default option to "Neutre"
+    if (option.value === "Neutre") {
+      optionElement.selected = true;
+    }
+    selectElement.appendChild(optionElement);
+  });
+
+}
+
+// Event listener to run the function on page load
+window.addEventListener('DOMContentLoaded', populateAlignementSelect);
+
+
+
 // Function to populate the background select element
 function populateBackgroundSelect() {
   const selectElement = document.getElementById('historique');

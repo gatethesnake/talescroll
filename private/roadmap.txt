@@ -2,7 +2,7 @@ TaleScroll road map
 
 - v2.2
 	- TaleScroll : make a switch "dnd5e / Fondor
-		- religion, alignement, race, langague, currency
+		-  race, langague, currency
 		
 	- dnd5e
 		- table des armes

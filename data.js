@@ -41,6 +41,7 @@ const DESCRIPTION_INPUTS = [
   "customRace",
   "religion",
   "customReligion",
+  "alignement",
   "historique",
   "customHistorique"
 ];
@@ -11950,17 +11951,18 @@ const dnd5eRaceOptions = [
   "Yuan-ti Sang Pur"
 ];
 
-const dnd5eAlignmentOptions = [
-  "Loyal Bon",
-  "Neutre Bon",
-  "Chaotique Bon",
-  "Loyal Neutre",
-  "Neutre",
-  "Chaotique Neutre",
-  "Loyal Mauvais",
-  "Neutre Mauvais",
-  "Chaotique Mauvais"
+const alignmentOptions = [
+  { value: "Loyal-Bon", text: "Loyal Bon" },
+  { value: "Neutre-Bon", text: "Neutre Bon" },
+  { value: "Chaotique-Bon", text: "Chaotique Bon" },
+  { value: "Loyal-Neutre", text: "Loyal Neutre" },
+  { value: "Neutre", text: "Neutre" },
+  { value: "Chaotique-Neutre", text: "Chaotique Neutre" },
+  { value: "Loyal-Mauvais", text: "Loyal Mauvais" },
+  { value: "Neutre-Mauvais", text: "Neutre Mauvais" },
+  { value: "Chaotique-Mauvais", text: "Chaotique Mauvais" }
 ];
+
 
 const dnd5eLanguageOptions = [
   "Commun",
