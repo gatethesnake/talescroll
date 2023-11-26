@@ -5145,3 +5145,99 @@ function loadDefaultImage() {
   const imgElement = document.getElementById('preview');
   imgElement.src = base64DefaultCharacterPicture;
 }
+
+
+///spell slot calcultator in progress
+// Spell slot matrix for full casters (wizard, cleric, druid, sorcerer, bard)
+// Each row corresponds to the character level (1-20)
+// Each column is the number of spell slots from level 0 (cantrips) to level 9
+// For simplicity, only the first few levels are shown here
+const fullCasterMatrix = [
+  // Lv0, Lv1, Lv2, Lv3, Lv4, Lv5, Lv6, Lv7, Lv8, Lv9
+  [0, 2, 0, 0, 0, 0, 0, 0, 0, 0], // Level 1
+  [0, 3, 0, 0, 0, 0, 0, 0, 0, 0], // Level 2
+  // ... fill in the rest according to the Player's Handbook
+];
+
+// Artificer has a unique spell slot progression
+const artificerMatrix = [
+  // Similar structure as above
+  // ... fill in according to the Artificer spell slot progression
+];
+
+// Function to calculate effective spellcasting level
+function calculateEffectiveLevel(classes) {
+  let effectiveLevel = 0;
+
+  for (const [className, level] of Object.entries(classes)) {
+      switch (className) {
+          case 'wizard':
+          case 'cleric':
+          case 'druid':
+          case 'sorcerer':
+          case 'bard':
+              effectiveLevel += level;
+              break;
+          case 'paladin':
+          case 'ranger':
+              effectiveLevel += Math.floor(level / 2);
+              break;
+          case 'arcaneTrickster':
+          case 'eldritchKnight':
+              effectiveLevel += Math.floor(level / 3);
+              break;
+          case 'artificer':
+              effectiveLevel += Math.ceil(level / 2);
+              break;
+      }
+  }
+
+  return effectiveLevel;
+}
+
+// Function to get spell slots for a class
+function getSpellSlotsForClass(className, level) {
+  let matrix = fullCasterMatrix; // Default to full caster
+
+  if (className === 'artificer') {
+      matrix = artificerMatrix;
+  }
+
+  return matrix[level - 1] || [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+}
+
+// Function to calculate spell slots for multiclassing
+function calculateSpellSlots(classes) {
+  let effectiveLevel = calculateEffectiveLevel(classes);
+
+  // Initialize spell slots array
+  let totalSlots = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+
+  // For each class, add its contribution to the spell slots
+  for (const [className, level] of Object.entries(classes)) {
+      let classSlots = getSpellSlotsForClass(className, level);
+      for (let i = 0; i < totalSlots.length; i++) {
+          totalSlots[i] += classSlots[i];
+      }
+  }
+
+  // Limit the total slots by the effective level
+  let limitedSlots = getSpellSlotsForClass('fullCaster', effectiveLevel);
+  for (let i = 0; i < totalSlots.length; i++) {
+      totalSlots[i] = Math.min(totalSlots[i], limitedSlots[i]);
+  }
+
+  return totalSlots;
+}
+
+/*
+// Example usage
+let characterClasses = {
+  wizard: 3,
+  paladin: 2,
+  artificer: 2
+};
+
+let slots = calculateSpellSlots(characterClasses);
+console.log(slots);
+*/

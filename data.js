@@ -130,8 +130,6 @@ const classOptions = [
   { value: 'Incantateur', text: 'Incantateur' },
 ];
 
-
-
 const raceOptions = [
   "Sylvestre",
   "Montagnais des cîmes",
@@ -221,7 +219,7 @@ const classesHitDice = [
   { name: 'Roublard', hitDice: 'd8' },
   { name: 'Compagnon d\'armes', hitDice: 'd8' },
   { name: 'Expert', hitDice: 'd8' },
-  { name: 'IncantateurK', hitDice: 'd8' },
+  { name: 'Incantateur', hitDice: 'd8' },
 ];
 
 const spellCasters = [
@@ -11841,6 +11839,239 @@ const spells = [
   '#DDA0DD', // plum
   '#87CEFA', // lightskyblue
 ];
+
+const weapons = [
+  { name: 'Bâton', englishName: 'Quarterstaff', damage: '1d6 contondant', weight: '2 kg', price: '2 pa', properties: 'Polyvalente (1d8)' },
+  { name: 'Dague', englishName: 'Dagger', damage: '1d4 perforant', weight: '500 g', price: '2 po', properties: 'Finesse, légère, lancer (portée 6 m/18 m)' },
+  { name: 'Gourdin', englishName: 'Club', damage: '1d4 contondant', weight: '1 kg', price: '1 pa', properties: 'Légère' },
+  { name: 'Hachette', englishName: 'Handaxe', damage: '1d6 tranchant', weight: '1 kg', price: '5 po', properties: 'Légère, lancer (portée 6 m/18 m)' },
+  { name: 'Javeline', englishName: 'Javelin', damage: '1d6 perforant', weight: '1 kg', price: '5 pa', properties: 'Lancer (portée 9 m/36 m)' },
+  { name: 'Lance', englishName: 'Spear', damage: '1d6 perforant', weight: '1.5 kg', price: '1 po', properties: 'Lancer (portée 6 m/18 m), polyvalente (1d8)' },
+  { name: 'Marteau léger', englishName: 'Light hammer', damage: '1d4 contondant', weight: '1 kg', price: '2 po', properties: 'Légère, lancer (portée 6 m/18 m)' },
+  { name: 'Masse d\'armes', englishName: 'Mace', damage: '1d6 contondant', weight: '2 kg', price: '5 po', properties: '-' },
+  { name: 'Massue', englishName: 'Greatclub', damage: '1d8 contondant', weight: '5 kg', price: '2 pa', properties: 'À deux mains' },
+  { name: 'Serpe', englishName: 'Sickle', damage: '1d4 tranchant', weight: '1 kg', price: '1 po', properties: 'Légère' },
+  // Armes courantes à distance
+  { name: 'Arbalète légère', englishName: 'Crossbow, light', damage: '1d8 perforant', weight: '2.5 kg', price: '25 po', properties: 'Munitions (portée 24 m/96 m), chargement, à deux mains' },
+  { name: 'Arc court', englishName: 'Shortbow', damage: '1d6 perforant', weight: '1 kg', price: '25 po', properties: 'Munitions (portée 24 m/96 m), à deux mains' },
+  { name: 'Fléchette', englishName: 'Dart', damage: '1d4 perforant', weight: '100 g', price: '5 pc', properties: 'Finesse, lancer (portée 6 m/18 m)' },
+  { name: 'Fronde', englishName: 'Sling', damage: '1d4 contondant', weight: '-', price: '1 pa', properties: 'Munitions (portée 9 m/36 m)' },
+  // Armes de guerre de corps à corps
+  { name: 'Cimeterre', englishName: 'Scimitar', damage: '1d6 tranchant', weight: '1.5 kg', price: '25 po', properties: 'Finesse, légère' },
+  { name: 'Coutille', englishName: 'Glaive', damage: '1d10 tranchant', weight: '3 kg', price: '20 po', properties: 'Lourde, allonge, à deux mains' },
+  { name: 'Épée à deux mains', englishName: 'Greatsword', damage: '2d6 tranchant', weight: '3 kg', price: '50 po', properties: 'Lourde, à deux mains' },
+  { name: 'Épée courte', englishName: 'Shortsword', damage: '1d6 perforant', weight: '1 kg', price: '10 po', properties: 'Finesse, légère' },
+  { name: 'Épée longue', englishName: 'Longsword', damage: '1d8 tranchant', weight: '1.5 kg', price: '15 po', properties: 'Polyvalente (1d10)' },
+  { name: 'Fléau d\'armes', englishName: 'Flail', damage: '1d8 contondant', weight: '1 kg', price: '10 po', properties: '-' },
+  { name: 'Fouet', englishName: 'Whip', damage: '1d4 tranchant', weight: '1.5 kg', price: '2 po', properties: 'Finesse, allonge' },
+  { name: 'Hache à deux mains', englishName: 'Greataxe', damage: '1d12 tranchant', weight: '3.5 kg', price: '30 po', properties: 'Lourde, à deux mains' },
+  { name: 'Hache d\'armes', englishName: 'Battleaxe', damage: '1d8 tranchant', weight: '2 kg', price: '10 po', properties: 'Polyvalente (1d10)' },
+  { name: 'Hallebarde', englishName: 'Halberd', damage: '1d10 tranchant', weight: '3 kg', price: '20 po', properties: 'Lourde, allonge, à deux mains' },
+  { name: 'Lance d’arçon', englishName: 'Lance', damage: '1d12 perforant', weight: '3 kg', price: '10 po', properties: 'Allonge, spécial' },
+  { name: 'Maillet', englishName: 'Maul', damage: '2d6 contondant', weight: '5 kg', price: '10 po', properties: 'Lourde, à deux mains' },
+  { name: 'Marteau de guerre', englishName: 'Warhammer', damage: '1d8 contondant', weight: '1 kg', price: '15 po', properties: 'Polyvalente (1d10)' },
+  { name: 'Morgenstern', englishName: 'Morningstar', damage: '1d8 perforant', weight: '2 kg', price: '15 po', properties: '-' },
+  { name: 'Pic de guerre', englishName: 'War pick', damage: '1d8 perforant', weight: '1 kg', price: '5 po', properties: '-' },
+  { name: 'Pique', englishName: 'Pike', damage: '1d10 perforant', weight: '9 kg', price: '5 po', properties: 'Lourde, allonge, à deux mains' },
+  { name: 'Rapière', englishName: 'Rapier', damage: '1d8 perforant', weight: '1 kg', price: '25 po', properties: 'Finesse' },
+  { name: 'Trident', englishName: 'Trident', damage: '1d6 perforant', weight: '2 kg', price: '5 po', properties: 'Lancer (portée 6 m/18 m), polyvalente (1d8)' },
+  // Armes de guerre à distance
+  { name: 'Arbalète de poing', englishName: 'Crossbow, hand', damage: '1d6 perforant', weight: '1.5 kg', price: '75 po', properties: 'Munitions (portée 9 m/36 m), légère, chargement' },
+  { name: 'Arbalète lourde', englishName: 'Crossbow, heavy', damage: '1d10 perforant', weight: '9 kg', price: '50 po', properties: 'Munitions (portée 30 m/120 m), lourde, chargement, à deux mains' },
+  { name: 'Arc long', englishName: 'Longbow', damage: '1d8 perforant', weight: '1 kg', price: '50 po', properties: 'Munitions (portée 45 m/180 m), lourde, à deux mains' },
+  { name: 'Filet', englishName: 'Net', damage: '-', weight: '1.5 kg', price: '1 po', properties: 'Spécial, lancer (portée 1,50 m/ 4,50 m)' },
+  { name: 'Sarbacane', englishName: 'Blowgun', damage: '1 perforant', weight: '500 g', price: '10 po', properties: 'Munitions (portée 7,50 m/30 m), chargement' },
+];
+
+const weaponData = [
+  { id: 'Quarterstaff', name: 'Bâton', diceQty: 1, diceType: 'd6', damageType: 'contondant' },
+  { id: 'Dagger', name: 'Dague', diceQty: 1, diceType: 'd4', damageType: 'perforant' },
+  { id: 'Club', name: 'Gourdin', diceQty: 1, diceType: 'd4', damageType: 'contondant' },
+  { id: 'Handaxe', name: 'Hachette', diceQty: 1, diceType: 'd6', damageType: 'tranchant' },
+  { id: 'Javelin', name: 'Javeline', diceQty: 1, diceType: 'd6', damageType: 'perforant' },
+  { id: 'Spear', name: 'Lance', diceQty: 1, diceType: 'd6', damageType: 'perforant' },
+  { id: 'Light hammer', name: 'Marteau léger', diceQty: 1, diceType: 'd4', damageType: 'contondant' },
+  { id: 'Mace', name: 'Masse d\'armes', diceQty: 1, diceType: 'd6', damageType: 'contondant' },
+  { id: 'Greatclub', name: 'Massue', diceQty: 1, diceType: 'd8', damageType: 'contondant' },
+  { id: 'Sickle', name: 'Serpe', diceQty: 1, diceType: 'd4', damageType: 'tranchant' },
+  { id: 'Crossbow, light', name: 'Arbalète légère', diceQty: 1, diceType: 'd8', damageType: 'perforant' },
+  { id: 'Shortbow', name: 'Arc court', diceQty: 1, diceType: 'd6', damageType: 'perforant' },
+  { id: 'Dart', name: 'Fléchette', diceQty: 1, diceType: 'd4', damageType: 'perforant' },
+  { id: 'Sling', name: 'Fronde', diceQty: 1, diceType: 'd4', damageType: 'contondant' },
+  { id: 'Scimitar', name: 'Cimeterre', diceQty: 1, diceType: 'd6', damageType: 'tranchant' },
+  { id: 'Glaive', name: 'Coutille', diceQty: 1, diceType: 'd10', damageType: 'tranchant' },
+  { id: 'Greatsword', name: 'Épée à deux mains', diceQty: 2, diceType: 'd6', damageType: 'tranchant' },
+  { id: 'Shortsword', name: 'Épée courte', diceQty: 1, diceType: 'd6', damageType: 'perforant' },
+  { id: 'Longsword', name: 'Épée longue', diceQty: 1, diceType: 'd8', damageType: 'tranchant' },
+  { id: 'Flail', name: 'Fléau d\'armes', diceQty: 1, diceType: 'd8', damageType: 'contondant' },
+  { id: 'Whip', name: 'Fouet', diceQty: 1, diceType: 'd4', damageType: 'tranchant' },
+  { id: 'Greataxe', name: 'Hache à deux mains', diceQty: 1, diceType: 'd12', damageType: 'tranchant' },
+  { id: 'Battleaxe', name: 'Hache d\'armes', diceQty: 1, diceType: 'd8', damageType: 'tranchant' },
+  { id: 'Halberd', name: 'Hallebarde', diceQty: 1, diceType: 'd10', damageType: 'tranchant' },
+  { id: 'Lance', name: 'Lance d’arçon', diceQty: 1, diceType: 'd12', damageType: 'perforant' },
+  { id: 'Maul', name: 'Maillet', diceQty: 2, diceType: 'd6', damageType: 'contondant' },
+  { id: 'Warhammer', name: 'Marteau de guerre', diceQty: 1, diceType: 'd8', damageType: 'contondant' },
+  { id: 'Morningstar', name: 'Morgenstern', diceQty: 1, diceType: 'd8', damageType: 'perforant' },
+  { id: 'War pick', name: 'Pic de guerre', diceQty: 1, diceType: 'd8', damageType: 'perforant' },
+  { id: 'Pike', name: 'Pique', diceQty: 1, diceType: 'd10', damageType: 'perforant' },
+  { id: 'Rapier', name: 'Rapière', diceQty: 1, diceType: 'd8', damageType: 'perforant' },
+  { id: 'Trident', name: 'Trident', diceQty: 1, diceType: 'd6', damageType: 'perforant' },
+  { id: 'Crossbow, hand', name: 'Arbalète de poing', diceQty: 1, diceType: 'd6', damageType: 'perforant' },
+  { id: 'Crossbow, heavy', name: 'Arbalète lourde', diceQty: 1, diceType: 'd10', damageType: 'perforant' },
+  { id: 'Longbow', name: 'Arc long', diceQty: 1, diceType: 'd8', damageType: 'perforant' },
+  { id: 'Net', name: 'Filet', diceQty: 0, diceType: '-', damageType: '-' },
+  { id: 'Blowgun', name: 'Sarbacane', diceQty: 1, diceType: 'd1', damageType: 'perforant' },
+];
+
+const dnd5eRaceOptions = [
+  "Humain",
+  "Nain",
+  "Elfe",
+  "Halfelin",
+  "Gnome",
+  "Draconien",
+  "Tieffelin",
+  "Demi-elfe",
+  "Demi-orque",
+  "Aasimar",
+  "Genasi",
+  "Tabaxi",
+  "Triton",
+  "Firbolg",
+  "Goliath",
+  "Kenku",
+  "Loxodon",
+  "Minotaure",
+  "Centaur",
+  "Changelin",
+  "Kalashtar",
+  "Shifter",
+  "Warforged",
+  "Yuan-ti Sang Pur"
+];
+
+const dnd5eAlignmentOptions = [
+  "Loyal Bon",
+  "Neutre Bon",
+  "Chaotique Bon",
+  "Loyal Neutre",
+  "Neutre",
+  "Chaotique Neutre",
+  "Loyal Mauvais",
+  "Neutre Mauvais",
+  "Chaotique Mauvais"
+];
+
+const dnd5eLanguageOptions = [
+  "Commun",
+  "Elfique",
+  "Nain",
+  "Géant",
+  "Gnomique",
+  "Gobelin",
+  "Demi-elfique",
+  "Orc",
+  "Abyssal",
+  "Céleste",
+  "Commun des profondeurs",
+  "Draconique",
+  "Infernal",
+  "Primordial",
+  "Sylvain",
+  "Sous-commun",
+  "Terran",
+  "Auran",
+  "Igné",
+  "Aquatique"
+];
+
+const fullCasterMatrix = [
+  // Lv0, Lv1, Lv2, Lv3, Lv4, Lv5, Lv6, Lv7, Lv8, Lv9
+  [0, 2, 0, 0, 0, 0, 0, 0, 0, 0], // Level 1
+  [0, 3, 0, 0, 0, 0, 0, 0, 0, 0], // Level 2
+  [0, 4, 2, 0, 0, 0, 0, 0, 0, 0], // Level 3
+  [0, 4, 3, 0, 0, 0, 0, 0, 0, 0], // Level 4
+  [0, 4, 3, 2, 0, 0, 0, 0, 0, 0], // Level 5
+  [0, 4, 3, 3, 0, 0, 0, 0, 0, 0], // Level 6
+  [0, 4, 3, 3, 1, 0, 0, 0, 0, 0], // Level 7
+  [0, 4, 3, 3, 2, 0, 0, 0, 0, 0], // Level 8
+  [0, 4, 3, 3, 3, 1, 0, 0, 0, 0], // Level 9
+  [0, 4, 3, 3, 3, 2, 0, 0, 0, 0], // Level 10
+  [0, 4, 3, 3, 3, 2, 1, 0, 0, 0], // Level 11
+  [0, 4, 3, 3, 3, 2, 1, 0, 0, 0], // Level 12
+  [0, 4, 3, 3, 3, 2, 1, 1, 0, 0], // Level 13
+  [0, 4, 3, 3, 3, 2, 1, 1, 0, 0], // Level 14
+  [0, 4, 3, 3, 3, 2, 1, 1, 1, 0], // Level 15
+  [0, 4, 3, 3, 3, 2, 1, 1, 1, 0], // Level 16
+  [0, 4, 3, 3, 3, 2, 1, 1, 1, 1], // Level 17
+  [0, 4, 3, 3, 3, 3, 1, 1, 1, 1], // Level 18
+  [0, 4, 3, 3, 3, 3, 2, 1, 1, 1], // Level 19
+  [0, 4, 3, 3, 3, 3, 2, 2, 1, 1]  // Level 20
+];
+
+
+const artificerMatrix = [
+  // Lv0, Lv1, Lv2, Lv3, Lv4, Lv5, Lv6, Lv7, Lv8, Lv9
+  [0, 2, 0, 0, 0, 0, 0, 0, 0, 0], // Level 1
+  [0, 2, 0, 0, 0, 0, 0, 0, 0, 0], // Level 2
+  [0, 3, 0, 0, 0, 0, 0, 0, 0, 0], // Level 3
+  [0, 3, 0, 0, 0, 0, 0, 0, 0, 0], // Level 4
+  [0, 4, 2, 0, 0, 0, 0, 0, 0, 0], // Level 5
+  [0, 4, 2, 0, 0, 0, 0, 0, 0, 0], // Level 6
+  [0, 4, 3, 0, 0, 0, 0, 0, 0, 0], // Level 7
+  [0, 4, 3, 0, 0, 0, 0, 0, 0, 0], // Level 8
+  [0, 4, 3, 2, 0, 0, 0, 0, 0, 0], // Level 9
+  [0, 4, 3, 2, 0, 0, 0, 0, 0, 0], // Level 10
+  [0, 4, 3, 3, 0, 0, 0, 0, 0, 0], // Level 11
+  [0, 4, 3, 3, 0, 0, 0, 0, 0, 0], // Level 12
+  [0, 4, 3, 3, 1, 0, 0, 0, 0, 0], // Level 13
+  [0, 4, 3, 3, 1, 0, 0, 0, 0, 0], // Level 14
+  [0, 4, 3, 3, 2, 0, 0, 0, 0, 0], // Level 15
+  [0, 4, 3, 3, 2, 0, 0, 0, 0, 0], // Level 16
+  [0, 4, 3, 3, 3, 1, 0, 0, 0, 0], // Level 17
+  [0, 4, 3, 3, 3, 1, 0, 0, 0, 0], // Level 18
+  [0, 4, 3, 3, 3, 2, 0, 0, 0, 0], // Level 19
+  [0, 4, 3, 3, 3, 2, 0, 0, 0, 0]  // Level 20
+];
+
+
+const dnd5eCurrencies = {
+  cp: {
+    id: "cp",
+    name_en: "Copper",
+    name_fr: "Cuivre",
+    conversion_rate: 0.01,
+    color: "#b87333" // Copper color
+  },
+  sp: {
+    id: "sp",
+    name_en: "Silver",
+    name_fr: "Argent",
+    conversion_rate: 0.1,
+    color: "#c0c0c0" // Silver color
+  },
+  ep: {
+    id: "ep",
+    name_en: "Electrum",
+    name_fr: "Électrum",
+    conversion_rate: 0.5,
+    color: "#e5d8a8" // Electrum color
+  },
+  gp: {
+    id: "gp",
+    name_en: "Gold",
+    name_fr: "Or",
+    conversion_rate: 1,
+    color: "#ffd700" // Gold color
+  },
+  pp: {
+    id: "pp",
+    name_en: "Platinum",
+    name_fr: "Platine",
+    conversion_rate: 10,
+    color: "#eeeeee" // Example purple color for platinum
+  }
+};
 
 // Default Picture
 const base64DefaultCharacterPicture= "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDACodICUgGiolIiUvLSoyP2lEPzo6P4FcYUxpmYagnpaGk5GovfLNqLPltZGT0v/V5fr/////o8v///////L/////2wBDAS0vLz83P3xERHz/rpOu////////////////////////////////////////////////////////////////////wAARCAEAAQADARIAAhEBAxEB/8QAGgAAAwEBAQEAAAAAAAAAAAAAAgMEAQUABv/EADgQAAICAQMDAgUDAwQBAwUAAAECABEDEiExBEFRImETMnGBkQVCoRQjUjNyscHRJGLhNIKS8PH/xAAYAQEBAQEBAAAAAAAAAAAAAAAAAQIDBP/EACARAQEBAAMBAQEBAQEBAAAAAAABEQISITFBUWEDInH/2gAMAwEAAhEDEQA/AJwsMQPARuJLNyA8SbbxwFQOf1q1n/8AtuN69TaNvVEQ1KlzZmyqgblefeBWpgvkgSauT66XSYTixU1ajualKgSsMAi0yh/iNYCKaBMBvmc/P+oftxf/AJGMNIzDMuR7dibujvF/EbWXclr5uXKbGq2tSwG/7hDOMZPXib1cmo0z+ACqaql+ggZBkQ2wKnyJdMphxXZVlPgQEDt8jK3sTvGmMZSh4IbyI8MRQzY2C+ZFI4I1gEHuI98dWUAbGf8AmPTxmHNkwC8TWh5HI/EVpAqm39oMBbY8mpDp32rtGkEi3U/UCEN6TrHwEqQWVjZANb+RJmQj5Te8K7uLPh6kH4bWRyDsROPjc6gyNoyjiTB2wtAmq9pN036gHIx5wFbgGc+XHY1Nh7rqa/aMA3+057rXx7Ep3N7QkHIk4pypXVLdHtW8a62oHtU1Tjccl134r/uWjp6YkmOzexzmsbVOi3SK6sQaPaanLU2Ob23mPd1XE21uBJ1fSGFoWYR5ahAbCTVe0/mFV7yaY8EsWYag7KdjJqsCF0q9uIenSxCjciTQDbqNqA2h7rW3y8+8uonfTS0DYWoWQEEZK2baaiUarZqNxr/M24G41oQwNoGz0BXVY9eBgORuJoyhszYwPlFkwOUpplJ7MIWfQMrfDa1jGuyzP1qqjLi9TEc9hOfqPEuMaxnJXTZ0jtN01zKA5NVGVR2/MGMUKRTkqex5E9R57iDB/wBNlHqQax/khhY8JZrw5gre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"
