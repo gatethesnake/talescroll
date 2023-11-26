@@ -5148,22 +5148,6 @@ function loadDefaultImage() {
 
 
 ///spell slot calcultator in progress
-// Spell slot matrix for full casters (wizard, cleric, druid, sorcerer, bard)
-// Each row corresponds to the character level (1-20)
-// Each column is the number of spell slots from level 0 (cantrips) to level 9
-// For simplicity, only the first few levels are shown here
-const fullCasterMatrix = [
-  // Lv0, Lv1, Lv2, Lv3, Lv4, Lv5, Lv6, Lv7, Lv8, Lv9
-  [0, 2, 0, 0, 0, 0, 0, 0, 0, 0], // Level 1
-  [0, 3, 0, 0, 0, 0, 0, 0, 0, 0], // Level 2
-  // ... fill in the rest according to the Player's Handbook
-];
-
-// Artificer has a unique spell slot progression
-const artificerMatrix = [
-  // Similar structure as above
-  // ... fill in according to the Artificer spell slot progression
-];
 
 // Function to calculate effective spellcasting level
 function calculateEffectiveLevel(classes) {
