@@ -29,6 +29,7 @@ const ABILITY_NAMES = [
 ];
 
 const DESCRIPTION_INPUTS = [
+  "ruleBackground",
   "player",
   "characterName",
   "className",
@@ -11964,7 +11965,7 @@ const alignmentOptions = [
 ];
 
 
-const dnd5eLanguageOptions = [
+const dnd5eLanguage = [
   "Commun",
   "Elfique",
   "Nain",

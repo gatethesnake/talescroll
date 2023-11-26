@@ -306,9 +306,11 @@ function saveCharacter(saveTo) {
 
   for (const inputId of DESCRIPTION_INPUTS) {
     const inputElement = document.getElementById(inputId);
-    if (inputElement.tagName === 'SELECT') {
-      characterData.description[inputId] = inputElement.value;
+    if (inputId === 'ruleBackground') {
+      // Save the checked status for the checkbox
+      characterData.description[inputId] = inputElement.checked;
     } else {
+      // Save the value for other input types
       characterData.description[inputId] = inputElement.value;
     }
   }
@@ -692,23 +694,35 @@ function openCharacter(loadFrom) {
     // Load description
     for (const inputId of DESCRIPTION_INPUTS) {
       const inputElement = document.getElementById(inputId);
-      const selectElement = inputElement.tagName === 'SELECT' ? inputElement : null;
-      const customInputId = selectElement ? selectElement.dataset.customInput : null;
-
-      if (description.hasOwnProperty(inputId)) {
-        inputElement.value = description[inputId];
-      }
-
-      if (selectElement && customInputId) {
-        selectElement.value = description.hasOwnProperty(inputId) ? description[inputId] : '';
-        if (selectElement.value === 'custom') {
-          document.getElementById(customInputId).value = description.hasOwnProperty(customInputId) ? description[customInputId] : '';
-          document.getElementById(customInputId).style.display = 'block';
-        } else {
-          document.getElementById(customInputId).style.display = 'none';
+      
+      if (inputId === 'ruleBackground') {
+        // For ruleBackground, set the checked property and trigger toggle function if necessary
+        const isChecked = !!description[inputId]; // Convert to boolean
+        if (inputElement.checked !== isChecked) {
+          inputElement.checked = isChecked;
+          toggleDnd5eRulesBackground(); // Trigger toggle function to update dependent UI elements
+        }
+      } else {
+        // Handle other inputs
+        const selectElement = inputElement.tagName === 'SELECT' ? inputElement : null;
+        const customInputId = selectElement ? selectElement.dataset.customInput : null;
+    
+        if (description.hasOwnProperty(inputId)) {
+          inputElement.value = description[inputId];
+        }
+    
+        if (selectElement && customInputId) {
+          selectElement.value = description.hasOwnProperty(inputId) ? description[inputId] : '';
+          if (selectElement.value === 'custom') {
+            document.getElementById(customInputId).value = description.hasOwnProperty(customInputId) ? description[customInputId] : '';
+            document.getElementById(customInputId).style.display = 'block';
+          } else {
+            document.getElementById(customInputId).style.display = 'none';
+          }
         }
       }
     }
+    
 
     // Load apparence
     for (const inputId in apparence) {
@@ -1440,12 +1454,23 @@ function confirmReset() {
 
   DESCRIPTION_INPUTS.forEach((inputId) => {
     const inputElement = document.getElementById(inputId);
-    if (inputElement === characterNameInput) {
-      inputElement.value = '<nom>';
-    } else {
-      inputElement.value = ' ';
+
+    if (inputElement) {
+        if (inputId === 'ruleBackground') {
+            // Set the checkbox to false (unchecked)
+            inputElement.checked = false;
+        } else if (inputId === 'characterNameInput') {
+            inputElement.value = 'TaleScroll';
+        } else if (inputId === 'alignement') {
+            // Set alignement to "Neutre" by default
+            inputElement.value = 'Neutre';
+        } else {
+            // Set other inputs to blank
+            inputElement.value = ' ';
+        }
     }
-  });
+});
+
 
 
 
@@ -1998,7 +2023,7 @@ function populateRaceDropdown() {
   firstOption.text = "Choisir";
   raceSelect.add(firstOption);
 
-  const optionsToAdd = dnd5eRulesBackground.checked ? dnd5eRaceOptions : raceOptions;
+  const optionsToAdd = ruleBackground.checked ? dnd5eRaceOptions : raceOptions;
 
   optionsToAdd.forEach(optionValue => {
     const option = document.createElement("option");
@@ -2959,7 +2984,7 @@ function toggleDnd5eRulesBackground() {
 
 function changePPLabel() {
  // Determine the new label for the "pp" currency
- const ppLabel = dnd5eRulesBackground.checked ? "Platine" : "Licorne";
+ const ppLabel = ruleBackground.checked ? "Platine" : "Licorne";
 
  // Find the label element for the "money-pp" input
  const ppCurrencyLabel = document.querySelector('label[for="money-pp"]');
@@ -4888,6 +4913,16 @@ function generateLanguageSection(optionalUUID) {
 };
 
 function getLanguageSectionHTML(languageUUID) {
+  const languageToAdd = ruleBackground.checked ? dnd5eLanguage : worldLanguage ;
+
+    // Generate option elements
+    let optionsHTML = '<option value="">Choisir</option>';
+    languageToAdd.forEach(language => {
+      const optionValue = language.id ? language.id : language;
+      const optionText = language.nom ? language.nom : language;
+      optionsHTML += `<option value="${optionValue}">${optionText}</option>`;
+    });
+
   const languageSection = `
 <div id="languageSubsection-${languageUUID}" class="subsection3">
   <div class="color-picker-wrapper" id="colorPickerWrapper-${languageUUID}">
@@ -4899,19 +4934,8 @@ function getLanguageSectionHTML(languageUUID) {
     <div class="input-group">
       <label for="languageName-${languageUUID}">Nom</label>
       <select id="languageName-${languageUUID}" class="input-text">
-        <option value="">Choisir</option>
-        <option value="elanais">Élanais</option>
-        <option value="arcane">Arcane</option>
-        <option value="sylvestre">Sylvestre</option>
-        <option value="montagnais">Montagnais</option>
-        <option value="thorois">Thorois</option>
-        <option value="anaureen">Anauréen</option>
-        <option value="orque">Orque</option>
-        <option value="geant">Géant</option>
-        <option value="faune">Faune</option>
-        <option value="languemere">Languemère</option>
-        <option value="element">Élément</option>
-      </select>
+        ${optionsHTML}
+    </select>
     </div>
 
     <div class="toggle-group">

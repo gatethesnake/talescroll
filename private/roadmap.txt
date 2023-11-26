@@ -2,7 +2,7 @@ TaleScroll road map
 
 - v2.2
 	- TaleScroll : make a switch "dnd5e 
-		-  langague, currency
+		-  langague
 		
 	- dnd5e
 		- table des armes
