@@ -2953,12 +2953,23 @@ if (versatileInputElement) {
 function toggleDnd5eRulesBackground() {
   
   populateRaceDropdown();
-
+  changePPLabel();
     
 };
 
+function changePPLabel() {
+ // Determine the new label for the "pp" currency
+ const ppLabel = dnd5eRulesBackground.checked ? "Platine" : "Licorne";
 
+ // Find the label element for the "money-pp" input
+ const ppCurrencyLabel = document.querySelector('label[for="money-pp"]');
 
+ // Update the label's text
+ if (ppCurrencyLabel) {
+   ppCurrencyLabel.textContent = ppLabel;
+ }
+
+}
 
 
 //----------- Déplacement speed vitesse -----------//
