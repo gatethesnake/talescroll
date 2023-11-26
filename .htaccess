@@ -2,6 +2,11 @@
     RewriteEngine On
     RewriteBase /
 
+    # Redirect HTTP to HTTPS and handle www
+    RewriteCond %{HTTPS} off [OR]
+    RewriteCond %{HTTP_HOST} ^www\.talescroll\.ca [NC]
+    RewriteRule ^ https://talescroll.ca%{REQUEST_URI} [R=301,L,NE]
+
     # Remove index.php from URLs
     RewriteCond %{THE_REQUEST} ^GET.*index\.php [NC]
     RewriteCond %{REQUEST_URI} !/system/.* [NC]
@@ -20,9 +25,9 @@
     # Set default character set
     AddDefaultCharset UTF-8
 
-    # Redirect HTTP requests to HTTPS
-    RewriteCond %{HTTPS} off
-    RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+									 
+							
+																 
 </IfModule>
 
 # Prevent directory listing
@@ -40,10 +45,10 @@ Options -Indexes
     Deny from all
 </FilesMatch>
 
-# Block hotlinking of images
+# Block hotlinking of images with updated domain checks
 <IfModule mod_rewrite.c>
     RewriteEngine On
     RewriteCond %{HTTP_REFERER} !^$
-    RewriteCond %{HTTP_REFERER} !^https?://talescroll\.galasoft\.ca/.*$ [NC]
+    RewriteCond %{HTTP_REFERER} !^https?://(www\.)?talescroll\.ca/.*$ [NC]
     RewriteRule \.(jpg|jpeg|png|gif)$ - [NC,F,L]
 </IfModule>
