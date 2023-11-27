@@ -1015,15 +1015,30 @@ p {
   flex-direction: column;
 }
 
-.hit-points-container {
+.main-hit-points {
   display: flex;
-  align-items: flex-start;
-  gap: 8px;
+  gap: 10px;
 }
 
 .hit-points-input-wrapper {
   display: flex;
   flex-direction: column;
+}
+
+.input-actualHitPoints, .input-maxHitPoints {
+  border: 2px solid #007bff; /* Blue border */
+  padding: 10px;
+  font-size: 2.2em; /* Larger font size */
+  background-color: #eef4ff; /* Light blue background */
+}
+
+/* Styling for toggling button */
+#toggleExtraFields {
+  margin-top: 10px;
+  padding: 5px 10px;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  cursor: pointer;
 }
 
 .button-container {

@@ -1,20 +1,19 @@
 TaleScroll road map
 
 - v2.2
-	- TaleScroll : make a switch "dnd5e 
-		-  langague
-		
-	- dnd5e
 		- table des armes
 		- short or long rest Reset.
 		- spell slot calculator
+		- Option Roll  >talespire >on screen
+
+	- dnd5e
 		- objets magiques
 				 https://www.aidedd.org/dnd-filters/objets-magiques.php
 		- skill personnalisables
 		- StateMachine sur les états
-
+		- StateMachine sur les dons
     - ui-ux 
         - 3D : d4 à d20, d2,d3, d100 !?
         - arrête un dé sur la bonne face
-        - Option Roll  >talespire >on screen
+        
 	

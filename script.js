@@ -1789,6 +1789,16 @@ function populateHitDiceSelect2() {
 document.addEventListener('DOMContentLoaded', populateHitDiceSelect);
 document.addEventListener('DOMContentLoaded', populateHitDiceSelect2);
 
+function toggleHitDiceSection() {
+  var extraFields = document.querySelector('.extra-fields');
+  if (extraFields.style.display === 'none' || extraFields.style.display === '') {
+      extraFields.style.display = 'block';
+  } else {
+      extraFields.style.display = 'none';
+  }
+}
+
+
 function populateAbilityAdjustmentSelect(abilityAdjustment) {
   const selectElement = document.getElementById(abilityAdjustment);
   const chooseOption = document.createElement('option');
