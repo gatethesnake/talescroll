@@ -1,7 +1,7 @@
 // fast dev settings
 
-document.getElementById("sheetTabName").click();
-//document.getElementById("actionTabName").click()
+//document.getElementById("sheetTabName").click();
+document.getElementById("actionTabName").click()
 //document.getElementById("spellTabName").click();
 //document.getElementById("featTabName").click();
 //document.getElementById("equipmentTabName").click();
@@ -4138,7 +4138,7 @@ function getAttackSectionHTML(attackUUID) {
         <h4>Bonus d'attaques</h4>
         <div id="attackContainer" class="container3">
         <div class="input-group resource-input-group">
-          <label for="attackAbilityAdjustment-${attackUUID}" id="attackAbilityAdjustmentLabel">Habileté</label>
+          <label for="attackAbilityAdjustment-${attackUUID}" id="attackAbilityAdjustmentLabel">Caractéristique</label>
           <select id="attackAbilityAdjustment-${attackUUID}" name="attackAbilityAdjustment-${attackUUID}" class="input-text">
             <option value=" ">Choisir</option>
             <option value="strength">Force</option>
@@ -4178,7 +4178,7 @@ function getAttackSectionHTML(attackUUID) {
         </div>
         <div id="damageAdjustmentContainer"class="container3">
             <div class="input-group resource-input-group">
-              <label for="damageAbilityAdjustment-${attackUUID}" id="damageAbilityAdjustmentLabel">Habileté</label>
+              <label for="damageAbilityAdjustment-${attackUUID}" id="damageAbilityAdjustmentLabel">Caractéristique</label>
               <select id="damageAbilityAdjustment-${attackUUID}" name="damageAbilityAdjustment-${attackUUID}" class="input-text">
                     <option value=" ">Choisir</option>
                     <option value="strength">Force</option>

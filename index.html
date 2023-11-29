@@ -31,13 +31,6 @@
 	</div>
 	<div id="site-top">
 		<div id="header">
-			<div class="imageContainer">
-				<img src="img/talescroll.png" alt="TaleScroll logo" id="logo" onclick="saveAll()">
-				<div class="circle">
-				</div>
-				<div id="save-button" class="iconify" data-icon="fluent:save-16-regular" onclick="saveAll()">
-				</div>
-			</div>
 			<div id="menu">
 				<span class="iconify" data-icon="game-icons:hamburger-menu"></span>
 				<div id="menu-content" class="menu-content">
@@ -72,6 +65,14 @@
 					</div>
 				</div>
 			</div>
+			<div id="imageContainer">
+				<div id="characterPictureContainer">
+				<div id="img-container">
+					<img id="preview" src="" alt="Personnage" />
+				</div>
+				<input type="file" id="fileInput" accept="image/*" style="display:none;">
+			</div>
+			</div>
 			<div id="titre">
 				<h1 id="character-title">
 					TaleScroll
@@ -80,245 +81,29 @@
 				</div>
 			</div>
 			<div id="perso">
+				<div id="save-button" class="iconify" data-icon="fluent:save-16-regular" onclick="saveAll()"></div>
 				<h4 id="characterClassClassAndLevel">
 				</h4>
-				<label for="ruleBackground">Arrière-plan dnd5e</label>
-				<div class="toggle">
-					<input type="checkbox" id="ruleBackground" class="toggle-checkbox"
-						onchange="toggleDnd5eRulesBackground()">
-					<label for="ruleBackground" class="toggle-switch"></label>
-				</div>
 			</div>
 		</div>
 		<div id="groupTabModule" class="tabCS">
-			<button class="tablinksCS" onclick="openTabCS(event, 'sheetTab')" id="sheetTabName">Fiche</button>
-			<button class="tablinksCS" onclick="openTabCS(event, 'actionTab')" id="actionTabName">Attaques</button>
-			<button class="tablinksCS" onclick="openTabCS(event, 'itemsTab')" id="equipmentTabName">Équipements</button>
-			<button class="tablinksCS" onclick="openTabCS(event, 'spellTab')" id="spellTabName">Sorts</button>
-			<button class="tablinksCS" onclick="openTabCS(event, 'featTab')" id="featTabName">Attributs</button>
-			<button class="tablinksCS" onclick="openTabCS(event, 'descriptionTab')"
-				id="descriptionTabName">Autres</button>
-			<button class="tablinksCS" onclick="openTabCS(event, 'dice-generator')"
-				id="diceGeneratorTabName">Dés</button>
+			<button class="tablinksCS"  style="display:none"onclick="openTabCS(event, 'sheetTab')"       id="sheetTabName">Onglet caché</button>
+			<button class="tablinksCS" onclick="openTabCS(event, 'actionTab')"      id="actionTabName">Fiche</button>
+			<button class="tablinksCS" onclick="openTabCS(event, 'spellTab')"       id="spellTabName">Sorts</button>
+			<button class="tablinksCS" onclick="openTabCS(event, 'itemsTab')"       id="equipmentTabName">Équipements</button>
+			<button class="tablinksCS" onclick="openTabCS(event, 'featTab')"        id="featTabName">Attributs</button>
+			<button class="tablinksCS" onclick="openTabCS(event, 'descriptionTab')"	id="descriptionTabName">Information</button>
+			<button class="tablinksCS"  style="display:none"onclick="openTabCS(event, 'dice-generator')"	id="diceGeneratorTabName">Dés</button>
 		</div>
 	</div>
 	<div id="site-bottom" class="side-border">
 		<div id="sheetTab" class="meta-section tabContentCS">
-			<div id="description" class="section">
-				<div class="flex-start-behavior">
-					<h2>Description</h2>
-					<div id="playerContainer" class="subsection">
-						<label for="player">Nom du joueur</label>
-						<input type="text" id="player" class="input-text" name="player" value=' '>
-					</div>
-					<div id="characterNameContainer" class="subsection">
-						<label for="characterName">Nom du personnage</label>
-						<input type="text" id="characterName" class="input-text" name="characterName" value=' '>
-					</div>
-					<div id="characterPictureContainer" class="subsection">
-						<label for="characterPicture">Photo</label>
-						<div id="img-container">
-							<img id="preview" src="" alt="Personnage" />
-						</div>
-						<input type="file" id="fileInput" accept="image/*" style="display:none;">
-					</div>
-					
-					<div id="classNameContainer" class="subsection">
-						<label for="className">Classe</label>
-						<select id="className" class="input-text" name="className"
-							onchange="selectChangedContainer(this,'customClass')" data-custom-input="customClass">
-						</select>
-						<input type="text" id="customClass" class="input-text" name="customClass" style="display:none;"
-							value=" ">
-					</div>
-					<div id="levelContainer" class="subsection">
-						<label for="levelName">Niveau</label>
-						<select id="levelName" class="input-text" name="levelName"></select>
-					</div>
-					<div id="classNameContainer2" class="subsection">
-						<label for="className2">Classe B</label>
-						<select id="className2" class="input-text" name="className2"
-							onchange="selectChangedContainer(this,'customClass')" data-custom-input="customClass2">
-						</select>
-						<input type="text" id="customClass2" class="input-text" name="customClass" style="display:none;"
-							value=" ">
-					</div>
-					
-					<div id="levelContainer2" class="subsection">
-						<label for="levelName2">Niveau B</label>
-						<select id="levelName2" class="input-text" name="levelName2"></select>
-					</div>
-					<div id="raceContainer" class="subsection">
-						<label for="race">Race</label>
-						<select id="race" class="input-text" name="race"
-							onchange="selectChangedContainer(this,'customRace')" data-custom-input="customRace">
-						</select>
-						<input type="text" id="customRace" class="input-text" name="customRace" style="display:none;"
-							value=" ">
-					</div>
-					<div id="religionContainer" class="subsection">
-						<label for="religion">Religion</label>
-						<select id="religion" class="input-text" name="religion"
-							onchange="selectChangedContainer(this,'customReligion')" data-custom-input="customReligion">
-						</select>
-						<input type="text" id="customReligion" class="input-text" name="customReligion"
-							style="display:none;" value=" ">
-					</div>
-					<div id="alignementContainer" class="subsection">
-						<label for="alignement">Alignement</label>
-						<select id="alignement" class="input-text" name="alignement"></select>
-					</div>
-					<div id="historiqueContainer" class="subsection">
-						<label for="historique">Historique</label>
-						<select id="historique" class="input-text" name="historique"
-							onchange="selectChangedContainer(this,'customHistorique')"
-							data-custom-input="customHistorique">
-						</select>
-						<input type="text" id="customHistorique" class="input-text" name="customHistorique"
-							style="display:none;" value=" ">
-					</div>
-					<div class="subsection">
-						<div class="container">	
-							<div class="wrapper">
-								<label for="versatileValue">Touche à tout</label>
-								<div class="toggle">
-									<input type="checkbox" id="versatileValue" class="toggle-checkbox"
-										onchange="toggleVersatile()">
-									<label for="versatileValue" class="toggle-switch"></label>
-								</div>
-							</div>
-							<div class="wrapper">
-								
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div id="abilities" class="section">
-				<h2>Habiletés</h2>
-				<div id="strength" class="subsection">
-					<h4>Force</h4>
-					<select id="strengthScore" class="input-text input-strengthScore"></select>
-					<p id="strengthBonusScore" class="roundButton ability-modifier ability-bonus"
-						onclick="rollAbility(this.parentNode.querySelector('h4').textContent, this.textContent)">
-						+0</p>
-				</div>
-				<div id="dexterity" class="subsection">
-					<h4>Dextérité</h4>
-					<select id="dexterityScore" class="input-text input-dexterityScore"></select>
-					<p id="dexterityBonusScore" class="roundButton ability-modifier ability-bonus"
-						onclick="rollAbility(this.parentNode.querySelector('h4').textContent, this.textContent)">
-						+0</p>
-				</div>
-				<div id="constitution" class="subsection">
-					<h4>Constitution</h4>
-					<select id="constitutionScore" class="input-text input-constitutionScore"></select>
-					<p id="constitutionBonusScore" class="roundButton ability-modifier ability-bonus"
-						onclick="rollAbility(this.parentNode.querySelector('h4').textContent, this.textContent)">
-						+0</p>
-				</div>
-				<div id="intelligence" class="subsection">
-					<h4>Intelligence</h4>
-					<select id="intelligenceScore" class="input-text input-intelligenceScore"></select>
-					<p id="intelligenceBonusScore" class="roundButton ability-modifier ability-bonus"
-						onclick="rollAbility(this.parentNode.querySelector('h4').textContent, this.textContent)">
-						+0</p>
-				</div>
-				<div id="wisdom" class="subsection">
-					<h4>Sagesse</h4>
-					<select id="wisdomScore" class="input-text input-wisdomScore"></select>
-					<p id="wisdomBonusScore" class="roundButton ability-modifier ability-bonus"
-						onclick="rollAbility(this.parentNode.querySelector('h4').textContent, this.textContent)">
-						+0</p>
-				</div>
-				<div id="charisma" class="subsection">
-					<h4>Charisme</h4>
-					<select id="charismaScore" class="input-text input-charismaScore"></select>
-					<p id="charismaBonusScore" class="roundButton ability-modifier ability-bonus"
-						onclick="rollAbility(this.parentNode.querySelector('h4').textContent, this.textContent)">
-						+0</p>
-				</div>
-			</div>
-			<div id="savingThrows" class="section">
-				<h2>Sauvegardes</h2>
-				<div id="strength" class="subsection">
-					<h4>Force</h4>
-					<p id="strengthSaveValue" class="roundButton" onclick="rollSave('Force', this.textContent)">
-						+0</p>
-					<div class="skillCheckBoxes">
-						<input type="checkbox" id="strengthProficientBonus" class="proficientBonus" name="strengthProficientBonus">
-						<label for="strengthProficientBonus">Maîtrise</label>
-						<input type="checkbox" id="strengthExpertBonus" class="expertBonus" name="strengthExpertBonus">
-						<label for="strengthExpertBonus">Expert</label>
-					</div>
-				</div>
-				<div id="dexterity" class="subsection">
-					<h4>Dextérité</h4>
-					<p id="dexteritySaveValue" class="roundButton" onclick="rollSave('Dextérité', this.textContent)">+0
-					</p>
-					<div class="skillCheckBoxes">
-						<input type="checkbox" id="dexterityProficientBonus" class="proficientBonus" name="dexterityProficientBonus">
-						<label for="dexterityProficientBonus">Maîtrise</label>
-						<input type="checkbox" id="dexterityExpertBonus" class="expertBonus" name="dexterityExpertBonus">
-						<label for="dexterityExpertBonus">Expert</label>
-					</div>
-				</div>
-				<div id="constitution" class="subsection">
-					<h4>Constitution</h4>
-					<p id="constitutionSaveValue" class="roundButton"
-						onclick="rollSave('Constitution', this.textContent)">+0</p>
-					<div class="skillCheckBoxes">
-						<input type="checkbox" id="constitutionProficientBonus" class="proficientBonus" name="constitutionProficientBonus">
-						<label for="constitutionProficientBonus">Maîtrise</label>
-						<input type="checkbox" id="constitutionExpertBonus" class="expertBonus" name="constitutionExpertBonus">
-						<label for="constitutionExpertBonus">Expert</label>
-					</div>
-				</div>
-				<div id="intelligence" class="subsection">
-					<h4>Intelligence</h4>
-					<p id="intelligenceSaveValue" class="roundButton"
-						onclick="rollSave('Intelligence', this.textContent)">+0</p>
-					<div class="skillCheckBoxes">
-						<input type="checkbox" id="intelligenceProficientBonus" class="proficientBonus" name="intelligenceProficientBonus">
-						<label for="intelligenceProficientBonus">Maîtrise</label>
-						<input type="checkbox" id="intelligenceExpertBonus" class="expertBonus" name="intelligenceExpertBonus">
-						<label for="intelligenceExpertBonus">Expert</label>
-					</div>
-				</div>
-				<div id="wisdom" class="subsection">
-					<h4>Sagesse</h4>
-					<p id="wisdomSaveValue" class="roundButton" onclick="rollSave('Sagesse', this.textContent)">
-						+0</p>
-					<div class="skillCheckBoxes">
-						<input type="checkbox" id="wisdomProficientBonus" class="proficientBonus" name="wisdomProficientBonus">
-						<label for="wisdomProficientBonus">Maîtrise</label>
-						<input type="checkbox" id="wisdomExpertBonus" class="expertBonus" name="wisdomExpertBonus">
-						<label for="wisdomExpertBonus">Expert</label>
-					</div>
-				</div>
-				<div id="charisma" class="subsection">
-					<h4>Charisme</h4>
-					<p id="charismaSaveValue" class="roundButton" onclick="rollSave('Charisme', this.textContent)">+0
-					</p>
-					<div class="skillCheckBoxes">
-						<input type="checkbox" id="charismaProficientBonus" class="proficientBonus" name="charismaProficientBonus">
-						<label for="charismaProficientBonus">Maîtrise</label>
-						<input type="checkbox" id="charismaExpertBonus" class="expertBonus" name="charismaExpertBonus">
-						<label for="charismaExpertBonus">Expert</label>
-					</div>
-				</div>
-			</div>
-			
-			<div id="skills" class="section">
-				<h2>Compétences</h2>
-			</div>
-
 		</div>
 		<div id="actionTab" class="meta-section tabContentCS">
-			<div id="information" class="section ">
+			<div id="information" class="section">
 				<div class="flex-start-behavior">
 					<h2>Information</h2>
-
+					
 					<div id="hit-points" class="subsection">
 						<h4>Points de vie</h4>
 						<div class="main-hit-points">
@@ -378,12 +163,12 @@
 							<div id="armorClassDetail" class="container5">
 								<div id="abilityAdjustmentSubsection" class="ability-adjustments subsection">
 									<div class="ability-adjustment">
-										<label for="abilityAdjustment1" id="abilityAdjustment1Label">Habileté 1</label>
+										<label for="abilityAdjustment1" id="abilityAdjustment1Label">Caractéristique 1</label>
 										<select id="abilityAdjustment1" class="input-text">
 										</select>
 									</div>
 									<div class="ability-adjustment">
-										<label for="abilityAdjustment2" id="abilityAdjustment2Label">Habileté 2</label>
+										<label for="abilityAdjustment2" id="abilityAdjustment2Label">Caractéristique 2</label>
 										<select id="abilityAdjustment2" class="input-text">
 										</select>
 									</div>
@@ -604,6 +389,127 @@
 						data-icon="material-symbols:add"></span></button>
 				<div id="resourceContainer" class="resource-container"></div>
 			</div>
+			<div id="abilities" class="section">
+				<div class="flex-start-behavior">
+					<h2>Caractéristiques</h2>
+					<div id="strength" class="subsection">
+						<h4>Force</h4>
+						<p id="strengthBonusScore" class="roundButton ability-modifier ability-bonus"
+							onclick="rollAbility(this.parentNode.querySelector('h4').textContent, this.textContent)">
+							+0</p>
+						<select id="strengthScore" class="input-text input-strengthScore"></select>
+					</div>
+					<div id="dexterity" class="subsection">
+						<h4>Dextérité</h4>
+						<p id="dexterityBonusScore" class="roundButton ability-modifier ability-bonus"
+							onclick="rollAbility(this.parentNode.querySelector('h4').textContent, this.textContent)">
+							+0</p>
+						<select id="dexterityScore" class="input-text input-dexterityScore"></select>
+					</div>
+					<div id="constitution" class="subsection">
+						<h4>Constitution</h4>
+						<p id="constitutionBonusScore" class="roundButton ability-modifier ability-bonus"
+							onclick="rollAbility(this.parentNode.querySelector('h4').textContent, this.textContent)">
+							+0</p>
+						<select id="constitutionScore" class="input-text input-constitutionScore"></select>
+					</div>
+					<div id="intelligence" class="subsection">
+						<h4>Intelligence</h4>
+						<p id="intelligenceBonusScore" class="roundButton ability-modifier ability-bonus"
+							onclick="rollAbility(this.parentNode.querySelector('h4').textContent, this.textContent)">
+							+0</p>
+						<select id="intelligenceScore" class="input-text input-intelligenceScore"></select>
+					</div>
+					<div id="wisdom" class="subsection">
+						<h4>Sagesse</h4>
+						<p id="wisdomBonusScore" class="roundButton ability-modifier ability-bonus"
+							onclick="rollAbility(this.parentNode.querySelector('h4').textContent, this.textContent)">
+							+0</p>
+						<select id="wisdomScore" class="input-text input-wisdomScore"></select>
+					</div>
+					<div id="charisma" class="subsection">
+						<h4>Charisme</h4>
+						<p id="charismaBonusScore" class="roundButton ability-modifier ability-bonus"
+							onclick="rollAbility(this.parentNode.querySelector('h4').textContent, this.textContent)">
+							+0</p>
+						<select id="charismaScore" class="input-text input-charismaScore"></select>
+					</div>
+				</div>
+			</div>
+			<div id="savingThrows" class="section">
+				<div class="flex-start-behavior">
+					<h2>Sauvegardes</h2>
+					<div id="strength" class="subsection">
+						<h4>Force</h4>
+						<p id="strengthSaveValue" class="roundButton" onclick="rollSave('Force', this.textContent)">
+							+0</p>
+						<div class="skillCheckBoxes">
+							<input type="checkbox" id="strengthProficientBonus" class="proficientBonus" name="strengthProficientBonus">
+							<label for="strengthProficientBonus">Maîtrise</label>
+							<input type="checkbox" id="strengthExpertBonus" class="expertBonus" name="strengthExpertBonus">
+							<label for="strengthExpertBonus">Expert</label>
+						</div>
+					</div>
+					<div id="dexterity" class="subsection">
+						<h4>Dextérité</h4>
+						<p id="dexteritySaveValue" class="roundButton" onclick="rollSave('Dextérité', this.textContent)">+0
+						</p>
+						<div class="skillCheckBoxes">
+							<input type="checkbox" id="dexterityProficientBonus" class="proficientBonus" name="dexterityProficientBonus">
+							<label for="dexterityProficientBonus">Maîtrise</label>
+							<input type="checkbox" id="dexterityExpertBonus" class="expertBonus" name="dexterityExpertBonus">
+							<label for="dexterityExpertBonus">Expert</label>
+						</div>
+					</div>
+					<div id="constitution" class="subsection">
+						<h4>Constitution</h4>
+						<p id="constitutionSaveValue" class="roundButton"
+							onclick="rollSave('Constitution', this.textContent)">+0</p>
+						<div class="skillCheckBoxes">
+							<input type="checkbox" id="constitutionProficientBonus" class="proficientBonus" name="constitutionProficientBonus">
+							<label for="constitutionProficientBonus">Maîtrise</label>
+							<input type="checkbox" id="constitutionExpertBonus" class="expertBonus" name="constitutionExpertBonus">
+							<label for="constitutionExpertBonus">Expert</label>
+						</div>
+					</div>
+					<div id="intelligence" class="subsection">
+						<h4>Intelligence</h4>
+						<p id="intelligenceSaveValue" class="roundButton"
+							onclick="rollSave('Intelligence', this.textContent)">+0</p>
+						<div class="skillCheckBoxes">
+							<input type="checkbox" id="intelligenceProficientBonus" class="proficientBonus" name="intelligenceProficientBonus">
+							<label for="intelligenceProficientBonus">Maîtrise</label>
+							<input type="checkbox" id="intelligenceExpertBonus" class="expertBonus" name="intelligenceExpertBonus">
+							<label for="intelligenceExpertBonus">Expert</label>
+						</div>
+					</div>
+					<div id="wisdom" class="subsection">
+						<h4>Sagesse</h4>
+						<p id="wisdomSaveValue" class="roundButton" onclick="rollSave('Sagesse', this.textContent)">
+							+0</p>
+						<div class="skillCheckBoxes">
+							<input type="checkbox" id="wisdomProficientBonus" class="proficientBonus" name="wisdomProficientBonus">
+							<label for="wisdomProficientBonus">Maîtrise</label>
+							<input type="checkbox" id="wisdomExpertBonus" class="expertBonus" name="wisdomExpertBonus">
+							<label for="wisdomExpertBonus">Expert</label>
+						</div>
+					</div>
+					<div id="charisma" class="subsection">
+						<h4>Charisme</h4>
+						<p id="charismaSaveValue" class="roundButton" onclick="rollSave('Charisme', this.textContent)">+0
+						</p>
+						<div class="skillCheckBoxes">
+							<input type="checkbox" id="charismaProficientBonus" class="proficientBonus" name="charismaProficientBonus">
+							<label for="charismaProficientBonus">Maîtrise</label>
+							<input type="checkbox" id="charismaExpertBonus" class="expertBonus" name="charismaExpertBonus">
+							<label for="charismaExpertBonus">Expert</label>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="skills" class="section">
+				<h2>Compétences</h2>
+			</div>
 		</div>
 		<div id="itemsTab" class="meta-section tabContentCS">
 			<div id="equipment" class="section">
@@ -714,9 +620,83 @@
 			</div>
 		</div>
 		<div id="descriptionTab" class="meta-section tabContentCS">
+			<div id="description" class="section section-20">
+				<div class="flex-start-behavior">
+					<h2>Description</h2>
+					<div id="characterNameContainer" class="subsection">
+						<label for="characterName">Nom du personnage</label>
+						<input type="text" id="characterName" class="input-text" name="characterName" value=' '>
+					</div>
+					<div id="playerContainer" class="subsection">
+						<label for="player">Nom du joueur</label>
+						<input type="text" id="player" class="input-text" name="player" value=' '>
+					</div>
+					<div id="classNameContainer" class="subsection">
+						<label for="className">Classe</label>
+						<select id="className" class="input-text" name="className"
+							onchange="selectChangedContainer(this,'customClass')" data-custom-input="customClass">
+						</select>
+						<input type="text" id="customClass" class="input-text" name="customClass" style="display:none;"
+							value=" ">
+					</div>
+					<div id="levelContainer" class="subsection">
+						<label for="levelName">Niveau</label>
+						<select id="levelName" class="input-text" name="levelName"></select>
+					</div>
+					<div id="classNameContainer2" class="subsection">
+						<label for="className2">Classe B</label>
+						<select id="className2" class="input-text" name="className2"
+							onchange="selectChangedContainer(this,'customClass')" data-custom-input="customClass2">
+						</select>
+						<input type="text" id="customClass2" class="input-text" name="customClass" style="display:none;"
+							value=" ">
+					</div>
+					<div id="levelContainer2" class="subsection">
+						<label for="levelName2">Niveau B</label>
+						<select id="levelName2" class="input-text" name="levelName2"></select>
+					</div>
+					<div id="religionContainer" class="subsection">
+						<label for="religion">Religion</label>
+						<select id="religion" class="input-text" name="religion"
+							onchange="selectChangedContainer(this,'customReligion')" data-custom-input="customReligion">
+						</select>
+						<input type="text" id="customReligion" class="input-text" name="customReligion"
+							style="display:none;" value=" ">
+					</div>
+					<div id="historiqueContainer" class="subsection">
+						<label for="historique">Historique</label>
+						<select id="historique" class="input-text" name="historique"
+							onchange="selectChangedContainer(this,'customHistorique')"
+							data-custom-input="customHistorique">
+						</select>
+						<input type="text" id="customHistorique" class="input-text" name="customHistorique"
+							style="display:none;" value=" ">
+					</div>
+					<div class="subsection">
+						<label for="versatileValue">Touche à tout</label>
+						<div class="toggle">
+							<input type="checkbox" id="versatileValue" class="toggle-checkbox"
+								onchange="toggleVersatile()">
+							<label for="versatileValue" class="toggle-switch"></label>
+						</div>
+					</div>
+				</div>
+			</div>
 			<div id="apparence" class="section section-20">
 				<div class="flex-start-behavior">
 					<h2>Apparence</h2>
+					<div id="raceContainer" class="subsection">
+						<label for="race">Race</label>
+						<select id="race" class="input-text" name="race"
+							onchange="selectChangedContainer(this,'customRace')" data-custom-input="customRace">
+						</select>
+						<input type="text" id="customRace" class="input-text" name="customRace" style="display:none;"
+							value=" ">
+					</div>
+					<div id="alignementContainer" class="subsection">
+						<label for="alignement">Alignement</label>
+						<select id="alignement" class="input-text" name="alignement"></select>
+					</div>
 					<div id="ageContainer" class="subsection">
 						<label for="age">Âge</label>
 						<input type="text" id="age" class="input-text" name="age" value=' '>
@@ -741,7 +721,16 @@
 						<label for="cheveux">Cheveux</label>
 						<input type="text" id="cheveux" class="input-text" name="cheveux" value=' '>
 					</div>
+					<div class="subsection">
+						<label for="ruleBackground">Arrière-plan dnd5e</label>
+						<div class="toggle">
+							<input type="checkbox" id="ruleBackground" class="toggle-checkbox"
+								onchange="toggleDnd5eRulesBackground()">
+							<label for="ruleBackground" class="toggle-switch"></label>
+						</div>
+					</div>
 				</div>
+				
 			</div>
 			<div id="language" class="section  section-20">
 				<h2>Langues</h2>

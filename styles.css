@@ -70,7 +70,7 @@ footer {
 /* header styles */
 #header {
   display: flex;
-  margin: 20px;
+  margin: 5px;
   flex-wrap: wrap;
   flex-direction: row;
 }
@@ -97,7 +97,7 @@ footer {
 
 #perso {
   position: fixed;
-  top: 15px;
+  top: 5px;
   right: 0;
   width: 400px;
   /* border: 2px solid red; */
@@ -120,11 +120,12 @@ h4 {
 h1 {
   font-size: 30px;
   font-family: 'MedievalSharp';
+  padding-top: 10px;
 }
 
 /* specific styles for h2 */
 h2 {
-  font-size: 24px;
+  font-size: 20px;
   font-family: 'MedievalSharp';
 }
 
@@ -541,7 +542,7 @@ p {
 
 .input-select,
 .input-text {
-  font-size: 16px;
+  font-size: 13px;
   padding: 4px 8px;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -552,6 +553,8 @@ p {
   box-sizing: border-box;
   transition: background-color 0.2s;
 }
+
+
 
 .input-text:focus {
   background-color: #fff;
@@ -657,9 +660,22 @@ p {
 
 #skills {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   grid-gap: 0px;
 }
+
+#savingThrows {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  grid-gap: 0px;
+  
+}
+
+#abilities {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: 0px;
+  }
 
 #skills>h2 {
   grid-column: 1 / -1;
@@ -1138,7 +1154,7 @@ p {
 #menu {
   position: relative;
   cursor: pointer;
-  margin-left: 90px;
+
 }
 
 .iconify {
@@ -1588,6 +1604,15 @@ body {
   padding-right: 1rem;
 }
 
+
+.section-10 {
+  flex: 0 0 10%;
+  min-width: 10% !important;
+  max-width: 10%;
+  box-sizing: border-box;
+  padding-right: 1rem;
+}
+
 .section-33 {
   min-width: 33%;
   
@@ -1713,32 +1738,23 @@ body {
   cursor: pointer;
 }
 
-.imageContainer {
+#imageContainer {
   position: relative;
+  padding-left:20px;
 }
-
-#save-button {
-  cursor: pointer;
-  padding: 15px;
-  font-size: 48px;
-  position: absolute;
-  right: -75px;
-  bottom: -25px;
-}
-
 
 /* character picture */
 
 #img-container {
-  width: 128px;
-  height: 128px;
+  width: 75px;
+  height: 75px;
   position: relative;
   overflow: hidden;
-  display: flex;
   align-items: center;
   justify-content: center;
-  border: 5px solid gray;
+  border: 2px solid grey;
   border-radius: 50%; /* this makes the container round */
+  
 }
 
 #preview {
