@@ -97,15 +97,19 @@ footer {
 
 #perso {
   position: fixed;
-  top: 5px;
-  right: 0;
+  top: 25px;
+  right: 72px;
   width: 400px;
   /* border: 2px solid red; */
   max-width: 100%;
   text-align: right;
   margin-right: 30px;
+  color: rgb(227, 227, 227);
 }
 
+#characterClassClassAndLevel {
+  color: rgb(227, 227, 227);
+}
 /* common styles for h1, h2, h3 */
 h1,
 h2,
@@ -118,7 +122,7 @@ h4 {
 
 /* specific styles for h1 */
 h1 {
-  font-size: 30px;
+  font-size: 42px;
   font-family: 'MedievalSharp';
   padding-top: 10px;
 }
@@ -309,7 +313,7 @@ p {
 }
 
 .tab button.active {
-  background-color: #2196F3;
+  background-color: #9F3E31;
 }
 
 .tab {
@@ -357,7 +361,7 @@ p {
 }
 
 .tabCS button.active {
-  background-color: #E03616;
+  background-color: #9F3E31;
 }
 
 .tabCS button:not(.active) {
@@ -467,7 +471,7 @@ p {
   width: 100%;
   height: 100%;
   padding-top: 15px;
-
+  align-items: flex-start;
 }
 
 .meta-section-no-wrap {
@@ -489,12 +493,12 @@ p {
   margin: 5px;
   padding: 5px;
   flex: 1;
-
+  
 }
 
 .subsection {
   border: 1px solid white;
-  border-radius: 5px;
+  border-radius: 15px;
   margin: 3px;
   padding: 5px;
   display: flex;
@@ -502,7 +506,6 @@ p {
   align-items: center;
   flex: 1;
   min-width: 145x;
-  /* Adjust the minimum width of the subsections as needed */
   position: relative;
 }
 
@@ -554,6 +557,9 @@ p {
   transition: background-color 0.2s;
 }
 
+.w50 {
+  width:60px;
+}
 
 
 .input-text:focus {
@@ -571,13 +577,13 @@ p {
   border-radius: 50%;
   background-color: #F44336;
   color: #FFFFFF;
-  font-size: large;
+  font-size: 24px;
   font-weight: bold;
   text-align: center !important;
   line-height: 1.2;
   padding: 0;
   margin: 5px;
-  border: 0.2em solid #FFFFFF;
+  border: 2px solid #FFFFFF;
   user-select: none;
   /* prevent text selection */
   cursor: pointer;
@@ -595,11 +601,11 @@ p {
 }
 
 .roundButton:hover {
-  background-color: #FF5722;
+  background-color: #bd2c00;
   /* change background color on hover */
   border-color: #424242;
   /* change border color on hover */
-  color: #424242;
+  color: #ebebeb;
   /* change text color on hover */
   transform: scale(1.1);
   /* add scaling on hover */
@@ -609,39 +615,58 @@ p {
 
 #strengthSaveValue,
 #strengthBonusScore {
-  background-color: #FFC107;
-  /* amber */
+  background-color: #126259;
 }
 
 #dexteritySaveValue,
 #dexterityBonusScore {
-  background-color: #E91E63;
-  /* pink */
+  background-color: #c58150;
 }
 
 #constitutionSaveValue,
 #constitutionBonusScore {
-  background-color: #4CAF50;
-  /* green */
+  background-color: #808080;
 }
 
 #intelligenceSaveValue,
 #intelligenceBonusScore {
-  background-color: #2196F3;
-  /* blue */
+  background-color: #971905;
 }
 
 #wisdomSaveValue,
 #wisdomBonusScore {
-  background-color: #9C27B0;
-  /* purple */
+  background-color: #FCDC8A;
 }
 
 #charismaSaveValue,
 #charismaBonusScore {
-  background-color: #f436cb;
-  /* red */
+  background-color: #603a23;
 }
+
+#strength {
+  background: rgba(18, 98, 89, 0.5); /* Converted from #126259 */
+}
+
+#dexterity {
+  background: rgba(197, 129, 80, 0.5); /* Converted from #c58150 */
+}
+
+#constitution {
+  background: rgba(128, 128, 128, 0.5); /* Converted from #808080 */
+}
+
+#intelligence {
+  background: rgba(151, 25, 5, 0.5); /* Converted from #971905 */
+}
+
+#wisdom {
+  background: rgba(252, 220, 138, 0.5); /* Converted from #FCDC8A */
+}
+
+#charisma {
+  background: rgba(96, 58, 35, 0.5); /* Converted from #603a23 */
+}
+
 
 .skillCheckBoxes {
   display: flex;
@@ -662,6 +687,7 @@ p {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 0px;
+  align-content: start;
 }
 
 #savingThrows {
@@ -708,112 +734,167 @@ p {
 /* skill buttons colors */
 
 #acrobaticsBonusValue.roundButton {
-  background-color: #E91E63;
-  /* red */
+  background-color: #c58150;
   color: white;
 }
 
 #animalHandlingBonusValue.roundButton {
-  background-color: #9C27B0;
-  /* deep purple */
+  background-color: #FCDC8A;
   color: white;
 }
 
 #arcanaBonusValue.roundButton {
-  background-color: #2196F3;
-  /* indigo */
+  background-color: #971905;
   color: white;
 }
 
 #athleticsBonusValue.roundButton {
-  background-color: #FFC107;
-  /* teal */
+  background-color: #126259;
   color: white;
 }
 
 #deceptionBonusValue.roundButton {
-  background-color: #f436cb;
-  /* deep orange */
+  background-color: #603a23;
   color: white;
 }
 
 #historyBonusValue.roundButton {
-  background-color: #2196F3;
-  /* green */
+  background-color: #971905;
   color: white;
 }
 
 #insightBonusValue.roundButton {
-  background-color: #9C27B0;
-  /* lime */
+  background-color: #FCDC8A;
   color: white;
 }
 
 #intimidationBonusValue.roundButton {
-  background-color: #f436cb;
-  /* pink */
+  background-color: #603a23;
   color: white;
 }
 
 #investigationBonusValue.roundButton {
-  background-color: #2196F3;
-  /* purple */
+  background-color: #971905;
   color: white;
 }
 
 #medicineBonusValue.roundButton {
-  background-color: #9C27B0;
-  /* cyan */
+  background-color: #FCDC8A;
   color: white;
 }
 
 #natureBonusValue.roundButton {
-  background-color: #2196F3;
-  /* light green */
+  background-color: #971905;
   color: white;
 }
 
 #perceptionBonusValue.roundButton {
-  background-color: #9C27B0;
-  /* yellow */
+  background-color: #FCDC8A;
   color: white;
 }
 
 #performanceBonusValue.roundButton {
-  background-color: #f436cb;
-  /* amber */
+  background-color: #603a23;
   color: white;
 }
 
 #persuasionBonusValue.roundButton {
-  background-color: #f436cb;
-  /* orange */
+  background-color: #603a23;
   color: white;
 }
 
 #religionBonusValue.roundButton {
-  background-color: #2196F3;
-  /* brown */
+  background-color: #971905;
   color: white;
 }
 
 #sleightOfHandBonusValue.roundButton {
-  background-color: #E91E63;
-  /* blue grey */
+  background-color: #c58150;
   color: white;
 }
 
 #stealthBonusValue.roundButton {
-  background-color: #E91E63;
-  /* blue grey */
+  background-color: #c58150;
   color: white;
 }
 
 #survivalBonusValue.roundButton {
-  background-color: #9C27B0;
-  /* green */
+  background-color: #FCDC8A;
   color: white;
 }
+
+#acrobaticsSkill {
+  background-color: rgba(197, 129, 80, 0.5); /* Dexterity color */
+}
+
+#animalHandlingSkill {
+  background-color: rgba(252, 220, 138, 0.5); /* Wisdom color */
+}
+
+#arcanaSkill {
+  background-color: rgba(151, 25, 5, 0.5); /* Intelligence color */
+}
+
+#athleticsSkill {
+  background-color: rgba(18, 98, 89, 0.5); /* Strength color */
+}
+
+#deceptionSkill {
+  background-color: rgba(96, 58, 35, 0.5); /* Charisma color */
+}
+
+#historySkill {
+  background-color: rgba(151, 25, 5, 0.5); /* Intelligence color */
+}
+
+#insightSkill {
+  background-color: rgba(252, 220, 138, 0.5); /* Wisdom color */
+}
+
+#intimidationSkill {
+  background-color: rgba(96, 58, 35, 0.5); /* Charisma color */
+}
+
+#investigationSkill {
+  background-color: rgba(151, 25, 5, 0.5); /* Intelligence color */
+}
+
+#medicineSkill {
+  background-color: rgba(252, 220, 138, 0.5); /* Wisdom color */
+}
+
+#natureSkill {
+  background-color: rgba(151, 25, 5, 0.5); /* Intelligence color */
+}
+
+#perceptionSkill {
+  background-color: rgba(252, 220, 138, 0.5); /* Wisdom color */
+}
+
+#performanceSkill {
+  background-color: rgba(96, 58, 35, 0.5); /* Charisma color */
+}
+
+#persuasionSkill {
+  background-color: rgba(96, 58, 35, 0.5); /* Charisma color */
+}
+
+#religionSkill {
+  background-color: rgba(151, 25, 5, 0.5); /* Intelligence color */
+}
+
+#sleightOfHandSkill {
+  background-color: rgba(197, 129, 80, 0.5); /* Dexterity color */
+}
+
+#stealthSkill {
+  background-color: rgba(197, 129, 80, 0.5); /* Dexterity color */
+}
+
+#survivalSkill {
+  background-color: rgba(252, 220, 138, 0.5); /* Wisdom color */
+}
+
 
 .hit-points-inputs {
   display: flex;
@@ -1154,11 +1235,15 @@ p {
 #menu {
   position: relative;
   cursor: pointer;
-
 }
 
 .iconify {
   font-size: 24px;
+}
+
+.supersizeme {
+  font-size: 48px;
+  color: rgb(227, 227, 227);
 }
 
 .menu-content {
@@ -1332,7 +1417,7 @@ p {
 }
 
 .add-button {
-  background-color: #4CAF50;
+  background-color: #32876C;
   /* Green background */
   border: none;
   /* Remove border */
@@ -1360,12 +1445,12 @@ p {
 }
 
 .add-button:hover {
-  background-color: #45a049;
+  background-color: #11845E;
   /* Change background color on hover */
 }
 
 .remove-button {
-  background-color: #ff0000;
+  background-color: #60182A;
   /* Red background */
   border: none;
   /* Remove border */
@@ -1458,7 +1543,7 @@ body {
 }
 
 .toggle-checkbox:checked+.toggle-switch {
-  background: #56c080;
+  background: #126259;
 }
 
 .toggle-checkbox:checked+.toggle-switch:before {
@@ -1766,8 +1851,19 @@ body {
 }
 
 .spellAbilityA {
-    background-color: #F0E68C; /* khaki */
+    background: rgb(197, 129, 80,0.5);
 }
 .spellAbilityB {
-  background-color: #9370DB; /* mediumpurple */
+  background: rgb(18, 98, 89,0.5);
 }
+
+.spellFiltres {
+  background: rgb(96, 58, 35 ,0.5);
+}
+
+.maitrise-label {
+  font-size: 12px;
+  padding:8px 0px 9px 0px;
+}
+
+

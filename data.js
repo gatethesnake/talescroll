@@ -19,6 +19,16 @@ const abilityOptions = [
   { value: 'charisma', text: 'Charisme' },
 ];
 
+const characteristicColors = {
+  strength: '#126259',
+  dexterity: '#c58150',
+  constitution: '#808080',
+  intelligence: '#971905',
+  wisdom: '#FCDC8A',
+  charisma: '#603a23'
+};
+
+
 const ABILITY_NAMES = [
   'strength',
   'dexterity',
@@ -11824,22 +11834,22 @@ const spells = [
  ];
 
  const colorPalette = [
-  '#F0E68C', // khaki
-  '#FFC0CB', // pink
-  '#ADFF2F', // greenyellow
-  '#FFA07A', // lightsalmon
-  '#00FFFF', // cyan
-  '#9370DB', // mediumpurple
-  '#FFD700', // gold
-  '#7FFFD4', // aquamarine
-  '#48D1CC', // mediumturquoise
-  '#F08080', // lightcoral
-  '#98FB98', // palegreen
-  '#FFB6C1', // lightpink
-  '#FF6347', // tomato
-  '#AFEEEE', // paleturquoise
-  '#DDA0DD', // plum
-  '#87CEFA', // lightskyblue
+  '#c58150', 
+  '#1E9E8F', 
+  '#88b0ac', 
+  '#e2c0a7', 
+  '#929292', 
+  '#cb8c82', 
+  '#bababa', 
+  '#C6B1A5',   
+  '#971905', 
+  '#e2c0a7', 
+  '#C6C6C6', 
+  '#CC7A4B', 
+  '#59918a', 
+  '#60958f', 
+  '#8ab2ad', 
+  '#91b6b2', 
 ];
 
 const weapons = [

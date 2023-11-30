@@ -2570,7 +2570,7 @@ function adjustSavingThrows(context, loadedData = null) {
     otherBonusInput.setAttribute('value', '0');
     otherBonusInput.setAttribute('min', '-10');
     otherBonusInput.setAttribute('max', '10');
-    otherBonusInput.style.cssText = 'margin-left: 10px; font-size: 0.8em; width: 50px; height: 20px;';
+    //otherBonusInput.style.cssText = 'padding-left: 15px;  width: 20px; ';
 
     proficientInput.addEventListener('change', () => {
       calculateSavingThrowBonus(saveId, proficientInput, expertInput, proficiencyBonusValue, abilityBonusValue, parseInt(otherBonusInput.value) || 0);
@@ -2612,8 +2612,12 @@ function adjustSavingThrows(context, loadedData = null) {
 
     }
     
+    const maitriseLabel = document.createElement('label');
+    maitriseLabel.textContent = 'Maîtrise';
+    maitriseLabel.className = 'maitrise-label'; // Assign a class
+
     checkboxesDiv.appendChild(proficientInput);
-    checkboxesDiv.appendChild(document.createTextNode('Maitrise'));
+    checkboxesDiv.appendChild(maitriseLabel); // Append the label instead of a text node
     checkboxesDiv.appendChild(expertInput);
     // to prevent the label to appear
     //checkboxesDiv.appendChild(document.createTextNode('Expert'));
@@ -2629,7 +2633,6 @@ function adjustSavingThrows(context, loadedData = null) {
     applySaveButtonColors();
 
   });
-
 };
 
 
@@ -2680,27 +2683,27 @@ function applySaveButtonColors() {
     switch (button.id) {
       case 'strengthSaveValue':
       case 'strengthBonusScore':
-        button.style.backgroundColor = '#FFC107'; // amber
+        button.style.backgroundColor = '#126259';
         break;
       case 'dexteritySaveValue':
       case 'dexterityBonusScore':
-        button.style.backgroundColor = '#E91E63'; // pink
+        button.style.backgroundColor = '#c58150';
         break;
       case 'constitutionSaveValue':
       case 'constitutionBonusScore':
-        button.style.backgroundColor = '#4CAF50'; // green
+        button.style.backgroundColor = '#808080';
         break;
       case 'intelligenceSaveValue':
       case 'intelligenceBonusScore':
-        button.style.backgroundColor = '#2196F3'; // blue
+        button.style.backgroundColor = '#971905';
         break;
       case 'wisdomSaveValue':
       case 'wisdomBonusScore':
-        button.style.backgroundColor = '#9C27B0'; // purple
+        button.style.backgroundColor = '#FCDC8A';
         break;
       case 'charismaSaveValue':
       case 'charismaBonusScore':
-        button.style.backgroundColor = '#f436cb'; // red
+        button.style.backgroundColor = '#603a23';
         break;
     }
   });
@@ -2897,10 +2900,11 @@ function createSkillSection(skill) {
 
 function generateSkills() {
   const skillsSection = document.getElementById("skills");
+  
 
   for (const skill of skillsName) {
     const skillSubsection = createSkillSection(skill);
-    skillsSection.appendChild(skillSubsection);
+    skillsSection.appendChild(skillSubsection); // Append to flex-start-behavior div
 
     const proficientInput = skillSubsection.querySelector(`#${skill.id}ProficientBonus`);
     proficientInput.addEventListener('change', () => {
@@ -2913,6 +2917,7 @@ function generateSkills() {
     });
   }
 }
+
 
 // Add an event listener to call generateSkills when the page loads
 window.addEventListener('DOMContentLoaded', generateSkills);
