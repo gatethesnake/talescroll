@@ -582,7 +582,7 @@ p {
   margin: 5px;
   padding: 5px;
   width: 100%;
-  max-height: 275px; /* Adjusted max height */
+  max-height: 350px; /* Adjusted max height */
   overflow-y: auto; /* Allows scrolling if content exceeds max height */
 }
 
@@ -1852,9 +1852,9 @@ body {
 /* Ensures that middle-column takes up remaining width */
 #middle-column {
   display: flex;
-  flex: 0 0 50%;
-  min-width: 50% !important;
-  max-width: 50%;
+  flex: 0 0 58%;
+  min-width: 58% !important;
+  max-width: 58%;
   flex-direction: column; /* Adjusts the direction of the flex items */
 }
 
