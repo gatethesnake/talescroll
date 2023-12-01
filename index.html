@@ -12,7 +12,7 @@
 	</script>
 	<meta property="og:image" content="img/talescroll-bg.jpg" />
 	<meta charset="UTF-8">
-	<title>talescroll</title>
+	<title>TaleScroll, feuille dynamique de perso pour TaleSpire</title>
 	<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
 	<link rel="shortcut icon" href="img/favicon.ico">
 	<link rel="stylesheet" href="styles.css">
@@ -58,7 +58,7 @@
 						<span>Réinitialiser</span>
 					</div>
 					<div class="menu-item">
-						<span>Suppriner</span>
+						<span>Supprimer</span>
 						<div class="submenu">
 							<select id="characterDeleteSelect" class="input-text" onchange="deleteCharacter()"></select>
 						</div>
@@ -67,24 +67,25 @@
 			</div>
 			<div id="imageContainer">
 				<div id="characterPictureContainer">
-				<div id="img-container">
-					<img id="preview" src="" alt="Personnage" />
+					<div id="img-container">
+						<img id="preview" src="" alt="Personnage" />
+					</div>
+					<input type="file" id="fileInput" accept="image/*" style="display:none;">
+					<div id="statusBar">
+					</div>
 				</div>
-				<input type="file" id="fileInput" accept="image/*" style="display:none;">
-			</div>
 			</div>
 			<div id="titre">
 				<h1 id="character-title">
 					TaleScroll
 				</h1>
-				<div id="statusBar">
+				<div id="perso">
+					<h4 id="characterClassClassAndLevel">
+					</h4>
 				</div>
 			</div>
-			<div id="perso">
-			<h4 id="characterClassClassAndLevel">
-			</h4>
+			<div id="save-button" class="iconify supersizeme save-btn-right" data-icon="fluent:save-16-regular" onclick="saveAll()">
 			</div>
-			<div id="save-button" class="iconify supersizeme" data-icon="fluent:save-16-regular" onclick="saveAll()"></div>
 		</div>
 		<div id="groupTabModule" class="tabCS">
 			<button class="tablinksCS"  style="display:none"onclick="openTabCS(event, 'sheetTab')"       id="sheetTabName">Onglet caché</button>
@@ -220,282 +221,269 @@
 				</div>
 			</div>
 			<div id="middle-column">
-				<div id="information" class="section">
-					<div class="flex-start-behavior">
-						<h2>Information</h2>
-						
-						<div id="hit-points" class="subsection">
-							<h4>Points de vie</h4>
-							<div class="main-hit-points">
-								<div class="hit-points-input-wrapper">
-									<label for="actualHitPoints">PV</label>
-									<input type="number" id="actualHitPoints" name="actualHitPoints" value="0" class="input-text input-actualHitPoints">
-								</div>
-								<div class="hit-points-input-wrapper">
-									<label for="maxHitPoints">Max</label>
-									<input type="number" id="maxHitPoints" name="maxHitPoints" value="0" min="0" class="input-text input-maxHitPoints">
-								</div>
-								<div class="toggle-section">
-									<label>Détails</label>
-									<label class="toggle">
-										<input type="checkbox" id="hitDiceDetails" class="toggle-checkbox" onchange="toggleHitDiceSection()">
-										<span class="toggle-switch"></span>
-									</label>
-								</div>
-							</div>
-							<div class="extra-fields" style="display: none;">
-								<div class="hit-points-input-wrapper">
-									<label for="tempHitPoints">Temp</label>
-									<input type="number" id="tempHitPoints" name="tempHitPoints" value="0" min="0" class="input-text input-tempHitPoints">
-								</div>
-								<div id="hitDices" class="container">
-									<label for="numberHitDice">Dés A</label>
-									<input type="number" id="numberHitDice" name="numberHitDice" value="0"
-										class="input-text input-numberHitDice">
-									<label for="hitDiceType">Type A</label>
-									<select id="hitDiceType" name="hitDiceType" class="input-text input-hitDiceType">
-									</select>
-								</div>
-								<div class="container">
-									<label for="numberHitDice2">Dés B</label>
-									<input type="number" id="numberHitDice2" name="numberHitDice2" value="0"
-										class="input-text input-numberHitDice">
-									<label for="hitDiceType2">Type B</label>
-									<select id="hitDiceType2" name="hitDiceType2" class="input-text input-hitDiceType">
-									</select>
-								</div>
-							</div>
-						</div>
-						<div class="container">
-							<div id="armorClass" class="subsection">
-								<h4>Classe d'armure</h4>
-								<div class="container">
-									<input type="text" id="armorClassValue" class="roundButton" value="10" readonly>
-									<div class="wrapper">
-										<label>Détails</label>
-										<label class="toggle">
-											<input type="checkbox" id="armorClassShowDetails" class="toggle-checkbox"
-												onchange="toggleArmorClassDetails()">
-											<span class="toggle-switch"></span>
-										</label>
-									</div>
-								</div>
-								<div id="armorClassDetail" class="container5">
-									<div id="abilityAdjustmentSubsection" class="ability-adjustments subsection">
-										<div class="ability-adjustment">
-											<label for="abilityAdjustment1" id="abilityAdjustment1Label">Caractéristique 1</label>
-											<select id="abilityAdjustment1" class="input-text">
-											</select>
+				<div id="information" class="section-flex-row">
+					<h2>Information</h2>
+						<div class="wrapper">
+							<div class="container">
+								<div id="hit-points" class="subsection-flex-item">
+									<h4>Points de vie</h4>
+									<div class="main-hit-points">
+										<div class="hit-points-input-wrapper">
+											<label for="actualHitPoints">PV</label>
+											<input type="number" id="actualHitPoints" name="actualHitPoints" value="0" class="input-text input-actualHitPoints">
 										</div>
-										<div class="ability-adjustment">
-											<label for="abilityAdjustment2" id="abilityAdjustment2Label">Caractéristique 2</label>
-											<select id="abilityAdjustment2" class="input-text">
-											</select>
+										<div class="hit-points-input-wrapper">
+											<label for="maxHitPoints">Max</label>
+											<input type="number" id="maxHitPoints" name="maxHitPoints" value="0" min="0" class="input-text input-maxHitPoints">
 										</div>
-									</div>
-									<div id="otherAdjustmentSubsection" class="subsection">
-										<label class="other-adjustments-label ">Autres ajustements</label>
-										<div class="other-adjustments">
-											<input type="text" id="otherArmorClassAdjustmentName" class="input-text"
-												placeholder="Nom de l'ajustement">
-											<input type="number" id="otherArmorClassValue" class="input-text" min="-10"
-												max="10" value="0">
-										</div>
-									</div>
-									<div id="armorSubsection" class="subsection">
-										<div class="container4">
-											<select id="armorSelection" class="input-text"
-												onchange="selectChangedContainer(this, 'customArmorContainer')">
-												<!-- The options will be populated by the populateArmorOptions() function -->
-											</select>
+										<div class="toggle-section">
+											<label>Détails</label>
 											<label class="toggle">
-												<input type="checkbox" id="armorActiveCheckbox" class="toggle-checkbox">
+												<input type="checkbox" id="hitDiceDetails" class="toggle-checkbox" onchange="toggleHitDiceSection()">
 												<span class="toggle-switch"></span>
 											</label>
 										</div>
-										<div id="customArmorContainer" class="armor-container">
-											<div class="armor-wrapper">
-												<label for="customArmorName">Armure personnalisée</label>
-												<input type="text" id="customArmorName" class="input-text">
-											</div>
-											<div class="armor-wrapper">
-												<label for="customArmorClassValue">Ajustement</label>
-												<input type="number" id="customArmorClassValue" class="input-text" value="0"
-													min="-10" max="10">
-											</div>
+									</div>
+									<div class="extra-fields" style="display: none;">
+										<div class="hit-points-input-wrapper">
+											<label for="tempHitPoints">Temp</label>
+											<input type="number" id="tempHitPoints" name="tempHitPoints" value="0" min="0" class="input-text input-tempHitPoints">
+										</div>
+										<div id="hitDices" class="container">
+											<label for="numberHitDice">Dés A</label>
+											<input type="number" id="numberHitDice" name="numberHitDice" value="0"
+												class="input-text input-numberHitDice">
+											<label for="hitDiceType">Type A</label>
+											<select id="hitDiceType" name="hitDiceType" class="input-text input-hitDiceType">
+											</select>
+										</div>
+										<div class="container">
+											<label for="numberHitDice2">Dés B</label>
+											<input type="number" id="numberHitDice2" name="numberHitDice2" value="0"
+												class="input-text input-numberHitDice">
+											<label for="hitDiceType2">Type B</label>
+											<select id="hitDiceType2" name="hitDiceType2" class="input-text input-hitDiceType">
+											</select>
 										</div>
 									</div>
-									<div id="shield1Subsection" class="subsection">
-										<div class="container4">
-											<select id="shieldAndAccessoriesSelection1" class="input-text"
-												onchange="selectChangedContainer(this, 'customShieldContainer')">
-												<!-- The options will be populated by the populateShieldAndAccessoriesOptions() function -->
-											</select>
+								</div>
+								<div id="initiative" class="subsection-flex-item">
+									<h4>Initiative</h4>
+									<p id="initiativeBonusValue" class="roundButton"
+										onclick="rollInitiative(this.previousElementSibling.innerHTML, this.innerHTML);">
+										+0</p>
+									<label for="otherInitiativeBonus">Bonus</label>
+									<input type="number" id="otherInitiativeBonus" value="0" min="-10" max="10"
+										class="input-text input-initiativeBonus" name="otherInitiativeBonus">
+								</div>
+								<div id="avantage" class="subsection-flex-item">
+									<h4>Avantage</h4>
+									<div class="buttons-advantage center-buttons wrapper">
+										<button id="disadvantage" class="button small-button dark-red-button advantage-buttons"
+											onclick="setAdvantage('disadvantage')">Désavantage</button>
+										<button id="normal"
+											class="button small-button dark-yellow-button advantage-buttons activated-button"
+											onclick="setAdvantage('normal')">Normal</button>
+										<button id="advantage" class="button small-button dark-green-button advantage-buttons"
+											onclick="setAdvantage('advantage')">Avantage</button>
+									</div>
+								</div>
+								<div id="inspiration" class="subsection-flex-item">
+									<h4>Inspiration </h4>
+									<div class="toggle">
+										<input type="checkbox" id="inspirationValue" class="toggle-checkbox" onchange="toggleInspiration()">
+										<label for="inspirationValue" class="toggle-switch"></label>
+									</div>
+									<h4>Bonus général</h4>
+									<input type="number" id="generalBonusValue" value="0" min="-10" max="10" class="input-text  name=" generalBonusValue">
+								</div>
+							</div>
+							<div class="container">
+								<div id="armorClass" class="subsection-flex-item">
+									<h4>Classe d'armure</h4>
+									<div class="container">
+										<input type="text" id="armorClassValue" class="shield" value="10" readonly>
+										<div class="wrapper">
+											<label>Détails</label>
 											<label class="toggle">
-												<input type="checkbox" id="shieldActiveCheckbox1" class="toggle-checkbox">
+												<input type="checkbox" id="armorClassShowDetails" class="toggle-checkbox"
+													onchange="toggleArmorClassDetails()">
 												<span class="toggle-switch"></span>
 											</label>
 										</div>
-										<div id="customShieldContainer" class="shield-container">
-											<div class="shield-wrapper">
-												<label for="customShieldName1">Bouclier personnalisé</label>
-												<input type="text" id="customShieldName1" class="input-text">
+									</div>
+									<div id="armorClassDetail" class="container5">
+										<div id="abilityAdjustmentSubsection" class="ability-adjustments subsection">
+											<div class="ability-adjustment">
+												<label for="abilityAdjustment1" id="abilityAdjustment1Label">Caractéristique 1</label>
+												<select id="abilityAdjustment1" class="input-text">
+												</select>
 											</div>
-											<div class="shield-wrapper">
-												<label for="customShieldClassValue1">Ajustement</label>
-												<input type="number" id="customShieldClassValue1" class="input-text"
-													value="0" min="-10" max="10">
+											<div class="ability-adjustment">
+												<label for="abilityAdjustment2" id="abilityAdjustment2Label">Caractéristique 2</label>
+												<select id="abilityAdjustment2" class="input-text">
+												</select>
+											</div>
+										</div>
+										<div id="otherAdjustmentSubsection" class="subsection">
+											<label class="other-adjustments-label ">Autres ajustements</label>
+											<div class="other-adjustments">
+												<input type="text" id="otherArmorClassAdjustmentName" class="input-text"
+													placeholder="Nom de l'ajustement">
+												<input type="number" id="otherArmorClassValue" class="input-text" min="-10"
+													max="10" value="0">
+											</div>
+										</div>
+										<div id="armorSubsection" class="subsection">
+											<div class="container4">
+												<select id="armorSelection" class="input-text"
+													onchange="selectChangedContainer(this, 'customArmorContainer')">
+													<!-- The options will be populated by the populateArmorOptions() function -->
+												</select>
+												<label class="toggle">
+													<input type="checkbox" id="armorActiveCheckbox" class="toggle-checkbox">
+													<span class="toggle-switch"></span>
+												</label>
+											</div>
+											<div id="customArmorContainer" class="armor-container">
+												<div class="armor-wrapper">
+													<label for="customArmorName">Armure personnalisée</label>
+													<input type="text" id="customArmorName" class="input-text">
+												</div>
+												<div class="armor-wrapper">
+													<label for="customArmorClassValue">Ajustement</label>
+													<input type="number" id="customArmorClassValue" class="input-text" value="0"
+														min="-10" max="10">
+												</div>
+											</div>
+										</div>
+										<div id="shield1Subsection" class="subsection">
+											<div class="container4">
+												<select id="shieldAndAccessoriesSelection1" class="input-text"
+													onchange="selectChangedContainer(this, 'customShieldContainer')">
+													<!-- The options will be populated by the populateShieldAndAccessoriesOptions() function -->
+												</select>
+												<label class="toggle">
+													<input type="checkbox" id="shieldActiveCheckbox1" class="toggle-checkbox">
+													<span class="toggle-switch"></span>
+												</label>
+											</div>
+											<div id="customShieldContainer" class="shield-container">
+												<div class="shield-wrapper">
+													<label for="customShieldName1">Bouclier personnalisé</label>
+													<input type="text" id="customShieldName1" class="input-text">
+												</div>
+												<div class="shield-wrapper">
+													<label for="customShieldClassValue1">Ajustement</label>
+													<input type="number" id="customShieldClassValue1" class="input-text"
+														value="0" min="-10" max="10">
+												</div>
+											</div>
+										</div>
+										<div id="shield2Subsection" class="subsection">
+											<div class="container4">
+												<select id="shieldAndAccessoriesSelection2" class="input-text"
+													onchange="selectChangedContainer(this, 'customShieldContainer2')">
+													<!-- The options will be populated by the populateShieldAndAccessoriesOptions() function -->
+												</select>
+												<label class="toggle">
+													<input type="checkbox" id="shieldActiveCheckbox2" class="toggle-checkbox">
+													<span class="toggle-switch"></span>
+												</label>
+											</div>
+											<div id="customShieldContainer2" class="shield-container">
+												<div class="shield-wrapper">
+													<label for="customShieldName2">Bouclier personnalisé</label>
+													<input type="text" id="customShieldName2" class="input-text">
+												</div>
+												<div class="shield-wrapper">
+													<label for="customShieldClassValue2">Ajustement</label>
+													<input type="number" id="customShieldClassValue2" class="input-text"
+														value="0" min="-10" max="10">
+												</div>
 											</div>
 										</div>
 									</div>
-									<div id="shield2Subsection" class="subsection">
-										<div class="container4">
-											<select id="shieldAndAccessoriesSelection2" class="input-text"
-												onchange="selectChangedContainer(this, 'customShieldContainer2')">
-												<!-- The options will be populated by the populateShieldAndAccessoriesOptions() function -->
-											</select>
-											<label class="toggle">
-												<input type="checkbox" id="shieldActiveCheckbox2" class="toggle-checkbox">
-												<span class="toggle-switch"></span>
-											</label>
+								</div>
+								<div id="passive-perception" class="subsection-flex-item">
+									<h4>Perception passive</h4>
+									<p id="passivePerceptionValue" class="roundButton">10
+									<p>
+									<input type="number" id="perceptionOtherBonusValue" value="0" min="-10" max="10"
+									class="input-text  name=" perceptionOtherBonusValue">
+								</div>
+								<div id="save-against-death" class="subsection-flex-item">
+									<h4>Sauvegarde c. la mort</h4>
+									<div class="grid-container">
+										<div class="grid-header">
+											<span>Succès</span>
+											<span>Échec</span>
 										</div>
-										<div id="customShieldContainer2" class="shield-container">
-											<div class="shield-wrapper">
-												<label for="customShieldName2">Bouclier personnalisé</label>
-												<input type="text" id="customShieldName2" class="input-text">
+										<div class="grid-content death-saves">
+											<div class="success-container">
+												<input type="checkbox" id="success1" name="success1"
+													class="checkbox-death-saving-throws">
+												<input type="checkbox" id="success2" name="success2"
+													class="checkbox-death-saving-throws" disabled>
+												<input type="checkbox" id="success3" name="success3"
+													class="checkbox-death-saving-throws" disabled>
 											</div>
-											<div class="shield-wrapper">
-												<label for="customShieldClassValue2">Ajustement</label>
-												<input type="number" id="customShieldClassValue2" class="input-text"
-													value="0" min="-10" max="10">
+											<div class="failed-container">
+												<input type="checkbox" id="failed1" name="failed1"
+													class="checkbox-death-saving-throws">
+												<input type="checkbox" id="failed2" name="failed2"
+													class="checkbox-death-saving-throws" disabled>
+												<input type="checkbox" id="failed3" name="failed3"
+													class="checkbox-death-saving-throws" disabled>
 											</div>
 										</div>
 									</div>
-								</div>
-							</div>
-						</div>
-						<div class="container">
-							<div id="initiative" class="subsection subsection2">
-								<h4>Initiative</h4>
-								<p id="initiativeBonusValue" class="roundButton"
-									onclick="rollInitiative(this.previousElementSibling.innerHTML, this.innerHTML);">
-									+0</p>
-								<label for="otherInitiativeBonus">Bonus</label>
-								<input type="number" id="otherInitiativeBonus" value="0" min="-10" max="10"
-									class="input-text input-initiativeBonus" name="otherInitiativeBonus">
-							</div>
-							<div id="avantage" class="subsection ">
-								<h4>Avantage</h4>
-								<div class="buttons-advantage center-buttons wrapper">
-									<button id="disadvantage" class="button small-button dark-red-button advantage-buttons"
-										onclick="setAdvantage('disadvantage')">Désavantage</button>
-									<button id="normal"
-										class="button small-button dark-yellow-button advantage-buttons activated-button"
-										onclick="setAdvantage('normal')">Normal</button>
-									<button id="advantage" class="button small-button dark-green-button advantage-buttons"
-										onclick="setAdvantage('advantage')">Avantage</button>
-								</div>
-							</div>
-							<div id="generalBonus" class="subsection subsection2">
-								<h4>Bonus général</h4>
-								<input type="number" id="generalBonusValue" value="0" min="-10" max="10"
-									class="input-text  name=" generalBonusValue">
-							</div>
-						</div>
-						<div class="container">
-							<div id="proficiency-bonus" class="subsection ">
-								<h4>Bonus de maîtrise</h4>
-								<p id="proficiencyBonusValue" class="roundButton">+2
-								<p>
-							</div>
-							<div id="passive-perception" class="subsection ">
-								<h4>Perception passive</h4>
-								<p id="passivePerceptionValue" class="roundButton">10
-								<p>
-								<input type="number" id="perceptionOtherBonusValue" value="0" min="-10" max="10"
-								class="input-text  name=" perceptionOtherBonusValue">
-							</div>
-						</div>
-						<div id="save-against-death" class="subsection">
-							<h4>Sauvegarde c. la mort</h4>
-							<div class="grid-container">
-								<div class="grid-header">
-									<span>Succès</span>
-									<span>Échec</span>
-								</div>
-								<div class="grid-content death-saves">
-									<div class="success-container">
-										<input type="checkbox" id="success1" name="success1"
-											class="checkbox-death-saving-throws">
-										<input type="checkbox" id="success2" name="success2"
-											class="checkbox-death-saving-throws" disabled>
-										<input type="checkbox" id="success3" name="success3"
-											class="checkbox-death-saving-throws" disabled>
+									<div id="d20Container" class="overlay hidden">
+										<div class="close-btn" onclick="hideD20Container()">
+											&times;
+										</div>
+										<div id="diceWrapper">
+										</div>
+										<div id="resultDeathSave" class="result-death-save">
+											<h2 id="resultText" class="result-text">Jet de sauvegarde contre la mort</h2>
+											<h2 id="deadOrAlive" class="dead-or-alive"></h2>
+											<button id="buttonDeathSaveRollResult" class="button"
+												onclick="hideD20Container()"></button>
+										</div>
 									</div>
-									<div class="failed-container">
-										<input type="checkbox" id="failed1" name="failed1"
-											class="checkbox-death-saving-throws">
-										<input type="checkbox" id="failed2" name="failed2"
-											class="checkbox-death-saving-throws" disabled>
-										<input type="checkbox" id="failed3" name="failed3"
-											class="checkbox-death-saving-throws" disabled>
+									<div class="button-container">
+										<button id="rollDeathSavingThrowsButton" class="button small-button blue-button"
+											onclick="rollDeathSavingThrowsLocally()">
+											<span class="iconify" data-icon="fa-solid:dice-d20"></span>
+										</button>
+										<button id="resetDeathSavingThrowsButton" class="button small-button red-button">
+											&#8634;
+										</button>
 									</div>
 								</div>
-							</div>
-							<div id="d20Container" class="overlay hidden">
-								<div class="close-btn" onclick="hideD20Container()">
-									&times;
+								<div id="speed" class="subsection-flex-item">
+									<h4>Déplacement</h4>
+									<div class="speed-container">
+										<div class="speed-input-wrapper">
+											<label for="speedValue">Cases</label>
+											<input type="number" id="speedValue" name="speedValue" value="0" min="0"
+												class="input-text input-speedValue">
+										</div>
+										<div class="speed-input-wrapper">
+											<label for="speedValueFeet">Pieds</label>
+											<input type="text" id="speedValueFeet" name="speedValueFeet" value=""
+												class="input-text input-speedValueFeet" disabled>
+										</div>
+										<div class="speed-input-wrapper">
+											<label for="speedValueMeters">Mètres</label>
+											<input type="text" id="speedValueMeters" name="speedValueMeters" value=""
+												class="input-text input-speedValueMeters" disabled>
+										</div>
+									</div>
 								</div>
-								<div id="diceWrapper">
-								</div>
-								<div id="resultDeathSave" class="result-death-save">
-									<h2 id="resultText" class="result-text">Jet de sauvegarde contre la mort</h2>
-									<h2 id="deadOrAlive" class="dead-or-alive"></h2>
-									<button id="buttonDeathSaveRollResult" class="button"
-										onclick="hideD20Container()"></button>
-								</div>
-							</div>
-							<div class="button-container">
-								<button id="rollDeathSavingThrowsButton" class="button small-button blue-button"
-									onclick="rollDeathSavingThrowsLocally()">
-									<span class="iconify" data-icon="fa-solid:dice-d20"></span>
-								</button>
-								<button id="resetDeathSavingThrowsButton" class="button small-button red-button">
-									&#8634;
-								</button>
+
 							</div>
 						</div>
-						<div class="container">
-							<div id="speed" class="subsection">
-								<h4>Déplacement</h4>
-								<div class="speed-container">
-									<div class="speed-input-wrapper">
-										<label for="speedValue">Cases</label>
-										<input type="number" id="speedValue" name="speedValue" value="0" min="0"
-											class="input-text input-speedValue">
-									</div>
-									<div class="speed-input-wrapper">
-										<label for="speedValueFeet">Pieds</label>
-										<input type="text" id="speedValueFeet" name="speedValueFeet" value=""
-											class="input-text input-speedValueFeet" disabled>
-									</div>
-									<div class="speed-input-wrapper">
-										<label for="speedValueMeters">Mètres</label>
-										<input type="text" id="speedValueMeters" name="speedValueMeters" value=""
-											class="input-text input-speedValueMeters" disabled>
-									</div>
-								</div>
-							</div>
-							<div id="inspiration" class="subsection ">
-								<h4>Inspiration</h4>
-								<div class="toggle">
-									<input type="checkbox" id="inspirationValue" class="toggle-checkbox"
-										onchange="toggleInspiration()">
-									<label for="inspirationValue" class="toggle-switch"></label>
-								</div>
-							</div>
-						</div>
-					</div>
 				</div>
 				<div id="bottom-middle-container" class="subsection5">
 					<div id="attacks" class="section">
@@ -514,6 +502,77 @@
 			</div>
 			<div id="skills" class="section section-20">
 				<h2>Compétences</h2>
+			</div>
+		</div>
+		<div id="spellTab" class="meta-section-no-wrap tabContentCS">
+			<div class="section-15">
+				<div id="spellCaster">
+					<h2>Lanceur de sorts</h2>
+					<div class="container">
+						<div class="spell-border spellAbilityA">
+							<div id="spellCasterAbility" class="subsection">
+								<h4>Habilité A</h4>
+								<select id="spellCastingAbilitySelect" class="input-text">
+									<option value=" ">Choisir</option>
+								</select>
+							</div>
+							<div id="difficultyClass" class="subsection ">
+								<h4>Difficulté A</h4>
+								<div class="roundButton" id="dcForSpell">8</div>
+								<label for="otherDcSpellBonus">Autre bonus</label>
+								<input id="otherDcSpellBonus" type="number" class="input-text w50" value="0" min="-10" max="10">
+							</div>
+							<div id="spellAttack" class="subsection">
+								<h4>Attaque A</h4>
+								<div class="roundButton" id="spellAttackBonus" onclick="rollSpellAttack(this.textContent)">
+									+0</div>
+								<label for="otherSpellAttackBonus">Autre bonus</label>
+								<input id="otherSpellAttackBonus" type="number" class="input-text w50" value="0" min="-10"
+									max="10">
+							</div>
+						</div>
+						<div class="flex-start-behavior spell-border spellAbilityB">
+							<div id="spellCasterAbility2" class="subsection">
+								<h4>Habilité B</h4>
+								<select id="spellCastingAbilitySelect2" class="input-text">
+									<option value=" ">Choisir</option>
+								</select>
+							</div>
+							<div id="difficultyClass2" class="subsection">
+								<h4>Difficulté B</h4>
+								<div class="roundButton" id="dcForSpell2">8</div>
+								<label for="otherDcSpellBonus2">Autre bonus</label>
+								<input id="otherDcSpellBonus2" type="number" class="input-text w50" value="0" min="-10" max="10">
+							</div>
+							<div id="spellAttack2" class="subsection">
+								<h4>Attaque B</h4>
+								<div class="roundButton" id="spellAttackBonus2" onclick="rollSpellAttack(this.textContent)">
+									+0</div>
+								<label for="otherSpellAttackBonus2">Autre bonus</label>
+								<input id="otherSpellAttackBonus2" type="number" class="input-text w50" value="0" min="-10"
+									max="10">
+							</div>
+						</div>
+					</div>
+					<div class="flex-start-behavior spell-border spellFiltres"> 
+						<div id="spellFiltres" class="subsection">
+							<h4>Filtres</h4>
+							<label for="spellCasterSelect">Lanceur de sorts</label>
+							<select id="spellCasterSelect" class="input-text">
+							</select>
+							<label for="spellSchool">École</label>
+							<select id="spellSchool" class="input-text"></select>
+							<label for="spellSource">Source</label>
+							<select id="spellSource" class="input-text"></select>
+						</div>
+					</div>
+				</div>
+				
+				
+			</div>
+			<div class="section-wrap flex-start-behavior">
+				<h2>Livre de sorts</h2>
+				<div id="spellBook" class="spell-section"></div>
 			</div>
 		</div>
 		<div id="itemsTab" class="meta-section tabContentCS">
@@ -538,73 +597,6 @@
 							data-icon="material-symbols:add"></span></button>
 					<div id="treasureContainer" class="treasure-container"></div>
 				</div>
-			</div>
-		</div>
-		<div id="spellTab" class="meta-section-no-wrap tabContentCS">
-			<div class="spell-content section-20">
-				<div id="spellCaster A">
-					<h2>Lanceur de sorts</h2>
-					<div class="flex-start-behavior spell-border  spellAbilityA">
-						<div id="spellCasterAbility" class="subsection">
-							<h4>Habilité de sort A</h4>
-							<select id="spellCastingAbilitySelect" class="input-text">
-								<option value=" ">Choisir</option>
-							</select>
-						</div>
-						<div id="difficultyClass" class="subsection ">
-							<h4>Degré de difficulté A</h4>
-							<div class="roundButton" id="dcForSpell">8</div>
-							<label for="otherDcSpellBonus">Autre bonus</label>
-							<input id="otherDcSpellBonus" type="number" class="input-text" value="0" min="-10" max="10">
-						</div>
-						<div id="spellAttack" class="subsection">
-							<h4>Attaque de sort A</h4>
-							<div class="roundButton" id="spellAttackBonus" onclick="rollSpellAttack(this.textContent)">
-								+0</div>
-							<label for="otherSpellAttackBonus">Autre bonus</label>
-							<input id="otherSpellAttackBonus" type="number" class="input-text" value="0" min="-10"
-								max="10">
-						</div>
-					</div>
-					<div class="flex-start-behavior spell-border spellAbilityB">
-						<div id="spellCasterAbility2" class="subsection">
-							<h4>Habilité de sort B</h4>
-							<select id="spellCastingAbilitySelect2" class="input-text">
-								<option value=" ">Choisir</option>
-							</select>
-						</div>
-						<div id="difficultyClass2" class="subsection">
-							<h4>Degré de difficulté B</h4>
-							<div class="roundButton" id="dcForSpell2">8</div>
-							<label for="otherDcSpellBonus2">Autre bonus</label>
-							<input id="otherDcSpellBonus2" type="number" class="input-text" value="0" min="-10" max="10">
-						</div>
-						<div id="spellAttack2" class="subsection">
-							<h4>Attaque de sort B</h4>
-							<div class="roundButton" id="spellAttackBonus2" onclick="rollSpellAttack(this.textContent)">
-								+0</div>
-							<label for="otherSpellAttackBonus2">Autre bonus</label>
-							<input id="otherSpellAttackBonus2" type="number" class="input-text" value="0" min="-10"
-								max="10">
-						</div>
-					</div>
-					<div class="flex-start-behavior spell-border spellFiltres"> 
-						<div id="spellFiltres" class="subsection">
-							<h4>Filtres</h4>
-							<label for="spellCasterSelect">Lanceur de sorts</label>
-							<select id="spellCasterSelect" class="input-text">
-							</select>
-							<label for="spellSchool">École</label>
-							<select id="spellSchool" class="input-text"></select>
-							<label for="spellSource">Source</label>
-							<select id="spellSource" class="input-text"></select>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="section-wrap flex-start-behavior">
-				<h2>Livre de sorts</h2>
-				<div id="spellBook" class="spell-section"></div>
 			</div>
 		</div>
 		<div id="featTab" class="meta-section tabContentCS">
@@ -660,22 +652,10 @@
 						<label for="levelName2">Niveau B</label>
 						<select id="levelName2" class="input-text" name="levelName2"></select>
 					</div>
-					<div id="religionContainer" class="subsection">
-						<label for="religion">Religion</label>
-						<select id="religion" class="input-text" name="religion"
-							onchange="selectChangedContainer(this,'customReligion')" data-custom-input="customReligion">
-						</select>
-						<input type="text" id="customReligion" class="input-text" name="customReligion"
-							style="display:none;" value=" ">
-					</div>
-					<div id="historiqueContainer" class="subsection">
-						<label for="historique">Historique</label>
-						<select id="historique" class="input-text" name="historique"
-							onchange="selectChangedContainer(this,'customHistorique')"
-							data-custom-input="customHistorique">
-						</select>
-						<input type="text" id="customHistorique" class="input-text" name="customHistorique"
-							style="display:none;" value=" ">
+					<div id="proficiency-bonus" class="subsection">
+						<h4>Bonus de maîtrise</h4>
+						<p id="proficiencyBonusValue" class="roundButton">+2
+						<p>
 					</div>
 					<div class="subsection">
 						<label for="versatileValue">Touche à tout</label>
@@ -701,6 +681,23 @@
 					<div id="alignementContainer" class="subsection">
 						<label for="alignement">Alignement</label>
 						<select id="alignement" class="input-text" name="alignement"></select>
+					</div>
+					<div id="religionContainer" class="subsection">
+						<label for="religion">Religion</label>
+						<select id="religion" class="input-text" name="religion"
+							onchange="selectChangedContainer(this,'customReligion')" data-custom-input="customReligion">
+						</select>
+						<input type="text" id="customReligion" class="input-text" name="customReligion"
+							style="display:none;" value=" ">
+					</div>
+					<div id="historiqueContainer" class="subsection">
+						<label for="historique">Historique</label>
+						<select id="historique" class="input-text" name="historique"
+							onchange="selectChangedContainer(this,'customHistorique')"
+							data-custom-input="customHistorique">
+						</select>
+						<input type="text" id="customHistorique" class="input-text" name="customHistorique"
+							style="display:none;" value=" ">
 					</div>
 					<div id="ageContainer" class="subsection">
 						<label for="age">Âge</label>
