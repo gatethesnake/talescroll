@@ -320,6 +320,7 @@ p {
 .side-border {
   border-left: 3px solid #2e2e2e;
   border-right: 3px solid #2e2e2e;
+  border-top: 3px solid #2e2e2e;
 }
 
 /* make tab button look like dice button */
@@ -414,7 +415,7 @@ p {
 
 .tabCS {
   position: fixed; /* Fixes the position on the page */
-  top: 117px; /* Adjust this value based on the actual height of .tabCS */
+  top: 120px; /* Adjust this value based on the actual height of .tabCS */
   left: 0;
   right: 0;
 
@@ -549,8 +550,8 @@ p {
   margin: 5px;
   padding: 5px;
   flex: 1;
-  max-height: 100vh;
- 
+  max-height: calc(100vh - 225px);
+  overflow-y: auto; /* Add scrollbar for content overflow */
 }
 
 
