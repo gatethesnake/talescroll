@@ -5085,6 +5085,31 @@ document.getElementById("menu").addEventListener("click", function () {
   menuContent.style.display = menuContent.style.display === "block" ? "none" : "block";
 });
 
+function closeMenu() {
+  const menuContent = document.getElementById("menu-content");
+  menuContent.style.display = "none";
+}
+
+const menuItems = document.querySelectorAll('.menu-content .menu-item, .menu-content .submenu div');
+menuItems.forEach(item => {
+  item.addEventListener('click', function(event) {
+    // Close the menu if the clicked item is not a combo box
+    if (!event.target.matches('select')) {
+      closeMenu();
+    }
+    event.stopPropagation(); // Prevents click from bubbling up to the #menu element
+  });
+});
+
+// Add a specific event listener for combo boxes
+const comboBoxes = document.querySelectorAll('.menu-content select');
+comboBoxes.forEach(box => {
+  box.addEventListener('change', function() {
+    // Close the menu after a selection is made
+    closeMenu();
+  });
+});
+
 function removeAccents(str) {
   return str
     .normalize('NFD') // Normalize the string to decompose accentuated characters

@@ -33,19 +33,23 @@ body {
   top: 0;
   left: 0;
   width: 100%;
-  background: white;
-  background: url(img/med-bg.jpg);
+  height: 180px;
+  background: url(img/lys-bg.jpg);
   background-size: 100% auto;
   z-index: 100;
 }
 
 #site-bottom {
   flex: 1 1 auto;
-  overflow-y: auto;
-  /* Add scrollbar for content overflow */
-  padding-top: 125px;
-  margin-bottom: 20px;
+  overflow-y: auto; /* Add scrollbar for content overflow */
+  position: absolute; /* Use absolute positioning within a relative container */
+  top: 180px; /* Height of #site-top */
+  bottom: 20px; /* Height of footer */
+  left: 0;
+  right: 0;
+  /* Ensures #site-bottom fills the space between #site-top and footer */
 }
+
 
 footer {
   position: fixed;
@@ -69,10 +73,8 @@ footer {
 
 /* header styles */
 #header {
-  display: flex;
+  position: relative;  
   margin: 5px;
-  flex-wrap: wrap;
-  flex-direction: row;
 }
 
 .image-container {
@@ -90,26 +92,63 @@ footer {
 }
 
 #titre {
-  flex: 1;
+  width: 100%; /* Take full width to allow centering of content */
   text-align: center;
-  ;
+  margin: 0 auto; /* Center the div itself if it does not have a width of 100% */
 }
 
 #perso {
-  position: fixed;
-  top: 25px;
-  right: 72px;
-  width: 400px;
-  /* border: 2px solid red; */
-  max-width: 100%;
-  text-align: right;
-  margin-right: 30px;
-  color: rgb(227, 227, 227);
+  width: 100%; /* Take full width to allow centering of content */
+  max-width: 100%; /* Ensure it does not exceed the parent width */
+  color: white;
 }
 
 #characterClassClassAndLevel {
-  color: rgb(227, 227, 227);
+  color: white;
+  text-shadow: 1px 1px 2px #000000; /* Black shadow */
+  font-family: 'MedievalSharp';
+  font-size: 36px;
+
 }
+
+
+.save-btn-right {
+  position: absolute;
+  right: 5px; /* Align to the right with 5px margin */
+  top: 5px; /* Align to the top with 5px margin if needed */
+}
+
+
+
+#imageContainer {
+  position: absolute;  
+  top: 5px;
+  left: 65px;
+}
+
+/* character picture */
+
+#img-container {
+  width: 140px;
+  height: 140px;
+  position: relative;
+  overflow: hidden;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid white; /* Changed border color to white */
+  border-radius: 75%; /* Keeps the container round */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5); /* Adds a drop shadow */
+}
+
+
+#preview {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* this scales and crops the image to fill its container */
+  border-radius: 50%; /* this makes the image round */
+}
+
 /* common styles for h1, h2, h3 */
 h1,
 h2,
@@ -122,9 +161,12 @@ h4 {
 
 /* specific styles for h1 */
 h1 {
-  font-size: 42px;
+  font-size: 48px;
   font-family: 'MedievalSharp';
   padding-top: 10px;
+  color: white;
+  text-shadow: 1px 1px 2px #000000; /* Black shadow */
+
 }
 
 /* specific styles for h2 */
@@ -246,6 +288,7 @@ p {
 /* Change background color of the active tab button */
 .tab button.active {
   background-color: #ccc;
+  
 }
 
 /* Style the tab content */
@@ -336,7 +379,7 @@ p {
 }
 
 .tablinksCS {
-  width: 25%;
+  max-width: 12.5%;
   text-align: center;
   font-family: 'MedievalSharp';
   font-size: smaller;
@@ -366,13 +409,26 @@ p {
 
 .tabCS button:not(.active) {
   background-color: #2e2e2e !important;
+  margin-top: 10px;
 }
 
 .tabCS {
+  position: fixed; /* Fixes the position on the page */
+  top: 117px; /* Adjust this value based on the actual height of .tabCS */
+  left: 0;
+  right: 0;
+
   display: flex;
-  margin: 0 auto;
-  justify-content: space-between;
+  justify-content: center; /* Centers the items horizontally */
+  flex-wrap: nowrap; /* Keeps items in a single line */
+  width: 100%; /* Full width of its parent */
+  margin: 0 auto; /* Center the element within the given width */
+
+  z-index: 101; /* Ensure it's above #site-top (which has z-index: 100) */
+  height: 63px; /* Set this to the height of .tabCS */
 }
+
+
 
 #dice-container {
   display: flex;
@@ -493,8 +549,10 @@ p {
   margin: 5px;
   padding: 5px;
   flex: 1;
-  
+  max-height: 100vh;
+ 
 }
+
 
 .subsection {
   border: 1px solid white;
@@ -508,6 +566,40 @@ p {
   min-width: 145x;
   position: relative;
 }
+
+.parent-container{
+  display: flex;
+  flex-direction: row; /* Or 'row', depending on your layout */
+  align-items: flex-start; /* Aligns children to the start of the cross axis */
+}
+
+.section-flex-row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  border: 2px solid white;
+  border-radius: 15px;
+  margin: 5px;
+  padding: 5px;
+  width: 100%;
+  max-height: 275px; /* Adjusted max height */
+  overflow-y: auto; /* Allows scrolling if content exceeds max height */
+}
+
+.subsection-flex-item {
+  border: 1px solid white;
+  border-radius: 15px;
+  margin: 3px;
+  padding: 5px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 25%; /* Minimum width of each subsection */
+  flex: 1; /* Adjust as needed, or use specific widths */
+
+}
+
 
 .subsection2 {
   flex-grow: 1;
@@ -543,6 +635,7 @@ p {
   align-items: flex-start;
 }
 
+
 .input-select,
 .input-text {
   font-size: 13px;
@@ -569,6 +662,44 @@ p {
 
 .input-select2 {
   width: 100%;
+}
+
+.shield {
+  height: 60px;
+  width: 60px;
+  border: 5px solid #eee;
+  border-radius: 50% 50% 50% 50% / 12% 12% 88% 88%;
+  background-color: #F44336;
+  color: #FFFFFF;
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center !important;
+  line-height: 1.2;
+  padding: 0;user-select: none;
+  /* prevent text selection */
+  cursor: pointer;
+  /* change cursor to pointer */
+  position: relative;
+  /* add position property for pseudo element */
+  overflow: hidden;
+  /* hide overflowing elements */
+  transition: all 0.2s ease-out;
+  /* add transition for smooth hover effect */
+  box-shadow: 0 0 0.5em rgba(0, 0, 0, 0.3);
+  /* add box-shadow */
+}
+
+.shield:hover {
+  background-color: #bd2c00;
+  /* change background color on hover */
+  border-color: #424242;
+  /* change border color on hover */
+  color: #ebebeb;
+  /* change text color on hover */
+  transform: scale(1.1);
+  /* add scaling on hover */
+  box-shadow: 0 0 0.5em rgba(0, 0, 0, 0.5);
+  /* add box-shadow on hover */
 }
 
 .roundButton {
@@ -1104,7 +1235,7 @@ p {
 .speed-container {
   display: flex;
   align-items: flex-start;
-  gap: 8px;
+  gap: 4px;
 }
 
 .speed-input-wrapper {
@@ -1114,7 +1245,7 @@ p {
 
 .main-hit-points {
   display: flex;
-  gap: 10px;
+  gap: 4px;
 }
 
 .hit-points-input-wrapper {
@@ -1141,7 +1272,7 @@ p {
 .button-container {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 4px;
 }
 
 #diceContainerSplash {
@@ -1159,7 +1290,7 @@ p {
 .subsection-container {
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
+  gap: 4px;
   /* Adjust the gap between the sections as needed */
   justify-content: space-around;
 }
@@ -1168,13 +1299,18 @@ p {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 1rem;
+  gap: 4px;
   /* Adjust this value to change the spacing between the buttons */
 }
 
 #statusBar {
   height: 14px;
   line-height: 14px;
+  color:white;
+  text-shadow: 1px 1px 2px #000000; /* Black shadow */
+
+  
+
 }
 
 .status-icon {
@@ -1202,7 +1338,7 @@ p {
 .other-adjustments {
   display: flex;
   flex-direction: row;
-  gap: 0.5rem;
+  gap: 4px;
   margin-top: 0.5rem;
   width:100%;
 }
@@ -1233,17 +1369,24 @@ p {
 }
 
 #menu {
-  position: relative;
+  position: absolute;
+  left: 5px; /* Align to the right with 5px margin */
+  top: 5px; /* Align to the top with 5px margin if needed */
   cursor: pointer;
+  z-index:20000;
 }
 
 .iconify {
   font-size: 24px;
+  filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 1));
+
 }
 
 .supersizeme {
   font-size: 48px;
-  color: rgb(227, 227, 227);
+  color: white;
+  text-shadow: 1px 1px 2px #000000; /* Black shadow */
+
 }
 
 .menu-content {
@@ -1297,13 +1440,14 @@ p {
 
 .container {
   display: flex;
-  gap: 8px;
+  gap: 4px;
+  
 }
 
 .container2 {
   display: flex;
   height: 100%;
-  gap: 8px;
+  gap: 4px;
 }
 
 .container3 {
@@ -1577,7 +1721,7 @@ body {
 
 .toggle-group {
   display: flex;
-  gap: 8px;
+  gap: 4px;
 }
 
 .resource-input-group {
@@ -1689,6 +1833,13 @@ body {
   padding-right: 1rem;
 }
 
+.section-15 {
+  flex: 0 0 15%;
+  min-width: 15% !important;
+  max-width: 15%;
+  box-sizing: border-box;
+  padding-right: 1rem;
+}
 
 .section-10 {
   flex: 0 0 10%;
@@ -1698,14 +1849,16 @@ body {
   padding-right: 1rem;
 }
 
-.section-33 {
-  min-width: 33%;
-  
+/* Ensures that middle-column takes up remaining width */
+#middle-column {
+  display: flex;
+  flex: 0 0 50%;
+  min-width: 50% !important;
+  max-width: 50%;
+  flex-direction: column; /* Adjusts the direction of the flex items */
 }
 
-.spell-content {
-  display: flex;
-}
+
 
 .section-wrap {
   flex-grow: 1;
@@ -1752,7 +1905,7 @@ body {
 .level-controls {
   display: flex;
   align-items: flex-start;
-  gap: 1rem;
+  gap: 4px;
 }
 
 .fullscreen-popup {
@@ -1823,32 +1976,6 @@ body {
   cursor: pointer;
 }
 
-#imageContainer {
-  position: relative;
-  padding-left:20px;
-}
-
-/* character picture */
-
-#img-container {
-  width: 75px;
-  height: 75px;
-  position: relative;
-  overflow: hidden;
-  align-items: center;
-  justify-content: center;
-  border: 2px solid grey;
-  border-radius: 50%; /* this makes the container round */
-  
-}
-
-#preview {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* this scales and crops the image to fill its container */
-  border-radius: 50%; /* this makes the image round */
-}
 
 .spellAbilityA {
     background: rgb(197, 129, 80,0.5);
@@ -1865,5 +1992,31 @@ body {
   font-size: 12px;
   padding:8px 0px 9px 0px;
 }
+
+
+/* ***********The entire scrollbar************ */
+::-webkit-scrollbar {
+  width: 12px; /* width of the entire scrollbar */
+}
+
+/* The track (progress bar) of the scrollbar NOT covered by the handle */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; /* color of the tracking area */
+}
+
+/* The handle (grip) of the scrollbar */
+::-webkit-scrollbar-thumb {
+  background: #888; /* color of the scroll thumb */
+  border-radius: 6px; /* roundness of the scroll thumb */
+  border: 3px solid #f1f1f1; /* creates padding around scroll thumb */
+}
+
+/* The handle (grip) of the scrollbar when it's active or being clicked */
+::-webkit-scrollbar-thumb:active {
+  background: #555; /* color of the scroll thumb when active */
+}
+
+/* ***********SHIELD************ */
+
 
 
