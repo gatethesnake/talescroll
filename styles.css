@@ -41,7 +41,7 @@ body {
 
 #site-bottom {
   flex: 1 1 auto;
-  overflow-y: auto; /* Add scrollbar for content overflow */
+  overflow-y: hidden;
   position: absolute; /* Use absolute positioning within a relative container */
   top: 160px; /* Height of #site-top */
   bottom: 20px; /* Height of footer */
@@ -135,7 +135,6 @@ footer {
   overflow: hidden;
   align-items: center;
   justify-content: center;
-  border: 2px solid #424242; /* Changed border color to white */
   border-radius: 75%; /* Keeps the container round */
   box-shadow: 4px 8px 8px rgba(255, 255, 255, 0.5); /* Adds a drop shadow */
 }
@@ -189,7 +188,7 @@ label {
 }
 
 p {
-  font-size: 12px;
+  font-size: 14px;
   text-align: left;
 }
 
@@ -383,7 +382,7 @@ p {
   max-width: 12.5%;
   text-align: center;
   font-family: 'MedievalSharp';
-  font-size: smaller;
+  font-size: 14px;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   overflow: hidden;
@@ -555,7 +554,8 @@ p {
 .subsection4, 
 .subsection6,
 .success-container,
-.failed-container   {
+.failed-container,
+.img-container   {
   background: rgba(255, 255, 255, 1);
   border: 1px solid #666666;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5); /* Adds a drop shadow */
@@ -573,7 +573,7 @@ p {
   margin: 5px;
   padding: 5px;
   flex: 1;
-  max-height: calc(100vh - 550px);
+  max-height: calc(100vh - 540px);
   overflow-y: auto; /* Add scrollbar for content overflow */
 }
 
@@ -670,9 +670,9 @@ p {
 
 .input-select,
 .input-text {
-  font-size: 13px;
+  font-size: 16px;
   padding: 4px 8px;
-  border: 1px solid #ccc;
+  border: 1px solid #cccccc;
   border-radius: 4px;
   background-color: #f8f8f8;
   margin-bottom: 2px;
@@ -746,7 +746,7 @@ p {
   line-height: 1.2;
   padding: 0;
   margin: 5px;
-  border: 2px solid #424242;
+  border: 2px solid #666666;
   user-select: none;
   /* prevent text selection */
   cursor: pointer;
@@ -1303,7 +1303,7 @@ p {
   margin-top: 10px;
   padding: 5px 10px;
   background-color: #f0f0f0;
-  border: 1px solid #424242;
+  border: 1px solid #666666;
   cursor: pointer;
 }
 
@@ -1550,7 +1550,7 @@ p {
   place-items: center;
   background-color: #F44336;
   color: #FFFFFF;
-  font-size: large;
+  font-size: 18px;
   font-weight: bold;
   text-align: center;
   line-height: 1.2;
@@ -1589,7 +1589,7 @@ p {
 
 .arrow-icon {
   display: inline-block;
-  font-size: 1.2em;
+  font-size: 12px;
   margin-left: 0.5em;
   cursor: pointer;
 }
@@ -1646,7 +1646,7 @@ p {
   /* Remove underline */
   display: inline-block;
   /* Display as inline-block */
-  font-size: 8px;
+  font-size: 12px;
   /* Set font size */
   margin: 2px;
   /* Add some margin */
@@ -1789,7 +1789,7 @@ body {
   width: 100%;
   min-height: 6em;
   resize: both;
-  font-size:small !important;
+  font-size: 14px;
   display:none;
 }
 
@@ -1797,7 +1797,7 @@ body {
   width: 100%;
   min-height: 6em;
   resize: both;
-  font-size:small !important;
+  font-size: 14px;
   display:flex;
 }
 
@@ -1913,8 +1913,8 @@ section-85 {
 /* Ensures that middle-column takes up remaining width */
 #middle-column {
   display: flex;
-  flex: 1 1 55%;
-  min-width: 55% !important;
+  flex: 1 1 58%;
+  min-width: 58% !important;
   
   flex-direction: column; /* Adjusts the direction of the flex items */
   padding: 5px;
