@@ -137,7 +137,7 @@ footer {
   justify-content: center;
   border: 2px solid #424242; /* Changed border color to white */
   border-radius: 75%; /* Keeps the container round */
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5); /* Adds a drop shadow */
+  box-shadow: 4px 8px 8px rgba(255, 255, 255, 0.5); /* Adds a drop shadow */
 }
 
 
@@ -288,7 +288,7 @@ p {
 /* Change background color of the active tab button */
 .tab button.active {
   background-color: #ccc;
-  
+
 }
 
 /* Style the tab content */
@@ -406,6 +406,8 @@ p {
 
 .tabCS button.active {
   background-color: #9F3E31;
+  
+
 }
 
 .tabCS button:not(.active) {
@@ -559,7 +561,7 @@ p {
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5); /* Adds a drop shadow */
 }
 
-.subsection, .subsection3, .subsection-flex-item {
+.subsection, .subsection3, .subsection-flex-item,.subsection6, .subsection4 {
   background: rgba(0, 0, 0, 0.1);
 }
 
@@ -616,13 +618,8 @@ p {
   overflow-y: auto; /* Allows scrolling if content exceeds max height */
 }
 
-#information {
-  max-height: 350px; /* Adjusted max height */
-}
-  
-#bottom-middle-container {
-  max-height: calc(100vh - 525px);
-}
+
+
 
 .subsection-flex-item {
   border-radius: 15px;
@@ -661,7 +658,7 @@ p {
   padding: 5px;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: normal;
   flex: 1;
   position: relative;
 }
@@ -1865,14 +1862,6 @@ body {
   display: none;
 }
 
-.section-20 {
-  flex: 1 1 20%;
-  min-width: 20% !important;
-  max-width: 40%;
-  box-sizing: border-box;
-  padding-right: 1rem;
-}
-
 .section-20-fixed {
   flex: 0 0 20%;
   min-width: 20% !important;
@@ -1904,11 +1893,19 @@ section-85 {
   padding-right: 1rem;
 }
 
+.section-20 {
+  flex: 1 1 20%;
+  min-width: 20% !important;
+  max-width: 20%;
 
+  box-sizing: border-box;
+  padding-right: 1rem;
+}
 .section-10 {
   flex: 1 1 10%;
   min-width: 10% !important;
-  max-width: 25%;
+  max-width: 10%;
+
   box-sizing: border-box;
   padding-right: 1rem;
 }
@@ -1916,13 +1913,12 @@ section-85 {
 /* Ensures that middle-column takes up remaining width */
 #middle-column {
   display: flex;
-  flex: 1 1 58%;
-  min-width: 58% !important;
+  flex: 1 1 55%;
+  min-width: 55% !important;
+  
   flex-direction: column; /* Adjusts the direction of the flex items */
   padding: 5px;
 }
-
-
 
 .section-wrap {
   flex-grow: 1;
@@ -1955,7 +1951,7 @@ section-85 {
   padding: 5px;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: normal;
   position: relative;
   overflow-wrap: break-word;
   max-width: 100%;
