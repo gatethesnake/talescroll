@@ -20,7 +20,7 @@ const abilityOptions = [
 ];
 
 const characteristicColors = {
-  strength: '#126259',
+  strength: '#32876C',
   dexterity: '#c58150',
   constitution: '#808080',
   intelligence: '#971905',

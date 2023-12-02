@@ -221,7 +221,7 @@
 				</div>
 			</div>
 			<div id="middle-column">
-				<div id="information" class="section-flex-row">
+				<div id="information" class="section-flex-row ">
 					<h2>Information</h2>
 						<div class="wrapper">
 							<div class="container">
@@ -274,7 +274,7 @@
 										+0</p>
 									<label for="otherInitiativeBonus">Bonus</label>
 									<input type="number" id="otherInitiativeBonus" value="0" min="-10" max="10"
-										class="input-text input-initiativeBonus" name="otherInitiativeBonus">
+										class="input-text w50 input-initiativeBonus" name="otherInitiativeBonus">
 								</div>
 								<div id="avantage" class="subsection-flex-item">
 									<h4>Avantage</h4>
@@ -295,7 +295,7 @@
 										<label for="inspirationValue" class="toggle-switch"></label>
 									</div>
 									<h4>Bonus général</h4>
-									<input type="number" id="generalBonusValue" value="0" min="-10" max="10" class="input-text  name=" generalBonusValue">
+									<input type="number" id="generalBonusValue" value="0" min="-10" max="10" class="input-text w50" name="generalBonusValue">
 								</div>
 							</div>
 							<div class="container">
@@ -485,14 +485,14 @@
 							</div>
 						</div>
 				</div>
-				<div id="bottom-middle-container" class="subsection5">
-					<div id="attacks" class="section">
+				<div id="bottom-middle-container" class="section-flex-row">
+					<div id="attacks" class="section-short">
 						<h2>Attaques</h2>
 						<button id="addAttack" class="add-button" onclick="generateAttackSection()"><span class="iconify"
 								data-icon="material-symbols:add"></span></button>
 						<div id="attacksContainer" class="attacks-container"></div>
 					</div>
-					<div id="resources" class="section">
+					<div id="resources" class="section-short">
 						<h2>Ressources</h2>
 						<button id="addResource" class="add-button" onclick="generateResourceSection()"><span class="iconify"
 								data-icon="material-symbols:add"></span></button>
@@ -505,7 +505,7 @@
 			</div>
 		</div>
 		<div id="spellTab" class="meta-section-no-wrap tabContentCS">
-			<div class="section-15">
+			<div class="section section-20-fixed">
 				<div id="spellCaster">
 					<h2>Lanceur de sorts</h2>
 					<div class="container">
@@ -531,7 +531,7 @@
 									max="10">
 							</div>
 						</div>
-						<div class="flex-start-behavior spell-border spellAbilityB">
+						<div class="spell-border spellAbilityB">
 							<div id="spellCasterAbility2" class="subsection">
 								<h4>Habilité B</h4>
 								<select id="spellCastingAbilitySelect2" class="input-text">
@@ -554,7 +554,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="flex-start-behavior spell-border spellFiltres"> 
+					<div class="spell-border spellFiltres"> 
 						<div id="spellFiltres" class="subsection">
 							<h4>Filtres</h4>
 							<label for="spellCasterSelect">Lanceur de sorts</label>
@@ -570,7 +570,7 @@
 				
 				
 			</div>
-			<div class="section-wrap flex-start-behavior">
+			<div class="section section-85">
 				<h2>Livre de sorts</h2>
 				<div id="spellBook" class="spell-section"></div>
 			</div>
@@ -617,7 +617,7 @@
 			</div>
 		</div>
 		<div id="descriptionTab" class="meta-section tabContentCS">
-			<div id="description" class="section section-20">
+			<div id="description" class="section section-15-fixed">
 				<div class="flex-start-behavior">
 					<h2>Description</h2>
 					<div id="characterNameContainer" class="subsection">
@@ -667,7 +667,7 @@
 					</div>
 				</div>
 			</div>
-			<div id="apparence" class="section section-20">
+			<div id="apparence" class="section section-10-fixed">
 				<div class="flex-start-behavior">
 					<h2>Apparence</h2>
 					<div id="raceContainer" class="subsection">
@@ -734,7 +734,7 @@
 				</div>
 				
 			</div>
-			<div id="language" class="section  section-20">
+			<div id="language" class="section  section-20-fixed">
 				<h2>Langues</h2>
 				<button id="addFeature" class="add-button" onclick="generateLanguageSection()"><span class="iconify"
 						data-icon="material-symbols:add"></span></button>

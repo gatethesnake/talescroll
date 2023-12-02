@@ -33,7 +33,7 @@ body {
   top: 0;
   left: 0;
   width: 100%;
-  height: 180px;
+  height: 160px;
   background: url(img/lys-bg.jpg);
   background-size: 100% auto;
   z-index: 100;
@@ -43,7 +43,7 @@ body {
   flex: 1 1 auto;
   overflow-y: auto; /* Add scrollbar for content overflow */
   position: absolute; /* Use absolute positioning within a relative container */
-  top: 180px; /* Height of #site-top */
+  top: 160px; /* Height of #site-top */
   bottom: 20px; /* Height of footer */
   left: 0;
   right: 0;
@@ -74,7 +74,7 @@ footer {
 /* header styles */
 #header {
   position: relative;  
-  margin: 5px;
+  margin: 0px;
 }
 
 .image-container {
@@ -129,8 +129,8 @@ footer {
 /* character picture */
 
 #img-container {
-  width: 140px;
-  height: 140px;
+  width: 130px;
+  height: 130px;
   position: relative;
   overflow: hidden;
   align-items: center;
@@ -415,7 +415,7 @@ p {
 
 .tabCS {
   position: fixed; /* Fixes the position on the page */
-  top: 120px; /* Adjust this value based on the actual height of .tabCS */
+  top: 100px; /* Adjust this value based on the actual height of .tabCS */
   left: 0;
   right: 0;
 
@@ -527,7 +527,7 @@ p {
   justify-content: space-between;
   width: 100%;
   height: 100%;
-  padding-top: 15px;
+  padding-top: 0px;
   align-items: flex-start;
 }
 
@@ -538,19 +538,31 @@ p {
   justify-content: space-between;
   width: 100%;
   height: 100%;
-  padding-top: 15px;
+  padding-top: 0px;
 
+}
+
+.section-short {
+  display: flex;
+  flex-direction: column;
+  border: 2px solid white;
+  border-radius: 10px;
+  margin: 5px;
+  padding: 5px;
+  flex: 1;
+  max-height: calc(100vh - 575px);
+  overflow-y: auto; /* Add scrollbar for content overflow */
 }
 
 .section {
   display: flex;
   flex-direction: column;
   border: 2px solid white;
-  border-radius: 15px;
+  border-radius: 10px;
   margin: 5px;
   padding: 5px;
   flex: 1;
-  max-height: calc(100vh - 225px);
+  max-height: calc(100vh - 190px);
   overflow-y: auto; /* Add scrollbar for content overflow */
 }
 
@@ -564,7 +576,7 @@ p {
   flex-direction: column;
   align-items: center;
   flex: 1;
-  min-width: 145x;
+  min-width: 145px;
   position: relative;
 }
 
@@ -579,12 +591,20 @@ p {
   flex-direction: row;
   flex-wrap: wrap;
   border: 2px solid white;
-  border-radius: 15px;
-  margin: 5px;
+  border-radius: 10px;
+  margin-bottom: 10px;
   padding: 5px;
   width: 100%;
-  max-height: 350px; /* Adjusted max height */
+
   overflow-y: auto; /* Allows scrolling if content exceeds max height */
+}
+
+#information {
+  max-height: 350px; /* Adjusted max height */
+}
+  
+#bottom-middle-container {
+  max-height: calc(100vh - 500px);
 }
 
 .subsection-flex-item {
@@ -616,7 +636,7 @@ p {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  padding: 10px;
+  padding: 5px;
   box-sizing: border-box;
 }
 
@@ -1255,9 +1275,16 @@ p {
 }
 
 .input-actualHitPoints, .input-maxHitPoints {
-  border: 2px solid #007bff; /* Blue border */
+  border: 2px solid #32876C; /* Blue border */
   padding: 10px;
-  font-size: 2.2em; /* Larger font size */
+  font-size: 36px;
+  background-color: #eef4ff; /* Light blue background */
+}
+
+.spell-actual, .spell-max, .resource-actual, .resource-max {
+  border: 2px solid #32876C; /* Blue border */
+  padding: 4px;
+  font-size: 22px;
   background-color: #eef4ff; /* Light blue background */
 }
 
@@ -1827,6 +1854,14 @@ body {
 }
 
 .section-20 {
+  flex: 1 1 20%;
+  min-width: 20% !important;
+  max-width: 40%;
+  box-sizing: border-box;
+  padding-right: 1rem;
+}
+
+.section-20-fixed {
   flex: 0 0 20%;
   min-width: 20% !important;
   max-width: 20%;
@@ -1834,15 +1869,7 @@ body {
   padding-right: 1rem;
 }
 
-.section-15 {
-  flex: 0 0 15%;
-  min-width: 15% !important;
-  max-width: 15%;
-  box-sizing: border-box;
-  padding-right: 1rem;
-}
-
-.section-10 {
+.section-10-fixed {
   flex: 0 0 10%;
   min-width: 10% !important;
   max-width: 10%;
@@ -1850,13 +1877,37 @@ body {
   padding-right: 1rem;
 }
 
+.section-15-fixed {
+  flex: 0 0 15%;
+  min-width: 15% !important;
+  max-width: 15%;
+  box-sizing: border-box;
+  padding-right: 1rem;
+}
+
+section-85 {
+  flex: 1 1 85%;
+  min-width: 85% !important;
+  box-sizing: border-box;
+  padding-right: 1rem;
+}
+
+
+.section-10 {
+  flex: 1 1 10%;
+  min-width: 10% !important;
+  max-width: 25%;
+  box-sizing: border-box;
+  padding-right: 1rem;
+}
+
 /* Ensures that middle-column takes up remaining width */
 #middle-column {
   display: flex;
-  flex: 0 0 58%;
+  flex: 1 1 58%;
   min-width: 58% !important;
-  max-width: 58%;
   flex-direction: column; /* Adjusts the direction of the flex items */
+  padding: 5px;
 }
 
 
@@ -1997,19 +2048,21 @@ body {
 
 /* ***********The entire scrollbar************ */
 ::-webkit-scrollbar {
-  width: 12px; /* width of the entire scrollbar */
+  width: 10px; /* width of the entire scrollbar */
 }
 
 /* The track (progress bar) of the scrollbar NOT covered by the handle */
 ::-webkit-scrollbar-track {
   background: #f1f1f1; /* color of the tracking area */
+  border-radius: 10px;
+
 }
 
 /* The handle (grip) of the scrollbar */
 ::-webkit-scrollbar-thumb {
   background: #888; /* color of the scroll thumb */
   border-radius: 6px; /* roundness of the scroll thumb */
-  border: 3px solid #f1f1f1; /* creates padding around scroll thumb */
+  border: 2px solid #f1f1f1; /* creates padding around scroll thumb */
 }
 
 /* The handle (grip) of the scrollbar when it's active or being clicked */

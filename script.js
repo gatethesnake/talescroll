@@ -8,7 +8,7 @@ document.getElementById("actionTabName").click()
 //document.getElementById("descriptionTabName").click();
 //document.getElementById("diceGeneratorTabName").click();
 
-const splashLength = 25;
+const splashLength = 2500;
 
 //------------------------- OUVERTURE -------------------------//
 // Prévenir la cache du css
@@ -3406,11 +3406,11 @@ for (let i = 0; i <= 9; i++) {
       <button id="addSpell${i}" class="add-button" onclick="getSpellId(${i})"><span class="iconify" data-icon="material-symbols:add"></span></button>
       <div class="input-group">
         <label for="spellMax-${i}">Maximum</label>
-        <input type="number" id="spellMax-${i}" class="input-text" value="0" min="0">
+        <input type="number" id="spellMax-${i}" class="input-text spell-max" value="0" min="0">
       </div>
       <div class="input-group">
         <label for="spellActual-${i}">Actuel</label>
-        <input type="number" id="spellActual-${i}" class="input-text" value="0" min="0">
+        <input type="number" id="spellActual-${i}" class="input-text spell-actual" value="0" min="0">
       </div>
     </div>
   </div>
@@ -4472,11 +4472,11 @@ function getResourceSectionHTML(resourceUUID) {
   <div class="container4">
   <div class="input-group resource-input-group">
     <label for="resourceMax-${resourceUUID}">Maximum</label>
-    <input type="number" id="resourceMax-${resourceUUID}" class="input-text" value="0" min="0">
+    <input type="number" id="resourceMax-${resourceUUID}" class="input-text resource-max" value="0" min="0">
   </div>
   <div class="input-group resource-input-group">
     <label for="resourceActual-${resourceUUID}">Actuel</label>
-    <input type="number" id="resourceActual-${resourceUUID}" class="input-text" value="0" min="0">
+    <input type="number" id="resourceActual-${resourceUUID}" class="input-text resource-actual" value="0" min="0">
   </div>
   <div class="toggle-group resource-toggle-group">
     <div class="toggle">
@@ -5190,6 +5190,8 @@ function createColorPalette(parentElementId) {
       colorSquare.onclick = (e) => {
         paletteContainer.style.display = 'none';
         changeBackgroundColor(parentElementId, e.target.style.backgroundColor);
+        paletteContainer.style.display = 'none'; // Hide the palette after color selection
+
       };
 
       paletteContainer.appendChild(colorSquare);
@@ -5201,6 +5203,8 @@ function createColorPalette(parentElementId) {
   transparentSquare.onclick = (e) => {
     paletteContainer.style.display = 'none';
     changeBackgroundColor(parentElementId, null);
+    paletteContainer.style.display = 'none'; // Hide the palette for transparent selection
+
   };
 
   paletteContainer.appendChild(transparentSquare);
