@@ -777,7 +777,7 @@ function openCharacter(loadFrom) {
       }
 
     }
-
+     
     // Load death saves
     if (characterData.hasOwnProperty('deathSaves')) {
       const successCheckboxes = document.querySelectorAll('.checkbox-death-saving-throws[id^="success"]');
@@ -1593,14 +1593,26 @@ function confirmReset() {
 }
 
 function showPopup() {
-  const popup = document.getElementById('reset-popup');
+  const popup = document.getElementById('resetPopup');
   popup.style.display = 'flex';
 }
 
 function closePopup() {
-  const popup = document.getElementById('reset-popup');
+  const popup = document.getElementById('resetPopup');
   popup.style.display = 'none';
 }
+
+function showWarning() {
+  const popup = document.getElementById('warningPopup');
+  popup.style.display = 'flex';
+}
+
+function closeWarning() {
+  const popup = document.getElementById('warningPopup');
+  popup.style.display = 'none';
+}
+
+
 
 function resetCharacter() {
   showPopup();
@@ -1736,6 +1748,7 @@ function updateDependentElements() {
   updateTotalWeight();
   updateCharacterName();
   updatePassivePerception();
+  updateFireShadow();
 }
 
 function updateCharacterName() {
@@ -5276,6 +5289,27 @@ function loadDefaultImage() {
   const imgElement = document.getElementById('preview');
   imgElement.src = base64DefaultCharacterPicture;
 }
+
+////// Fire Shadow : character's health warning
+function updateFireShadow() {
+  
+  var actualHitPoints = parseFloat(document.getElementById('actualHitPoints').value);
+  var maxHitPoints = parseFloat(document.getElementById('maxHitPoints').value);
+  var imgContainer = document.getElementById('img-container');
+  
+  var characterHealth = maxHitPoints === 0 ? 1 : actualHitPoints / maxHitPoints;
+
+  if (characterHealth < 0.5) {
+    imgContainer.classList.add('fire-shadow');
+    //showWarning();
+  } else {
+    imgContainer.classList.remove('fire-shadow');
+  }
+}
+
+document.getElementById('actualHitPoints').addEventListener('change', updateFireShadow);
+document.getElementById('maxHitPoints').addEventListener('change', updateFireShadow);
+
 
 
 ///spell slot calcultator in progress

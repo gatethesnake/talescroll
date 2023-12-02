@@ -478,7 +478,19 @@ p {
   flex-direction: row;
 }
 
-#reset-popup {
+#resetPopup {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+}
+
+#warningPopup {
   display: none;
   position: fixed;
   top: 0;
@@ -556,7 +568,7 @@ p {
 .success-container,
 .failed-container,
 .img-container   {
-  background: rgba(255, 255, 255, .8);
+  background: rgba(255, 255, 255, 0.4);
   border: 1px solid #666666;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5); /* Adds a drop shadow */
 }
@@ -2075,7 +2087,25 @@ section-85 {
   background: #555; /* color of the scroll thumb when active */
 }
 
-/* ***********SHIELD************ */
+/* ***********FIRE************ */
+.fire-shadow {
+  /* Basic styling */
+  text-align: center;
+  color: white;
+  
+  /* Animated shadow */
+  box-shadow: 0 0 50px rgba(255, 165, 0, 0.75);
+  animation: flicker 1s infinite alternate;
+}
+
+@keyframes flicker {
+  0%, 100% {
+    box-shadow: 0 0 30px rgba(255, 165, 0, 0.75);
+  }
+  50% {
+    box-shadow: 0 0 50px rgba(255, 140, 0, 0.75), 0 0 30px rgba(255, 0, 0, 0.75);
+  }
+}
 
 
 

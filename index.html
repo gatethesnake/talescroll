@@ -68,7 +68,7 @@
 			<div id="imageContainer">
 				<div id="characterPictureContainer">
 					<div id="img-container">
-						<img id="preview" src="" alt="Personnage" />
+						<img id="preview" src="" alt="Personnage"/>
 					</div>
 					<input type="file" id="fileInput" accept="image/*" style="display:none;">
 					<div id="statusBar">
@@ -799,11 +799,17 @@
 		</div>
 	</div>
 	</div>
-	<div id="reset-popup" class="popup" style="display:none;">
+	<div id="resetPopup" class="popup" style="display:none;">
 		<div class="popup-content">
 			<h3>Voulez-vous vraiment réinitialiser le personnage? (irréversible)</h3>
 			<button id="cancel_reset" class="button button_over" onclick="closePopup()">Annuler</button>
 			<button id="resume_reset" class="button button_over" onclick="confirmReset()">OK</button>
+		</div>
+	</div>
+	<div id="warningPopup" class="popup" style="display:none;">
+		<div class="popup-content">
+			<h3>Votre état de santé devient critique</h3>
+			<button id="cancel_warning" class="button button_over" onclick="closeWarning()">Oui, j'ai compris</button>
 		</div>
 	</div>
 	<footer>
