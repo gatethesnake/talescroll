@@ -8,7 +8,7 @@ document.getElementById("actionTabName").click()
 //document.getElementById("descriptionTabName").click();
 //document.getElementById("diceGeneratorTabName").click();
 
-const splashLength = 2500;
+const splashLength = 25;
 
 //------------------------- OUVERTURE -------------------------//
 // Prévenir la cache du css
@@ -2695,11 +2695,11 @@ function applySaveButtonColors() {
         break;
       case 'intelligenceSaveValue':
       case 'intelligenceBonusScore':
-        button.style.backgroundColor = '#971905';
+        button.style.backgroundColor = '#B51D05';
         break;
       case 'wisdomSaveValue':
       case 'wisdomBonusScore':
-        button.style.backgroundColor = '#FCDC8A';
+        button.style.backgroundColor = '#31A376';
         break;
       case 'charismaSaveValue':
       case 'charismaBonusScore':

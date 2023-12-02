@@ -23,8 +23,8 @@ const characteristicColors = {
   strength: '#32876C',
   dexterity: '#c58150',
   constitution: '#808080',
-  intelligence: '#971905',
-  wisdom: '#FCDC8A',
+  intelligence: '#B51D05',
+  wisdom: '#31A376',
   charisma: '#603a23'
 };
 
@@ -11842,7 +11842,7 @@ const spells = [
   '#cb8c82', 
   '#bababa', 
   '#C6B1A5',   
-  '#971905', 
+  '#B51D05', 
   '#e2c0a7', 
   '#C6C6C6', 
   '#CC7A4B', 

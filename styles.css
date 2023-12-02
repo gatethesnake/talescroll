@@ -135,7 +135,7 @@ footer {
   overflow: hidden;
   align-items: center;
   justify-content: center;
-  border: 2px solid white; /* Changed border color to white */
+  border: 2px solid #424242; /* Changed border color to white */
   border-radius: 75%; /* Keeps the container round */
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5); /* Adds a drop shadow */
 }
@@ -542,22 +542,42 @@ p {
 
 }
 
+.section, 
+.section-flex-row, 
+.section-short, 
+.level_, 
+.spell-border, 
+.subsection, 
+.subsection-flex-item, 
+.subsection3, 
+.subsection4, 
+.subsection6,
+.success-container,
+.failed-container   {
+  background: rgba(255, 255, 255, 1);
+  border: 1px solid #666666;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5); /* Adds a drop shadow */
+}
+
+.subsection, .subsection3, .subsection-flex-item {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+
 .section-short {
   display: flex;
   flex-direction: column;
-  border: 2px solid white;
   border-radius: 10px;
   margin: 5px;
   padding: 5px;
   flex: 1;
-  max-height: calc(100vh - 575px);
+  max-height: calc(100vh - 550px);
   overflow-y: auto; /* Add scrollbar for content overflow */
 }
 
 .section {
   display: flex;
   flex-direction: column;
-  border: 2px solid white;
   border-radius: 10px;
   margin: 5px;
   padding: 5px;
@@ -566,9 +586,7 @@ p {
   overflow-y: auto; /* Add scrollbar for content overflow */
 }
 
-
 .subsection {
-  border: 1px solid white;
   border-radius: 15px;
   margin: 3px;
   padding: 5px;
@@ -590,7 +608,6 @@ p {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  border: 2px solid white;
   border-radius: 10px;
   margin-bottom: 10px;
   padding: 5px;
@@ -604,11 +621,10 @@ p {
 }
   
 #bottom-middle-container {
-  max-height: calc(100vh - 500px);
+  max-height: calc(100vh - 525px);
 }
 
 .subsection-flex-item {
-  border: 1px solid white;
   border-radius: 15px;
   margin: 3px;
   padding: 5px;
@@ -618,9 +634,8 @@ p {
   align-items: center;
   width: 25%; /* Minimum width of each subsection */
   flex: 1; /* Adjust as needed, or use specific widths */
-
+  
 }
-
 
 .subsection2 {
   flex-grow: 1;
@@ -641,7 +656,6 @@ p {
 }
 
 .subsection3 {
-  border: 1px solid white;
   border-radius: 5px;
   margin: 3px;
   padding: 5px;
@@ -735,7 +749,7 @@ p {
   line-height: 1.2;
   padding: 0;
   margin: 5px;
-  border: 2px solid #FFFFFF;
+  border: 2px solid #424242;
   user-select: none;
   /* prevent text selection */
   cursor: pointer;
@@ -782,12 +796,12 @@ p {
 
 #intelligenceSaveValue,
 #intelligenceBonusScore {
-  background-color: #971905;
+  background-color: #B51D05;
 }
 
 #wisdomSaveValue,
 #wisdomBonusScore {
-  background-color: #FCDC8A;
+  background-color: #31A376;
 }
 
 #charismaSaveValue,
@@ -808,11 +822,11 @@ p {
 }
 
 #intelligence {
-  background: rgba(151, 25, 5, 0.5); /* Converted from #971905 */
+  background: rgba(151, 25, 5, 0.5); /* Converted from #B51D05 */
 }
 
 #wisdom {
-  background: rgba(252, 220, 138, 0.5); /* Converted from #FCDC8A */
+  background: rgba(49, 163, 118, 0.5); /* Converted from #31A376 */
 }
 
 #charisma {
@@ -891,12 +905,12 @@ p {
 }
 
 #animalHandlingBonusValue.roundButton {
-  background-color: #FCDC8A;
+  background-color: #31A376;
   color: white;
 }
 
 #arcanaBonusValue.roundButton {
-  background-color: #971905;
+  background-color: #B51D05;
   color: white;
 }
 
@@ -911,12 +925,12 @@ p {
 }
 
 #historyBonusValue.roundButton {
-  background-color: #971905;
+  background-color: #B51D05;
   color: white;
 }
 
 #insightBonusValue.roundButton {
-  background-color: #FCDC8A;
+  background-color: #31A376;
   color: white;
 }
 
@@ -926,22 +940,22 @@ p {
 }
 
 #investigationBonusValue.roundButton {
-  background-color: #971905;
+  background-color: #B51D05;
   color: white;
 }
 
 #medicineBonusValue.roundButton {
-  background-color: #FCDC8A;
+  background-color: #31A376;
   color: white;
 }
 
 #natureBonusValue.roundButton {
-  background-color: #971905;
+  background-color: #B51D05;
   color: white;
 }
 
 #perceptionBonusValue.roundButton {
-  background-color: #FCDC8A;
+  background-color: #31A376;
   color: white;
 }
 
@@ -956,7 +970,7 @@ p {
 }
 
 #religionBonusValue.roundButton {
-  background-color: #971905;
+  background-color: #B51D05;
   color: white;
 }
 
@@ -971,7 +985,7 @@ p {
 }
 
 #survivalBonusValue.roundButton {
-  background-color: #FCDC8A;
+  background-color: #31A376;
   color: white;
 }
 
@@ -980,7 +994,7 @@ p {
 }
 
 #animalHandlingSkill {
-  background-color: rgba(252, 220, 138, 0.5); /* Wisdom color */
+  background-color: rgba(49, 163, 118, 0.5); /* Wisdom color */
 }
 
 #arcanaSkill {
@@ -1000,7 +1014,7 @@ p {
 }
 
 #insightSkill {
-  background-color: rgba(252, 220, 138, 0.5); /* Wisdom color */
+  background-color: rgba(49, 163, 118, 0.5); /* Wisdom color */
 }
 
 #intimidationSkill {
@@ -1012,7 +1026,7 @@ p {
 }
 
 #medicineSkill {
-  background-color: rgba(252, 220, 138, 0.5); /* Wisdom color */
+  background-color: rgba(49, 163, 118, 0.5); /* Wisdom color */
 }
 
 #natureSkill {
@@ -1020,7 +1034,7 @@ p {
 }
 
 #perceptionSkill {
-  background-color: rgba(252, 220, 138, 0.5); /* Wisdom color */
+  background-color: rgba(49, 163, 118, 0.5); /* Wisdom color */
 }
 
 #performanceSkill {
@@ -1044,7 +1058,7 @@ p {
 }
 
 #survivalSkill {
-  background-color: rgba(252, 220, 138, 0.5); /* Wisdom color */
+  background-color: rgba(49, 163, 118, 0.5); /* Wisdom color */
 }
 
 
@@ -1084,7 +1098,6 @@ p {
 .failed-container {
   display: flex;
   justify-content: center;
-  border: 1px solid white;
   border-radius: 5px;
   width: 100%;
   margin: 3px;
@@ -1293,7 +1306,7 @@ p {
   margin-top: 10px;
   padding: 5px 10px;
   background-color: #f0f0f0;
-  border: 1px solid #ccc;
+  border: 1px solid #424242;
   cursor: pointer;
 }
 
@@ -1546,7 +1559,7 @@ p {
   line-height: 1.2;
   padding: 5px;
   margin: 8px;
-  border: 0.2em solid #FFFFFF;
+  border: 1px solid #FFFFFF;
   user-select: none;
   /* prevent text selection */
   cursor: pointer;
@@ -1792,7 +1805,6 @@ body {
 }
 
 .subsection4 {
-  border: 1px solid white;
   border-radius: 5px;
   margin: 3px;
   padding: 5px;
@@ -1926,21 +1938,18 @@ section-85 {
 .level_ {
   width: 32%;
   box-sizing: border-box;
-  border: 2px solid white;
   border-radius: 15px;
   margin: 5px;
   padding: 5px;
 }
 
 .spell-border {
-  border: 2px solid white;
   border-radius: 15px;
   margin: 5px;
   padding: 5px;
 }
 
 .subsection6 {
-  border: 1px solid white;
   border-radius: 5px;
   margin: 3px;
   padding: 5px;
