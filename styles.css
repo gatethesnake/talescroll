@@ -556,7 +556,7 @@ p {
 .success-container,
 .failed-container,
 .img-container   {
-  background: rgba(255, 255, 255, 1);
+  background: rgba(255, 255, 255, .8);
   border: 1px solid #666666;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5); /* Adds a drop shadow */
 }

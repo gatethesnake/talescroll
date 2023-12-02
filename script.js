@@ -5174,14 +5174,10 @@ function positionColorContainer(elementName, elementUUID, paletteContainer) {
   paletteContainer.style.display = 'block';
 }
 
-
-
-
 function createColorPalette(parentElementId) {
   let paletteContainer = document.createElement('div');
   paletteContainer.classList.add('color-container');
   paletteContainer.style.display = 'flex';
-
   for (let i = 0; i < 4; i++) {
     for (let j = 0; j < 4; j++) {
       let colorSquare = document.createElement('div');
@@ -5214,7 +5210,24 @@ function createColorPalette(parentElementId) {
 
 
 function changeBackgroundColor(parentElementId, color) {
-  document.getElementById(parentElementId).style.backgroundColor = color;
+
+  const alpha = 0.5; // Set the desired opacity
+  const rgbaColor = color.replace('rgb', 'rgba').replace(')', `, ${alpha})`); // Transform RGB to RGBA
+  document.getElementById(parentElementId).style.backgroundColor = rgbaColor;
+  document.getElementById(parentElementId).style.backgroundColor = rgbaColor;  
+}
+
+function hexToRgb(hex) {
+  // Remove the hash at the start if it's there
+  hex = hex.replace(/^#/, '');
+
+  // Parse the hex color
+  var bigint = parseInt(hex, 16);
+  var r = (bigint >> 16) & 255;
+  var g = (bigint >> 8) & 255;
+  var b = bigint & 255;
+
+  return { r, g, b };
 }
 //------ fin colorpicker ------//
 
