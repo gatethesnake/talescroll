@@ -8,7 +8,7 @@ document.getElementById("actionTabName").click()
 //document.getElementById("descriptionTabName").click();
 //document.getElementById("diceGeneratorTabName").click();
 
-const splashLength = 25;
+const splashLength = 2500;
 
 //------------------------- OUVERTURE -------------------------//
 // Prévenir la cache du css
@@ -5305,7 +5305,27 @@ function updateFireShadow() {
   } else {
     imgContainer.classList.remove('fire-shadow');
   }
+  /*
+  if (characterHealth === 0)  {
+    alert("Vous êtes mort!")
+    explodePage();
+  }
+  */
 }
+
+// EXPLOSION
+
+function explodePage() {
+  const divs = document.querySelectorAll('div');
+  divs.forEach(div => {
+      div.classList.add('exploding');
+  });
+
+  setTimeout(() => {
+      document.body.innerHTML = '<div>Vous êtes mort</div>';
+  }, 2000);
+}
+
 
 document.getElementById('actualHitPoints').addEventListener('change', updateFireShadow);
 document.getElementById('maxHitPoints').addEventListener('change', updateFireShadow);
@@ -5390,3 +5410,4 @@ let characterClasses = {
 let slots = calculateSpellSlots(characterClasses);
 console.log(slots);
 */
+

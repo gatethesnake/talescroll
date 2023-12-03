@@ -592,6 +592,7 @@ p {
 .section {
   display: flex;
   flex-direction: column;
+  
   border-radius: 10px;
   margin: 5px;
   padding: 5px;
@@ -602,13 +603,13 @@ p {
 
 .subsection {
   border-radius: 15px;
-  margin: 3px;
+  margin: 5px;
   padding: 5px;
   display: flex;
   flex-direction: column;
   align-items: center;
   flex: 1;
-  min-width: 145px;
+  min-width: 125px;
   position: relative;
 }
 
@@ -1909,15 +1910,14 @@ section-85 {
   flex: 1 1 20%;
   min-width: 20% !important;
   max-width: 20%;
-
   box-sizing: border-box;
   padding-right: 1rem;
 }
+
 .section-10 {
   flex: 1 1 10%;
   min-width: 10% !important;
   max-width: 10%;
-
   box-sizing: border-box;
   padding-right: 1rem;
 }
@@ -2070,8 +2070,11 @@ section-85 {
 
 /* The track (progress bar) of the scrollbar NOT covered by the handle */
 ::-webkit-scrollbar-track {
-  background: #f1f1f1; /* color of the tracking area */
+  background: rgba(255, 255, 255, 0.25); /* color of the tracking area */
   border-radius: 10px;
+  border:1px solid #666666; /* creates padding around scroll thumb */
+
+
 
 }
 
@@ -2108,4 +2111,17 @@ section-85 {
 }
 
 
+/*  *****EXPLOSION***** */
+.exploding {
+  position: absolute;
+  background: none !important; /* Removed background image */
 
+  animation: explode 4s forwards; /* Increased duration to 4 seconds */
+}
+
+@keyframes explode {
+  to {
+      transform: translate(-50vw, -50vh) scale(0) rotate(360deg); /* Added rotation */
+      opacity: 0;
+  }
+}
