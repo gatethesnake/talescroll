@@ -221,7 +221,7 @@
 				</div>
 			</div>
 			<div id="middle-column">
-				<div id="information" class="section-flex-row ">
+				<div id="information" class="section-flex-row">
 					<h2>Information</h2>
 						<div class="wrapper">
 							<div class="container">
@@ -269,12 +269,16 @@
 								</div>
 								<div id="initiative" class="subsection-flex-item">
 									<h4>Initiative</h4>
-									<p id="initiativeBonusValue" class="roundButton"
-										onclick="rollInitiative(this.previousElementSibling.innerHTML, this.innerHTML);">
-										+0</p>
-									<label for="otherInitiativeBonus">Bonus</label>
-									<input type="number" id="otherInitiativeBonus" value="0" min="-10" max="10"
-										class="input-text w50 input-initiativeBonus" name="otherInitiativeBonus">
+									<div class="container">
+										<p id="initiativeBonusValue" class="roundButton"
+											onclick="rollInitiative('Initiative', this.textContent);">
+											+0</p>
+										<div class="wrapper">
+											<label for="otherInitiativeBonus">Bonus</label>
+											<input type="number" id="otherInitiativeBonus" value="0" min="-10" max="10"
+												class="input-text w50" name="otherInitiativeBonus">
+										</div>
+									</div>
 								</div>
 								<div id="avantage" class="subsection-flex-item">
 									<h4>Avantage</h4>
@@ -295,7 +299,7 @@
 										<label for="inspirationValue" class="toggle-switch"></label>
 									</div>
 									<h4>Bonus général</h4>
-									<input type="number" id="generalBonusValue" value="0" min="-10" max="10" class="input-text w50" name="generalBonusValue">
+									<input type="number" id="generalBonusValue" value="0" min="-10" max="10" class="input-text" name="generalBonusValue">
 								</div>
 							</div>
 							<div class="container">
@@ -407,10 +411,15 @@
 								</div>
 								<div id="passive-perception" class="subsection-flex-item">
 									<h4>Perception passive</h4>
-									<p id="passivePerceptionValue" class="roundButton">10
-									<p>
-									<input type="number" id="perceptionOtherBonusValue" value="0" min="-10" max="10"
-									class="input-text  name=" perceptionOtherBonusValue">
+									<div class="container">
+										<p id="passivePerceptionValue" class="roundButton">10
+										<p>
+										<div class="wrapper">
+											<label for="perceptionOtherBonusValue">Bonus</label>
+											<input type="number" id="perceptionOtherBonusValue" value="0" min="-10" max="10"
+												class="input-text w50" name="perceptionOtherBonusValue">
+										</div>
+									</div>
 								</div>
 								<div id="save-against-death" class="subsection-flex-item">
 									<h4>Sauvegarde c. la mort</h4>

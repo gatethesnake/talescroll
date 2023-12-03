@@ -1,6 +1,7 @@
 TaleScroll road map
 
 - v2.2
+		- Bonus Général : retrait des roll, affichage direct a la place. (comme jack of all trade)
 		- table des armes
 		- short or long rest Reset.
 		- spell slot calculator

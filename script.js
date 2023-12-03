@@ -2105,13 +2105,12 @@ function rollInitiative(initiativeName, initiativeBonus) {
 
   // Get the value of generalBonusValue
   const generalBonusValue = parseInt(document.getElementById("generalBonusValue").value) || 0;
-
   // Update initiativeBonus
   initiativeBonus = parseInt(initiativeBonus) + generalBonusValue;
 
   if (initiativeBonus !== 0) {
     commandBonus = initiativeBonus >= 0 ? `+${initiativeBonus}` : initiativeBonus;
-    toastBonus = ` et un bonus de ${commandBonus}`;
+    //toastBonus = ` et un bonus de ${commandBonus}`;
   }
 
   let diceCount = 'd20';
@@ -2578,7 +2577,7 @@ function adjustSavingThrows(context, loadedData = null) {
     const otherBonusInput = document.createElement('input');
     otherBonusInput.type = 'number';
     otherBonusInput.id = `${englishSaveName}OtherSavingThrowBonusValue`;
-    otherBonusInput.className = 'input-text';
+    otherBonusInput.className = 'input-text w50';
     otherBonusInput.setAttribute('name', `${englishSaveName}OtherSavingThrowBonusValue`);
     otherBonusInput.setAttribute('value', '0');
     otherBonusInput.setAttribute('min', '-10');

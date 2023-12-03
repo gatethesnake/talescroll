@@ -585,7 +585,7 @@ p {
   margin: 5px;
   padding: 5px;
   flex: 1;
-  max-height: calc(100vh - 540px);
+  max-height: calc(100vh - 520px);
   overflow-y: auto; /* Add scrollbar for content overflow */
 }
 
@@ -696,7 +696,8 @@ p {
 }
 
 .w50 {
-  width:60px;
+  width:55px;
+  font-size:11px;
 }
 
 
