@@ -128,7 +128,7 @@ footer {
 
 /* character picture */
 
-#img-container {
+#imgContainer {
   width: 130px;
   height: 130px;
   position: relative;
@@ -567,7 +567,7 @@ p {
 .subsection6,
 .success-container,
 .failed-container,
-.img-container   {
+.imgContainer   {
   background: rgba(255, 255, 255, 0.4);
   border: 1px solid #666666;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5); /* Adds a drop shadow */
@@ -2094,7 +2094,6 @@ section-85 {
 .fire-shadow {
   /* Basic styling */
   text-align: center;
-  color: white;
   
   /* Animated shadow */
   box-shadow: 0 0 50px rgba(255, 165, 0, 0.75);

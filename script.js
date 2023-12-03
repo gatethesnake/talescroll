@@ -94,7 +94,7 @@ window.addEventListener('load', function () {
 
   // update footer content with current year
   const footerContent = document.getElementById('footerContent');
-  footerContent.innerHTML = `<p>©${currentYear} · Gaétan Lanthier · co-design :chat-GPT, Dan RJ Tremblay, Yannick Cloutier · Utilisation à vos risques · Vous aimez? 💰 bc1qay734rj64dgf585zanp84tt64akkjz3dwcx73c 🔒</p>`;
+  footerContent.innerHTML = `<p>©${currentYear} · Gaétan Lanthier · co-design :chat-GPT, Dan RJ Tremblay, Y. Cloutier, L. Martineau · Utilisation à vos risques · Vous aimez? 💰 bc1qay734rj64dgf585zanp84tt64akkjz3dwcx73c 🔒</p>`;
 });
 
 //----------- ONGLETS -----------//
@@ -5295,15 +5295,18 @@ function updateFireShadow() {
   
   var actualHitPoints = parseFloat(document.getElementById('actualHitPoints').value);
   var maxHitPoints = parseFloat(document.getElementById('maxHitPoints').value);
-  var imgContainer = document.getElementById('img-container');
+  var imgContainer = document.getElementById('imgContainer');
+  var actualHitPointsDiv = document.getElementById('actualHitPoints');
   
   var characterHealth = maxHitPoints === 0 ? 1 : actualHitPoints / maxHitPoints;
 
   if (characterHealth < 0.5) {
     imgContainer.classList.add('fire-shadow');
+    actualHitPointsDiv.classList.add('fire-shadow');
     //showWarning();
   } else {
     imgContainer.classList.remove('fire-shadow');
+    actualHitPointsDiv.classList.remove('fire-shadow');
   }
   /*
   if (characterHealth === 0)  {
