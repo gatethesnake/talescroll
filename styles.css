@@ -153,7 +153,7 @@ h1,
 h2,
 h3,
 h4 {
-  color: #222;
+  color: #444444;
   margin: 0;
   font-weight: normal;
 }
@@ -170,8 +170,10 @@ h1 {
 
 /* specific styles for h2 */
 h2 {
-  font-size: 20px;
+  font-size: 21px;
+  font-weight: bold;
   font-family: 'MedievalSharp';
+  text-align: center;
 }
 
 /* specific styles for h3 */
@@ -400,7 +402,7 @@ p {
   padding: 14px 16px;
   cursor: pointer;
   transition: background-color 0.3s;
-  background-color: #2e2e2e;
+  background-color: #969696;
 }
 
 .tabCS button.active {
@@ -410,7 +412,7 @@ p {
 }
 
 .tabCS button:not(.active) {
-  background-color: #2e2e2e !important;
+  background-color: #969696  !important;
   margin-top: 10px;
 }
 
@@ -569,7 +571,7 @@ p {
 .failed-container,
 .imgContainer   {
   background: rgba(255, 255, 255, 0.4);
-  border: 1px solid #666666;
+  border: 1px solid #cccccc;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5); /* Adds a drop shadow */
 }
 
@@ -627,7 +629,6 @@ p {
   margin-bottom: 10px;
   padding: 5px;
   width: 100%;
-
   overflow-y: auto; /* Allows scrolling if content exceeds max height */
 }
 
@@ -715,7 +716,7 @@ p {
   width: 60px;
   border: 5px solid #eee;
   border-radius: 50% 50% 50% 50% / 12% 12% 88% 88%;
-  background-color: #F44336;
+  background-color: #B51D05;
   color: #FFFFFF;
   font-size: 24px;
   font-weight: bold;
@@ -752,7 +753,7 @@ p {
   display: inline-grid;
   place-items: center;
   border-radius: 50%;
-  background-color: #F44336;
+  background-color: #B51D05;
   color: #FFFFFF;
   font-size: 24px;
   font-weight: bold;
@@ -760,7 +761,7 @@ p {
   line-height: 1.2;
   padding: 0;
   margin: 5px;
-  border: 2px solid #666666;
+  border: 2px solid #cccccc;
   user-select: none;
   /* prevent text selection */
   cursor: pointer;
@@ -1121,11 +1122,11 @@ p {
 }
 
 .blue-button {
-  background-color: blue !important;
+  background-color: #31A376 !important;
 }
 
 .red-button {
-  background-color: red !important;
+  background-color: #B51D05 !important;
 }
 
 .small-button {
@@ -1226,15 +1227,15 @@ p {
 }
 
 .dark-red-button {
-  background-color: darkred;
+  background-color: #B51D05;
 }
 
 .dark-yellow-button {
-  background-color: rgb(172, 171, 168);
+  background-color: #c58150;
 }
 
 .dark-green-button {
-  background-color: darkgreen;
+  background-color: #32876C;
 }
 
 .toggle-button {
@@ -1265,7 +1266,7 @@ p {
 }
 
 .activated-button {
-  background-color: #ffcc00;
+  background-color: #603a23;
   border-radius: 10px;
   color: #ffffff;
   font-weight: bold;
@@ -1317,7 +1318,7 @@ p {
   margin-top: 10px;
   padding: 5px 10px;
   background-color: #f0f0f0;
-  border: 1px solid #666666;
+  border: 1px solid #cccccc;
   cursor: pointer;
 }
 
@@ -1562,7 +1563,7 @@ p {
 .rectangleButton {
   display: inline-grid;
   place-items: center;
-  background-color: #F44336;
+  background-color: #B51D05;
   color: #FFFFFF;
   font-size: 18px;
   font-weight: bold;
@@ -1928,7 +1929,6 @@ section-85 {
   display: flex;
   flex: 1 1 58%;
   min-width: 58% !important;
-  
   flex-direction: column; /* Adjusts the direction of the flex items */
   padding: 5px;
 }
@@ -2073,7 +2073,7 @@ section-85 {
 ::-webkit-scrollbar-track {
   background: rgba(255, 255, 255, 0.25); /* color of the tracking area */
   border-radius: 10px;
-  border:1px solid #666666; /* creates padding around scroll thumb */
+  border:1px solid #cccccc; /* creates padding around scroll thumb */
 
 
 
