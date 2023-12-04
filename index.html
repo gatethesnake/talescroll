@@ -92,9 +92,9 @@
 			<button class="tablinksCS"  style="display:none"onclick="openTabCS(event, 'sheetTab')"       id="sheetTabName">Onglet caché</button>
 			<button class="tablinksCS" onclick="openTabCS(event, 'actionTab')"      id="actionTabName">Fiche</button>
 			<button class="tablinksCS" onclick="openTabCS(event, 'spellTab')"       id="spellTabName">Sorts</button>
-			<button class="tablinksCS" onclick="openTabCS(event, 'itemsTab')"       id="equipmentTabName">Équipements</button>
+			<button class="tablinksCS" onclick="openTabCS(event, 'itemsTab')"       id="equipmentTabName">Information</button>
 			<button class="tablinksCS" onclick="openTabCS(event, 'featTab')"        id="featTabName">Attributs</button>
-			<button class="tablinksCS" onclick="openTabCS(event, 'descriptionTab')"	id="descriptionTabName">Information</button>
+			<button class="tablinksCS" onclick="openTabCS(event, 'descriptionTab')"	id="descriptionTabName">Notes</button>
 			<button class="tablinksCS"  style="display:none"onclick="openTabCS(event, 'dice-generator')"	id="diceGeneratorTabName">Dés</button>
 		</div>
 	</div>
@@ -222,7 +222,7 @@
 				</div>
 			</div>
 			<div id="middle-column">
-				<div id="information" class="section">
+				<div id="information" class="section-flex-row">
 					<h2>Information</h2>
 						<div class="wrapper">
 							<div class="container">
@@ -586,47 +586,6 @@
 			</div>
 		</div>
 		<div id="itemsTab" class="meta-section tabContentCS">
-			<div id="equipment" class="section">
-				<h2>Équipement</h2>
-				<div id="totalWeight">
-					<label for="totalWeightValue">Poids total</label>
-					<input type="text" id="totalWeightValue" class="input-text" value="0" readonly>
-				</div>
-				<button id="addFeature" class="add-button" onclick="generateEquipmentSection()"><span class="iconify"
-						data-icon="material-symbols:add"></span></button>
-				<div id="equipmentContainer" class="equipment-container"></div>
-			</div>
-			<div id="money" class="section">
-				<div class="flex-start-behavior">
-					<h2>Argent</h2>
-					<h3>Pièces</h3>
-					<div id="moneyPieces" class="subsection4"></div>
-					<h3>Trésors</h3>
-					<button id="addFeature" class="add-button full-width-button"
-						onclick="generateTreasureSection()"><span class="iconify"
-							data-icon="material-symbols:add"></span></button>
-					<div id="treasureContainer" class="treasure-container"></div>
-				</div>
-			</div>
-		</div>
-		<div id="featTab" class="meta-section tabContentCS">
-			<div id="features" class="section">
-				<h2>Attributs</h2>
-				<button id="addFeature" class="add-button" onclick="generateFeatureSection()"><span class="iconify"
-						data-icon="material-symbols:add"></span></button>
-				<div id="featureContainer" class="feature-container"></div>
-			</div>
-			<div id="feats" class="section">
-				<h2>Dons</h2>
-				<button id="addFeat" class="add-button" onclick="generateFeatSection()"><span class="iconify"
-						data-icon="material-symbols:add"></span></button>
-				<div id="featContainer" class="feat-container"></div>
-			</div>
-			<div id="status" class="section">
-				<h2>États</h2>
-			</div>
-		</div>
-		<div id="descriptionTab" class="meta-section tabContentCS">
 			<div id="description" class="section section-15-fixed">
 				<div class="flex-start-behavior">
 					<h2>Description</h2>
@@ -744,12 +703,54 @@
 				</div>
 				
 			</div>
-			<div id="language" class="section  section-20-fixed">
+			<div id="language" class="section  section-15-fixed">
 				<h2>Langues</h2>
 				<button id="addFeature" class="add-button" onclick="generateLanguageSection()"><span class="iconify"
 						data-icon="material-symbols:add"></span></button>
 				<div id="languageContainer" class="language-container"></div>
 			</div>
+			<div id="equipment" class="section">
+				<h2>Équipement</h2>
+				<div id="totalWeight">
+					<label for="totalWeightValue">Poids total</label>
+					<input type="text" id="totalWeightValue" class="input-text" value="0" readonly>
+				</div>
+				<button id="addFeature" class="add-button" onclick="generateEquipmentSection()"><span class="iconify"
+						data-icon="material-symbols:add"></span></button>
+				<div id="equipmentContainer" class="equipment-container"></div>
+			</div>
+			<div id="money" class="section">
+				<div class="flex-start-behavior">
+					<h2>Argent</h2>
+					<h3>Pièces</h3>
+					<div id="moneyPieces" class="subsection4"></div>
+					<h3>Trésors</h3>
+					<button id="addFeature" class="add-button full-width-button"
+						onclick="generateTreasureSection()"><span class="iconify"
+							data-icon="material-symbols:add"></span></button>
+					<div id="treasureContainer" class="treasure-container"></div>
+				</div>
+			</div>
+		</div>
+		<div id="featTab" class="meta-section tabContentCS">
+			<div id="features" class="section">
+				<h2>Attributs</h2>
+				<button id="addFeature" class="add-button" onclick="generateFeatureSection()"><span class="iconify"
+						data-icon="material-symbols:add"></span></button>
+				<div id="featureContainer" class="feature-container"></div>
+			</div>
+			<div id="feats" class="section">
+				<h2>Dons</h2>
+				<button id="addFeat" class="add-button" onclick="generateFeatSection()"><span class="iconify"
+						data-icon="material-symbols:add"></span></button>
+				<div id="featContainer" class="feat-container"></div>
+			</div>
+			<div id="status" class="section">
+				<h2>États</h2>
+			</div>
+		</div>
+		<div id="descriptionTab" class="meta-section tabContentCS">
+
 			<div id="miscellaneous" class="section">
 				<h2>Notes diverses</h2>
 				<button id="addFeature" class="add-button" onclick="generateMiscellaneousSection()"><span

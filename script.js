@@ -5059,7 +5059,7 @@ function getMiscellaneousSectionHTML(miscellaneousUUID) {
   <div class="container3">
     <div class="input-group">
       <div class="textarea-container">
-        <textarea id="miscellaneousDescription-${miscellaneousUUID}" class="input-textarea" rows="4"></textarea>
+        <textarea id="miscellaneousDescription-${miscellaneousUUID}" class="input-textarea3" rows="4"></textarea>
       </div>
     </div>
   </div>

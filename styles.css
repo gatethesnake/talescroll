@@ -1807,6 +1807,14 @@ body {
   display:none;
 }
 
+.input-textarea3 {
+  width: 100%;
+  min-height: 6em;
+  resize: both;
+  font-size: 16px;
+  display:none;
+}
+
 .input-textarea2 {
   width: 100%;
   min-height: 6em;
