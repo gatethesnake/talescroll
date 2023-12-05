@@ -1301,7 +1301,7 @@ p {
 .input-actualHitPoints, .input-maxHitPoints {
   border: 2px solid #32876C; /* Blue border */
   padding: 10px;
-  font-size: 36px;
+  font-size: 24px;
   background-color: #eef4ff; /* Light blue background */
 }
 
