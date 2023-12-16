@@ -104,7 +104,7 @@
 		<div id="actionTab" class="meta-section tabContentCS">
 			<div id="abilities" class="section section-10">
 				<div class="flex-start-behavior">
-					<h2>Caractéristiques</h2>
+					<h2 style="font-size: smaller;">Caractéristiques</h2>
 					<div id="strength" class="subsection">
 						<h4>Force</h4>
 						<p id="strengthBonusScore" class="roundButton ability-modifier ability-bonus"
@@ -151,7 +151,7 @@
 			</div>
 			<div id="savingThrows" class="section section-10">
 				<div class="flex-start-behavior">
-					<h2>Sauvegardes</h2>
+					<h2 style="font-size: smaller;">Sauvegardes</h2>
 					<div id="strength" class="subsection">
 						<h4>Force</h4>
 						<p id="strengthSaveValue" class="roundButton" onclick="rollSave('Force', this.textContent)">
@@ -223,7 +223,7 @@
 			</div>
 			<div id="middle-column">
 				<div id="information" class="section-flex-row">
-					<h2>Information</h2>
+					<h2 style="font-size: smaller;">Information</h2>
 						<div class="wrapper">
 							<div class="container">
 								<div id="hit-points" class="subsection-flex-item">
@@ -268,19 +268,6 @@
 										</div>
 									</div>
 								</div>
-								<div id="initiative" class="subsection-flex-item">
-									<h4>Initiative</h4>
-									<div class="container">
-										<p id="initiativeBonusValue" class="roundButton"
-											onclick="rollInitiative('Initiative', this.textContent);">
-											+0</p>
-										<div class="wrapper">
-											<label for="otherInitiativeBonus">Bonus</label>
-											<input type="number" id="otherInitiativeBonus" value="0" min="-10" max="10"
-												class="input-text w50" name="otherInitiativeBonus">
-										</div>
-									</div>
-								</div>
 								<div id="avantage" class="subsection-flex-item">
 									<h4>Avantage</h4>
 									<div class="buttons-advantage center-buttons wrapper">
@@ -301,6 +288,55 @@
 									</div>
 									<h4>Bonus général</h4>
 									<input type="number" id="generalBonusValue" value="0" min="-10" max="10" class="input-text" name="generalBonusValue">
+								</div>
+								<div id="save-against-death" class="subsection-flex-item">
+									<h4>Sauvegarde c. la mort</h4>
+									<div class="grid-container">
+										<div class="grid-header">
+											<span>Succès</span>
+											<span>Échec</span>
+										</div>
+										<div class="grid-content death-saves">
+											<div class="success-container">
+												<input type="checkbox" id="success1" name="success1"
+													class="checkbox-death-saving-throws">
+												<input type="checkbox" id="success2" name="success2"
+													class="checkbox-death-saving-throws" disabled>
+												<input type="checkbox" id="success3" name="success3"
+													class="checkbox-death-saving-throws" disabled>
+											</div>
+											<div class="failed-container">
+												<input type="checkbox" id="failed1" name="failed1"
+													class="checkbox-death-saving-throws">
+												<input type="checkbox" id="failed2" name="failed2"
+													class="checkbox-death-saving-throws" disabled>
+												<input type="checkbox" id="failed3" name="failed3"
+													class="checkbox-death-saving-throws" disabled>
+											</div>
+										</div>
+									</div>
+									<div id="d20Container" class="overlay hidden">
+										<div class="close-btn" onclick="hideD20Container()">
+											&times;
+										</div>
+										<div id="diceWrapper">
+										</div>
+										<div id="resultDeathSave" class="result-death-save">
+											<h2 id="resultText" class="result-text">Jet de sauvegarde contre la mort</h2>
+											<h2 id="deadOrAlive" class="dead-or-alive"></h2>
+											<button id="buttonDeathSaveRollResult" class="button"
+												onclick="hideD20Container()"></button>
+										</div>
+									</div>
+									<div class="button-container">
+										<button id="rollDeathSavingThrowsButton" class="button small-button blue-button"
+											onclick="rollDeathSavingThrowsLocally()">
+											<span class="iconify" data-icon="fa-solid:dice-d20"></span>
+										</button>
+										<button id="resetDeathSavingThrowsButton" class="button small-button red-button">
+											&#8634;
+										</button>
+									</div>
 								</div>
 							</div>
 							<div class="container">
@@ -410,6 +446,19 @@
 										</div>
 									</div>
 								</div>
+								<div id="initiative" class="subsection-flex-item">
+									<h4>Initiative</h4>
+									<div class="container">
+										<p id="initiativeBonusValue" class="roundButton"
+											onclick="rollInitiative('Initiative', this.textContent);">
+											+0</p>
+										<div class="wrapper">
+											<label for="otherInitiativeBonus">Bonus</label>
+											<input type="number" id="otherInitiativeBonus" value="0" min="-10" max="10"
+												class="input-text w50" name="otherInitiativeBonus">
+										</div>
+									</div>
+								</div>
 								<div id="passive-perception" class="subsection-flex-item">
 									<h4>Perception passive</h4>
 									<div class="container">
@@ -422,54 +471,10 @@
 										</div>
 									</div>
 								</div>
-								<div id="save-against-death" class="subsection-flex-item">
-									<h4>Sauvegarde c. la mort</h4>
-									<div class="grid-container">
-										<div class="grid-header">
-											<span>Succès</span>
-											<span>Échec</span>
-										</div>
-										<div class="grid-content death-saves">
-											<div class="success-container">
-												<input type="checkbox" id="success1" name="success1"
-													class="checkbox-death-saving-throws">
-												<input type="checkbox" id="success2" name="success2"
-													class="checkbox-death-saving-throws" disabled>
-												<input type="checkbox" id="success3" name="success3"
-													class="checkbox-death-saving-throws" disabled>
-											</div>
-											<div class="failed-container">
-												<input type="checkbox" id="failed1" name="failed1"
-													class="checkbox-death-saving-throws">
-												<input type="checkbox" id="failed2" name="failed2"
-													class="checkbox-death-saving-throws" disabled>
-												<input type="checkbox" id="failed3" name="failed3"
-													class="checkbox-death-saving-throws" disabled>
-											</div>
-										</div>
-									</div>
-									<div id="d20Container" class="overlay hidden">
-										<div class="close-btn" onclick="hideD20Container()">
-											&times;
-										</div>
-										<div id="diceWrapper">
-										</div>
-										<div id="resultDeathSave" class="result-death-save">
-											<h2 id="resultText" class="result-text">Jet de sauvegarde contre la mort</h2>
-											<h2 id="deadOrAlive" class="dead-or-alive"></h2>
-											<button id="buttonDeathSaveRollResult" class="button"
-												onclick="hideD20Container()"></button>
-										</div>
-									</div>
-									<div class="button-container">
-										<button id="rollDeathSavingThrowsButton" class="button small-button blue-button"
-											onclick="rollDeathSavingThrowsLocally()">
-											<span class="iconify" data-icon="fa-solid:dice-d20"></span>
-										</button>
-										<button id="resetDeathSavingThrowsButton" class="button small-button red-button">
-											&#8634;
-										</button>
-									</div>
+								<div id="proficiency-bonus" class="subsection">
+									<h4>Bonus de maîtrise</h4>
+									<p id="proficiencyBonusValue" class="roundButton">+2
+									<p>
 								</div>
 								<div id="speed" class="subsection-flex-item">
 									<h4>Déplacement</h4>
@@ -491,19 +496,18 @@
 										</div>
 									</div>
 								</div>
-
 							</div>
 						</div>
 				</div>
-				<div id="bottom-middle-container" class="section-flex-row">
-					<div id="attacks" class="section-short">
-						<h2>Attaques</h2>
+				<div id="bottom-middle-container" class="section-flex-row-no-style">
+					<div id="attacks" class="section-short section-short-left ">
+						<h2 style="font-size: smaller;">Attaques</h2>
 						<button id="addAttack" class="add-button" onclick="generateAttackSection()"><span class="iconify"
 								data-icon="material-symbols:add"></span></button>
 						<div id="attacksContainer" class="attacks-container"></div>
 					</div>
-					<div id="resources" class="section-short">
-						<h2>Ressources</h2>
+					<div id="resources" class="section-short section-short-right ">
+						<h2 style="font-size: smaller;">Ressources</h2>
 						<button id="addResource" class="add-button" onclick="generateResourceSection()"><span class="iconify"
 								data-icon="material-symbols:add"></span></button>
 						<div id="resourceContainer" class="resource-container"></div>
@@ -511,7 +515,7 @@
 				</div>
 			</div>
 			<div id="skills" class="section section-20">
-				<h2>Compétences</h2>
+				<h2 style="font-size: smaller;">Compétences</h2>
 			</div>
 		</div>
 		<div id="spellTab" class="meta-section-no-wrap tabContentCS">
@@ -577,8 +581,6 @@
 						</div>
 					</div>
 				</div>
-				
-				
 			</div>
 			<div class="section">
 				<h2>Livre de sorts</h2>
@@ -621,11 +623,7 @@
 						<label for="levelName2">Niveau B</label>
 						<select id="levelName2" class="input-text" name="levelName2"></select>
 					</div>
-					<div id="proficiency-bonus" class="subsection">
-						<h4>Bonus de maîtrise</h4>
-						<p id="proficiencyBonusValue" class="roundButton">+2
-						<p>
-					</div>
+
 					<div class="subsection">
 						<label for="versatileValue">Touche à tout</label>
 						<div class="toggle">

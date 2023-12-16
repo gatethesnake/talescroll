@@ -584,11 +584,22 @@ p {
   display: flex;
   flex-direction: column;
   border-radius: 10px;
-  margin: 5px;
+  margin-top: 0px;
+  margin-bottom: 10px;
   padding: 5px;
   flex: 1;
-  max-height: calc(100vh - 520px);
+  max-height: calc(100vh - 460px);
   overflow-y: auto; /* Add scrollbar for content overflow */
+}
+
+.section-short-left {
+  margin-left: 0px;
+  margin-right: 5px;
+}
+
+.section-short-right {
+  margin-right: 0px;
+  margin-left: 5px;
 }
 
 .section {
@@ -631,6 +642,13 @@ p {
   overflow-y: auto; /* Allows scrolling if content exceeds max height */
 }
 
+.section-flex-row-no-style {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+  overflow-y: auto; /* Allows scrolling if content exceeds max height */
+}
 
 
 
@@ -2066,7 +2084,7 @@ body {
 
 /* ***********The entire scrollbar************ */
 ::-webkit-scrollbar {
-  width: 10px; /* width of the entire scrollbar */
+  width: 6px; /* width of the entire scrollbar */
 }
 
 /* The track (progress bar) of the scrollbar NOT covered by the handle */
@@ -2074,9 +2092,6 @@ body {
   background: rgba(255, 255, 255, 0.25); /* color of the tracking area */
   border-radius: 10px;
   border:1px solid #cccccc; /* creates padding around scroll thumb */
-
-
-
 }
 
 /* The handle (grip) of the scrollbar */
