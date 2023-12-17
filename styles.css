@@ -170,7 +170,7 @@ h1 {
 
 /* specific styles for h2 */
 h2 {
-  font-size: 21px;
+  font-size: 19px;
   font-weight: bold;
   font-family: 'MedievalSharp';
   text-align: center;
@@ -539,7 +539,7 @@ p {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: center;
   width: 100%;
   height: 100%;
   padding-top: 0px;
@@ -606,8 +606,8 @@ p {
   display: flex;
   flex-direction: column;
   border-radius: 10px;
-  margin: 5px;
-  padding: 5px;
+  margin: 2px;
+  padding: 2px;
   flex: 1;
   max-height: calc(100vh - 190px);
   overflow-y: auto; /* Add scrollbar for content overflow */
@@ -615,13 +615,13 @@ p {
 
 .subsection {
   border-radius: 15px;
-  margin: 5px;
-  padding: 5px;
+  margin: 2px;
+  padding: 2px;
   display: flex;
   flex-direction: column;
   align-items: center;
   flex: 1;
-  min-width: 125px;
+  min-width: 105px;
   position: relative;
 }
 
@@ -654,8 +654,8 @@ p {
 
 .subsection-flex-item {
   border-radius: 15px;
-  margin: 3px;
-  padding: 5px;
+  margin: 2px;
+  padding: 2px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -701,13 +701,14 @@ p {
 
 .input-select,
 .input-text {
+  min-height: 22px;
   font-size: 16px;
-  padding: 4px 8px;
+  padding: 2px 6px;
   border: 1px solid #cccccc;
   border-radius: 4px;
   background-color: #f8f8f8;
-  margin-bottom: 2px;
-  margin-top: 2px;
+  margin-bottom: 0px;
+  margin-top: 0px;
   width: 100%;
   box-sizing: border-box;
   transition: background-color 0.2s;
@@ -1637,7 +1638,7 @@ p {
   /* Remove border */
   color: white;
   /* White text */
-  padding: 8px 16px;
+  padding: 4px 4px;
   /* Padding around text */
   text-align: center;
   /* Centered text */
@@ -1645,7 +1646,7 @@ p {
   /* Remove underline */
   display: inline-block;
   /* Display as inline-block */
-  font-size: 16px;
+  font-size: 12px;
   /* Set font size */
   margin: 4px 2px;
   /* Add some margin */
@@ -1653,7 +1654,7 @@ p {
   /* Cursor changes to a hand when hovering */
   border-radius: 4px;
   /* Rounded corners */
-  height: 40px;
+  height: 30px;
   /* Set explicit height */
 
 }
@@ -1902,6 +1903,14 @@ body {
   display: none;
 }
 
+.section-50-fixed-centered {
+  flex: 0 0 50%;
+  min-width: 50% !important;
+  max-width: 50%;
+  box-sizing: border-box;
+  padding-right: 1rem;
+}
+
 .section-20-fixed {
   flex: 0 0 20%;
   min-width: 20% !important;
@@ -2078,7 +2087,7 @@ body {
 
 .maitrise-label {
   font-size: 12px;
-  padding:8px 0px 9px 0px;
+  padding:0px 0px 0px 0px;
 }
 
 
