@@ -1,0 +1,304 @@
+{
+  "abilities": {
+    "strength": {
+      "Score": "10"
+    },
+    "dexterity": {
+      "Score": "10"
+    },
+    "constitution": {
+      "Score": "10"
+    },
+    "intelligence": {
+      "Score": "10"
+    },
+    "wisdom": {
+      "Score": "10"
+    },
+    "charisma": {
+      "Score": "10"
+    }
+  },
+  "description": {
+    "ruleBackground": false,
+    "player": " ",
+    "characterName": " ",
+    "className": " ",
+    "customClass": " ",
+    "className2": " ",
+    "customClass2": " ",
+    "levelName": "1",
+    "levelName2": "1",
+    "race": " ",
+    "customRace": " ",
+    "religion": " ",
+    "customReligion": " ",
+    "alignement": "Neutre",
+    "historique": " ",
+    "customHistorique": " "
+  },
+  "apparence": {
+    "age": " ",
+    "taille": " ",
+    "poids": " ",
+    "yeux": " ",
+    "peau": " ",
+    "cheveux": " "
+  },
+  "savingThrows": {
+    "strength": {
+      "proficient": false,
+      "expert": false,
+      "otherSavingThrowBonus": "0"
+    },
+    "dexterity": {
+      "proficient": false,
+      "expert": false,
+      "otherSavingThrowBonus": "0"
+    },
+    "constitution": {
+      "proficient": false,
+      "expert": false,
+      "otherSavingThrowBonus": "0"
+    },
+    "intelligence": {
+      "proficient": false,
+      "expert": false,
+      "otherSavingThrowBonus": "0"
+    },
+    "wisdom": {
+      "proficient": false,
+      "expert": false,
+      "otherSavingThrowBonus": "0"
+    },
+    "charisma": {
+      "proficient": false,
+      "expert": false,
+      "otherSavingThrowBonus": "0"
+    }
+  },
+  "skills": {
+    "acrobatics": {
+      "proficient": false,
+      "expert": false
+    },
+    "animalHandling": {
+      "proficient": false,
+      "expert": false
+    },
+    "arcana": {
+      "proficient": false,
+      "expert": false
+    },
+    "athletics": {
+      "proficient": false,
+      "expert": false
+    },
+    "deception": {
+      "proficient": false,
+      "expert": false
+    },
+    "history": {
+      "proficient": false,
+      "expert": false
+    },
+    "insight": {
+      "proficient": false,
+      "expert": false
+    },
+    "intimidation": {
+      "proficient": false,
+      "expert": false
+    },
+    "investigation": {
+      "proficient": false,
+      "expert": false
+    },
+    "medicine": {
+      "proficient": false,
+      "expert": false
+    },
+    "nature": {
+      "proficient": false,
+      "expert": false
+    },
+    "perception": {
+      "proficient": false,
+      "expert": false
+    },
+    "performance": {
+      "proficient": false,
+      "expert": false
+    },
+    "persuasion": {
+      "proficient": false,
+      "expert": false
+    },
+    "religion": {
+      "proficient": false,
+      "expert": false
+    },
+    "sleightOfHand": {
+      "proficient": false,
+      "expert": false
+    },
+    "stealth": {
+      "proficient": false,
+      "expert": false
+    },
+    "survival": {
+      "proficient": false,
+      "expert": false
+    }
+  },
+  "information": {
+    "otherInitiativeBonus": "0",
+    "actualHitPoints": "0",
+    "maxHitPoints": "0",
+    "tempHitPoints": "0",
+    "inspirationValue": "on",
+    "speedValue": "0",
+    "generalBonusValue": "0",
+    "perceptionOtherBonusValue": "0",
+    "versatileValue": "on",
+    "avantage": "normal"
+  },
+  "deathSaves": {
+    "success": [
+      false,
+      false,
+      false
+    ],
+    "failed": [
+      false,
+      false,
+      false
+    ]
+  },
+  "status": {
+    "HASTED": false,
+    "EXHAUSTED": false,
+    "CONCENTRATED": false,
+    "UNCONSCIOUS": false,
+    "STUNNED": false,
+    "POISONED": false,
+    "CHARMED": false,
+    "FRIGHTENED": false,
+    "PARALYZED": false,
+    "PETRIFIED": false,
+    "BLINDED": false,
+    "INVISIBLE": false,
+    "ENVELOPED_IN_MAGICAL_DARKNESS": false,
+    "DEAFENED": false,
+    "RESTRAINED": false,
+    "ELECTRIFIED": false,
+    "DROWNING": false,
+    "GRAPPLED": false,
+    "INCAPACITATED": false,
+    "PRONE": false,
+    "RESTING": false,
+    "SHOCKED": false,
+    "SILENCED": false,
+    "UNABLE_TO_BREATHE": false,
+    "UNABLE_TO_SEE": false,
+    "UNABLE_TO_HEAR": false,
+    "UNABLE_TO_SMELL": false,
+    "UNABLE_TO_TASTE": false,
+    "UNABLE_TO_TOUCH": false,
+    "BLOODIED": false
+  },
+  "armorClassInfo": {
+    "ability1": " ",
+    "ability2": " ",
+    "otherAdjustmentName": " ",
+    "otherAdjustmentValue": "0",
+    "armorActive": false,
+    "armorSelection": " ",
+    "customArmorName": " ",
+    "customArmorValue": "0",
+    "shieldActive1": false,
+    "shieldSelection1": " ",
+    "customShieldName1": " ",
+    "customShieldValue1": "0",
+    "shieldActive2": false,
+    "shieldSelection2": " ",
+    "customShieldName2": " ",
+    "customShieldValue2": "0"
+  },
+  "attackInfo": {},
+  "resourceInfo": {},
+  "featureInfo": {},
+  "equipmentInfo": {},
+  "treasureInfo": {},
+  "languageInfo": {},
+  "miscellaneousInfo": {},
+  "moneyInfo": {
+    "cp": 0,
+    "sp": 0,
+    "ep": 0,
+    "gp": 0,
+    "pp": 0
+  },
+  "featInfo": {},
+  "spellAttackInfo": {
+    "spellCastingAbilitySelect": " ",
+    "otherDcSpellBonus": "0",
+    "otherSpellAttackBonus": "0"
+  },
+  "spellAttackInfo2": {},
+  "spellLevelInfo": {
+    "0": {
+      "maximum": "0",
+      "actual": "0"
+    },
+    "1": {
+      "maximum": "0",
+      "actual": "0"
+    },
+    "2": {
+      "maximum": "0",
+      "actual": "0"
+    },
+    "3": {
+      "maximum": "0",
+      "actual": "0"
+    },
+    "4": {
+      "maximum": "0",
+      "actual": "0"
+    },
+    "5": {
+      "maximum": "0",
+      "actual": "0"
+    },
+    "6": {
+      "maximum": "0",
+      "actual": "0"
+    },
+    "7": {
+      "maximum": "0",
+      "actual": "0"
+    },
+    "8": {
+      "maximum": "0",
+      "actual": "0"
+    },
+    "9": {
+      "maximum": "0",
+      "actual": "0"
+    }
+  },
+  "spellBookInfo": {
+    "0": {},
+    "1": {},
+    "2": {},
+    "3": {},
+    "4": {},
+    "5": {},
+    "6": {},
+    "7": {},
+    "8": {},
+    "9": {}
+  },
+  "characterImage": "data:image/jpeg;base64,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"
+}
