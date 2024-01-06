@@ -67,24 +67,24 @@ const APPARENCE_INPUTS = [
 ];
 
 const abilitiesSkills = [
-  { nom: "Acrobatie", caracteristique: "Dextérité" },
-  { nom: "Dressage", caracteristique: "Sagesse" },
-  { nom: "Arcane", caracteristique: "Intelligence" },
   { nom: "Athlétisme", caracteristique: "Force" },
-  { nom: "Tromperie", caracteristique: "Charisme" },
-  { nom: "Histoire", caracteristique: "Intelligence" },
-  { nom: "Perspicacité", caracteristique: "Sagesse" },
-  { nom: "Intimidation", caracteristique: "Charisme" },
-  { nom: "Investigation", caracteristique: "Intelligence" },
-  { nom: "Médecine", caracteristique: "Sagesse" },
-  { nom: "Nature", caracteristique: "Intelligence" },
-  { nom: "Perception", caracteristique: "Sagesse" },
-  { nom: "Performance", caracteristique: "Charisme" },
-  { nom: "Persuasion", caracteristique: "Charisme" },
-  { nom: "Religion", caracteristique: "Intelligence" },
-  { nom: "Prestidigitation", caracteristique: "Dextérité" },
+  { nom: "Acrobatie", caracteristique: "Dextérité" },
   { nom: "Discrétion", caracteristique: "Dextérité" },
-  { nom: "Survie", caracteristique: "Sagesse" }
+  { nom: "Escamotage", caracteristique: "Dextérité" },
+  { nom: "Arcane", caracteristique: "Intelligence" },
+  { nom: "Investigation", caracteristique: "Intelligence" },
+  { nom: "Histoire", caracteristique: "Intelligence" },
+  { nom: "Nature", caracteristique: "Intelligence" },
+  { nom: "Religion", caracteristique: "Intelligence" },
+  { nom: "Dressage", caracteristique: "Sagesse" },
+  { nom: "Intuition", caracteristique: "Sagesse" },
+  { nom: "Médecine", caracteristique: "Sagesse" },
+  { nom: "Perception", caracteristique: "Sagesse" },
+  { nom: "Survie", caracteristique: "Sagesse" },
+  { nom: "Intimidation", caracteristique: "Charisme" },
+  { nom: "Persuasion", caracteristique: "Charisme" },
+  { nom: "Représentation", caracteristique: "Charisme" },
+  { nom: "Tromperie", caracteristique: "Charisme" }
 ];
 
 const INFORMATION_INPUTS = [
@@ -247,24 +247,37 @@ const spellCasters = [
 ];
 
 const skillsName = [
-  { id: 'acrobatics', name: 'Acrobatie' },
-  { id: 'animalHandling', name: 'Dressage' },
-  { id: 'arcana', name: 'Arcane' },
   { id: 'athletics', name: 'Athlétisme' },
-  { id: 'deception', name: 'Tromperie' },
-  { id: 'history', name: 'Histoire' },
-  { id: 'insight', name: 'Perspicacité' },
-  { id: 'intimidation', name: 'Intimidation' },
-  { id: 'investigation', name: 'Investigation' },
-  { id: 'medicine', name: 'Médecine' },
-  { id: 'nature', name: 'Nature' },
-  { id: 'perception', name: 'Perception' },
-  { id: 'performance', name: 'Performance' },
-  { id: 'persuasion', name: 'Persuasion' },
-  { id: 'religion', name: 'Religion' },
-  { id: 'sleightOfHand', name: 'Prestidigitation' },
+  { id: 'acrobatics', name: 'Acrobatie' },
   { id: 'stealth', name: 'Discrétion' },
-  { id: 'survival', name: 'Survie' }
+  { id: 'sleightOfHand', name: 'Escamotage' },
+  { id: 'arcana', name: 'Arcane' },
+  { id: 'investigation', name: 'Investigation' },
+  { id: 'history', name: 'Histoire' },
+  { id: 'nature', name: 'Nature' },
+  { id: 'religion', name: 'Religion' },
+  { id: 'animalHandling', name: 'Dressage' },
+  { id: 'insight', name: 'Intuition' },
+  { id: 'medicine', name: 'Médecine' },
+  { id: 'perception', name: 'Perception' },
+  { id: 'survival', name: 'Survie' },
+  { id: 'intimidation', name: 'Intimidation' },
+  { id: 'persuasion', name: 'Persuasion' },
+  { id: 'performance', name: 'Représentation' },
+  { id: 'deception', name: 'Tromperie' },
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
 ];
 
 const classesSkills = [
@@ -274,16 +287,16 @@ const classesSkills = [
   { id: 'athletics', nom: "Athlétisme", maitrise: ["Barbare", "Guerrier", "Moine", "Paladin"] },
   { id: 'deception', nom: "Tromperie", maitrise: ["Barde", "Roublard"] },
   { id: 'history', nom: "Histoire", maitrise: ["Artificier","Barde", "Ensorceleur", "Mage", "Moine"] },
-  { id: 'insight', nom: "Perspicacité", maitrise: ["Barde", "Druide", "Moine", "Occultiste", "Rôdeur"] },
+  { id: 'insight', nom: "Intuition", maitrise: ["Barde", "Druide", "Moine", "Occultiste", "Rôdeur"] },
   { id: 'intimidation', nom: "Intimidation", maitrise: ["Barbare", "Guerrier", "Paladin"] },
   { id: 'investigation', nom: "Investigation", maitrise: ["Artificier","Barde", "Mage", "Occultiste", "Roublard"] },
   { id: 'medicine', nom: "Médecine", maitrise: ["Artificier","Barde", "Clerc", "Druide"] },
   { id: 'nature', nom: "Nature", maitrise: ["Artificier","Barde", "Druide", "Occultiste", "Rôdeur"] },
   { id: 'perception', nom: "Perception", maitrise: ["Artificier","Barbare", "Druide", "Moine", "Occultiste", "Rôdeur"] },
-  { id: 'performance', nom: "Performance", maitrise: ["Barde"] },
+  { id: 'performance', nom: "Représentation", maitrise: ["Barde"] },
   { id: 'persuasion', nom: "Persuasion", maitrise: ["Barde", "Guerrier", "Paladin"] },
   { id: 'religion', nom: "Religion", maitrise: ["Clerc", "Moine", "Paladin"] },
-  { id: 'sleightOfHand', nom: "Prestidigitation", maitrise: ["Artificier","Barde", "Ensorceleur", "Mage", "Occultiste", "Rôdeur"] },
+  { id: 'sleightOfHand', nom: "Escamotage", maitrise: ["Artificier","Barde", "Ensorceleur", "Mage", "Occultiste", "Rôdeur"] },
   { id: 'stealth', nom: "Discrétion", maitrise: ["Roublard"] },
   { id: 'survival', nom: "Survie", maitrise: ["Barbare", "Druide", "Moine", "Occultiste", "Rôdeur"] }
 ];
