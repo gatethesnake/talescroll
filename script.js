@@ -2087,8 +2087,19 @@ const proficiency_bonus = document.getElementById('proficiencyBonusValue');
 
 // Function to update proficiency bonus value based on selected level
 function updateProficiencyBonus() {
-  const levels = parseInt(level_selector.value) + parseInt(level_selector2.value); ;
-  const bonus = Math.ceil(levels / 4) + 1;
+  const levels = parseInt(level_selector.value) + parseInt(level_selector2.value);
+  let bonus;
+  if (levels >= 17) {
+    bonus = 6;
+  } else if (levels >= 13) {
+    bonus = 5;
+  } else if (levels >= 9) {
+    bonus = 4;
+  } else if (levels >= 5) {
+    bonus = 3;
+  } else {
+    bonus = 2;
+  }
   proficiency_bonus.textContent = '+' + bonus;
 }
 
